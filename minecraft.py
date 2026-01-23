@@ -1,20 +1,17 @@
 import tkinter as tk
 import random as ran
 
-
 start = True
 score = 0
 multiplier = 1
 blocks = []
 
-
 root = tk.Tk()
 root.title("Minecraft")
 root.geometry('10000x100000')
 
-
-
-
+stoneImage = tk.PhotoImage(file='assets/images/stoneImageMinecraft.png')
+deepslateImage = tk.PhotoImage(file='assets/images/deepslateImageMinecraft.png')
 
 
 def button_click(r,c,block):
@@ -51,32 +48,23 @@ def button_click(r,c,block):
 
 
 
-
 def nextRoundPre():
     global blocks
     print('Next Round Pre')
 
-
     for eachCol in blocks:
 
-
         for eachRow in eachCol:
-
 
             if (eachRow == 'air') or (eachRow == 'barrier'):
                 continue
 
-
             eachRow.grid_forget()
-
 
     print(blocks)
     blocks = []
 
-
     nextShop()
-
-
 
 
 
@@ -88,12 +76,7 @@ def nextShop():
 
 
 
-
-
 def nextRound():
-
-
-
 
     if ran.randint(0,4) == 1:
         dimension = 'nether'
@@ -101,29 +84,17 @@ def nextRound():
         dimension = 'overworld'
 
 
-
-
     for r in range(16):
         root.grid_rowconfigure(r, weight=1)
         blocks.append([])
 
-
-
-
         for c in range(16):
             root.grid_columnconfigure(c, weight=1)
-
-
-
 
             if dimension == 'overworld':
                 root.configure(background='grey')
 
-
-
-
                 randomNum = ran.randint(0,75)
-
 
                 if randomNum <= 25:
                     ore = 'copper'
@@ -143,8 +114,6 @@ def nextRound():
                                                 ore = 'emerald'
                 else:
                     ore = 'none'
-
-
 
 
                 if (r == 15):
@@ -172,25 +141,18 @@ def nextRound():
                     elif ore == 'redstone':
                         button = tk.Button(root, text="", bg='red', fg='red', command=lambda r=r, c=c: button_click(r,c,'redstone'))
                 elif r <= 8:
-                    button = tk.Button(root, text="", bg='dark grey', fg='dark grey', command=lambda r=r, c=c: button_click(r,c,'stone'))
+                    button = tk.Button(root, image=stoneImage, command=lambda r=r, c=c: button_click(r,c,'stone'))
                 else:
-                    button = tk.Button(root, text="", bg='grey', fg='grey', command=lambda r=r, c=c: button_click(r,c,'deepslate'))
+                    button = tk.Button(root, image=deepslateImage, command=lambda r=r, c=c: button_click(r,c,'deepslate'))
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
-
-
 
 
             elif dimension == 'nether':
                 root.configure(background='red')
 
 
-
-
                 randomNum = ran.randint(0,75)
-
-
-
 
                 if randomNum <= 25:
                     ore = 'nether gold'
@@ -200,8 +162,6 @@ def nextRound():
                             ore = 'netherite'
                 else:
                     ore = 'none'
-
-
 
 
                 if (r == 15) or (r == 0):
@@ -227,8 +187,6 @@ def nextRound():
         else:
             blocks[r].append('barrier')
 
-
 nextRound()
-
 
 root.mainloop()
