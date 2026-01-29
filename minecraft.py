@@ -12,6 +12,7 @@ root.geometry('10000x100000')
 
 stoneImage = tk.PhotoImage(file='assets/images/stoneImageMinecraft.png')
 deepslateImage = tk.PhotoImage(file='assets/images/deepslateImageMinecraft.png')
+bedrockImage = tk.PhotoImage(file='assets/images/bedrockImageMinecraft.png')
 
 
 def button_click(r,c,block):
@@ -122,7 +123,7 @@ def nextRound():
                     elif c == 1:
                         button = tk.Button(root, text='Next', bg='dark slate gray', fg='slate gray', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                     else:
-                        button = tk.Button(root, text="", bg='dark slate gray', fg='dark slate gray', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+                        button = tk.Button(root, image=bedrockImage, command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                 elif ore != 'none':
                     if ore == 'diamond':
                         button = tk.Button(root, text="", bg='cyan', fg='cyan', command=lambda r=r, c=c: button_click(r,c,'diamond'))
@@ -170,7 +171,7 @@ def nextRound():
                     elif (c == 1) and (r == 15):
                         button = tk.Button(root, text='Next', bg='dark slate gray', fg='slate gray', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                     else:
-                        button = tk.Button(root, text="", bg='dark slate gray', fg='dark slate gray', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+                        button = tk.Button(root, image=bedrockImage, command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                 elif ore != 'none':
                     if ore == 'quartz':
                         button = tk.Button(root, text="", bg='white', fg='white', command=lambda r=r, c=c: button_click(r,c,'quartz'))
