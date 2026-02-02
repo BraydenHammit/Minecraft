@@ -13,6 +13,7 @@ root.geometry('10000x100000')
 stoneImage = tk.PhotoImage(file='assets/images/stoneImageMinecraft.png')
 deepslateImage = tk.PhotoImage(file='assets/images/deepslateImageMinecraft.png')
 bedrockImage = tk.PhotoImage(file='assets/images/bedrockImageMinecraft.png')
+netherackImage = tk.PhotoImage(file='assets/images/netherackImageMinecraft.png')
 
 
 def button_click(r,c,block):
@@ -180,7 +181,7 @@ def nextRound():
                     elif ore == 'netherite':
                         button = tk.Button(root, text="", bg='saddle brown', fg='saddle brown', command=lambda r=r, c=c: button_click(r,c,'netherite'))
                 else:
-                    button = tk.Button(root, text="", bg='dark red', fg='dark red', command=lambda r=r, c=c: button_click(r,c,'netherack'))
+                    button = tk.Button(root, image = netherackImage, bg='#723232', command=lambda r=r, c=c: button_click(r,c,'netherack'))
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
 
