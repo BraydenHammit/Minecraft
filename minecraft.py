@@ -171,7 +171,7 @@ def nextRound():
                     elif (c == 1) and (r == 15):
                         button = tk.Button(root, text='Next', bg='dark slate gray', fg='slate gray', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                     else:
-                        button = tk.Button(root, image=bedrockImage, command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+                        button = tk.Button(root, image=bedrockImage, bg = 'gray30', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                 elif ore != 'none':
                     if ore == 'quartz':
                         button = tk.Button(root, text="", bg='white', fg='white', command=lambda r=r, c=c: button_click(r,c,'quartz'))
