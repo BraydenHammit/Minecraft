@@ -15,7 +15,8 @@ images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'bedrock': tk.PhotoImage(file='assets/images/bedrockImageMinecraft.png'),
             'netherack': tk.PhotoImage(file='assets/images/netherackImageMinecraft.png'),
             'deepslateEmerald': tk.PhotoImage(file='assets/images/deepslateEmeraldImageMinecraft.png'),
-            'netherite': tk.PhotoImage(file='assets/images/netheriteImageMinecraft.png')
+            'netherite': tk.PhotoImage(file='assets/images/netheriteImageMinecraft.png'),
+            'netherGold': tk.PhotoImage(file='assets/images/netherGoldImageMinecraft.png')
            }
 
 
@@ -181,11 +182,11 @@ def nextRound():
                         button = tk.Button(root, image= images['bedrock'], bg = 'gray30', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                 elif ore != 'none':
                     if ore == 'quartz':
-                        button = tk.Button(root, text="", bg='white', fg='white', command=lambda r=r, c=c: button_click(r,c,'quartz'))
+                        button = tk.Button(root, text="", bg='white', command=lambda r=r, c=c: button_click(r,c,'quartz'))
                     elif ore == 'nether gold':
-                        button = tk.Button(root, text="", bg='yellow', fg='yellow', command=lambda r=r, c=c: button_click(r,c,'nether gold'))
+                        button = tk.Button(root, image = images['netherGold'], bg='#723232', command=lambda r=r, c=c: button_click(r,c,'nether gold'))
                     elif ore == 'netherite':
-                        button = tk.Button(root, image = images['netherite'], bg='saddle brown', command=lambda r=r, c=c: button_click(r,c,'netherite'))
+                        button = tk.Button(root, image = images['netherite'], bg='#523933', command=lambda r=r, c=c: button_click(r,c,'netherite'))
                 else:
                     button = tk.Button(root, image = images['netherack'], bg='#723232', command=lambda r=r, c=c: button_click(r,c,'netherack'))
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
