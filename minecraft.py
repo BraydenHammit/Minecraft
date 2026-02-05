@@ -44,7 +44,7 @@ def button_click(r,c,block):
             score += 5 * multiplier
         elif (block == 'emerald') or (block == 'netherite'):
             score += 12.5 * multiplier
-        blocks[15][0] = tk.Button(root, text=score, bg='dark slate gray', fg='slate gray', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+        blocks[15][0] = tk.Button(root, text=score, bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         blocks[15][0].grid_forget
         blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
     print(f'Score: {score}')
@@ -124,9 +124,9 @@ def nextRound():
 
                 if (r == 15):
                     if c == 0:
-                        button = tk.Button(root, text=score, bg='dark slate gray', fg='slate gray', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+                        button = tk.Button(root, text=score, bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                     elif c == 1:
-                        button = tk.Button(root, text='Next', bg='dark slate gray', fg='slate gray', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+                        button = tk.Button(root, text='Next', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                     else:
                         button = tk.Button(root, image=images['bedrock'], bg='gray30', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                 elif ore != 'none':
@@ -158,7 +158,7 @@ def nextRound():
 
 
             elif dimension == 'nether':
-                root.configure(background='red')
+                root.configure(background='#723232')
 
 
                 randomNum = ran.randint(0,75)
@@ -175,9 +175,9 @@ def nextRound():
 
                 if (r == 15) or (r == 0):
                     if (c == 0) and (r == 15):
-                        button = tk.Button(root, text=score, bg='dark slate gray', fg='slate gray', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+                        button = tk.Button(root, text=score, bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                     elif (c == 1) and (r == 15):
-                        button = tk.Button(root, text='Next', bg='dark slate gray', fg='slate gray', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+                        button = tk.Button(root, text='Next', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                     else:
                         button = tk.Button(root, image= images['bedrock'], bg = 'gray30', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                 elif ore != 'none':
