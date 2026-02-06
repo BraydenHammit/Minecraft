@@ -17,6 +17,8 @@ images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'deepslateEmerald': tk.PhotoImage(file='assets/images/deepslateEmeraldImageMinecraft.png'),
             'deepslateCoal': tk.PhotoImage(file='assets/images/deepslateCoalImageMinecraft.png'),
             'coal': tk.PhotoImage(file='assets/images/coalImageMinecraft.png'),
+            'diamond': tk.PhotoImage(file='assets/images/diamondImageMinecraft.png'),
+            'deepslateDiamond': tk.PhotoImage(file='assets/images/deepslateDiamondImageMinecraft.png'),
             'netherite': tk.PhotoImage(file='assets/images/netheriteImageMinecraft.png'),
             'netherGold': tk.PhotoImage(file='assets/images/netherGoldImageMinecraft.png'),
             'quartz': tk.PhotoImage(file='assets/images/quartzImageMinecraft.png')
@@ -134,7 +136,10 @@ def nextRound():
                         button = tk.Button(root, image=images['bedrock'], bg='gray30', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                 elif ore != 'none':
                     if ore == 'diamond':
-                        button = tk.Button(root, text="", bg='cyan', fg='cyan', command=lambda r=r, c=c: button_click(r,c,'diamond'))
+                        if r <= 8:
+                            button = tk.Button(root, image = images['diamond'], bg='gray55', command=lambda r=r, c=c: button_click(r,c,'diamond'))
+                        else:
+                            button = tk.Button(root, bg='gray40', image = images['deepslateDiamond'], command=lambda r=r, c=c: button_click(r,c,'diamond'))
                     elif ore == 'gold':
                         button = tk.Button(root, text="", bg='yellow', fg='yellow', command=lambda r=r, c=c: button_click(r,c,'gold'))
                     elif ore == 'emerald':
