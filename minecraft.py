@@ -100,6 +100,7 @@ def nextRoundPre():
 
 def nextShop():
     global upgrades
+
     upgrades = ['click']
     upgrades = [
     ran.choice(upgrades),
