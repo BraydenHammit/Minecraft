@@ -26,11 +26,28 @@ images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             }
 
 
+def multiplierUpgrade():
+    global multiplier
+    global score
+    if score >= 100:
+        multiplier += 1
+        score -= 100
+        nextRoundA()
+
+def skipUpgrade():
+    nextRoundA()
+
+def nextRoundA():
+    for _ in upgrades:
+        _.grid_forget()
+
+    nextRound()
+
 def button_click(r,c,block):
     global start
     global score
-    print('Block clicked:',block)
-    print(f'Row: {r} \nCol: {c}')
+    #print('Block clicked:',block)
+    #print(f'Row: {r} \nCol: {c}')
     if (block != 'bedrock') and ((((blocks[r+1][c] == 'air') or (blocks [r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and ((block == 'stone')or block == 'netherack'))):
         blocks[r][c].grid_forget()
         blocks[r][c] = 'air'
@@ -53,7 +70,7 @@ def button_click(r,c,block):
         blocks[15][0] = tk.Button(root, text=score, bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         blocks[15][0].grid_forget
         blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
-    print(f'Score: {score}')
+    #print(f'Score: {score}')
     if (r == 15) and (c == 1):
         start = True
         nextRoundPre()
@@ -62,7 +79,7 @@ def button_click(r,c,block):
 
 def nextRoundPre():
     global blocks
-    print('Next Round Pre')
+    #print('Next Round Pre')
 
     for eachCol in blocks:
 
@@ -73,7 +90,7 @@ def nextRoundPre():
 
             eachRow.grid_forget()
 
-    print(blocks)
+    #print(blocks)
     blocks = []
 
     nextShop()
@@ -82,14 +99,26 @@ def nextRoundPre():
 
 
 def nextShop():
-    #add options to buy upgrades like multipliers and ____
-    nextRound()
+    global upgrades
+    upgrades = ['click']
+    upgrades = [
+    ran.choice(upgrades),
+    ran.choice(upgrades),
+    ran.choice(upgrades),
+    'skip' ]
+
+    for upg in range(len(upgrades)):
+        if upgrades[upg] == 'click':
+            upgrades[upg] = tk.Button(root, text = 'Multiplier Upgrade:\n100 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade())
+        if upgrades[upg] == 'skip':
+            upgrades[upg] = tk.Button(root, text = 'Skip Upgrade:\n0 Score', bg = 'gray30', fg = 'gray5', command = lambda: skipUpgrade())
+
+        upgrades[upg].grid(row=50, column=(upg+1)*3, sticky="nsew", padx=5, pady=5)
 
 
 
 
 def nextRound():
-
     if ran.randint(0,4) == 1:
         dimension = 'nether'
     else:
@@ -136,27 +165,37 @@ def nextRound():
                     else:
                         button = tk.Button(root, image=images['bedrock'], bg='gray30', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                 elif ore != 'none':
+                    
                     if ore == 'diamond':
                         if r <= 8:
                             button = tk.Button(root, image = images['diamond'], bg='gray55', command=lambda r=r, c=c: button_click(r,c,'diamond'))
                         else:
                             button = tk.Button(root, bg='gray40', image = images['deepslateDiamond'], command=lambda r=r, c=c: button_click(r,c,'diamond'))
+                    
                     elif ore == 'gold':
-                        button = tk.Button(root, text="", bg='yellow', fg='yellow', command=lambda r=r, c=c: button_click(r,c,'gold'))
+                        if r <= 8:
+                            button = tk.Button(root, text="", bg='yellow', fg='yellow', command=lambda r=r, c=c: button_click(r,c,'gold'))
+                        else:
+                            button = tk.Button(root, text="", bg='yellow', fg='yellow', command=lambda r=r, c=c: button_click(r,c,'gold'))
+                    
                     elif ore == 'emerald':
                         if r <= 8:
                             button = tk.Button(root, text="", bg='lime', fg='lime', command=lambda r=r, c=c: button_click(r,c,'emerald'))
                         else:
                             button = tk.Button(root, image=images['deepslateEmerald'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'emerald'))
+                    
                     elif ore == 'coal':
                         if r <= 8:
                             button = tk.Button(root, image = images['coal'], bg='gray55', command=lambda r=r, c=c: button_click(r,c,'coal'))
                         else:
                             button = tk.Button(root, image = images['deepslateCoal'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'coal'))
+                    
                     elif ore == 'lapis':
                         button = tk.Button(root, text="", bg='blue', fg='blue', command=lambda r=r, c=c: button_click(r,c,'lapis'))
+                    
                     elif ore == 'copper':
                         button = tk.Button(root, text="", bg='dark orange', fg='dark orange', command=lambda r=r, c=c: button_click(r,c,'copper'))
+                    
                     elif ore == 'iron':
                         if r <= 8:
                             button = tk.Button(root, image = images["iron"], bg = 'gray55', command=lambda r=r, c=c: button_click(r,c,'iron'))
@@ -164,6 +203,7 @@ def nextRound():
                             button = tk.Button(root, text="", bg='tan', fg='tan', command=lambda r=r, c=c: button_click(r,c,'iron'))
                     elif ore == 'redstone':
                         button = tk.Button(root, text="", bg='red', fg='red', command=lambda r=r, c=c: button_click(r,c,'redstone'))
+
                 elif r <= 8:
                     button = tk.Button(root, image=images['stone'], bg = 'gray55', command=lambda r=r, c=c: button_click(r,c,'stone'))
                 else:
