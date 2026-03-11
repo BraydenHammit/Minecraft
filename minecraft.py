@@ -26,12 +26,12 @@ images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             }
 
 
-def multiplierUpgrade():
+def multiplierUpgrade(a):
     global multiplier
     global score
-    if score >= 100:
-        multiplier += 1
-        score -= 100
+    if score >= a*100:
+        multiplier += a
+        score -= 100*a
         nextRoundA()
 
 def skipUpgrade():
@@ -78,6 +78,8 @@ def button_click(r,c,block):
 
 
 def nextRoundPre():
+    root.configure(background='grey')
+
     global blocks
     #print('Next Round Pre')
 
@@ -90,6 +92,8 @@ def nextRoundPre():
 
             eachRow.grid_forget()
 
+    blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
+
     #print(blocks)
     blocks = []
 
@@ -101,7 +105,15 @@ def nextRoundPre():
 def nextShop():
     global upgrades
 
-    upgrades = ['click']
+    upgrades = ['click','click5','click10']
+    choices = []
+
+    for _ in range(3):
+        choice = ran.randint(0,len(upgrades))
+        upgrades.pop(choice)
+        choice = upgrades[choice]
+        choices.append(choice)
+        
     upgrades = [
     ran.choice(upgrades),
     ran.choice(upgrades),
@@ -110,7 +122,14 @@ def nextShop():
 
     for upg in range(len(upgrades)):
         if upgrades[upg] == 'click':
-            upgrades[upg] = tk.Button(root, text = 'Multiplier Upgrade:\n100 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade())
+            upgrades[upg] = tk.Button(root, text = 'Multiplier Upgrade (x1):\n100 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(1))
+
+        if upgrades[upg] == 'click5':
+            upgrades[upg] = tk.Button(root, text = 'Multiplier Upgrade (x5):\n500 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(5))
+
+        if upgrades[upg] == 'click10':
+            upgrades[upg] = tk.Button(root, text = 'Multiplier Upgrade (x10):\n1000 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(10))
+
         if upgrades[upg] == 'skip':
             upgrades[upg] = tk.Button(root, text = 'Skip Upgrade:\n0 Score', bg = 'gray30', fg = 'gray5', command = lambda: skipUpgrade())
 
