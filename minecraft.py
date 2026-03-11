@@ -109,7 +109,7 @@ def nextShop():
     choices = []
 
     for _ in range(3):
-        choice = ran.randint(0,len(upgrades))
+        choice = ran.randint(0,len(upgrades)-1)
         upgrades.pop(choice)
         choice = upgrades[choice]
         choices.append(choice)
