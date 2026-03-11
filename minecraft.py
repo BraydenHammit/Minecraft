@@ -109,16 +109,13 @@ def nextShop():
     choices = []
 
     for _ in range(3):
-        choice = ran.randint(0,len(upgrades)-1)
-        upgrades.pop(choice)
-        choice = upgrades[choice]
+        choiceExt = ran.randint(0,len(upgrades)-1)
+        choice = upgrades[choiceExt]
+        upgrades.pop(choiceExt)
         choices.append(choice)
-        
-    upgrades = [
-    ran.choice(upgrades),
-    ran.choice(upgrades),
-    ran.choice(upgrades),
-    'skip' ]
+    choices.append('skip')
+
+    upgrades = choices
 
     for upg in range(len(upgrades)):
         if upgrades[upg] == 'click':
