@@ -35,7 +35,8 @@ images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'deepslateRedstone': tk.PhotoImage(file='assets/images/deepslateRedstoneImageMinecraft.png'),
             'deepslateCopper': tk.PhotoImage(file='assets/images/deepslateCopperImageMinecraft.png'),
             'copper': tk.PhotoImage(file='assets/images/copperImageMinecraft.png'),
-            'redstone': tk.PhotoImage(file='assets/images/redstoneImageMinecraft.png')
+            'redstone': tk.PhotoImage(file='assets/images/redstoneImageMinecraft.png'),
+            'lapis': tk.PhotoImage(file='assets/images/lapisImageMinecraft.png')
             }
 
 
@@ -201,17 +202,17 @@ def nextRound():
 
                 randomNum = ran.randint(0,75)
 
-                if randomNum <= 25:
+                if randomNum <= 30:
                     ore = 'copper'
-                    if randomNum <= 17:
+                    if randomNum <= 23:
                         ore = 'coal'
-                        if randomNum <= 12:
+                        if randomNum <= 17:
                             ore = 'redstone'
-                            if randomNum <= 9:
+                            if randomNum <= 13:
                                 ore = 'lapis'
-                                if randomNum <= 6:
+                                if randomNum <= 9:
                                     ore = 'iron'
-                                    if randomNum <= 3:
+                                    if randomNum <= 4:
                                         ore = 'gold'
                                         if randomNum <= 1:
                                             ore = 'diamond'
@@ -256,7 +257,7 @@ def nextRound():
                     
                     elif ore == 'lapis':
                         if r <= 8:
-                            button = tk.Button(root, text="", bg='blue', fg='blue', command=lambda r=r, c=c: button_click(r,c,'lapis'))
+                            button = tk.Button(root, image=images['lapis'], bg='gray55',  command=lambda r=r, c=c: button_click(r,c,'lapis'))
                         else:
                             button = tk.Button(root, image = images['deepslateLapis'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'lapis'))
                     
