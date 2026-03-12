@@ -34,7 +34,8 @@ images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'deepslateLapis': tk.PhotoImage(file='assets/images/deepslateLapisImageMinecraft.png'),
             'deepslateRedstone': tk.PhotoImage(file='assets/images/deepslateRedstoneImageMinecraft.png'),
             'deepslateCopper': tk.PhotoImage(file='assets/images/deepslateCopperImageMinecraft.png'),
-            'copper': tk.PhotoImage(file='assets/images/copperImageMinecraft.png')
+            'copper': tk.PhotoImage(file='assets/images/copperImageMinecraft.png'),
+            'redstone': tk.PhotoImage(file='assets/images/redstoneImageMinecraft.png')
             }
 
 
@@ -273,7 +274,7 @@ def nextRound():
 
                     elif ore == 'redstone':
                         if r <= 8:
-                            button = tk.Button(root, text="", bg='red', fg='red', command=lambda r=r, c=c: button_click(r,c,'redstone'))
+                            button = tk.Button(root, image=images['redstone'], bg='gray55', command=lambda r=r, c=c: button_click(r,c,'redstone'))
                         else:
                             button = tk.Button(root, image=images['deepslateRedstone'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'redstone'))
 
@@ -281,6 +282,7 @@ def nextRound():
                     button = tk.Button(root, image=images['stone'], bg = 'gray55', command=lambda r=r, c=c: button_click(r,c,'stone'))
                 else:
                     button = tk.Button(root, image=images['deepslate'], bg = 'gray40', command=lambda r=r, c=c: button_click(r,c,'deepslate'))
+
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
 
