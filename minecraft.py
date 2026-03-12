@@ -12,6 +12,7 @@ blocks = []
 root = tk.Tk()
 root.title("Minecraft")
 root.geometry('10000x100000')
+root.state('zoomed')
 
 images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'deepslate': tk.PhotoImage(file='assets/images/deepslateImageMinecraft.png'),
@@ -28,7 +29,8 @@ images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'iron': tk.PhotoImage(file='assets/images/ironImageMinecraft.png'),
             'emerald': tk.PhotoImage(file='assets/images/emeraldImageMinecraft.png'),
             'gold': tk.PhotoImage(file='assets/images/goldImageMinecraft.png'),
-            'deepslateGold': tk.PhotoImage(file='assets/images/deepslateGoldImageMinecraft.png')
+            'deepslateGold': tk.PhotoImage(file='assets/images/deepslateGoldImageMinecraft.png'),
+            'deepslateIron': tk.PhotoImage(file='assets/images/deepslateIronImageMinecraft.png')
             }
 
 
@@ -257,7 +259,7 @@ def nextRound():
                         if r <= 8:
                             button = tk.Button(root, image = images["iron"], bg = 'gray55', command=lambda r=r, c=c: button_click(r,c,'iron'))
                         else:
-                            button = tk.Button(root, text="", bg='tan', fg='tan', command=lambda r=r, c=c: button_click(r,c,'iron'))
+                            button = tk.Button(root, image=images['deepslateIron'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'iron'))
 
                     elif ore == 'redstone':
                         button = tk.Button(root, text="", bg='red', fg='red', command=lambda r=r, c=c: button_click(r,c,'redstone'))
