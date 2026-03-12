@@ -1,6 +1,9 @@
 import tkinter as tk
 import random as ran
 
+
+
+
 start = True
 score = 0
 multiplier = 1
@@ -22,8 +25,13 @@ images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'netherite': tk.PhotoImage(file='assets/images/netheriteImageMinecraft.png'),
             'netherGold': tk.PhotoImage(file='assets/images/netherGoldImageMinecraft.png'),
             'quartz': tk.PhotoImage(file='assets/images/quartzImageMinecraft.png'),
-            'iron': tk.PhotoImage(file='assets/images/ironImageMinecraft.png')
+            'iron': tk.PhotoImage(file='assets/images/ironImageMinecraft.png'),
+            'emerald': tk.PhotoImage(file='assets/images/emeraldImageMinecraft.png')
             }
+
+
+
+
 
 
 def multiplierUpgrade(a):
@@ -37,11 +45,21 @@ def multiplierUpgrade(a):
 def skipUpgrade():
     nextRoundA()
 
+
+
+
+
+
 def nextRoundA():
     for _ in upgrades:
         _.grid_forget()
 
     nextRound()
+
+
+
+
+
 
 def button_click(r,c,block):
     global start
@@ -77,6 +95,11 @@ def button_click(r,c,block):
 
 
 
+
+
+
+
+
 def nextRoundPre():
     root.configure(background='grey')
 
@@ -98,6 +121,14 @@ def nextRoundPre():
     blocks = []
 
     nextShop()
+
+
+
+
+
+
+
+
 
 
 
@@ -135,6 +166,13 @@ def nextShop():
 
 
 
+
+
+
+
+
+
+
 def nextRound():
     if ran.randint(0,4) == 1:
         dimension = 'nether'
@@ -158,15 +196,15 @@ def nextRound():
                     ore = 'copper'
                     if randomNum <= 17:
                         ore = 'coal'
-                        if randomNum <= 11:
+                        if randomNum <= 12:
                             ore = 'redstone'
-                            if randomNum <= 8:
+                            if randomNum <= 9:
                                 ore = 'lapis'
-                                if randomNum <= 5:
+                                if randomNum <= 6:
                                     ore = 'iron'
-                                    if randomNum <= 2:
+                                    if randomNum <= 3:
                                         ore = 'gold'
-                                        if randomNum <= 1:
+                                        if randomNum <= 2:
                                             ore = 'diamond'
                                             if randomNum == 0:
                                                 ore = 'emerald'
@@ -197,7 +235,7 @@ def nextRound():
                     
                     elif ore == 'emerald':
                         if r <= 8:
-                            button = tk.Button(root, text="", bg='lime', fg='lime', command=lambda r=r, c=c: button_click(r,c,'emerald'))
+                            button = tk.Button(root, image=images['emerald'], bg='gray55', command=lambda r=r, c=c: button_click(r,c,'emerald'))
                         else:
                             button = tk.Button(root, image=images['deepslateEmerald'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'emerald'))
                     
