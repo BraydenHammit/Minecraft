@@ -183,22 +183,22 @@ def nextShop():
 
     for upg in range(len(upgrades)):
         if upgrades[upg] == 'click':
-            upgrades[upg] = tk.Button(root, text = 'Multiplier Upgrade (x1):\n100 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(1))
+            upgrades[upg] = tk.Button(root, text = '🔨\nMultiplier Upgrade (x1):\n100 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(1))
         if upgrades[upg] == 'click5':
-            upgrades[upg] = tk.Button(root, text = 'Multiplier Upgrade (x5):\n500 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(5))
+            upgrades[upg] = tk.Button(root, text = '⛏\nMultiplier Upgrade (x5):\n500 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(5))
         if upgrades[upg] == 'click10':
-            upgrades[upg] = tk.Button(root, text = 'Multiplier Upgrade (x10):\n1000 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(10))
+            upgrades[upg] = tk.Button(root, text = '🛠\nMultiplier Upgrade (x10):\n1000 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(10))
 
 
         if upgrades[upg] == 'penalty s':
-            upgrades[upg] = tk.Button(root, text = 'Remove Stone Penalty:\n250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty s',250))
+            upgrades[upg] = tk.Button(root, text = '🪨\nRemove Stone Penalty:\n250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty s',250))
         if upgrades[upg] == 'penalty n':
-            upgrades[upg] = tk.Button(root, text = 'Remove Netherrack Penalty:\n150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty n',150))
+            upgrades[upg] = tk.Button(root, text = '🧱\nRemove Netherrack Penalty:\n150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty n',150))
         if upgrades[upg] == 'penalty d':
-            upgrades[upg] = tk.Button(root, text = 'Remove Deepslate Penalty:\n350 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty d',350))
+            upgrades[upg] = tk.Button(root, text = '🪦\nRemove Deepslate Penalty:\n350 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty d',350))
 
         if upgrades[upg] == 'luck':
-            upgrades[upg] = tk.Button(root, text = 'Increase Ore Spawns:\n5000 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('luck',5000))
+            upgrades[upg] = tk.Button(root, text = '🍀\nIncrease Ore Spawns:\n5000 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('luck',5000))
 
 
         if upgrades[upg] == 'skip':
