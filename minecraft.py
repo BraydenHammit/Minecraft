@@ -8,6 +8,11 @@ start = True
 score = 0
 multiplier = 1
 blocks = []
+upgradeInv = {
+    'penalty n': False,
+    'penalty s': False,
+    'penalty d': False
+}
 
 root = tk.Tk()
 root.title("Minecraft")
@@ -52,6 +57,14 @@ def multiplierUpgrade(a):
         score -= 100*a
         nextRoundA()
 
+def penaltyUpgrade(t,c):
+    global upgradeInv
+    global score
+    if score >= c:
+        upgradeInv[t] = True
+        score -= c
+        nextRoundA()
+
 def skipUpgrade():
     nextRoundA()
 
@@ -81,9 +94,11 @@ def button_click(r,c,block):
         blocks[r][c] = 'air'
         if start:
             start = False
-        if (block == 'stone') or (block == 'netherack'):
+        if (block == 'stone') and (not upgradeInv['penalty s']):
             score -= 1
-        elif block == 'deepslate':
+        if (block == 'netherack') and (not upgradeInv['penalty n']):
+            score -= 1
+        elif (block == 'deepslate' and (not upgradeInv['penalty d'])):
             score -= 1.5
         elif (block == 'coal') or (block == 'nether gold') or (block == 'copper'):
             score += 1.75 * multiplier
@@ -145,8 +160,15 @@ def nextRoundPre():
 
 def nextShop():
     global upgrades
+    global upgradeInv
 
     upgrades = ['click','click5','click10']
+    if not upgradeInv["penalty s"]:
+        upgrades.append('penalty s')
+    if not upgradeInv["penalty n"]:
+        upgrades.append('penalty n')
+    if not upgradeInv["penalty d"]:
+        upgrades.append('penalty d')
     choices = []
 
     for _ in range(3):
@@ -161,12 +183,19 @@ def nextShop():
     for upg in range(len(upgrades)):
         if upgrades[upg] == 'click':
             upgrades[upg] = tk.Button(root, text = 'Multiplier Upgrade (x1):\n100 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(1))
-
         if upgrades[upg] == 'click5':
             upgrades[upg] = tk.Button(root, text = 'Multiplier Upgrade (x5):\n500 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(5))
-
         if upgrades[upg] == 'click10':
             upgrades[upg] = tk.Button(root, text = 'Multiplier Upgrade (x10):\n1000 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(10))
+
+
+        if upgrades[upg] == 'penalty s':
+            upgrades[upg] = tk.Button(root, text = 'Remove Stone Penalty:\n250 Score', bg = 'gray30', fg = 'gray5', command = lambda: penaltyUpgrade('penalty s',250))
+        if upgrades[upg] == 'penalty n':
+            upgrades[upg] = tk.Button(root, text = 'Remove Netherack Penalty:\n150 Score', bg = 'gray30', fg = 'gray5', command = lambda: penaltyUpgrade('penalty n',150))
+        if upgrades[upg] == 'penalty d':
+            upgrades[upg] = tk.Button(root, text = 'Remove Deepslate Penalty:\n350 Score', bg = 'gray30', fg = 'gray5', command = lambda: penaltyUpgrade('penalty d',350))
+
 
         if upgrades[upg] == 'skip':
             upgrades[upg] = tk.Button(root, text = 'Skip Upgrade:\n0 Score', bg = 'gray30', fg = 'gray5', command = lambda: skipUpgrade())
