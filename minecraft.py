@@ -18,7 +18,6 @@ upgradeInv = {
 
 root = tk.Tk()
 root.title("Minecraft")
-root.geometry('10000x100000')
 root.state('zoomed')
 
 intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next'.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to start mining on things other than stone or netherrack,\nor remove the score penalties when mining netherrack, stone, and deepslate.\n\nOre Values:\nStone & Netherrack = -1\nDeepslate = -1.5\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5")
