@@ -97,7 +97,7 @@ def button_click(r,c,block):
     global start, score
     #print('Block clicked:',block)
     #print(f'Row: {r} \nCol: {c}')
-    if (block != 'bedrock') and ((((blocks[r+1][c] == 'air') or (blocks [r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and ((block == 'stone')or block == 'netherrack'))) or (start and upgradeInv['st free']):
+    if (block != 'bedrock') and ((((blocks[r+1][c] == 'air') or (blocks [r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and ((block == 'stone')or block == 'netherrack'))) or (start and upgradeInv['st free'] and block != 'bedrock'):
         blocks[r][c].grid_forget()
         blocks[r][c] = 'air'
         if start:
