@@ -95,9 +95,10 @@ def button_click(r,c,block):
         blocks[r][c] = 'air'
         if start:
             start = False
+            
         if (block == 'stone') and (not upgradeInv['penalty s']):
             score -= 1
-        if (block == 'netherack') and (not upgradeInv['penalty n']):
+        elif (block == 'netherack') and (not upgradeInv['penalty n']):
             score -= 1
         elif (block == 'deepslate' and (not upgradeInv['penalty d'])):
             score -= 1.5
@@ -200,7 +201,7 @@ def nextShop():
             upgrades[upg] = tk.Button(root, text = 'Remove Deepslate Penalty:\n350 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty d',350))
 
         if upgrades[upg] == 'luck':
-            upgrades[upg] = tk.Button(root, text = 'Increase Ore Spawns:\n5000 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('luck',1750))
+            upgrades[upg] = tk.Button(root, text = 'Increase Ore Spawns:\n5000 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('luck',5000))
 
 
         if upgrades[upg] == 'skip':
@@ -369,6 +370,11 @@ def nextRound():
 
         else:
             blocks[r].append('barrier')
+
+
+
+
+
 
 nextRound()
 
