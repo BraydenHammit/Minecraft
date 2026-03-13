@@ -380,7 +380,7 @@ def nextRound():
 
 
         else:
-            blocks[r].append('barrier')
+            blocks[r].append('barrier')         # add barrier so c-1 and c+1 checks never cause index errors
 
 
 intro.pack(pady=150)
