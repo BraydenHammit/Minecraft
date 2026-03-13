@@ -11,7 +11,8 @@ blocks = []
 upgradeInv = {
     'penalty n': False,
     'penalty s': False,
-    'penalty d': False
+    'penalty d': False,
+    'luck': False
 }
 
 root = tk.Tk()
@@ -57,7 +58,7 @@ def multiplierUpgrade(a):
         score -= 100*a
         nextRoundA()
 
-def penaltyUpgrade(t,c):
+def invUpgrade(t,c):
     global upgradeInv
     global score
     if score >= c:
@@ -169,6 +170,8 @@ def nextShop():
         upgrades.append('penalty n')
     if not upgradeInv["penalty d"]:
         upgrades.append('penalty d')
+    if not upgradeInv["luck"]:
+        upgrades.append('luck')
     choices = []
 
     for _ in range(3):
@@ -190,11 +193,14 @@ def nextShop():
 
 
         if upgrades[upg] == 'penalty s':
-            upgrades[upg] = tk.Button(root, text = 'Remove Stone Penalty:\n250 Score', bg = 'gray30', fg = 'gray5', command = lambda: penaltyUpgrade('penalty s',250))
+            upgrades[upg] = tk.Button(root, text = 'Remove Stone Penalty:\n250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty s',250))
         if upgrades[upg] == 'penalty n':
-            upgrades[upg] = tk.Button(root, text = 'Remove Netherack Penalty:\n150 Score', bg = 'gray30', fg = 'gray5', command = lambda: penaltyUpgrade('penalty n',150))
+            upgrades[upg] = tk.Button(root, text = 'Remove Netherack Penalty:\n150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty n',150))
         if upgrades[upg] == 'penalty d':
-            upgrades[upg] = tk.Button(root, text = 'Remove Deepslate Penalty:\n350 Score', bg = 'gray30', fg = 'gray5', command = lambda: penaltyUpgrade('penalty d',350))
+            upgrades[upg] = tk.Button(root, text = 'Remove Deepslate Penalty:\n350 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty d',350))
+
+        if upgrades[upg] == 'luck':
+            upgrades[upg] = tk.Button(root, text = 'Increase Ore Spawns:\n5000 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('luck',1750))
 
 
         if upgrades[upg] == 'skip':
@@ -213,6 +219,8 @@ def nextShop():
 
 
 def nextRound():
+    global upgradeInv
+
     if ran.randint(0,4) == 1:
         dimension = 'nether'
     else:
@@ -229,7 +237,10 @@ def nextRound():
             if dimension == 'overworld':
                 root.configure(background='grey')
 
-                randomNum = ran.randint(0,75)
+                if upgradeInv['luck']:
+                    randomNum = ran.randint(0,50)
+                else:
+                    randomNum = ran.randint(0,75)
 
                 if randomNum <= 30:
                     ore = 'copper'
@@ -321,7 +332,10 @@ def nextRound():
                 root.configure(background='#723232')
 
 
-                randomNum = ran.randint(0,75)
+                if upgradeInv['luck']:
+                    randomNum = ran.randint(0,40)
+                else:
+                    randomNum = ran.randint(0,65)
 
                 if randomNum <= 25:
                     ore = 'nether gold'
