@@ -23,7 +23,7 @@ root.state('zoomed')
 images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'deepslate': tk.PhotoImage(file='assets/images/deepslateImageMinecraft.png'),
             'bedrock': tk.PhotoImage(file='assets/images/bedrockImageMinecraft.png'),
-            'netherack': tk.PhotoImage(file='assets/images/netherackImageMinecraft.png'),
+            'netherrack': tk.PhotoImage(file='assets/images/netherackImageMinecraft.png'),
             'deepslateEmerald': tk.PhotoImage(file='assets/images/deepslateEmeraldImageMinecraft.png'),
             'deepslateCoal': tk.PhotoImage(file='assets/images/deepslateCoalImageMinecraft.png'),
             'coal': tk.PhotoImage(file='assets/images/coalImageMinecraft.png'),
@@ -51,16 +51,14 @@ images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
 
 
 def multiplierUpgrade(a):
-    global multiplier
-    global score
+    global multiplier, score
     if score >= a*100:
         multiplier += a
         score -= 100*a
         nextRoundA()
 
 def invUpgrade(t,c):
-    global upgradeInv
-    global score
+    global upgradeInv, score
     if score >= c:
         upgradeInv[t] = True
         score -= c
@@ -86,19 +84,18 @@ def nextRoundA():
 
 
 def button_click(r,c,block):
-    global start
-    global score
+    global start, score
     #print('Block clicked:',block)
     #print(f'Row: {r} \nCol: {c}')
-    if (block != 'bedrock') and ((((blocks[r+1][c] == 'air') or (blocks [r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and ((block == 'stone')or block == 'netherack'))):
+    if (block != 'bedrock') and ((((blocks[r+1][c] == 'air') or (blocks [r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and ((block == 'stone')or block == 'netherrack'))):
         blocks[r][c].grid_forget()
         blocks[r][c] = 'air'
         if start:
             start = False
-            
+
         if (block == 'stone') and (not upgradeInv['penalty s']):
             score -= 1
-        elif (block == 'netherack') and (not upgradeInv['penalty n']):
+        elif (block == 'netherrack') and (not upgradeInv['penalty n']):
             score -= 1
         elif (block == 'deepslate' and (not upgradeInv['penalty d'])):
             score -= 1.5
@@ -196,7 +193,7 @@ def nextShop():
         if upgrades[upg] == 'penalty s':
             upgrades[upg] = tk.Button(root, text = 'Remove Stone Penalty:\n250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty s',250))
         if upgrades[upg] == 'penalty n':
-            upgrades[upg] = tk.Button(root, text = 'Remove Netherack Penalty:\n150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty n',150))
+            upgrades[upg] = tk.Button(root, text = 'Remove Netherrack Penalty:\n150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty n',150))
         if upgrades[upg] == 'penalty d':
             upgrades[upg] = tk.Button(root, text = 'Remove Deepslate Penalty:\n350 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty d',350))
 
@@ -363,7 +360,7 @@ def nextRound():
                     elif ore == 'netherite':
                         button = tk.Button(root, image = images['netherite'], bg='#523933', command=lambda r=r, c=c: button_click(r,c,'netherite'))
                 else:
-                    button = tk.Button(root, image = images['netherack'], bg='#723232', command=lambda r=r, c=c: button_click(r,c,'netherack'))
+                    button = tk.Button(root, image = images['netherrack'], bg='#723232', command=lambda r=r, c=c: button_click(r,c,'netherrack'))
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
 
