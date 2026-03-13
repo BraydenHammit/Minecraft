@@ -1,4 +1,3 @@
-from pydoc import text
 import tkinter as tk
 import random as ran
 
