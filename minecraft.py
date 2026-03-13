@@ -13,7 +13,8 @@ upgradeInv = {
     'penalty n': False,
     'penalty s': False,
     'penalty d': False,
-    'luck': False
+    'luck': False,
+    'st free': False
 }
 
 root = tk.Tk()
@@ -21,7 +22,7 @@ root.title("Minecraft")
 root.geometry('10000x100000')
 root.state('zoomed')
 
-intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next'.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\nor remove the score penalties when mining netherrack, stone, and deepslate.\n\nOre Values:\nStone & Netherrack = -1\nDeepslate = -1.5\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5")
+intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next'.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to start mining on things other than stone or netherrack,\nor remove the score penalties when mining netherrack, stone, and deepslate.\n\nOre Values:\nStone & Netherrack = -1\nDeepslate = -1.5\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5")
 startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
 
 def startGame():
@@ -98,7 +99,7 @@ def button_click(r,c,block):
     global start, score
     #print('Block clicked:',block)
     #print(f'Row: {r} \nCol: {c}')
-    if (block != 'bedrock') and ((((blocks[r+1][c] == 'air') or (blocks [r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and ((block == 'stone')or block == 'netherrack'))):
+    if (block != 'bedrock') and ((((blocks[r+1][c] == 'air') or (blocks [r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and ((block == 'stone')or block == 'netherrack'))) or (start and upgradeInv['st free']):
         blocks[r][c].grid_forget()
         blocks[r][c] = 'air'
         if start:
@@ -181,6 +182,8 @@ def nextShop():
         upgrades.append('penalty d')
     if not upgradeInv["luck"]:
         upgrades.append('luck')
+    if not upgradeInv["st free"]:
+        upgrades.append('st free')
     choices = []
 
     for _ in range(3):
@@ -210,6 +213,9 @@ def nextShop():
 
         if upgrades[upg] == 'luck':
             upgrades[upg] = tk.Button(root, text = '🍀\nIncrease Ore Spawns:\n5000 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('luck',5000))
+
+        if upgrades[upg] == 'st free':
+            upgrades[upg] = tk.Button(root, text = '🔓\nUnbind Starting Point:\n375 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('st free',375))
 
 
         if upgrades[upg] == 'skip':
