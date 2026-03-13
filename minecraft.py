@@ -204,7 +204,7 @@ def nextShop():
         if upgrades[upg] == 'skip':
             upgrades[upg] = tk.Button(root, text = 'Skip Upgrade:\n0 Score', bg = 'gray30', fg = 'gray5', command = lambda: skipUpgrade())
 
-        upgrades[upg].grid(row=50, column=(upg+1)*3, sticky="nsew", padx=5, pady=5)
+        upgrades[upg].grid(row=10, column=(upg+1)*3, sticky="nsew", padx=5, pady=5)
 
 
 
