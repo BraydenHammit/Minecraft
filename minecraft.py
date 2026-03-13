@@ -7,6 +7,7 @@ import random as ran
 start = True
 score = 0
 multiplier = 1
+nextTimer = 5
 blocks = []
 upgradeInv = {
     'penalty n': False,
@@ -94,7 +95,7 @@ def nextRoundA():
 
 
 def button_click(r,c,block):
-    global start, score
+    global start, score, nextTimer
     #print('Block clicked:',block)
     #print(f'Row: {r} \nCol: {c}')
     if (block != 'bedrock') and ((((blocks[r+1][c] == 'air') or (blocks [r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and ((block == 'stone')or block == 'netherrack'))) or (start and upgradeInv['st free'] and block != 'bedrock'):
@@ -122,7 +123,7 @@ def button_click(r,c,block):
         blocks[15][0] = tk.Button(root, text=round(score,2), bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
     #print(f'Score: {score}')
-    if (r == 15) and (c == 1):
+    if (r == 15) and (c == 1) and (nextTimer == 0):
         start = True
         nextRoundPre()
 
@@ -167,8 +168,7 @@ def nextRoundPre():
 
 
 def nextShop():
-    global upgrades
-    global upgradeInv
+    global upgrades, upgradeInv
 
     upgrades = ['click','click5','click10']
     if not upgradeInv["penalty s"]:
@@ -224,14 +224,22 @@ def nextShop():
 
 
 
-
+def nextTime():
+    global nextTimer
+    nextTimer -= 1
+    if nextTimer > 0:
+        blocks[15][1].configure(text=f'Next (🔒 {nextTimer})')
+        root.after(1000,nextTime)
+    else:
+        blocks[15][1].configure(text='Next')
 
 
 
 
 
 def nextRound():
-    global upgradeInv
+    global nextTimer
+    nextTimer = 5
 
     if ran.randint(0,4) == 1:
         dimension = 'nether'
@@ -278,7 +286,7 @@ def nextRound():
                     if c == 0:
                         button = tk.Button(root, text=round(score,2), bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                     elif c == 1:
-                        button = tk.Button(root, text='Next', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+                        button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                     else:
                         button = tk.Button(root, image=images['bedrock'], bg='gray30', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                 elif ore != 'none':
@@ -363,7 +371,7 @@ def nextRound():
                     if (c == 0) and (r == 15):
                         button = tk.Button(root, text=round(score,2), bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                     elif (c == 1) and (r == 15):
-                        button = tk.Button(root, text='Next', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+                        button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                     else:
                         button = tk.Button(root, image= images['bedrock'], bg = 'gray30', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                 elif ore != 'none':
@@ -381,6 +389,8 @@ def nextRound():
 
         else:
             blocks[r].append('barrier')         # add barrier so c-1 and c+1 checks never cause index errors
+
+    root.after(1000,nextTime)
 
 
 intro.pack(pady=150)
