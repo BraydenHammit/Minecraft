@@ -2,6 +2,7 @@ import tkinter as tk
 import random as ran
 from scoreFunction import scoreAS
 from shopFunctions import buttonDefine, shopList
+from oreFunct import oreO, oreN
 
 
 
@@ -60,6 +61,8 @@ images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'gildedBlackstone': tk.PhotoImage(file='assets/images/gildedBlackstoneImageMinecraft.png')
             }
 
+
+
 def startGame():
     global intro, startB
     intro.pack_forget()
@@ -75,6 +78,8 @@ def dimensionSwitch():
         dimensionPickB.configure(text='Next Dimension:\nOverworld', bg='#1f5f1f', fg='lime')
         upgradeInv['dim pick'][1] = 'o'
     
+
+
 
 
 def multiplierUpgrade(a):
@@ -257,31 +262,7 @@ def nextRound():
 
             if dimension == 'overworld':
 
-                if upgradeInv['luck']:
-                    randomNum = ran.randint(0,50)
-                else:
-                    randomNum = ran.randint(0,75)
-
-                if (randomNum == 32 or randomNum == 31) and upgradeInv['ore ext']:
-                    ore = 'amethyst'
-                elif randomNum <= 30:
-                    ore = 'copper'
-                    if randomNum <= 23:
-                        ore = 'coal'
-                        if randomNum <= 17:
-                            ore = 'redstone'
-                            if randomNum <= 13:
-                                ore = 'lapis'
-                                if randomNum <= 9:
-                                    ore = 'iron'
-                                    if randomNum <= 4:
-                                        ore = 'gold'
-                                        if randomNum <= 1:
-                                            ore = 'diamond'
-                                            if randomNum == 0:
-                                                ore = 'emerald'
-                else:
-                    ore = 'none'
+                oreO(upgradeInv)
 
 
                 if (r == 15):
@@ -359,21 +340,7 @@ def nextRound():
 
             elif dimension == 'nether':
 
-                if upgradeInv['luck']:
-                    randomNum = ran.randint(0,40)
-                else:
-                    randomNum = ran.randint(0,65)
-
-                if (randomNum == 27 or randomNum == 26) and upgradeInv['ore ext']:
-                    ore = 'gilded blackstone'
-                elif randomNum <= 25:
-                    ore = 'nether gold'
-                    if randomNum <= 10:
-                        ore = 'quartz'
-                        if randomNum == 0:
-                            ore = 'netherite'
-                else:
-                    ore = 'none'
+                oreN(upgradeInv)
 
 
                 if (r == 15) or (r == 0):
