@@ -150,12 +150,12 @@ def button_click(r,c,block):
                 if start:
                     start = False
                 check = [[r+1,c],[r-1,c],[r,c+1],[r,c-1],[r+1,c+1],[r-1,c-1],[r-1,c+1],[r+1,c-1],[r,c]]
-                for _ in check:
-                    block = blocksN[_[0]][_[1]]
+                for rr, cc in check:
+                    block = blocksN[rr][cc]
                     if block != 'bedrock' and block != 'barrier' and block != 'air':
-                        blocksN[_[0]][_[1]] = 'air'
-                        blocks[_[0]][_[1]].grid_forget()
-                        blocks[_[0]][_[1]] = 'air'
+                        blocksN[rr][cc] = 'air'
+                        blocks[rr][cc].grid_forget()
+                        blocks[rr][cc] = 'air'
                         score += scoreAS(block,upgradeInv,multiplier,score)
 
             else:
