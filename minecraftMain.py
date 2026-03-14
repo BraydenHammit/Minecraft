@@ -1,7 +1,7 @@
 import tkinter as tk
 import random as ran
 from scoreFunction import scoreAS
-from shopFunctionsLD import shopList, buttonDef
+from shopFunctions import shopList, buttonDef
 from oreFunct import oreO, oreN
 from oreFunctDef import defOreN, defOreO
 
