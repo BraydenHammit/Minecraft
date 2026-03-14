@@ -1,7 +1,7 @@
 import tkinter as tk
 import random as ran
 from scoreFunction import scoreAS
-from shopButtonF import buttonD
+from shopFunctions import buttonDefine, shopList
 
 
 
@@ -185,29 +185,7 @@ def nextRoundPre():
 def nextShop():
     global upgrades, upgradeInv, blocksN, dimensionPickB
 
-    upgrades = ['click','click5','click10']
-
-    if not upgradeInv["penalty s"]:
-        upgrades.append('penalty s')
-    if not upgradeInv["penalty n"]:
-        upgrades.append('penalty n')
-    if not upgradeInv["penalty d"]:
-        upgrades.append('penalty d')
-
-    if not upgradeInv["luck"]:
-        upgrades.append('luck')
-
-    if not upgradeInv["st free"]:
-        upgrades.append('st free')
-
-    if not upgradeInv["diag mine"]:
-        upgrades.append('diag mine')
-
-    if not upgradeInv["ore ext"]:
-        upgrades.append('ore ext')
-
-    if not upgradeInv["tnt"]:
-        upgrades.append('tnt')
+    upgrades = shopList(upgradeInv)
 
     if not upgradeInv["dim pick"][0]:
         upgrades.append('dim pick')
@@ -226,7 +204,7 @@ def nextShop():
     upgrades = choices
 
     for upg in range(len(upgrades)):
-        upgradeB = buttonD(upgrades[upg],root)
+        upgradeB = buttonDefine(upgrades[upg],root)
 
         upgradeB.grid(row=10, column=(upg+1)*3, sticky="nsew", padx=5, pady=5)
 

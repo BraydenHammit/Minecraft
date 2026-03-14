@@ -1,7 +1,37 @@
 from minecraft import multiplierUpgrade, invUpgrade, nextRoundA
 import tkinter as tk
 
-def buttonD(upg, root):
+def shopList(upgradeInv):
+    upgrades = ['click','click5','click10']
+
+    if not upgradeInv["penalty s"]:
+        upgrades.append('penalty s')
+    if not upgradeInv["penalty n"]:
+        upgrades.append('penalty n')
+    if not upgradeInv["penalty d"]:
+        upgrades.append('penalty d')
+
+    if not upgradeInv["luck"]:
+        upgrades.append('luck')
+
+    if not upgradeInv["st free"]:
+        upgrades.append('st free')
+
+    if not upgradeInv["diag mine"]:
+        upgrades.append('diag mine')
+
+    if not upgradeInv["ore ext"]:
+        upgrades.append('ore ext')
+
+    if not upgradeInv["tnt"]:
+        upgrades.append('tnt')
+
+
+
+    return upgrades
+    
+
+def buttonDefine(upg, root):
         if upg == 'click':
             upg = tk.Button(root, text = '🔨\nMultiplier Upgrade (x1):\n100 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(1))
         if upg == 'click5':
