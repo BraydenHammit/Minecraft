@@ -6,7 +6,7 @@ import random as ran
 
 start = True
 score = 0
-multiplier = 1
+multiplier = 1000
 nextTimer = 5
 blocks = []
 upgradeInv = {
@@ -14,7 +14,8 @@ upgradeInv = {
     'penalty s': False,
     'penalty d': False,
     'luck': False,
-    'st free': False
+    'st free': False,
+    'diag mine': False
 }
 
 root = tk.Tk()
@@ -96,34 +97,35 @@ def nextRoundA():
 
 def button_click(r,c,block):
     global start, score, nextTimer
-    #print('Block clicked:',block)
-    #print(f'Row: {r} \nCol: {c}')
-    if (block != 'bedrock') and ((((blocks[r+1][c] == 'air') or (blocks [r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and ((block == 'stone')or block == 'netherrack'))) or (start and upgradeInv['st free'] and block != 'bedrock'):
-        blocks[r][c].grid_forget()
-        blocks[r][c] = 'air'
-        if start:
-            start = False
+    if block != 'bedrock':
+        check = ((((blocks[r+1][c] == 'air') or (blocks [r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and ((block == 'stone')or block == 'netherrack')))
+        checkD = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
+        if check or checkD or (start and upgradeInv['st free']):
+            blocks[r][c].grid_forget()
+            blocks[r][c] = 'air'
+            if start:
+                start = False
 
-        if (block == 'stone') and (not upgradeInv['penalty s']):
-            score -= 1
-        elif (block == 'netherrack') and (not upgradeInv['penalty n']):
-            score -= 1
-        elif (block == 'deepslate' and (not upgradeInv['penalty d'])):
-            score -= 1.5
-        elif (block == 'coal') or (block == 'nether gold') or (block == 'copper'):
-            score += 1.75 * multiplier
-        elif (block == 'redstone') or (block == 'lapis'):
-            score += 2.5 * multiplier
-        elif (block == 'iron') or (block == 'gold') or (block == 'quartz'):
-            score += 3.25 * multiplier
-        elif (block == 'diamond'):
-            score += 5 * multiplier
-        elif (block == 'emerald') or (block == 'netherite'):
-            score += 12.5 * multiplier
-        blocks[15][0] = tk.Button(root, text=round(score,2), bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
-        blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
-    #print(f'Score: {score}')
-    if (r == 15) and (c == 1) and (nextTimer == 0):
+            if (block == 'stone') and (not upgradeInv['penalty s']):
+                score -= 1
+            elif (block == 'netherrack') and (not upgradeInv['penalty n']):
+                score -= 1
+            elif (block == 'deepslate' and (not upgradeInv['penalty d'])):
+                score -= 1.5
+            elif (block == 'coal') or (block == 'nether gold') or (block == 'copper'):
+                score += 1.75 * multiplier
+            elif (block == 'redstone') or (block == 'lapis'):
+                score += 2.5 * multiplier
+            elif (block == 'iron') or (block == 'gold') or (block == 'quartz'):
+                score += 3.25 * multiplier
+            elif (block == 'diamond'):
+                score += 5 * multiplier
+            elif (block == 'emerald') or (block == 'netherite'):
+                score += 12.5 * multiplier
+            blocks[15][0] = tk.Button(root, text=round(score,2), bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+            blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
+
+    elif (r == 15) and (c == 1) and (nextTimer == 0):
         start = True
         nextRoundPre()
 
@@ -181,6 +183,8 @@ def nextShop():
         upgrades.append('luck')
     if not upgradeInv["st free"]:
         upgrades.append('st free')
+    if not upgradeInv["diag mine"]:
+        upgrades.append('diag mine')
     choices = []
 
     for _ in range(3):
@@ -213,6 +217,9 @@ def nextShop():
 
         if upgrades[upg] == 'st free':
             upgrades[upg] = tk.Button(root, text = '🔓\nUnbind Starting Point:\n375 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('st free',375))
+
+        if upgrades[upg] == 'diag mine':
+            upgrades[upg] = tk.Button(root, text = '🔀\nMine Diagonally:\n325 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('diag mine',325))
 
 
         if upgrades[upg] == 'skip':
