@@ -1,4 +1,4 @@
-from minecraft import multiplierUpgrade, invUpgrade, nextRoundA
+from minecraftMain import multiplierUpgrade, invUpgrade, nextRoundA
 import tkinter as tk
 
 def shopList(upgradeInv):
