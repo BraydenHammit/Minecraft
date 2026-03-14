@@ -34,9 +34,9 @@ def oreO(upgradeInv):
 
 def oreN(upgradeInv):
     if upgradeInv['luck']:
-                    randomNum = ran.randint(0,40)
+        randomNum = ran.randint(0,40)
     else:
-                    randomNum = ran.randint(0,65)
+        randomNum = ran.randint(0,65)
 
     if (randomNum == 27 or randomNum == 26) and upgradeInv['ore ext']:
             ore = 'gilded blackstone'
