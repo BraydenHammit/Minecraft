@@ -24,7 +24,8 @@ upgradeInv = {
     'diag mine': False,
     'ore ext': False,
     'tnt': False,                 # reminder: add a tnt sound effect (when you figure out how to add them)
-    'dim pick': [False,'o']
+    'dim pick': [False,'o'],
+    'fortune': [True,0]
 }
 
 root = tk.Tk()
@@ -97,6 +98,14 @@ def multiplierUpgrade(a):
         score -= 100*a
         nextRoundA()
 
+def fortuneUpgrade(l,c):
+    global upgradeInv, score
+    if score >= c:
+        upgradeInv['fortune'][0] = True
+        upgradeInv['fortune'][1] = l
+        score -= c
+        nextRoundA()
+
 def invUpgrade(t,c,m):
     global upgradeInv, score
     if score >= c:
@@ -151,7 +160,7 @@ def button_click(r,c,block):
                 blocksN[r][c] = 'air'
                 if start:
                     start = False
-                score = scoreAS(block,upgradeInv,multiplier,score)
+                score += scoreAS(block,upgradeInv,multiplier,score)
 
             blocks[15][0].configure(text=round(score,2))
 

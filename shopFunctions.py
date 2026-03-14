@@ -25,6 +25,15 @@ def shopList(upgradeInv):
     if not upgradeInv["tnt"]:
         upgrades.append('tnt')
 
+    if not upgradeInv["fortune"][0]:
+        upgrades.append('fortune1')
+    elif upgradeInv['fortune'][1] == 25:
+        upgrades.append('fortune2')
+    elif upgradeInv['fortune'][1] == 50:
+        upgrades.append('fortune3')
+    elif upgradeInv['fortune'][1] == 75:
+        upgrades.append('fortuneM')
+
 
 
     return upgrades
