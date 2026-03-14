@@ -25,7 +25,8 @@ upgradeInv = {
     'ore ext': False,
     'tnt': False,                 # reminder: add a tnt sound effect (when you figure out how to add them)
     'dim pick': [False,'o'],
-    'fortune': [False,0]
+    'fortune': [False,0],
+    'end': False
 }
 
 root = tk.Tk()
@@ -44,6 +45,7 @@ images = {
             'deepslate': tk.PhotoImage(file='assets/images/deepslateImageMinecraft.png'),
             'bedrock': tk.PhotoImage(file='assets/images/bedrockImageMinecraft.png'),
             'netherrack': tk.PhotoImage(file='assets/images/netherackImageMinecraft.png'),
+            'endstone': tk.PhotoImage(file='assets/images/endstoneImageMinecraft.png'),
             #Ores:
             'coal': tk.PhotoImage(file='assets/images/coalImageMinecraft.png'),
             'diamond': tk.PhotoImage(file='assets/images/diamondImageMinecraft.png'),
@@ -82,10 +84,17 @@ def startGame():
 def dimensionSwitch():
     global dimensionPickB, upgradeInv
     if upgradeInv['dim pick'][1] == 'o':
-        dimensionPickB.configure(text='Next Dimension:\nNether', bg='#723232', fg='dark red')
+        dimensionPickB.configure(text='Next Dimension:\nNether', bg='#723232', fg="#3f1818")
         upgradeInv['dim pick'][1] = 'n'
     elif upgradeInv['dim pick'][1] == 'n':
-        dimensionPickB.configure(text='Next Dimension:\nOverworld', bg='#1f5f1f', fg='lime')
+        if upgradeInv['end']:
+            dimensionPickB.configure(text='Next Dimension:\nEnd', bg="#c8bf73", fg="#626047")
+            upgradeInv['dim pick'][1] = 'e'
+        else:
+            dimensionPickB.configure(text='Next Dimension:\nOverworld', bg="#2a782a", fg="#0E2407")
+            upgradeInv['dim pick'][1] = 'o'
+    elif upgradeInv['dim pick'][1] == 'e':
+        dimensionPickB.configure(text='Next Dimension:\nOverworld', bg="#2a782a", fg="#0E2407")
         upgradeInv['dim pick'][1] = 'o'
     
 
