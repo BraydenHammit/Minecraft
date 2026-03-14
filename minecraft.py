@@ -30,7 +30,7 @@ root.state('zoomed')
 
 intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next'.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to start mining on things other than stone or netherrack,\nunlock two extra ores (one for each dimension, amethyst and gilded blackstone),\nunlock the ability to mine diagonally from pre-mined blocks,\nor remove the score penalties when mining netherrack, stone, and deepslate.\n\nOre Values:\nStone & Netherrack = -1\nDeepslate = -1.5\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5\n\nExtra Semi-Ores:\nGilded Blackstone & Amethyst = 7.5")
 startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
-dimensionPickB = tk.Button(root, text='Next Dimension:\nOverworld', bg='dark green', fg='green', command=lambda: dimensionSwitch())
+dimensionPickB = tk.Button(root, text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D", command=lambda: dimensionSwitch())
 
 images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'deepslate': tk.PhotoImage(file='assets/images/deepslateImageMinecraft.png'),
@@ -72,7 +72,7 @@ def dimensionSwitch():
         dimensionPickB.configure(text='Next Dimension:\nNether', bg='#723232', fg='dark red')
         upgradeInv['dim pick'][1] = 'n'
     elif upgradeInv['dim pick'][1] == 'n':
-        dimensionPickB.configure(text='Next Dimension:\nOverworld', bg='dark green', fg='green')
+        dimensionPickB.configure(text='Next Dimension:\nOverworld', bg='#1f5f1f', fg='lime')
         upgradeInv['dim pick'][1] = 'o'
     
 
