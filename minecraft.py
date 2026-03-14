@@ -93,9 +93,6 @@ def invUpgrade(t,c,m):
         score -= c
         nextRoundA()
 
-def skipUpgrade():
-    nextRoundA()
-
 
 
 
@@ -140,7 +137,7 @@ def button_click(r,c,block):
                 blocksN[r][c] = 'air'
                 if start:
                     start = False
-                    
+
                 scoreAS(block,upgradeInv,multiplier)
 
             blocks[15][0].configure(text=round(score,2))
@@ -263,7 +260,7 @@ def nextShop():
 
 
         if upgrades[upg] == 'skip':
-            upgrades[upg] = tk.Button(root, text = '☑️\nSkip Upgrade:\n0 Score', bg = 'gray30', fg = 'gray5', command = lambda: skipUpgrade())
+            upgrades[upg] = tk.Button(root, text = '☑️\nSkip Upgrade:\n0 Score', bg = 'gray30', fg = 'gray5', command = lambda: nextRoundA())
 
         upgrades[upg].grid(row=10, column=(upg+1)*3, sticky="nsew", padx=5, pady=5)
 
