@@ -19,6 +19,7 @@ upgradeInv = {
     'penalty n': False,
     'penalty s': False,
     'penalty d': False,
+    'penalty e': False,
     'luck': False,
     'st free': False,
     'diag mine': False,
@@ -152,7 +153,7 @@ def nextRoundA():
 def button_click(r,c,block):
     global start, score, nextTimer, blocksN, blocks
     if block != 'bedrock':
-        check = ((((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and ((block == 'stone')or block == 'netherrack')))
+        check = ((((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and ((block == 'stone')or (block == 'netherrack') or (block == 'endstone'))))
         checkD = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
         if check or checkD or (start and upgradeInv['st free']):
             if upgradeInv['tnt']:

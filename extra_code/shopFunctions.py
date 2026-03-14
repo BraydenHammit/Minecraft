@@ -34,7 +34,7 @@ def shopList(upgradeInv):
     elif upgradeInv['fortune'][1] == 75:
         upgrades.append('fortuneM')
 
-    if upgradeInv['ext dim']: #add not
+    if not upgradeInv['ext dim']:
         upgrades.append('ext dim')
 
 

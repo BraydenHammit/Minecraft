@@ -7,6 +7,8 @@ def scoreAS(block,upgradeInv,multiplier,score):
         score = -1
     elif (block == 'netherrack') and (not upgradeInv['penalty n']):
         score = -1
+    if (block == 'endstone') and (not upgradeInv['penalty e']):
+        score = -1
     elif (block == 'deepslate' and (not upgradeInv['penalty d'])):
         score = -1.5
     elif (block == 'coal') or (block == 'nether gold') or (block == 'copper'):
