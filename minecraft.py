@@ -1,6 +1,7 @@
 import tkinter as tk
 import random as ran
 from scoreFunction import scoreAS
+from shopButtonF import buttonD
 
 
 
@@ -129,7 +130,7 @@ def button_click(r,c,block):
                         blocksN[_[0]][_[1]] = 'air'
                         blocks[_[0]][_[1]].grid_forget()
                         blocks[_[0]][_[1]] = 'air'
-                        scoreAS(block,upgradeInv,multiplier)
+                        score = scoreAS(block,upgradeInv,multiplier)
 
             else:
                 blocks[r][c].grid_forget()
@@ -138,7 +139,7 @@ def button_click(r,c,block):
                 if start:
                     start = False
 
-                scoreAS(block,upgradeInv,multiplier)
+                score = scoreAS(block,upgradeInv,multiplier)
 
             blocks[15][0].configure(text=round(score,2))
             blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
@@ -225,44 +226,9 @@ def nextShop():
     upgrades = choices
 
     for upg in range(len(upgrades)):
-        if upgrades[upg] == 'click':
-            upgrades[upg] = tk.Button(root, text = '🔨\nMultiplier Upgrade (x1):\n100 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(1))
-        if upgrades[upg] == 'click5':
-            upgrades[upg] = tk.Button(root, text = '⛏\nMultiplier Upgrade (x5):\n500 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(5))
-        if upgrades[upg] == 'click10':
-            upgrades[upg] = tk.Button(root, text = '🛠\nMultiplier Upgrade (x10):\n1000 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(10))
+        upgradeB = buttonD(upgrades[upg],root)
 
-
-        if upgrades[upg] == 'penalty s':
-            upgrades[upg] = tk.Button(root, text = '🪨\nRemove Stone Penalty:\n250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty s',250,False))
-        if upgrades[upg] == 'penalty n':
-            upgrades[upg] = tk.Button(root, text = '🧱\nRemove Netherrack Penalty:\n150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty n',150,False))
-        if upgrades[upg] == 'penalty d':
-            upgrades[upg] = tk.Button(root, text = '🪦\nRemove Deepslate Penalty:\n350 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty d',350,False))
-
-        if upgrades[upg] == 'luck':
-            upgrades[upg] = tk.Button(root, text = '🍀\nIncrease Ore Spawns:\n5000 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('luck',5000,False))
-
-        if upgrades[upg] == 'st free':
-            upgrades[upg] = tk.Button(root, text = '🔓\nUnbind Starting Point:\n375 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('st free',375,False))
-
-        if upgrades[upg] == 'diag mine':
-            upgrades[upg] = tk.Button(root, text = '🔀\nMine Diagonally:\n325 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('diag mine',325,False))
-
-        if upgrades[upg] == 'ore ext':
-            upgrades[upg] = tk.Button(root, text = '💎\nUnlock Pseudo-Ores:\n750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ore ext',750,False))
-        
-        if upgrades[upg] == 'tnt':
-            upgrades[upg] = tk.Button(root, text = '🧨\nBlast Radius Mining:\n3750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('tnt',3750,False))
-
-        if upgrades[upg] == 'dim pick':
-            upgrades[upg] = tk.Button(root, text = '🌌\nChoose Next Dimension:\n1250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('dim pick',1250,True))
-
-
-        if upgrades[upg] == 'skip':
-            upgrades[upg] = tk.Button(root, text = '☑️\nSkip Upgrade:\n0 Score', bg = 'gray30', fg = 'gray5', command = lambda: nextRoundA())
-
-        upgrades[upg].grid(row=10, column=(upg+1)*3, sticky="nsew", padx=5, pady=5)
+        upgradeB.grid(row=10, column=(upg+1)*3, sticky="nsew", padx=5, pady=5)
 
 
 
