@@ -32,10 +32,11 @@ root = tk.Tk()
 root.title("Minecraft")
 root.state('zoomed')
 
-intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next'.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to select what dimension it will be next round (the button is in the shop),\nincrease your mining to a 3x3 area with an explosive blast,\ngain the ability to start mining on things other than stone or netherrack,\nunlock two extra ores (one for each dimension, amethyst and gilded blackstone),\nunlock the ability to mine diagonally from pre-mined blocks,\nor remove the score penalties when mining netherrack, stone, and deepslate.\n\nOre Values:\nStone & Netherrack = -1\nDeepslate = -1.5\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5\n\nExtra Semi-Ores:\nGilded Blackstone & Amethyst = 7.5")
+intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next'.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to select what dimension it will be next round (the button is in the shop),\nincrease your mining to a 3x3 area with an explosive blast, apply a fortune enchantment,\ngain the ability to start mining on things other than stone or netherrack,\nunlock two extra ores (one for each dimension, amethyst and gilded blackstone),\nunlock the ability to mine diagonally (between blocks) from pre-mined blocks,\nor remove the score penalties when mining netherrack, stone, and deepslate.\n\nOre Values:\nStone & Netherrack = -1\nDeepslate = -1.5\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5\n\nExtra Semi-Ores:\nGilded Blackstone & Amethyst = 7.5")
 startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
 dimensionPickB = tk.Button(root, text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D", command=lambda: dimensionSwitch())
 multButton = tk.Button(root, text=f'Multiplier: {multiplier}', bg='gray30', fg="gray5")
+fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}%', bg='gray30', fg="gray5")
 
 images = {
             #Rocks:
@@ -130,6 +131,7 @@ def nextRoundA():
         dimensionPickB.grid_forget()
 
     multButton.grid_forget()
+    fortButton.grid_forget()
 
     nextRound()
 
@@ -192,6 +194,10 @@ def nextRoundPre():
 
     blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
     blocks[15][0].configure(text=f'Score: {score}')
+    multButton.configure(text=f'Multiplier: {multiplier}')
+    multButton.grid(row=14,column=0, sticky="nsew", padx=5, pady=5)
+    fortButton.configure(text=f'Fortune: {upgradeInv["fortune"][1]}%')
+    fortButton.grid(row=13,column=0, sticky="nsew", padx=5, pady=5)
 
     nextShop()
 
@@ -208,9 +214,6 @@ def nextRoundPre():
 
 def nextShop():
     global upgrades, upgradeInv, blocksN, dimensionPickB, multButton
-
-    multButton.configure(text=f'Multiplier: {multiplier}')
-    multButton.grid(row=14,column=0, sticky="nsew", padx=5, pady=5)
 
     upgrades = shopList(upgradeInv)
 
