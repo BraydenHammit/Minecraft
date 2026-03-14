@@ -108,6 +108,8 @@ def button_click(r,c,block):
         checkD = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
         if check or checkD or (start and upgradeInv['st free']):
             if upgradeInv['tnt']:
+                if start:
+                    start = False
                 check = [[r+1,c],[r-1,c],[r,c+1],[r,c-1],[r+1,c+1],[r-1,c-1],[r-1,c+1],[r+1,c-1],[r,c]]
                 for _ in check:
                     block = blocksN[_[0]][_[1]]
@@ -269,7 +271,7 @@ def nextShop():
 
 
         if upgrades[upg] == 'skip':
-            upgrades[upg] = tk.Button(root, text = 'Skip Upgrade:\n0 Score', bg = 'gray30', fg = 'gray5', command = lambda: skipUpgrade())
+            upgrades[upg] = tk.Button(root, text = '☑️\nSkip Upgrade:\n0 Score', bg = 'gray30', fg = 'gray5', command = lambda: skipUpgrade())
 
         upgrades[upg].grid(row=10, column=(upg+1)*3, sticky="nsew", padx=5, pady=5)
 
