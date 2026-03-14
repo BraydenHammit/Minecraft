@@ -148,7 +148,7 @@ def button_click(r,c,block):
                 score = scoreAS(block,upgradeInv,multiplier,score)
 
             blocks[15][0].configure(text=round(score,2))
-            blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
+            
 
     elif (r == 15) and (c == 1) and (nextTimer == 0):
         start = True
@@ -236,7 +236,6 @@ def nextRound():
     nextTimer = 5
     blocks = []
     blocksN = []
-
     dimension = dimensionR(upgradeInv, root)
 
 
