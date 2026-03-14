@@ -31,7 +31,7 @@ def shopList(upgradeInv):
     return upgrades
     
 
-def buttonDefine(upg, root):
+def buttonDef(upg, root):
         if upg == 'click':
             upg = tk.Button(root, text = '🔨\nMultiplier Upgrade (x1):\n100 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(1))
         if upg == 'click5':
