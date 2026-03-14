@@ -1,9 +1,8 @@
 import tkinter as tk
 import random as ran
 from scoreFunction import scoreAS
-from shopFunctionsLD import buttonDef, shopList
+from shopFunctionsLD import shopList
 from oreFunct import oreO, oreN
-from oreFunctDef import defOreO, defOreN
 
 
 
@@ -136,7 +135,7 @@ def button_click(r,c,block):
                         blocksN[_[0]][_[1]] = 'air'
                         blocks[_[0]][_[1]].grid_forget()
                         blocks[_[0]][_[1]] = 'air'
-                        score = scoreAS(block,upgradeInv,multiplier)
+                        score = scoreAS(block,upgradeInv,multiplier,score)
 
             else:
                 blocks[r][c].grid_forget()
@@ -144,8 +143,7 @@ def button_click(r,c,block):
                 blocksN[r][c] = 'air'
                 if start:
                     start = False
-
-                score = scoreAS(block,upgradeInv,multiplier)
+                score = scoreAS(block,upgradeInv,multiplier,score)
 
             blocks[15][0].configure(text=round(score,2))
             blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
@@ -210,9 +208,44 @@ def nextShop():
     upgrades = choices
 
     for upg in range(len(upgrades)):
-        upgradeB = buttonDef(upgrades[upg],root)
+        if upgrades[upg] == 'click':
+            upgrades[upg] = tk.Button(root, text = '🔨\nMultiplier Upgrade (x1):\n100 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(1))
+        if upgrades[upg] == 'click5':
+            upgrades[upg] = tk.Button(root, text = '⛏\nMultiplier Upgrade (x5):\n500 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(5))
+        if upgrades[upg] == 'click10':
+            upgrades[upg] = tk.Button(root, text = '🛠\nMultiplier Upgrade (x10):\n1000 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(10))
 
-        upgradeB.grid(row=10, column=(upg+1)*3, sticky="nsew", padx=5, pady=5)
+
+        if upgrades[upg] == 'penalty s':
+            upgrades[upg] = tk.Button(root, text = '🪨\nRemove Stone Penalty:\n250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty s',250,False))
+        if upgrades[upg] == 'penalty n':
+            upgrades[upg] = tk.Button(root, text = '🧱\nRemove Netherrack Penalty:\n150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty n',150,False))
+        if upgrades[upg] == 'penalty d':
+            upgrades[upg] = tk.Button(root, text = '🪦\nRemove Deepslate Penalty:\n350 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty d',350,False))
+
+        if upgrades[upg] == 'luck':
+            upgrades[upg] = tk.Button(root, text = '🍀\nIncrease Ore Spawns:\n5000 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('luck',5000,False))
+
+        if upgrades[upg] == 'st free':
+            upgrades[upg] = tk.Button(root, text = '🔓\nUnbind Starting Point:\n375 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('st free',375,False))
+
+        if upgrades[upg] == 'diag mine':
+            upgrades[upg] = tk.Button(root, text = '🔀\nMine Diagonally:\n325 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('diag mine',325,False))
+
+        if upgrades[upg] == 'ore ext':
+            upgrades[upg] = tk.Button(root, text = '💎\nUnlock Pseudo-Ores:\n750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ore ext',750,False))
+        
+        if upgrades[upg] == 'tnt':
+            upgrades[upg] = tk.Button(root, text = '🧨\nBlast Radius Mining:\n3750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('tnt',3750,False))
+
+        if upgrades[upg] == 'dim pick':
+            upgrades[upg] = tk.Button(root, text = '🌌\nChoose Next Dimension:\n1250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('dim pick',1250,True))
+
+
+        if upgrades[upg] == 'skip':
+            upgrades[upg] = tk.Button(root, text = '☑️\nSkip Upgrade:\n0 Score', bg = 'gray30', fg = 'gray5', command = lambda: nextRoundA())
+
+        upgrades[upg].grid(row=10, column=(upg+1)*3, sticky="nsew", padx=5, pady=5)
 
 
 
@@ -264,7 +297,75 @@ def nextRound():
             if dimension == 'overworld':
 
                 ore = oreO(upgradeInv)
-                button, ore = defOreO(r,c,root,images,score,nextTimer,ore)
+                
+                if (r == 15):
+                    ore = 'bedrock'
+                    if c == 0:
+                        button = tk.Button(root, text=round(score,2), bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+                    elif c == 1:
+                        button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+                    else:
+                        button = tk.Button(root, image=images['bedrock'], bg='gray30', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+
+                elif ore != 'none':                 
+                    if ore == 'diamond':
+                        if r <= 8:
+                            button = tk.Button(root, image = images['diamond'], bg='gray55', command=lambda r=r, c=c: button_click(r,c,'diamond'))
+                        else:
+                            button = tk.Button(root, bg='gray40', image = images['deepslateDiamond'], command=lambda r=r, c=c: button_click(r,c,'diamond'))
+                    
+                    elif ore == 'gold':
+                        if r <= 8:
+                            button = tk.Button(root, image=images['gold'], bg='gray55', command=lambda r=r, c=c: button_click(r,c,'gold'))
+                        else:
+                            button = tk.Button(root, image=images['deepslateGold'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'gold'))
+                    
+                    elif ore == 'emerald':
+                        if r <= 8:
+                            button = tk.Button(root, image=images['emerald'], bg='gray55', command=lambda r=r, c=c: button_click(r,c,'emerald'))
+                        else:
+                            button = tk.Button(root, image=images['deepslateEmerald'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'emerald'))
+                    
+                    elif ore == 'coal':
+                        if r <= 8:
+                            button = tk.Button(root, image = images['coal'], bg='gray55', command=lambda r=r, c=c: button_click(r,c,'coal'))
+                        else:
+                            button = tk.Button(root, image = images['deepslateCoal'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'coal'))
+                    
+                    elif ore == 'lapis':
+                        if r <= 8:
+                            button = tk.Button(root, image=images['lapis'], bg='gray55',  command=lambda r=r, c=c: button_click(r,c,'lapis'))
+                        else:
+                            button = tk.Button(root, image = images['deepslateLapis'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'lapis'))
+                    
+                    elif ore == 'copper':
+                        if r <= 8:
+                            button = tk.Button(root, image=images['copper'], bg='gray55', command=lambda r=r, c=c: button_click(r,c,'copper'))
+                        else:
+                            button = tk.Button(root, image=images['deepslateCopper'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'copper'))
+                    
+                    elif ore == 'iron':
+                        if r <= 8:
+                            button = tk.Button(root, image = images["iron"], bg = 'gray55', command=lambda r=r, c=c: button_click(r,c,'iron'))
+                        else:
+                            button = tk.Button(root, image=images['deepslateIron'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'iron'))
+
+                    elif ore == 'redstone':
+                        if r <= 8:
+                            button = tk.Button(root, image=images['redstone'], bg='gray55', command=lambda r=r, c=c: button_click(r,c,'redstone'))
+                        else:
+                            button = tk.Button(root, image=images['deepslateRedstone'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'redstone'))
+
+                    elif ore == 'amethyst':
+                        button = tk.Button(root, image=images['amethyst'], bg='magenta', command=lambda r=r, c=c: button_click(r,c,'amethyst'))
+
+                elif r <= 8:
+                    ore = 'stone'
+                    button = tk.Button(root, image=images['stone'], bg = 'gray55', command=lambda r=r, c=c: button_click(r,c,'stone'))
+                else:
+                    ore = 'deepslate'
+                    button = tk.Button(root, image=images['deepslate'], bg = 'gray40', command=lambda r=r, c=c: button_click(r,c,'deepslate'))
+
 
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
@@ -274,7 +375,28 @@ def nextRound():
             elif dimension == 'nether':
 
                 ore = oreN(upgradeInv)
-                button, ore = defOreN(r,c,root,images,score,nextTimer,ore)
+                
+                if (r == 15) or (r == 0):
+                    ore = 'bedrock'
+                    if (c == 0) and (r == 15):
+                        button = tk.Button(root, text=round(score,2), bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+                    elif (c == 1) and (r == 15):
+                        button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+                    else:
+                        button = tk.Button(root, image= images['bedrock'], bg = 'gray30', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+                elif ore != 'none':
+                    if ore == 'quartz':
+                        button = tk.Button(root, image = images['quartz'], bg='#723232', command=lambda r=r, c=c: button_click(r,c,'quartz'))
+                    elif ore == 'nether gold':
+                        button = tk.Button(root, image = images['netherGold'], bg='#723232', command=lambda r=r, c=c: button_click(r,c,'nether gold'))
+                    elif ore == 'netherite':
+                        button = tk.Button(root, image = images['netherite'], bg='#523933', command=lambda r=r, c=c: button_click(r,c,'netherite'))
+                    elif ore == 'gilded blackstone':
+                        button = tk.Button(root, image = images['gildedBlackstone'], bg='gray2', command=lambda r=r, c=c: button_click(r,c,'gilded blackstone'))
+                else:
+                    button = tk.Button(root, image = images['netherrack'], bg='#723232', command=lambda r=r, c=c: button_click(r,c,'netherrack'))
+                    ore = 'netherrack'
+
 
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)

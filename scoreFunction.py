@@ -1,4 +1,4 @@
-def scoreAS(block,upgradeInv,multiplier):
+def scoreAS(block,upgradeInv,multiplier,score):
     if (block == 'stone') and (not upgradeInv['penalty s']):
         score -= 1
     elif (block == 'netherrack') and (not upgradeInv['penalty n']):

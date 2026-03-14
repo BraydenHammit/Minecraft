@@ -25,8 +25,8 @@ def oreO(upgradeInv):
                                 ore = 'diamond'
                                 if randomNum == 0:
                                     ore = 'emerald'
-                else:
-                    ore = 'none'
+    else:
+        ore = 'none'
 
     return ore
 
