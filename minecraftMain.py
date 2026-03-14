@@ -1,10 +1,10 @@
 import tkinter as tk
 import random as ran
-from scoreFunction import scoreAS
-from shopFunctions import shopList, buttonDef
-from oreFunct import oreO, oreN
-from oreFunctDef import defOreN, defOreO
-from randomDimFunct import dimensionR
+from extra_code.scoreFunction import scoreAS
+from extra_code.shopFunctions import shopList, buttonDef
+from extra_code.oreFunct import oreO, oreN
+from extra_code.oreFunctDef import defOreN, defOreO
+from extra_code.randomDimFunct import dimensionR
 
 
 
