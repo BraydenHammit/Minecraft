@@ -1,5 +1,6 @@
 import tkinter as tk
 import random as ran
+from scoreFunction import scoreAS
 
 
 
@@ -131,24 +132,7 @@ def button_click(r,c,block):
                         blocksN[_[0]][_[1]] = 'air'
                         blocks[_[0]][_[1]].grid_forget()
                         blocks[_[0]][_[1]] = 'air'
-                        if (block == 'stone') and (not upgradeInv['penalty s']):
-                            score -= 1
-                        elif (block == 'netherrack') and (not upgradeInv['penalty n']):
-                            score -= 1
-                        elif (block == 'deepslate' and (not upgradeInv['penalty d'])):
-                            score -= 1.5
-                        elif (block == 'coal') or (block == 'nether gold') or (block == 'copper'):
-                            score += 1.75 * multiplier
-                        elif (block == 'redstone') or (block == 'lapis'):
-                            score += 2.5 * multiplier
-                        elif (block == 'iron') or (block == 'gold') or (block == 'quartz'):
-                            score += 3.25 * multiplier
-                        elif (block == 'diamond'):
-                            score += 5 * multiplier
-                        elif (block == 'amethyst') or (block == 'gilded blackstone'):
-                            score += 7.5 * multiplier
-                        elif (block == 'emerald') or (block == 'netherite'):
-                            score += 12.5 * multiplier
+                        scoreAS(block,upgradeInv,multiplier)
 
             else:
                 blocks[r][c].grid_forget()
@@ -156,25 +140,8 @@ def button_click(r,c,block):
                 blocksN[r][c] = 'air'
                 if start:
                     start = False
-
-                if (block == 'stone') and (not upgradeInv['penalty s']):
-                    score -= 1
-                elif (block == 'netherrack') and (not upgradeInv['penalty n']):
-                    score -= 1
-                elif (block == 'deepslate' and (not upgradeInv['penalty d'])):
-                    score -= 1.5
-                elif (block == 'coal') or (block == 'nether gold') or (block == 'copper'):
-                    score += 1.75 * multiplier
-                elif (block == 'redstone') or (block == 'lapis'):
-                    score += 2.5 * multiplier
-                elif (block == 'iron') or (block == 'gold') or (block == 'quartz'):
-                    score += 3.25 * multiplier
-                elif (block == 'diamond'):
-                    score += 5 * multiplier
-                elif (block == 'amethyst') or (block == 'gilded blackstone'):
-                    score += 7.5 * multiplier
-                elif (block == 'emerald') or (block == 'netherite'):
-                    score += 12.5 * multiplier
+                    
+                scoreAS(block,upgradeInv,multiplier)
 
             blocks[15][0].configure(text=round(score,2))
             blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
@@ -193,8 +160,6 @@ def button_click(r,c,block):
 def nextRoundPre():
     root.configure(background='grey')
 
-    global blocks
-
     for eachCol in blocks:
 
         for eachRow in eachCol:
@@ -205,8 +170,6 @@ def nextRoundPre():
             eachRow.grid_forget()
 
     blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
-
-    blocks = []
 
     nextShop()
 
@@ -322,9 +285,9 @@ def nextTime():
 
 
 def nextRound():
-    global nextTimer, blocksN
+    global nextTimer, blocksN, blocks
     nextTimer = 5
-
+    blocks = []
     blocksN = []
 
     if upgradeInv['dim pick'][0]:
