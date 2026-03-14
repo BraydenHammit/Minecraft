@@ -18,7 +18,8 @@ upgradeInv = {
     'st free': False,
     'diag mine': False,
     'ore ext': False,
-    'tnt': False                 # reminder: add a tnt sound effect (when you figure out how to add them)
+    'tnt': False,                 # reminder: add a tnt sound effect (when you figure out how to add them)
+    'dim pick': [False,'o']
 }
 
 root = tk.Tk()
@@ -27,13 +28,7 @@ root.state('zoomed')
 
 intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next'.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to start mining on things other than stone or netherrack,\nunlock two extra ores (one for each dimension, amethyst and gilded blackstone),\nunlock the ability to mine diagonally from pre-mined blocks,\nor remove the score penalties when mining netherrack, stone, and deepslate.\n\nOre Values:\nStone & Netherrack = -1\nDeepslate = -1.5\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5\n\nExtra Semi-Ores:\nGilded Blackstone & Amethyst = 7.5")
 startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
-
-def startGame():
-    global intro, startB
-    intro.pack_forget()
-    startB.pack_forget()
-    nextRound()
-
+dimensionPickB = tk.Button(root, text='Next Dimension:\nOverworld', bg='dark green', fg='green', command=lambda: dimensionSwitch())
 
 images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'deepslate': tk.PhotoImage(file='assets/images/deepslateImageMinecraft.png'),
@@ -63,9 +58,21 @@ images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'gildedBlackstone': tk.PhotoImage(file='assets/images/gildedBlackstoneImageMinecraft.png')
             }
 
+def startGame():
+    global intro, startB
+    intro.pack_forget()
+    startB.pack_forget()
+    nextRound()
 
-
-
+def dimensionSwitch():
+    global dimensionPickB, upgradeInv
+    if upgradeInv['dim pick'][1] == 'o':
+        dimensionPickB.configure(text='Next Dimension:\nNether', bg='#723232', fg='dark red')
+        upgradeInv['dim pick'][1] = 'n'
+    elif upgradeInv['dim pick'][1] == 'n':
+        dimensionPickB.configure(text='Next Dimension:\nOverworld', bg='dark green', fg='green')
+        upgradeInv['dim pick'][1] = 'o'
+    
 
 
 def multiplierUpgrade(a):
@@ -75,10 +82,13 @@ def multiplierUpgrade(a):
         score -= 100*a
         nextRoundA()
 
-def invUpgrade(t,c):
+def invUpgrade(t,c,m):
     global upgradeInv, score
     if score >= c:
-        upgradeInv[t] = True
+        if m:
+            upgradeInv[t][0] = True
+        else:
+            upgradeInv[t] = True
         score -= c
         nextRoundA()
 
@@ -91,8 +101,12 @@ def skipUpgrade():
 
 
 def nextRoundA():
+    global upgrades, dimensionPickB
     for _ in upgrades:
         _.grid_forget()
+
+    if upgradeInv['dim pick'][0]:
+        dimensionPickB.grid_forget()
 
     nextRound()
 
@@ -208,25 +222,37 @@ def nextRoundPre():
 
 
 def nextShop():
-    global upgrades, upgradeInv, blocksN
+    global upgrades, upgradeInv, blocksN, dimensionPickB
 
     upgrades = ['click','click5','click10']
+
     if not upgradeInv["penalty s"]:
         upgrades.append('penalty s')
     if not upgradeInv["penalty n"]:
         upgrades.append('penalty n')
     if not upgradeInv["penalty d"]:
         upgrades.append('penalty d')
+
     if not upgradeInv["luck"]:
         upgrades.append('luck')
+
     if not upgradeInv["st free"]:
         upgrades.append('st free')
+
     if not upgradeInv["diag mine"]:
         upgrades.append('diag mine')
+
     if not upgradeInv["ore ext"]:
         upgrades.append('ore ext')
+
     if not upgradeInv["tnt"]:
         upgrades.append('tnt')
+
+    if not upgradeInv["dim pick"][0]:
+        upgrades.append('dim pick')
+    else:
+        dimensionPickB.grid(row=0, column=15)
+
     choices = []
 
     for _ in range(3):
@@ -248,26 +274,29 @@ def nextShop():
 
 
         if upgrades[upg] == 'penalty s':
-            upgrades[upg] = tk.Button(root, text = '🪨\nRemove Stone Penalty:\n250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty s',250))
+            upgrades[upg] = tk.Button(root, text = '🪨\nRemove Stone Penalty:\n250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty s',250,False))
         if upgrades[upg] == 'penalty n':
-            upgrades[upg] = tk.Button(root, text = '🧱\nRemove Netherrack Penalty:\n150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty n',150))
+            upgrades[upg] = tk.Button(root, text = '🧱\nRemove Netherrack Penalty:\n150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty n',150,False))
         if upgrades[upg] == 'penalty d':
-            upgrades[upg] = tk.Button(root, text = '🪦\nRemove Deepslate Penalty:\n350 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty d',350))
+            upgrades[upg] = tk.Button(root, text = '🪦\nRemove Deepslate Penalty:\n350 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty d',350,False))
 
         if upgrades[upg] == 'luck':
-            upgrades[upg] = tk.Button(root, text = '🍀\nIncrease Ore Spawns:\n5000 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('luck',5000))
+            upgrades[upg] = tk.Button(root, text = '🍀\nIncrease Ore Spawns:\n5000 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('luck',5000,False))
 
         if upgrades[upg] == 'st free':
-            upgrades[upg] = tk.Button(root, text = '🔓\nUnbind Starting Point:\n375 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('st free',375))
+            upgrades[upg] = tk.Button(root, text = '🔓\nUnbind Starting Point:\n375 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('st free',375,False))
 
         if upgrades[upg] == 'diag mine':
-            upgrades[upg] = tk.Button(root, text = '🔀\nMine Diagonally:\n325 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('diag mine',325))
+            upgrades[upg] = tk.Button(root, text = '🔀\nMine Diagonally:\n325 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('diag mine',325,False))
 
         if upgrades[upg] == 'ore ext':
-            upgrades[upg] = tk.Button(root, text = '💎\nUnlock Pseudo-Ores:\n750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ore ext',750))
+            upgrades[upg] = tk.Button(root, text = '💎\nUnlock Pseudo-Ores:\n750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ore ext',750,False))
         
         if upgrades[upg] == 'tnt':
-            upgrades[upg] = tk.Button(root, text = '🧨\nBlast Radius Mining:\n3750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('tnt',3750))
+            upgrades[upg] = tk.Button(root, text = '🧨\nBlast Radius Mining:\n3750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('tnt',3750,False))
+
+        if upgrades[upg] == 'dim pick':
+            upgrades[upg] = tk.Button(root, text = '🌌\nChoose Next Dimension:\n1250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('dim pick',1250,True))
 
 
         if upgrades[upg] == 'skip':
@@ -298,7 +327,15 @@ def nextRound():
 
     blocksN = []
 
-    if ran.randint(0,4) == 1:
+    if upgradeInv['dim pick'][0]:
+        if upgradeInv['dim pick'][1] == 'n':
+            dimension = 'nether'
+            root.configure(background='#723232')
+        elif upgradeInv['dim pick'][1] == 'o':
+            dimension = 'overworld'
+            root.configure(background='grey')
+
+    elif ran.randint(0,4) == 1:
         dimension = 'nether'
         root.configure(background='#723232')
     else:
