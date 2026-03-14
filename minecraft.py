@@ -9,6 +9,7 @@ score = 0
 multiplier = 1
 nextTimer = 5
 blocks = []
+blocksN = []
 upgradeInv = {
     'penalty n': False,
     'penalty s': False,
@@ -16,7 +17,8 @@ upgradeInv = {
     'luck': False,
     'st free': False,
     'diag mine': False,
-    'ore ext': False
+    'ore ext': False,
+    'tnt': False                 # reminder: add a tnt sound effect (when you figure out how to add them)
 }
 
 root = tk.Tk()
@@ -100,34 +102,64 @@ def nextRoundA():
 
 
 def button_click(r,c,block):
-    global start, score, nextTimer
+    global start, score, nextTimer, blocksN
     if block != 'bedrock':
-        check = ((((blocks[r+1][c] == 'air') or (blocks [r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and ((block == 'stone')or block == 'netherrack')))
+        check = ((((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and ((block == 'stone')or block == 'netherrack')))
         checkD = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
         if check or checkD or (start and upgradeInv['st free']):
-            blocks[r][c].grid_forget()
-            blocks[r][c] = 'air'
-            if start:
-                start = False
+            if upgradeInv['tnt']:
+                check = [[r+1,c],[r-1,c],[r,c+1],[r,c-1],[r+1,c+1],[r-1,c-1],[r-1,c+1],[r+1,c-1],[r,c]]
+                for _ in check:
+                    block = blocksN[_[0]][_[1]]
+                    if block != 'bedrock' and block != 'barrier' and block != 'air':
+                        blocksN[_[0]][_[1]] = 'air'
+                        blocks[_[0]][_[1]].grid_forget()
+                        blocks[_[0]][_[1]] = 'air'
+                        if (block == 'stone') and (not upgradeInv['penalty s']):
+                            score -= 1
+                        elif (block == 'netherrack') and (not upgradeInv['penalty n']):
+                            score -= 1
+                        elif (block == 'deepslate' and (not upgradeInv['penalty d'])):
+                            score -= 1.5
+                        elif (block == 'coal') or (block == 'nether gold') or (block == 'copper'):
+                            score += 1.75 * multiplier
+                        elif (block == 'redstone') or (block == 'lapis'):
+                            score += 2.5 * multiplier
+                        elif (block == 'iron') or (block == 'gold') or (block == 'quartz'):
+                            score += 3.25 * multiplier
+                        elif (block == 'diamond'):
+                            score += 5 * multiplier
+                        elif (block == 'amethyst') or (block == 'gilded blackstone'):
+                            score += 7.5 * multiplier
+                        elif (block == 'emerald') or (block == 'netherite'):
+                            score += 12.5 * multiplier
 
-            if (block == 'stone') and (not upgradeInv['penalty s']):
-                score -= 1
-            elif (block == 'netherrack') and (not upgradeInv['penalty n']):
-                score -= 1
-            elif (block == 'deepslate' and (not upgradeInv['penalty d'])):
-                score -= 1.5
-            elif (block == 'coal') or (block == 'nether gold') or (block == 'copper'):
-                score += 1.75 * multiplier
-            elif (block == 'redstone') or (block == 'lapis'):
-                score += 2.5 * multiplier
-            elif (block == 'iron') or (block == 'gold') or (block == 'quartz'):
-                score += 3.25 * multiplier
-            elif (block == 'diamond'):
-                score += 5 * multiplier
-            elif (block == 'amethyst') or (block == 'gilded blackstone'):
-                score += 7.5 * multiplier
-            elif (block == 'emerald') or (block == 'netherite'):
-                score += 12.5 * multiplier
+            else:
+                blocks[r][c].grid_forget()
+                blocks[r][c] = 'air'
+                blocksN[r][c] = 'air'
+                if start:
+                    start = False
+
+                if (block == 'stone') and (not upgradeInv['penalty s']):
+                    score -= 1
+                elif (block == 'netherrack') and (not upgradeInv['penalty n']):
+                    score -= 1
+                elif (block == 'deepslate' and (not upgradeInv['penalty d'])):
+                    score -= 1.5
+                elif (block == 'coal') or (block == 'nether gold') or (block == 'copper'):
+                    score += 1.75 * multiplier
+                elif (block == 'redstone') or (block == 'lapis'):
+                    score += 2.5 * multiplier
+                elif (block == 'iron') or (block == 'gold') or (block == 'quartz'):
+                    score += 3.25 * multiplier
+                elif (block == 'diamond'):
+                    score += 5 * multiplier
+                elif (block == 'amethyst') or (block == 'gilded blackstone'):
+                    score += 7.5 * multiplier
+                elif (block == 'emerald') or (block == 'netherite'):
+                    score += 12.5 * multiplier
+
             blocks[15][0].configure(text=round(score,2))
             blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
 
@@ -146,7 +178,6 @@ def nextRoundPre():
     root.configure(background='grey')
 
     global blocks
-    #print('Next Round Pre')
 
     for eachCol in blocks:
 
@@ -159,7 +190,6 @@ def nextRoundPre():
 
     blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
 
-    #print(blocks)
     blocks = []
 
     nextShop()
@@ -176,7 +206,7 @@ def nextRoundPre():
 
 
 def nextShop():
-    global upgrades, upgradeInv
+    global upgrades, upgradeInv, blocksN
 
     upgrades = ['click','click5','click10']
     if not upgradeInv["penalty s"]:
@@ -193,6 +223,8 @@ def nextShop():
         upgrades.append('diag mine')
     if not upgradeInv["ore ext"]:
         upgrades.append('ore ext')
+    if not upgradeInv["tnt"]:
+        upgrades.append('tnt')
     choices = []
 
     for _ in range(3):
@@ -231,6 +263,9 @@ def nextShop():
 
         if upgrades[upg] == 'ore ext':
             upgrades[upg] = tk.Button(root, text = '💎\nUnlock Pseudo-Ores:\n750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ore ext',750))
+        
+        if upgrades[upg] == 'tnt':
+            upgrades[upg] = tk.Button(root, text = '🧨\nBlast Radius Mining:\n3750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('tnt',3750))
 
 
         if upgrades[upg] == 'skip':
@@ -256,8 +291,10 @@ def nextTime():
 
 
 def nextRound():
-    global nextTimer
+    global nextTimer, blocksN
     nextTimer = 5
+
+    blocksN = []
 
     if ran.randint(0,4) == 1:
         dimension = 'nether'
@@ -270,6 +307,7 @@ def nextRound():
     for r in range(16):
         root.grid_rowconfigure(r, weight=1)
         blocks.append([])
+        blocksN.append([])
 
         for c in range(16):
             root.grid_columnconfigure(c, weight=1)
@@ -304,6 +342,7 @@ def nextRound():
 
 
                 if (r == 15):
+                    ore = 'bedrock'
                     if c == 0:
                         button = tk.Button(root, text=round(score,2), bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                     elif c == 1:
@@ -364,12 +403,15 @@ def nextRound():
                         button = tk.Button(root, image=images['amethyst'], bg='magenta', command=lambda r=r, c=c: button_click(r,c,'amethyst'))
 
                 elif r <= 8:
+                    ore = 'stone'
                     button = tk.Button(root, image=images['stone'], bg = 'gray55', command=lambda r=r, c=c: button_click(r,c,'stone'))
                 else:
+                    ore = 'deepslate'
                     button = tk.Button(root, image=images['deepslate'], bg = 'gray40', command=lambda r=r, c=c: button_click(r,c,'deepslate'))
 
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
+                blocksN[r].append(ore)
 
 
             elif dimension == 'nether':
@@ -392,6 +434,7 @@ def nextRound():
 
 
                 if (r == 15) or (r == 0):
+                    ore = 'bedrock'
                     if (c == 0) and (r == 15):
                         button = tk.Button(root, text=round(score,2), bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
                     elif (c == 1) and (r == 15):
@@ -409,12 +452,15 @@ def nextRound():
                         button = tk.Button(root, image = images['gildedBlackstone'], bg='gray2', command=lambda r=r, c=c: button_click(r,c,'gilded blackstone'))
                 else:
                     button = tk.Button(root, image = images['netherrack'], bg='#723232', command=lambda r=r, c=c: button_click(r,c,'netherrack'))
+                    ore = 'netherrack'
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
+                blocksN[r].append(ore)
 
 
         else:
             blocks[r].append('barrier')         # add barrier so c-1 and c+1 checks never cause index errors
+            blocksN[r].append('barrier')
 
     root.after(1000,nextTime)
 
