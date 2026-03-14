@@ -122,7 +122,7 @@ def button_click(r,c,block):
                 score += 5 * multiplier
             elif (block == 'emerald') or (block == 'netherite'):
                 score += 12.5 * multiplier
-            blocks[15][0] = tk.Button(root, text=round(score,2), bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+            blocks[15][0].configure(text=round(score,2))
             blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
 
     elif (r == 15) and (c == 1) and (nextTimer == 0):
