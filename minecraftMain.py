@@ -35,30 +35,35 @@ intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or 
 startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
 dimensionPickB = tk.Button(root, text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D", command=lambda: dimensionSwitch())
 
-images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
+images = {
+            #Rocks:
+            'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'deepslate': tk.PhotoImage(file='assets/images/deepslateImageMinecraft.png'),
             'bedrock': tk.PhotoImage(file='assets/images/bedrockImageMinecraft.png'),
             'netherrack': tk.PhotoImage(file='assets/images/netherackImageMinecraft.png'),
-            'deepslateEmerald': tk.PhotoImage(file='assets/images/deepslateEmeraldImageMinecraft.png'),
-            'deepslateCoal': tk.PhotoImage(file='assets/images/deepslateCoalImageMinecraft.png'),
+            #Ores:
             'coal': tk.PhotoImage(file='assets/images/coalImageMinecraft.png'),
             'diamond': tk.PhotoImage(file='assets/images/diamondImageMinecraft.png'),
-            'deepslateDiamond': tk.PhotoImage(file='assets/images/deepslateDiamondImageMinecraft.png'),
-            'netherite': tk.PhotoImage(file='assets/images/netheriteImageMinecraft.png'),
-            'netherGold': tk.PhotoImage(file='assets/images/netherGoldImageMinecraft.png'),
-            'quartz': tk.PhotoImage(file='assets/images/quartzImageMinecraft.png'),
             'iron': tk.PhotoImage(file='assets/images/ironImageMinecraft.png'),
             'emerald': tk.PhotoImage(file='assets/images/emeraldImageMinecraft.png'),
             'gold': tk.PhotoImage(file='assets/images/goldImageMinecraft.png'),
+            'copper': tk.PhotoImage(file='assets/images/copperImageMinecraft.png'),
+            'redstone': tk.PhotoImage(file='assets/images/redstoneImageMinecraft.png'),
+            'lapis': tk.PhotoImage(file='assets/images/lapisImageMinecraft.png'),
+            #Deepslate Ores:
+            'deepslateEmerald': tk.PhotoImage(file='assets/images/deepslateEmeraldImageMinecraft.png'),
+            'deepslateCoal': tk.PhotoImage(file='assets/images/deepslateCoalImageMinecraft.png'),
+            'deepslateDiamond': tk.PhotoImage(file='assets/images/deepslateDiamondImageMinecraft.png'),
             'deepslateGold': tk.PhotoImage(file='assets/images/deepslateGoldImageMinecraft.png'),
             'deepslateIron': tk.PhotoImage(file='assets/images/deepslateIronImageMinecraft.png'),
             'deepslateLapis': tk.PhotoImage(file='assets/images/deepslateLapisImageMinecraft.png'),
             'deepslateRedstone': tk.PhotoImage(file='assets/images/deepslateRedstoneImageMinecraft.png'),
             'deepslateCopper': tk.PhotoImage(file='assets/images/deepslateCopperImageMinecraft.png'),
-            'copper': tk.PhotoImage(file='assets/images/copperImageMinecraft.png'),
-            'redstone': tk.PhotoImage(file='assets/images/redstoneImageMinecraft.png'),
-            'lapis': tk.PhotoImage(file='assets/images/lapisImageMinecraft.png'),
-
+            #Nether Ores:
+            'netherite': tk.PhotoImage(file='assets/images/netheriteImageMinecraft.png'),
+            'netherGold': tk.PhotoImage(file='assets/images/netherGoldImageMinecraft.png'),
+            'quartz': tk.PhotoImage(file='assets/images/quartzImageMinecraft.png'),
+            #Pseudo-Ores:
             'amethyst': tk.PhotoImage(file='assets/images/amethystImageMinecraft.png'),
             'gildedBlackstone': tk.PhotoImage(file='assets/images/gildedBlackstoneImageMinecraft.png')
             }
@@ -148,7 +153,7 @@ def button_click(r,c,block):
                 score = scoreAS(block,upgradeInv,multiplier,score)
 
             blocks[15][0].configure(text=round(score,2))
-            
+
 
     elif (r == 15) and (c == 1) and (nextTimer == 0):
         start = True
