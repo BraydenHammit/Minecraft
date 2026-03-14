@@ -6,7 +6,7 @@ import random as ran
 
 start = True
 score = 0
-multiplier = 1000
+multiplier = 1
 nextTimer = 5
 blocks = []
 upgradeInv = {
