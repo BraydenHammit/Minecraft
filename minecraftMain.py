@@ -11,7 +11,7 @@ from randomDimFunct import dimensionR
 
 start = True
 score = 0
-multiplier = 1000
+multiplier = 1
 nextTimer = 5
 blocks = []
 blocksN = []
