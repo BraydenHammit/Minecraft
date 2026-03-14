@@ -43,13 +43,22 @@ def shopList(upgradeInv):
 
     
 
-def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA):
+def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgrade):
         if upg == 'click':
             upg = tk.Button(root, text = '🔨\nMultiplier Upgrade (x1):\n100 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(1))
         if upg == 'click5':
             upg = tk.Button(root, text = '⛏\nMultiplier Upgrade (x5):\n500 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(5))
         if upg == 'click10':
             upg = tk.Button(root, text = '🛠\nMultiplier Upgrade (x10):\n1000 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(10))
+
+        if upg == 'fortune1':
+            upg = tk.Button(root, text = '💵\nFortune (25%):\n450 Score', bg = 'gray30', fg = 'gray5', command = lambda: fortuneUpgrade(25,450))
+        if upg == 'fortune2':
+            upg = tk.Button(root, text = '💸\nFortune (50%):\n675 Score', bg = 'gray30', fg = 'gray5', command = lambda: fortuneUpgrade(50,675))
+        if upg == 'fortune3':
+            upg = tk.Button(root, text = '💰\nFortune (75%):\n725 Score', bg = 'gray30', fg = 'gray5', command = lambda: fortuneUpgrade(75,725))
+        if upg == 'fortuneM':
+            upg = tk.Button(root, text = '💰\nFortune (100%):\n1125 Score', bg = 'gray30', fg = 'gray5', command = lambda: fortuneUpgrade(100,1125))
 
 
         if upg == 'penalty s':

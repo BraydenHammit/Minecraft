@@ -11,7 +11,7 @@ from randomDimFunct import dimensionR
 
 start = True
 score = 0
-multiplier = 1
+multiplier = 1000
 nextTimer = 5
 blocks = []
 blocksN = []
@@ -25,7 +25,7 @@ upgradeInv = {
     'ore ext': False,
     'tnt': False,                 # reminder: add a tnt sound effect (when you figure out how to add them)
     'dim pick': [False,'o'],
-    'fortune': [True,0]
+    'fortune': [False,0]
 }
 
 root = tk.Tk()
@@ -129,6 +129,8 @@ def nextRoundA():
     if upgradeInv['dim pick'][0]:
         dimensionPickB.grid_forget()
 
+    multButton.grid_forget()
+
     nextRound()
 
 
@@ -152,7 +154,7 @@ def button_click(r,c,block):
                         blocksN[_[0]][_[1]] = 'air'
                         blocks[_[0]][_[1]].grid_forget()
                         blocks[_[0]][_[1]] = 'air'
-                        score = scoreAS(block,upgradeInv,multiplier,score)
+                        score += scoreAS(block,upgradeInv,multiplier,score)
 
             else:
                 blocks[r][c].grid_forget()
@@ -229,7 +231,7 @@ def nextShop():
     upgrades = choices
 
     for upg in range(len(upgrades)):
-        upgrades[upg] = buttonDef(upgrades[upg], root, multiplierUpgrade, invUpgrade, nextRoundA)
+        upgrades[upg] = buttonDef(upgrades[upg], root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgrade)
 
         upgrades[upg].grid(row=10, column=(upg+1)*3, sticky="nsew", padx=5, pady=5)
 
