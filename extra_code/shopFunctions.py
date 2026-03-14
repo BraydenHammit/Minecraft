@@ -34,6 +34,9 @@ def shopList(upgradeInv):
     elif upgradeInv['fortune'][1] == 75:
         upgrades.append('fortuneM')
 
+    if upgradeInv['ext dim']: #add not
+        upgrades.append('ext dim')
+
 
 
     return upgrades
@@ -85,6 +88,9 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
 
         if upg == 'dim pick':
             upg = tk.Button(root, text = '🌌\nChoose Next Dimension:\n1250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('dim pick',1250,True))
+
+        if upg == 'ext dim':
+            upg = tk.Button(root, text = '🪐\nExtra Dimension:\n75 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ext dim',75,False))
 
 
         if upg == 'skip':

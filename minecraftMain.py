@@ -3,7 +3,7 @@ import random as ran
 from extra_code.scoreFunction import scoreAS
 from extra_code.shopFunctions import shopList, buttonDef
 from extra_code.oreFunct import oreO, oreN
-from extra_code.oreFunctDef import defOreN, defOreO
+from extra_code.oreFunctDef import defOreN, defOreO, defOreE
 from extra_code.randomDimFunct import dimensionR
 
 
@@ -26,7 +26,7 @@ upgradeInv = {
     'tnt': False,                 # reminder: add a tnt sound effect (when you figure out how to add them)
     'dim pick': [False,'o'],
     'fortune': [False,0],
-    'end': False
+    'ext dim': False
 }
 
 root = tk.Tk()
@@ -87,7 +87,7 @@ def dimensionSwitch():
         dimensionPickB.configure(text='Next Dimension:\nNether', bg='#723232', fg="#3f1818")
         upgradeInv['dim pick'][1] = 'n'
     elif upgradeInv['dim pick'][1] == 'n':
-        if upgradeInv['end']:
+        if upgradeInv['ext dim']:
             dimensionPickB.configure(text='Next Dimension:\nEnd', bg="#c8bf73", fg="#626047")
             upgradeInv['dim pick'][1] = 'e'
         else:
@@ -299,10 +299,28 @@ def nextRound():
                 blocks[r].append(button)
                 blocksN[r].append(ore)
 
+            elif dimension == 'end':
+
+                button, ore = defOreE(r,c,root,images,score,nextTimer,button_click)
+
+                button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
+                blocks[r].append(button)
+                blocksN[r].append(ore)
+
+
+
 
         else:
             blocks[r].append('barrier')         # add barrier so c-1 and c+1 checks never cause index errors
             blocksN[r].append('barrier')
+
+    else:
+        if dimension == 'end':
+            blocks.append([])
+            blocksN.append([])
+            for c2 in range(16):
+                blocks[16].append('barrier')
+                blocksN[16].append('barrier')
 
 
     root.after(1000,nextTime)
