@@ -4,6 +4,7 @@ from scoreFunction import scoreAS
 from shopFunctions import shopList, buttonDef
 from oreFunct import oreO, oreN
 from oreFunctDef import defOreN, defOreO
+from randomDimFunct import dimensionR
 
 
 
@@ -236,20 +237,7 @@ def nextRound():
     blocks = []
     blocksN = []
 
-    if upgradeInv['dim pick'][0]:
-        if upgradeInv['dim pick'][1] == 'n':
-            dimension = 'nether'
-            root.configure(background='#723232')
-        elif upgradeInv['dim pick'][1] == 'o':
-            dimension = 'overworld'
-            root.configure(background='grey')
-
-    elif ran.randint(0,4) == 1:
-        dimension = 'nether'
-        root.configure(background='#723232')
-    else:
-        dimension = 'overworld'
-        root.configure(background='grey')
+    dimension = dimensionR(upgradeInv, root)
 
 
     for r in range(16):
@@ -273,9 +261,7 @@ def nextRound():
             elif dimension == 'nether':
 
                 ore = oreN(upgradeInv)
-                
                 button, ore = defOreN(r,c,root,images,score,nextTimer,ore,button_click)
-
 
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
@@ -286,7 +272,11 @@ def nextRound():
             blocks[r].append('barrier')         # add barrier so c-1 and c+1 checks never cause index errors
             blocksN[r].append('barrier')
 
+
     root.after(1000,nextTime)
+
+
+
 
 
 intro.pack(pady=150)
