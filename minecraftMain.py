@@ -213,7 +213,7 @@ def nextRoundPre():
 
 
 def nextShop():
-    global upgrades, upgradeInv, blocksN, dimensionPickB, multButton
+    global upgrades, upgradeInv, dimensionPickB, multButton
 
     upgrades = shopList(upgradeInv)
 
