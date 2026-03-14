@@ -233,10 +233,10 @@ def nextShop():
 
     upgrades = choices
 
-    for upg in range(len(upgrades)):
-        upgrades[upg] = buttonDef(upgrades[upg], root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgrade)
+    for i, upg in enumerate(upgrades):
+        upgrades[i] = buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgrade)
 
-        upgrades[upg].grid(row=10, column=(upg+1)*3, sticky="nsew", padx=5, pady=5)
+        upgrades[i].grid(row=10, column=(i+1)*3, sticky="nsew", padx=5, pady=5)
 
 
 
