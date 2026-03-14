@@ -6,7 +6,7 @@ import random as ran
 
 start = True
 score = 0
-multiplier = 1
+multiplier = 1000
 nextTimer = 5
 blocks = []
 upgradeInv = {
@@ -15,14 +15,15 @@ upgradeInv = {
     'penalty d': False,
     'luck': False,
     'st free': False,
-    'diag mine': False
+    'diag mine': False,
+    'ore ext': False
 }
 
 root = tk.Tk()
 root.title("Minecraft")
 root.state('zoomed')
 
-intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next'.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to start mining on things other than stone or netherrack,\nor remove the score penalties when mining netherrack, stone, and deepslate.\n\nOre Values:\nStone & Netherrack = -1\nDeepslate = -1.5\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5")
+intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next'.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to start mining on things other than stone or netherrack,\nunlock two extra ores (one for each dimension, amethyst and gilded blackstone),\nunlock the ability to mine diagonally from pre-mined blocks,\nor remove the score penalties when mining netherrack, stone, and deepslate.\n\nOre Values:\nStone & Netherrack = -1\nDeepslate = -1.5\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5\n\nExtra Semi-Ores:\nGilded Blackstone & Amethyst = 7.5")
 startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
 
 def startGame():
@@ -54,7 +55,10 @@ images = {'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'deepslateCopper': tk.PhotoImage(file='assets/images/deepslateCopperImageMinecraft.png'),
             'copper': tk.PhotoImage(file='assets/images/copperImageMinecraft.png'),
             'redstone': tk.PhotoImage(file='assets/images/redstoneImageMinecraft.png'),
-            'lapis': tk.PhotoImage(file='assets/images/lapisImageMinecraft.png')
+            'lapis': tk.PhotoImage(file='assets/images/lapisImageMinecraft.png'),
+
+            'amethyst': tk.PhotoImage(file='assets/images/amethystImageMinecraft.png'),
+            'gildedBlackstone': tk.PhotoImage(file='assets/images/gildedBlackstoneImageMinecraft.png')
             }
 
 
@@ -120,6 +124,8 @@ def button_click(r,c,block):
                 score += 3.25 * multiplier
             elif (block == 'diamond'):
                 score += 5 * multiplier
+            elif (block == 'amethyst') or (block == 'gilded blackstone'):
+                score += 7.5 * multiplier
             elif (block == 'emerald') or (block == 'netherite'):
                 score += 12.5 * multiplier
             blocks[15][0].configure(text=round(score,2))
@@ -185,6 +191,8 @@ def nextShop():
         upgrades.append('st free')
     if not upgradeInv["diag mine"]:
         upgrades.append('diag mine')
+    if not upgradeInv["ore ext"]:
+        upgrades.append('ore ext')
     choices = []
 
     for _ in range(3):
@@ -221,6 +229,9 @@ def nextShop():
         if upgrades[upg] == 'diag mine':
             upgrades[upg] = tk.Button(root, text = '🔀\nMine Diagonally:\n325 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('diag mine',325))
 
+        if upgrades[upg] == 'ore ext':
+            upgrades[upg] = tk.Button(root, text = '💎\nUnlock Pseudo-Ores:\n750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ore ext',750))
+
 
         if upgrades[upg] == 'skip':
             upgrades[upg] = tk.Button(root, text = 'Skip Upgrade:\n0 Score', bg = 'gray30', fg = 'gray5', command = lambda: skipUpgrade())
@@ -250,8 +261,10 @@ def nextRound():
 
     if ran.randint(0,4) == 1:
         dimension = 'nether'
+        root.configure(background='#723232')
     else:
         dimension = 'overworld'
+        root.configure(background='grey')
 
 
     for r in range(16):
@@ -262,14 +275,15 @@ def nextRound():
             root.grid_columnconfigure(c, weight=1)
 
             if dimension == 'overworld':
-                root.configure(background='grey')
 
                 if upgradeInv['luck']:
                     randomNum = ran.randint(0,50)
                 else:
                     randomNum = ran.randint(0,75)
 
-                if randomNum <= 30:
+                if (randomNum == 32 or randomNum == 31) and upgradeInv['ore ext']:
+                    ore = 'amethyst'
+                elif randomNum <= 30:
                     ore = 'copper'
                     if randomNum <= 23:
                         ore = 'coal'
@@ -346,6 +360,9 @@ def nextRound():
                         else:
                             button = tk.Button(root, image=images['deepslateRedstone'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'redstone'))
 
+                    elif ore == 'amethyst':
+                        button = tk.Button(root, image=images['amethyst'], bg='magenta', command=lambda r=r, c=c: button_click(r,c,'amethyst'))
+
                 elif r <= 8:
                     button = tk.Button(root, image=images['stone'], bg = 'gray55', command=lambda r=r, c=c: button_click(r,c,'stone'))
                 else:
@@ -356,15 +373,15 @@ def nextRound():
 
 
             elif dimension == 'nether':
-                root.configure(background='#723232')
-
 
                 if upgradeInv['luck']:
                     randomNum = ran.randint(0,40)
                 else:
                     randomNum = ran.randint(0,65)
 
-                if randomNum <= 25:
+                if (randomNum == 27 or randomNum == 26) and upgradeInv['ore ext']:
+                    ore = 'gilded blackstone'
+                elif randomNum <= 25:
                     ore = 'nether gold'
                     if randomNum <= 10:
                         ore = 'quartz'
@@ -388,6 +405,8 @@ def nextRound():
                         button = tk.Button(root, image = images['netherGold'], bg='#723232', command=lambda r=r, c=c: button_click(r,c,'nether gold'))
                     elif ore == 'netherite':
                         button = tk.Button(root, image = images['netherite'], bg='#523933', command=lambda r=r, c=c: button_click(r,c,'netherite'))
+                    elif ore == 'gilded blackstone':
+                        button = tk.Button(root, image = images['gildedBlackstone'], bg='gray2', command=lambda r=r, c=c: button_click(r,c,'gilded blackstone'))
                 else:
                     button = tk.Button(root, image = images['netherrack'], bg='#723232', command=lambda r=r, c=c: button_click(r,c,'netherrack'))
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
