@@ -13,7 +13,7 @@ def scoreAS(block,upgradeInv,multiplier,score):
             score = 1
         elif not upgradeInv['penalty n']:
             score = -1
-    if (block == 'endstone'):
+    elif (block == 'endstone'):
         if upgradeInv['penalty e+']:
             score = 1
         elif not upgradeInv['penalty e']:
