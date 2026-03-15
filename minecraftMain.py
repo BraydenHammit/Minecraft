@@ -343,9 +343,13 @@ def nextRound():
     else:
         blocks.append([])
         blocksN.append([])
+        blocks.append([])
+        blocksN.append([])
         for _ in range(18):
             blocks[16].append('barrier')
             blocksN[16].append('barrier')
+            blocks[17].append('barrier')
+            blocksN[17].append('barrier')
 
 
     root.after(1000,nextTime)
