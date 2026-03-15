@@ -242,7 +242,7 @@ def nextRoundPre():
 
 
 def nextShop():
-    global upgrades, upgradeInv, dimensionPickB, multButton
+    global upgrades, upgradeInv, dimensionPickB
 
     upgrades = shopList(upgradeInv)
 
@@ -309,7 +309,6 @@ def nextRound():
                 blocks[r].append(button)
                 blocksN[r].append(ore)
 
-
             elif dimension == 'nether':
 
                 ore = oreN(upgradeInv)
@@ -333,14 +332,15 @@ def nextRound():
         else:
             blocks[r].append('barrier')         # add barrier so c-1 and c+1 checks never cause index errors
             blocksN[r].append('barrier')
+            blocks[r].append('barrier')         
+            blocksN[r].append('barrier')
 
     else:
-        if dimension == 'end':
-            blocks.append([])
-            blocksN.append([])
-            for c2 in range(16):
-                blocks[16].append('barrier')
-                blocksN[16].append('barrier')
+        blocks.append([])
+        blocksN.append([])
+        for _ in range(18):
+            blocks[16].append('barrier')
+            blocksN[16].append('barrier')
 
 
     root.after(1000,nextTime)
