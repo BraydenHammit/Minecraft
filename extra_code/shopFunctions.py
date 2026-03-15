@@ -5,10 +5,16 @@ def shopList(upgradeInv):
 
     if not upgradeInv["penalty s"]:
         upgrades.append('penalty s')
+    elif not upgradeInv["penalty s+"]:
+        upgrades.append('penalty s+')
     if not upgradeInv["penalty n"]:
         upgrades.append('penalty n')
+    elif not upgradeInv["penalty n+"]:
+        upgrades.append('penalty n+')
     if not upgradeInv["penalty d"]:
         upgrades.append('penalty d')
+    elif not upgradeInv["penalty d+"]:
+        upgrades.append('penalty d+')
 
     if not upgradeInv["luck"]:
         upgrades.append('luck')
@@ -42,6 +48,8 @@ def shopList(upgradeInv):
         upgrades.append('ext dim')
     elif not upgradeInv['penalty e']:
         upgrades.append('penalty e')
+    elif not upgradeInv['penalty e+']:
+        upgrades.append('penalty e+')
 
 
 
@@ -77,6 +85,15 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
             upg = tk.Button(root, text = '🪦\nRemove Deepslate Penalty:\n350 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty d',350,False))
         if upg == 'penalty e':
             upg = tk.Button(root, text = '🗿\nRemove Endstone Penalty:\n1 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty e',1,False))
+
+        if upg == 'penalty s+':
+            upg = tk.Button(root, text = '📎\nPositive Score Stone:\n500 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty s+',500,False))
+        if upg == 'penalty n+':
+            upg = tk.Button(root, text = '🚨\nPositive Score Netherrack:\n300 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty n+',300,False))
+        if upg == 'penalty d+':
+            upg = tk.Button(root, text = '🔗\nPositive Score Deepslate:\n700 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty d+',700,False))
+        if upg == 'penalty e+':
+            upg = tk.Button(root, text = '🔩\nPositive Score Endstone:\n150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty e+',150,False))
 
         if upg == 'luck':
             upg = tk.Button(root, text = '☘️\nEnhance Ore Spawns:\n5000 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('luck',5000,False))

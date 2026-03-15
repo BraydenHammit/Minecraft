@@ -3,14 +3,26 @@ import random as ran
 def scoreAS(block,upgradeInv,multiplier,score):
     score = 0
 
-    if (block == 'stone') and (not upgradeInv['penalty s']):
-        score = -1
-    elif (block == 'netherrack') and (not upgradeInv['penalty n']):
-        score = -1
-    if (block == 'endstone') and (not upgradeInv['penalty e']):
-        score = -1
-    elif (block == 'deepslate' and (not upgradeInv['penalty d'])):
-        score = -1.5
+    if (block == 'stone'):
+        if upgradeInv['penalty s+']:
+            score = 1
+        elif not upgradeInv['penalty s']:
+            score = -1
+    elif (block == 'netherrack'):
+        if upgradeInv['penalty n+']:
+            score = 1
+        elif not upgradeInv['penalty n']:
+            score = -1
+    if (block == 'endstone'):
+        if upgradeInv['penalty e+']:
+            score = 1
+        elif not upgradeInv['penalty e']:
+            score = -1
+    elif (block == 'deepslate'):
+        if upgradeInv['penalty d+']:
+            score = 1.5
+        elif not upgradeInv['penalty d']:
+            score = -1.5
     elif (block == 'coal') or (block == 'nether gold') or (block == 'copper'):
         score = 1.75 * multiplier
     elif (block == 'redstone') or (block == 'lapis'):
