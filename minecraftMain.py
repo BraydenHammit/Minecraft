@@ -27,14 +27,15 @@ upgradeInv = {
     'tnt': False,                 # reminder: add a tnt sound effect (when you figure out how to add them)
     'dim pick': [False,'o'],
     'fortune': [False,0],
-    'ext dim': False
+    'ext dim': False,
+    'tnt start': False
 }
 
 root = tk.Tk()
 root.title("Minecraft")
 root.state('zoomed')
 
-intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next'.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to select what dimension it will be next round (the button is in the shop),\nincrease your mining to a 3x3 area with an explosive blast, apply a fortune enchantment,\ngain the ability to start mining on things other than stone or netherrack,\nunlock two extra ores (one for each dimension) or an extra dimension,\nunlock the ability to mine diagonally (between blocks) from pre-mined blocks,\nor remove the score penalties when mining netherrack, stone, endstone, and deepslate.\n\nOre Values:\nStone, Endstone, & Netherrack = -1\nDeepslate = -1.5\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5\n\nExtra Semi-Ores:\nGilded Blackstone & Amethyst = 7.5")
+intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next'.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to select what dimension it will be next round (the button is in the shop),\nincrease your mining to a 3x3 area with an explosive blast, apply a fortune enchantment,\ngain the ability to start mining on things other than stone or netherrack,\nremove the score penalties when mining netherrack, stone, endstone, and deepslate,\nunlock the ability to mine diagonally (between blocks) from pre-mined blocks,\nunlock two extra ores (one for each dimension) or an extra dimension, and much more.\n\nOre Values:\nStone, Endstone, & Netherrack = -1\nDeepslate = -1.5\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5\n\nExtra Semi-Ores:\nGilded Blackstone & Amethyst = 7.5")
 startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
 dimensionPickB = tk.Button(root, text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D", command=lambda: dimensionSwitch())
 multButton = tk.Button(root, text=f'Multiplier: {multiplier}', bg='gray30', fg="gray5")
@@ -153,20 +154,38 @@ def nextRoundA():
 def button_click(r,c,block):
     global start, score, nextTimer, blocksN, blocks
     if block != 'bedrock':
-        check = ((((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and ((block == 'stone')or (block == 'netherrack') or (block == 'endstone'))))
-        checkD = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
-        if check or checkD or (start and upgradeInv['st free']):
-            if upgradeInv['tnt']:
+        check = ((((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and (block in ('endstone','stone','netherrack'))))
+        check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
+        if check or check2 or (start and upgradeInv['st free']):
+
+            if upgradeInv['tnt start'] and start:
+                start = False
+                check = [[r-2,c-2],[r-2,c-1],[r-2,c],[r-2,c+1],[r-2,c+2],
+                         [r-1,c-2],[r-1,c-1],[r-1,c],[r-1,c+1],[r-1,c+2],
+                         [r,c-2],[r,c-1],[r,c],[r,c+1],[r,c+2],
+                         [r+1,c-2],[r+1,c-1],[r+1,c],[r+1,c+1],[r+1,c+2],
+                         [r+2,c-2],[r+2,c-1],[r+2,c],[r+2,c+1],[r+2,c+2]]
+                for rr, cc in check:
+                    block = blocksN[rr][cc]
+                    if block not in ('bedrock','barrier','air'):
+                        blocksN[rr][cc] = 'air'
+                        blocks[rr][cc].grid_forget()
+                        blocks[rr][cc] = 'air'
+                        score += scoreAS(block,upgradeInv,multiplier,score)
+
+
+            elif upgradeInv['tnt']:
                 if start:
                     start = False
                 check = [[r+1,c],[r-1,c],[r,c+1],[r,c-1],[r+1,c+1],[r-1,c-1],[r-1,c+1],[r+1,c-1],[r,c]]
                 for rr, cc in check:
                     block = blocksN[rr][cc]
-                    if block != 'bedrock' and block != 'barrier' and block != 'air':
+                    if block not in ('bedrock','barrier','air'):
                         blocksN[rr][cc] = 'air'
                         blocks[rr][cc].grid_forget()
                         blocks[rr][cc] = 'air'
                         score += scoreAS(block,upgradeInv,multiplier,score)
+
 
             else:
                 blocks[r][c].grid_forget()

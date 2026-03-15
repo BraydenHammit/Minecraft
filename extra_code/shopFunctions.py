@@ -24,6 +24,8 @@ def shopList(upgradeInv):
 
     if not upgradeInv["tnt"]:
         upgrades.append('tnt')
+    if not upgradeInv["tnt start"]:
+        upgrades.append('tnt start')
 
     if not upgradeInv["fortune"][0]:
         upgrades.append('fortune1')
@@ -88,6 +90,8 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
         
         if upg == 'tnt':
             upg = tk.Button(root, text = '🧨\nBlast Radius Mining:\n3750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('tnt',3750,False))
+        if upg == 'tnt start':
+            upg = tk.Button(root, text = '💣\nExplosive Start (5x5):\n2750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('tnt start',2750,False))
 
         if upg == 'dim pick':
             upg = tk.Button(root, text = '🌌\nChoose Next Dimension:\n1250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('dim pick',1250,True))
