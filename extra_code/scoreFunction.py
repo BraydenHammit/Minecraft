@@ -6,7 +6,7 @@ def scoreAS(block,upgradeInv,multiplier,score):
     if (block == 'stone'):
         if upgradeInv['penalty s+']:
             score = multiplier
-        elif not upgradeInv['penalty s']:
+        elif not upgradeInv['penalty s']:  
             score = -1
     elif (block == 'netherrack'):
         if upgradeInv['penalty n+']:
@@ -41,7 +41,7 @@ def scoreAS(block,upgradeInv,multiplier,score):
         or (upgradeInv['fortune'][1] == 75 and (ran.randint(1,4) != 1))
         or (upgradeInv['fortune'][1] == 50 and (ran.randint(1,2) == 1))
         or (upgradeInv['fortune'][1] == 25 and (ran.randint(1,4) == 1))):
-            if upgradeInv['fortune3']:
+            if upgradeInv['fortune x3']:
                 score = score * 3
             else:
                 score = score * 2
