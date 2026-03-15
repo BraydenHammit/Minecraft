@@ -26,14 +26,15 @@ upgradeInv = {
     'penalty e+': False,
     'luck': False,
     'luckM': False,
+    'fortune': [False,0],
+    'fortune3': False,
     'st free': False,
     'diag mine': False,
-    'ore ext': False,
     'tnt': False,                 # reminder: add a tnt sound effect (when you figure out how to add them)
+    'tnt start': False,
     'dim pick': [False,'o'],
-    'fortune': [False,0],
     'ext dim': False,
-    'tnt start': False
+    'ore ext': False,
 }
 
 root = tk.Tk()

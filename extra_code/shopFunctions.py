@@ -44,6 +44,9 @@ def shopList(upgradeInv):
     elif upgradeInv['fortune'][1] == 75:
         upgrades.append('fortuneM')
 
+    if upgradeInv['fortune'][0] and not upgradeInv['fortune3']:
+        upgrades.append('fortune3')
+
     if not upgradeInv['ext dim']:
         upgrades.append('ext dim')
     elif not upgradeInv['penalty e']:
@@ -69,13 +72,15 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
             upg = tk.Button(root, text = '🛠\nMultiplier Upgrade (x10):\n1000 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(10))
 
         if upg == 'fortune1':
-            upg = tk.Button(root, text = '💵\nFortune (25%):\n450 Score', bg = 'gray30', fg = 'gray5', command = lambda: fortuneUpgrade(25,450))
+            upg = tk.Button(root, text = '🪙\nFortune (25%):\n450 Score', bg = 'gray30', fg = 'gray5', command = lambda: fortuneUpgrade(25,450))
         if upg == 'fortune2':
-            upg = tk.Button(root, text = '💸\nFortune (50%):\n675 Score', bg = 'gray30', fg = 'gray5', command = lambda: fortuneUpgrade(50,675))
+            upg = tk.Button(root, text = '💵\nFortune (50%):\n675 Score', bg = 'gray30', fg = 'gray5', command = lambda: fortuneUpgrade(50,675))
         if upg == 'fortune3':
-            upg = tk.Button(root, text = '💰\nFortune (75%):\n725 Score', bg = 'gray30', fg = 'gray5', command = lambda: fortuneUpgrade(75,725))
+            upg = tk.Button(root, text = '💸\nFortune (75%):\n725 Score', bg = 'gray30', fg = 'gray5', command = lambda: fortuneUpgrade(75,725))
         if upg == 'fortuneM':
             upg = tk.Button(root, text = '💰\nFortune (100%):\n1125 Score', bg = 'gray30', fg = 'gray5', command = lambda: fortuneUpgrade(100,1125))
+        if upg == 'fortune3':
+            upg = tk.Button(root, text = '💳\nTriple Fortune:\n825 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('fortune3',825,False))
 
         if upg == 'penalty s':
             upg = tk.Button(root, text = '🪨\nRemove Stone Penalty:\n250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty s',250,False))
