@@ -80,7 +80,7 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
         if upg == 'fortuneM':
             upg = tk.Button(root, text = '💰\nFortune (100%):\n1125 Score', bg = 'gray30', fg = 'gray5', command = lambda: fortuneUpgrade(100,1125))
         if upg == 'fortune x3':
-            upg = tk.Button(root, text = '💳\nTriple Fortune:\n825 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('fortunex3',825,False))
+            upg = tk.Button(root, text = '💳\nTriple Fortune:\n825 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('fortune x3',825,False))
 
         if upg == 'penalty s':
             upg = tk.Button(root, text = '🪨\nRemove Stone Penalty:\n250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty s',250,False))
