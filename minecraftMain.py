@@ -27,7 +27,7 @@ upgradeInv = {
     'luck': False,
     'luckM': False,
     'fortune': [False,0],
-    'fortune3': False,
+    'fortune x3': False,
     'st free': False,
     'diag mine': False,
     'tnt': False,                 # reminder: add a tnt sound effect (when you figure out how to add them)
