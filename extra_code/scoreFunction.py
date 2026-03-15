@@ -5,22 +5,22 @@ def scoreAS(block,upgradeInv,multiplier,score):
 
     if (block == 'stone'):
         if upgradeInv['penalty s+']:
-            score = 1
+            score = multiplier
         elif not upgradeInv['penalty s']:
             score = -1
     elif (block == 'netherrack'):
         if upgradeInv['penalty n+']:
-            score = 1
+            score = multiplier
         elif not upgradeInv['penalty n']:
             score = -1
     elif (block == 'endstone'):
         if upgradeInv['penalty e+']:
-            score = 1
+            score = multiplier
         elif not upgradeInv['penalty e']:
             score = -1
     elif (block == 'deepslate'):
         if upgradeInv['penalty d+']:
-            score = 1.5
+            score = 1.5 * multiplier
         elif not upgradeInv['penalty d']:
             score = -1.5
     elif (block == 'coal') or (block == 'nether gold') or (block == 'copper'):
