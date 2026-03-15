@@ -21,6 +21,7 @@ upgradeInv = {
     'penalty d': False,
     'penalty e': False,
     'luck': False,
+    'luckM': False,
     'st free': False,
     'diag mine': False,
     'ore ext': False,
