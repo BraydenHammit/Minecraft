@@ -37,7 +37,7 @@ def oreO(upgradeInv):
 def oreN(upgradeInv):
     if upgradeInv['luckM']:
         randomNum = ran.randint(0,30)
-    if upgradeInv['luck']:
+    elif upgradeInv['luck']:
         randomNum = ran.randint(0,40)
     else:
         randomNum = ran.randint(0,65)
