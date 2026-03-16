@@ -4,7 +4,7 @@ from extra_code.scoreFunction import scoreAS
 from extra_code.shopFunctions import shopList, buttonDef
 from extra_code.oreFunct import oreO, oreN
 from extra_code.oreFunctDef import defOreN, defOreO, defOreE
-from extra_code.randomDimFunct import dimensionR, dimButton
+from extra_code.dimFuncts import dimensionR, dimButton
 
 
 
