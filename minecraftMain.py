@@ -101,15 +101,20 @@ images = {
             }
 
 sounds = {
-    'break block': 'assets/sounds/block_break.wav',
     'shopMusic1': 'assets/sounds/minecraft.wav',
-    'pigstep': 'assets/sounds/pigstep.wav'
+    'pigstep': 'assets/sounds/pigstep.wav',
+    'tears': "assets/sounds/tears.wav",
+    'precipice': 'assets/sounds/precipice.wav',
+    'break block': 'assets/sounds/block_break.wav',
+    'xp': 'assets/sounds/xp.wav',
+    'click': 'assets/sounds/click.wav'
 }
 
 soundsPlaying = {
     'break block': None,
     'shopMusic': None,
-    'roundMusic': None
+    'roundMusic': None,
+    'click': None
 }
 
 
@@ -135,6 +140,7 @@ def startGame():
     global intro, startB
     intro.destroy()
     startB.destroy()
+    play(sounds['click'],'click')
     nextRound()
 
 def dimensionSwitch():
@@ -249,8 +255,10 @@ def button_click(r,c,block):
                 if start:
                     start = False
                 score += scoreAS(block,upgradeInv,multiplier,score)
-                play(sounds['break block'],'break block')
-
+                if block in ('netherrack','stone','endstone','deepslate'):
+                    play(sounds['break block'],'break block')
+                else:
+                    play(sounds['xp'],'break block')
 
             blocks[15][0].configure(text=round(score,2))
 
@@ -440,8 +448,12 @@ def nextRound():
     root.after(1000,nextTime)
     root.after(100,timeCount)
 
-    if dimension == 'nether':
+    if dimension == 'overworld':
+        play(sounds['precipice'],'roundMusic')
+    elif dimension == 'nether':
         play(sounds['pigstep'],'roundMusic')
+    elif dimension == 'end':
+        play(sounds['tears'],'roundMusic')
 
 
 
