@@ -300,7 +300,7 @@ def timeCount():
         blocks[15][2].configure(text=f'Time: {timer}')
         root.after(100,timeCount)
     else:
-        if upgradeInv['timer']:
+        if upgradeInv['time']:
             timer = 30
         else:
             timer = 15
