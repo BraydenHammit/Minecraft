@@ -314,6 +314,7 @@ def nextShop(r):
     global upgrades, upgradeInv, dimensionPickB, upgReroll
 
     if r:
+        play(sounds['click'],'click')
         for e in upgrades:
             e.grid_forget()
     else:
