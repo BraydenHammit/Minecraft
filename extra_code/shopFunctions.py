@@ -33,6 +33,8 @@ def shopList(upgradeInv):
     
     if not upgradeInv["time"]:
         upgrades.append('time')
+    if not upgradeInv["ins nex"]:
+        upgrades.append('ins nex')
 
     if not upgradeInv["tnt"]:
         upgrades.append('tnt')
@@ -136,6 +138,8 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
 
         if upg == 'time':
             upg = tk.Button(root, text = '🕰\nMore Round Time:\n475 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('time',475,False))
+        if upg == 'time':
+            upg = tk.Button(root, text = "🔑\nInstant 'Next' Unlock:\n425 Score", bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ins nex',425,False))
 
         if upg == 'upg re':
             upg = tk.Button(root, text = '♻️\nUpgrade Rerolling:\n3150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('upg re',3150,False))

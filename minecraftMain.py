@@ -218,7 +218,7 @@ def button_click(r,c,block):
             blocks[15][0].configure(text=round(score,2))
 
 
-    elif (r == 15) and (c == 1) and (nextTimer == 0):
+    elif (r == 15) and (c == 1) and (nextTimer <= 0):
         nextR = True
 
 
@@ -360,7 +360,7 @@ def nextRound():
                 ore = oreN(upgradeInv)
                 button, ore = defOreN(r,c,root,images,score,nextTimer,ore,button_click,timer)
 
-                button.grid(row=r, column=c, sticky="nsew")
+                button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
                 blocksN[r].append(ore)
 
@@ -368,7 +368,7 @@ def nextRound():
 
                 button, ore = defOreE(r,c,root,images,score,nextTimer,button_click,timer)
 
-                button.grid(row=r, column=c, sticky="nsew")
+                button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
                 blocksN[r].append(ore)
 
@@ -393,9 +393,11 @@ def nextRound():
             blocksN[17].append('barrier')
 
 
+    if upgradeInv['ins nex']:    
+        nextTimer = 0
+        blocks[15][1].configure(text='Next')
     root.after(1000,nextTime)
     root.after(100,timeCount)
-
 
 
 
