@@ -60,7 +60,7 @@ def shopList(upgradeInv):
     elif not upgradeInv['penalty e+']:
         upgrades.append('penalty e+')
 
-    if upgradeInv['ore ext'] and upgradeInv['ext dim'] and not upgradeInv['potato'] and ran.randrange(77) == 33:
+    if upgradeInv['ore ext'] and upgradeInv['ext dim'] and not upgradeInv['potato'] and ran.randrange(33) == 7:
         upgrades.append('potato')
 
 
