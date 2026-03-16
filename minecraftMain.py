@@ -41,7 +41,7 @@ upgradeInv = {
     'diag mine': False,
     'tnt': False,                 # reminder: add a tnt sound effect (when you figure out how to add them)
     'tnt start': False,
-    'dim pick': [True,'o'],
+    'dim pick': [False,'o'],
     'ext dim': False,
     'ore ext': False,
     'potato': False,
@@ -101,17 +101,32 @@ images = {
             }
 
 sounds = {
-    'break block': 'assets/sounds/block_break.wav'
+    'break block': 'assets/sounds/block_break.wav',
+    'shopMusic1': 'assets/sounds/minecraft.wav',
+    'pigstep': 'assets/sounds/pigstep.wav'
+}
+
+soundsPlaying = {
+    'break block': None,
+    'shopMusic': None,
+    'roundMusic': None
 }
 
 
 
-def play(f):
+def play(f,t):
+    global soundsPlaying
     if sys == 'w':
-        winsound.PlaySound(f, winsound.SND_ASYNC)
+        soundsPlaying[t] = winsound.PlaySound(f, winsound.SND_ASYNC)
     elif sys == 'ml':
-        sp.Popen(["afplay", f])
+        soundsPlaying[t] = sp.Popen(["afplay", f])
 
+def stopPlaying(t):
+    if sys == 'w':
+        winsound.PlaySound(None, winsound.SND_PURGE)
+    elif sys == 'ml':
+        if t:
+            t.terminate()
 
 
 
@@ -174,6 +189,8 @@ def nextRoundA():
     for _ in upgrades:
         _.grid_forget()
 
+    stopPlaying(soundsPlaying['shopMusic'])
+
     if upgradeInv['dim pick'][0]:
         dimensionPickB.grid_forget()
     if upgradeInv['upg re']:
@@ -232,7 +249,7 @@ def button_click(r,c,block):
                 if start:
                     start = False
                 score += scoreAS(block,upgradeInv,multiplier,score)
-                play(sounds['break block'])
+                play(sounds['break block'],'break block')
 
 
             blocks[15][0].configure(text=round(score,2))
@@ -250,6 +267,8 @@ def button_click(r,c,block):
 
 def nextRoundPre():
     root.configure(background='grey')
+
+    stopPlaying(soundsPlaying['roundMusic'])
 
     for eachCol in blocks:
 
@@ -286,6 +305,8 @@ def nextShop(r):
     if r:
         for e in upgrades:
             e.grid_forget()
+    else:
+        play(sounds['shopMusic1'],'shopMusic')
 
     upgrades = shopList(upgradeInv)
 
@@ -418,6 +439,9 @@ def nextRound():
         blocks[15][1].configure(text='Next')
     root.after(1000,nextTime)
     root.after(100,timeCount)
+
+    if dimension == 'nether':
+        play(sounds['pigstep'],'roundMusic')
 
 
 
