@@ -13,6 +13,7 @@ start = True
 nextR = False
 score = 0
 multiplier = 1
+fortune = 1
 nextTimer = 5
 timer = 15
 blocks = []
@@ -52,7 +53,7 @@ startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGam
 dimensionPickB = tk.Button(root, text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D", command=lambda: dimensionSwitch())
 upgReroll = tk.Button(root, text='Reroll Upgrades', bg='gray30', fg="gray5", command=lambda: nextShop(True))
 multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray30', fg="gray5")
-fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}%', bg='gray30', fg="gray5")
+fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}', bg='gray30', fg="gray5")
 
 images = {
             #Rocks:
@@ -129,15 +130,20 @@ def multiplierUpgrade(a):
         nextRoundA()
 
 def fortuneUpgrade(l,c):
-    global upgradeInv, score
+    global upgradeInv, score, fortune
     if score >= c:
         upgradeInv['fortune'][0] = True
         upgradeInv['fortune'][1] = l
         score -= c
+        if  upgradeInv['fortune x3']:
+            fortune = 3
+        else:
+            fortune = 2
+
         nextRoundA()
 
 def invUpgrade(t,c,m):
-    global upgradeInv, score,timer
+    global upgradeInv, score, timer, fortune
     if score >= c:
         if m:
             upgradeInv[t][0] = True
@@ -146,6 +152,8 @@ def invUpgrade(t,c,m):
         score -= c
         if t == 'time':
             timer = 30
+        if t == 'fortune x3':
+            fortune = 3
         nextRoundA()
 
 
@@ -246,7 +254,7 @@ def nextRoundPre():
     blocks[15][0].configure(text=f'Score: {score}')
     multButton.configure(text=f'Multiplier: x{multiplier}')
     multButton.grid(row=14,column=0, sticky="nsew", padx=5, pady=5)
-    fortButton.configure(text=f'Fortune: {upgradeInv["fortune"][1]}%')
+    fortButton.configure(text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}')
     fortButton.grid(row=13,column=0, sticky="nsew", padx=5, pady=5)
 
     nextShop(False)
