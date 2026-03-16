@@ -288,7 +288,7 @@ def nextTime():
         blocks[15][1].configure(text='Next')
 
 def timeCount():
-    global timer, nextR
+    global timer, nextR, start
     timer = round(timer-0.1,1)
     if timer > 0 and not nextR:
         blocks[15][2].configure(text=f'Time: {timer}')
@@ -296,6 +296,7 @@ def timeCount():
     else:
         nextR = False
         timer = 30
+        start = True
         nextRoundPre()
 
 

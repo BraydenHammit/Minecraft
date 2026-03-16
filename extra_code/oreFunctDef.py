@@ -115,6 +115,9 @@ def defOreE(r,c,root,images,score,nextTimer,button_click,timer):
     elif (c == 1) and (r == 15):
         button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='#E0DE93', fg="#716F3D", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         ore = 'bedrock'
+    elif (r == 15) and (c == 2):
+        button = tk.Button(root, text=f'Time: {timer}', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+        ore = 'bedrock'
     else:
         button = tk.Button(root, image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
         ore = 'endstone'
