@@ -37,6 +37,7 @@ upgradeInv = {
     'dim pick': [False,'o'],
     'ext dim': False,
     'ore ext': False,
+    'potato': False
 }
 
 root = tk.Tk()
@@ -80,7 +81,11 @@ images = {
             'quartz': tk.PhotoImage(file='assets/images/quartzImageMinecraft.png'),
             #Pseudo-Ores:
             'amethyst': tk.PhotoImage(file='assets/images/amethystImageMinecraft.png'),
-            'gildedBlackstone': tk.PhotoImage(file='assets/images/gildedBlackstoneImageMinecraft.png')
+            'gildedBlackstone': tk.PhotoImage(file='assets/images/gildedBlackstoneImageMinecraft.png'),
+            #Un-Added:
+            'poisonousPotato': tk.PhotoImage(file='assets/images/poisonousPotatoImageMinecraft.png'),
+            'deepslatePoisonousPotato': tk.PhotoImage(file='assets/images/deepslatePoisonousPotatoImageMinecraft.png'),
+            'glowstone': tk.PhotoImage(file='assets/images/glowstoneImageMinecraft.png')
             }
 
 

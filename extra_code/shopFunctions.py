@@ -1,4 +1,5 @@
 import tkinter as tk
+import random as ran
 
 def shopList(upgradeInv):
     upgrades = ['click','click5','click10']
@@ -54,6 +55,9 @@ def shopList(upgradeInv):
     elif not upgradeInv['penalty e+']:
         upgrades.append('penalty e+')
 
+    if upgradeInv['ore ext'] and upgradeInv['ext dim'] and not upgradeInv['potato'] and ran.randrange(77) == 33:
+        upgrades.append('potato')
+
 
 
     return upgrades
@@ -107,12 +111,8 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
 
         if upg == 'st free':
             upg = tk.Button(root, text = '🔓\nUnbind Starting Point:\n375 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('st free',375,False))
-
         if upg == 'diag mine':
             upg = tk.Button(root, text = '🔀\nMine Diagonally:\n325 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('diag mine',325,False))
-
-        if upg == 'ore ext':
-            upg = tk.Button(root, text = '💎\nUnlock Pseudo-Ores:\n750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ore ext',750,False))
         
         if upg == 'tnt':
             upg = tk.Button(root, text = '🧨\nBlast Radius Mining:\n3750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('tnt',3750,False))
@@ -121,9 +121,14 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
 
         if upg == 'dim pick':
             upg = tk.Button(root, text = '🌌\nChoose Next Dimension:\n1250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('dim pick',1250,True))
-
         if upg == 'ext dim':
             upg = tk.Button(root, text = '🪐\nExtra Dimension:\n75 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ext dim',75,False))
+
+        if upg == 'potato':
+            upg = tk.Button(root, text = '🃏\n???:\n666 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('potato',666,False))
+
+        if upg == 'ore ext':
+            upg = tk.Button(root, text = '💎\nUnlock Pseudo-Ores:\n750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ore ext',750,False))
 
 
         if upg == 'skip':
