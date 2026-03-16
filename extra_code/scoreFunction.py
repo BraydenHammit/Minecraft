@@ -35,6 +35,8 @@ def scoreAS(block,upgradeInv,multiplier,score):
         score = 7.5 * multiplier
     elif (block == 'emerald') or (block == 'netherite'):
         score = 12.5 * multiplier
+    elif (block == 'poisonous potato'):
+        score = 537.25 * multiplier
 
     if upgradeInv['fortune'][0] and score > 0:
         if ((upgradeInv['fortune'][1] == 100) 
