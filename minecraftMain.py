@@ -1,11 +1,17 @@
 import tkinter as tk
 import random as ran
+import platform as plt
 from extra_code.scoreFunction import scoreAS
 from extra_code.shopFunctions import shopList, buttonDef
 from extra_code.oreFunct import oreO, oreN
 from extra_code.oreFunctDef import defOreN, defOreO, defOreE
 from extra_code.dimFuncts import dimensionR, dimButton
-
+if plt.system() in ('Darwin','Linux'):
+    import subprocess as sp
+    sys = 'ml'
+elif plt.system() == 'Windows':
+    import winsound
+    sys = 'w'
 
 
 
@@ -93,6 +99,20 @@ images = {
             #Un-Added:
             'glowstone': tk.PhotoImage(file='assets/images/glowstoneImageMinecraft.png')
             }
+
+sounds = {
+    'break block': 'assets/sounds/block_break.wav'
+}
+
+
+
+def play(f):
+    if sys == 'w':
+        winsound.PlaySound(f, winsound.SND_ASYNC)
+    elif sys == 'ml':
+        sp.Popen(["afplay", f])
+
+
 
 
 
@@ -212,6 +232,8 @@ def button_click(r,c,block):
                 if start:
                     start = False
                 score += scoreAS(block,upgradeInv,multiplier,score)
+                play(sounds['break block'])
+
 
             blocks[15][0].configure(text=round(score,2))
 
