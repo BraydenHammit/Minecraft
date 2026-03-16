@@ -145,6 +145,7 @@ def startGame():
 
 def dimensionSwitch():
     global dimensionPickB, upgradeInv
+    play(sounds['click'],'click')
     dimButton(upgradeInv,dimensionPickB)
     
 
@@ -196,6 +197,7 @@ def nextRoundA():
         _.grid_forget()
 
     stopPlaying(soundsPlaying['shopMusic'])
+    play(sounds['click'],'click')
 
     if upgradeInv['dim pick'][0]:
         dimensionPickB.grid_forget()
@@ -264,6 +266,7 @@ def button_click(r,c,block):
 
 
     elif (r == 15) and (c == 1) and (nextTimer <= 0):
+        play(sounds['click'],'click')
         nextR = True
 
 
