@@ -47,7 +47,8 @@ upgradeInv = {
     'potato': False,
     'time': False,
     'ins nex': False,
-    'upg re': False
+    'upg re': False,
+    'Xtime': False
 }
 
 root = tk.Tk()
@@ -402,7 +403,7 @@ def nextRound():
             if dimension == 'overworld':
 
                 ore = oreO(upgradeInv)
-                button, ore = defOreO(r,c,root,images,score,nextTimer,ore,button_click,timer)
+                button, ore = defOreO(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv)
 
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
@@ -411,7 +412,7 @@ def nextRound():
             elif dimension == 'nether':
 
                 ore = oreN(upgradeInv)
-                button, ore = defOreN(r,c,root,images,score,nextTimer,ore,button_click,timer)
+                button, ore = defOreN(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv)
 
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
@@ -419,7 +420,7 @@ def nextRound():
 
             elif dimension == 'end':
 
-                button, ore = defOreE(r,c,root,images,score,nextTimer,button_click,timer)
+                button, ore = defOreE(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv)
 
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
@@ -449,8 +450,9 @@ def nextRound():
     if upgradeInv['ins nex']:    
         nextTimer = 0
         blocks[15][1].configure(text='Next')
+    if not upgradeInv['Xtime']:
+        root.after(100,timeCount)
     root.after(1000,nextTime)
-    root.after(100,timeCount)
 
     if dimension == 'overworld':
         play(sounds['precipice'],'roundMusic')

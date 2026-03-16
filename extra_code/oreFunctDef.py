@@ -1,6 +1,6 @@
 import tkinter as tk
 
-def defOreO(r,c,root,images,score,nextTimer,ore,button_click,timer):
+def defOreO(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
     if (r == 15):
         ore = 'bedrock'
         if c == 0:
@@ -8,7 +8,10 @@ def defOreO(r,c,root,images,score,nextTimer,ore,button_click,timer):
         elif c == 1:
             button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         elif c == 2:
-            button = tk.Button(root, text=f'Time: {timer}', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+            if upgradeInv['Xtime']:
+                button = tk.Button(root, text='Time: ∞', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+            else:
+                button = tk.Button(root, text=f'Time: {timer}', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         else:
             button = tk.Button(root, image=images['bedrock'], bg='gray30', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
 
@@ -84,7 +87,7 @@ def defOreO(r,c,root,images,score,nextTimer,ore,button_click,timer):
 
 
 
-def defOreN(r,c,root,images,score,nextTimer,ore,button_click,timer):
+def defOreN(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
     if (r == 15) or (r == 0):
         ore = 'bedrock'
         if (c == 0) and (r == 15):
@@ -92,7 +95,10 @@ def defOreN(r,c,root,images,score,nextTimer,ore,button_click,timer):
         elif (c == 1) and (r == 15):
             button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         elif (r == 15) and (c == 2):
-            button = tk.Button(root, text=f'Time: {timer}', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+            if upgradeInv['Xtime']:
+                button = tk.Button(root, text='Time: ∞', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+            else:
+                button = tk.Button(root, text=f'Time: {timer}', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         else:
             button = tk.Button(root, image= images['bedrock'], bg = 'gray30', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
     elif ore != 'none':
@@ -114,7 +120,7 @@ def defOreN(r,c,root,images,score,nextTimer,ore,button_click,timer):
 
 
 
-def defOreE(r,c,root,images,score,nextTimer,button_click,timer):
+def defOreE(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv):
     if (c == 0) and (r == 15):
         button = tk.Button(root, text=round(score,2), bg='#E0DE93', fg="#716F3D", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         ore = 'bedrock'
@@ -122,8 +128,10 @@ def defOreE(r,c,root,images,score,nextTimer,button_click,timer):
         button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='#E0DE93', fg="#716F3D", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         ore = 'bedrock'
     elif (r == 15) and (c == 2):
-        button = tk.Button(root, text=f'Time: {timer}', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
-        ore = 'bedrock'
+        if upgradeInv['Xtime']:
+            button = tk.Button(root, text='Time: ∞', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+        else:
+            button = tk.Button(root, text=f'Time: {timer}', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
     else:
         button = tk.Button(root, image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
         ore = 'endstone'
