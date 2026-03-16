@@ -93,8 +93,8 @@ images = {
 
 def startGame():
     global intro, startB
-    intro.pack_forget()
-    startB.pack_forget()
+    intro.destroy()
+    startB.destroy()
     nextRound()
 
 def dimensionSwitch():
@@ -133,13 +133,15 @@ def fortuneUpgrade(l,c):
         nextRoundA()
 
 def invUpgrade(t,c,m):
-    global upgradeInv, score
+    global upgradeInv, score,timer
     if score >= c:
         if m:
             upgradeInv[t][0] = True
         else:
             upgradeInv[t] = True
         score -= c
+        if t == 'time':
+            timer = 30
         nextRoundA()
 
 
