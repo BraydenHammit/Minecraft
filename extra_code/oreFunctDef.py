@@ -132,6 +132,7 @@ def defOreE(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv):
             button = tk.Button(root, text='Time: ∞', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         else:
             button = tk.Button(root, text=f'Time: {timer}', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+        ore = 'bedrock'
     else:
         button = tk.Button(root, image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
         ore = 'endstone'
