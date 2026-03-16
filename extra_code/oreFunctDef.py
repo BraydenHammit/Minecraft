@@ -1,12 +1,14 @@
 import tkinter as tk
 
-def defOreO(r,c,root,images,score,nextTimer,ore,button_click):
+def defOreO(r,c,root,images,score,nextTimer,ore,button_click,timer):
     if (r == 15):
         ore = 'bedrock'
         if c == 0:
             button = tk.Button(root, text=round(score,2), bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         elif c == 1:
             button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+        elif c == 2:
+            button = tk.Button(root, text=f'Time: {timer}', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         else:
             button = tk.Button(root, image=images['bedrock'], bg='gray30', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
 
@@ -76,13 +78,15 @@ def defOreO(r,c,root,images,score,nextTimer,ore,button_click):
 
 
 
-def defOreN(r,c,root,images,score,nextTimer,ore,button_click):
+def defOreN(r,c,root,images,score,nextTimer,ore,button_click,timer):
     if (r == 15) or (r == 0):
         ore = 'bedrock'
         if (c == 0) and (r == 15):
             button = tk.Button(root, text=round(score,2), bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         elif (c == 1) and (r == 15):
             button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+        elif (r == 15) and (c == 2):
+            button = tk.Button(root, text=f'Time: {timer}', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         else:
             button = tk.Button(root, image= images['bedrock'], bg = 'gray30', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
     elif ore != 'none':
@@ -104,7 +108,7 @@ def defOreN(r,c,root,images,score,nextTimer,ore,button_click):
 
 
 
-def defOreE(r,c,root,images,score,nextTimer,button_click):
+def defOreE(r,c,root,images,score,nextTimer,button_click,timer):
     if (c == 0) and (r == 15):
         button = tk.Button(root, text=round(score,2), bg='#E0DE93', fg="#716F3D", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         ore = 'bedrock'
