@@ -268,7 +268,11 @@ def button_click(r,c,block):
 
     elif (r == 15) and (c == 1) and (nextTimer <= 0):
         play(sounds['click'],'click')
-        nextR = True
+        if upgradeInv['Xtime']:
+            start = True
+            nextRoundPre()
+        else:
+            nextR = True
 
 
 
