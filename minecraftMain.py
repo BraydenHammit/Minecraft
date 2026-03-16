@@ -12,7 +12,7 @@ from extra_code.randomDimFunct import dimensionR
 start = True
 nextR = False
 score = 0
-multiplier = 10000
+multiplier = 1
 nextTimer = 5
 timer = 15
 blocks = []
