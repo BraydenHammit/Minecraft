@@ -12,7 +12,7 @@ from extra_code.randomDimFunct import dimensionR
 start = True
 nextR = False
 score = 0
-multiplier = 1
+multiplier = 10000
 nextTimer = 5
 timer = 15
 blocks = []
@@ -161,7 +161,7 @@ def nextRoundA():
     if upgradeInv['dim pick'][0]:
         dimensionPickB.grid_forget()
     if upgradeInv['upg re']:
-        dimensionPickB.grid_forget()
+        upgReroll.grid_forget()
 
     multButton.grid_forget()
     fortButton.grid_forget()
