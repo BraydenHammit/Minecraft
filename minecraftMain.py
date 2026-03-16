@@ -160,6 +160,8 @@ def nextRoundA():
 
     if upgradeInv['dim pick'][0]:
         dimensionPickB.grid_forget()
+    if upgradeInv['upg re']:
+        dimensionPickB.grid_forget()
 
     multButton.grid_forget()
     fortButton.grid_forget()
