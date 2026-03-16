@@ -4,7 +4,7 @@ from extra_code.scoreFunction import scoreAS
 from extra_code.shopFunctions import shopList, buttonDef
 from extra_code.oreFunct import oreO, oreN
 from extra_code.oreFunctDef import defOreN, defOreO, defOreE
-from extra_code.randomDimFunct import dimensionR
+from extra_code.randomDimFunct import dimensionR, dimButton
 
 
 
@@ -35,7 +35,7 @@ upgradeInv = {
     'diag mine': False,
     'tnt': False,                 # reminder: add a tnt sound effect (when you figure out how to add them)
     'tnt start': False,
-    'dim pick': [False,'o'],
+    'dim pick': [True,'o'],
     'ext dim': False,
     'ore ext': False,
     'potato': False,
@@ -104,19 +104,7 @@ def startGame():
 
 def dimensionSwitch():
     global dimensionPickB, upgradeInv
-    if upgradeInv['dim pick'][1] == 'o':
-        dimensionPickB.configure(text='Next Dimension:\nNether', bg='#723232', fg="#3f1818")
-        upgradeInv['dim pick'][1] = 'n'
-    elif upgradeInv['dim pick'][1] == 'n':
-        if upgradeInv['ext dim']:
-            dimensionPickB.configure(text='Next Dimension:\nEnd', bg="#c8bf73", fg="#626047")
-            upgradeInv['dim pick'][1] = 'e'
-        else:
-            dimensionPickB.configure(text='Next Dimension:\nOverworld', bg="#2a782a", fg="#0E2407")
-            upgradeInv['dim pick'][1] = 'o'
-    elif upgradeInv['dim pick'][1] == 'e':
-        dimensionPickB.configure(text='Next Dimension:\nOverworld', bg="#2a782a", fg="#0E2407")
-        upgradeInv['dim pick'][1] = 'o'
+    dimButton(upgradeInv,dimensionPickB)
     
 
 
@@ -184,7 +172,7 @@ def nextRoundA():
 def button_click(r,c,block):
     global start, score, nextTimer, blocksN, blocks, nextR
     if block != 'bedrock':
-        check = ((((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air')) or ((blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air'))) or (start and (block in ('endstone','stone','netherrack'))))
+        check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack')))
         check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
         if check or check2 or (start and upgradeInv['st free']):
 
