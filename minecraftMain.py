@@ -14,7 +14,7 @@ nextR = False
 score = 0
 multiplier = 1
 nextTimer = 5
-timer = 30
+timer = 15
 blocks = []
 blocksN = []
 upgradeInv = {
@@ -37,14 +37,15 @@ upgradeInv = {
     'dim pick': [False,'o'],
     'ext dim': False,
     'ore ext': False,
-    'potato': False
+    'potato': False,
+    'time': False
 }
 
 root = tk.Tk()
 root.title("Minecraft")
 root.state('zoomed')
 
-intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next' (next to score).\nYou only have 30 seconds each round (shown next to the next button),\nand when that runs out the round automaticlly ends.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to select what dimension it will be next round (the button is in the shop),\nincrease your mining to a 3x3 area with an explosive blast, apply a fortune enchantment,\ngain the ability to start mining on things other than stone or netherrack,\nremove the score penalties when mining netherrack, stone, endstone, and deepslate,\nunlock the ability to mine diagonally (between blocks) from pre-mined blocks,\nunlock two extra ores (one for each dimension) or an extra dimension, and much more.\n\nOre Values:\nStone, Endstone, & Netherrack = -1\nDeepslate = -1.5\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5\n\nExtra Semi-Ores:\nGilded Blackstone & Amethyst = 7.5")
+intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next' (next to score).\nYou only have 15 seconds each round (shown next to the next button),\nand when that runs out the round automaticlly ends.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to select what dimension it will be next round (the button is in the shop),\nincrease your mining to a 3x3 area with an explosive blast, apply a fortune enchantment,\ngain the ability to start mining on things other than stone or netherrack,\nremove the score penalties when mining netherrack, stone, endstone, and deepslate,\nunlock the ability to mine diagonally (between blocks) from pre-mined blocks,\nunlock two extra ores (one for each dimension) or an extra dimension, and much more.\n\nOre Values:\nStone, Endstone, & Netherrack = -1\nDeepslate = -1.5\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5\n\nExtra Semi-Ores:\nGilded Blackstone & Amethyst = 7.5")
 startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
 dimensionPickB = tk.Button(root, text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D", command=lambda: dimensionSwitch())
 multButton = tk.Button(root, text=f'Multiplier: {multiplier}', bg='gray30', fg="gray5")
@@ -299,8 +300,11 @@ def timeCount():
         blocks[15][2].configure(text=f'Time: {timer}')
         root.after(100,timeCount)
     else:
+        if upgradeInv['timer']:
+            timer = 30
+        else:
+            timer = 15
         nextR = False
-        timer = 30
         start = True
         nextRoundPre()
 

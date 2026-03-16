@@ -30,6 +30,9 @@ def shopList(upgradeInv):
 
     if not upgradeInv["ore ext"]:
         upgrades.append('ore ext')
+    
+    if not upgradeInv["time"]:
+        upgrades.append('time')
 
     if not upgradeInv["tnt"]:
         upgrades.append('tnt')
@@ -129,6 +132,9 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
 
         if upg == 'ore ext':
             upg = tk.Button(root, text = '💎\nUnlock Pseudo-Ores:\n750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ore ext',750,False))
+
+        if upg == 'time':
+            upg = tk.Button(root, text = '🕰\nMore Round Time:\n475 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('time',475,False))
 
 
         if upg == 'skip':
