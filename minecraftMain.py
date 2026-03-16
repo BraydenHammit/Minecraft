@@ -107,6 +107,7 @@ sounds = {
     'tears': "assets/sounds/tears.wav",
     'precipice': 'assets/sounds/precipice.wav',
     'break block': 'assets/sounds/block_break.wav',
+    'tnt': 'assets/sounds/tnt.wav',
     'xp': 'assets/sounds/xp.wav',
     'click': 'assets/sounds/click.wav'
 }
@@ -223,6 +224,7 @@ def button_click(r,c,block):
         if check or check2 or (start and upgradeInv['st free']):
 
             if upgradeInv['tnt start'] and start:
+                play(sounds['tnt'],'break block')
                 start = False
                 check = [[r-2,c-2],[r-2,c-1],[r-2,c],[r-2,c+1],[r-2,c+2],
                          [r-1,c-2],[r-1,c-1],[r-1,c],[r-1,c+1],[r-1,c+2],
@@ -239,8 +241,8 @@ def button_click(r,c,block):
 
 
             elif upgradeInv['tnt']:
-                if start:
-                    start = False
+                play(sounds['tnt'],'break block')
+                start = False
                 check = [[r+1,c],[r-1,c],[r,c+1],[r,c-1],[r+1,c+1],[r-1,c-1],[r-1,c+1],[r+1,c-1],[r,c]]
                 for rr, cc in check:
                     block = blocksN[rr][cc]
@@ -255,8 +257,7 @@ def button_click(r,c,block):
                 blocks[r][c].grid_forget()
                 blocks[r][c] = 'air'
                 blocksN[r][c] = 'air'
-                if start:
-                    start = False
+                start = False
                 score += scoreAS(block,upgradeInv,multiplier,score)
                 if block in ('netherrack','stone','endstone','deepslate'):
                     play(sounds['break block'],'break block')
