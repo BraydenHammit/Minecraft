@@ -71,6 +71,7 @@ def shopList(upgradeInv):
     
 
 def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgrade):
+
         if upg == 'click':
             upg = tk.Button(root, text = '🔨\nMultiplier Upgrade (x1):\n100 Score', bg = 'gray30', fg = 'gray5', command = lambda: multiplierUpgrade(1))
         if upg == 'click5':
@@ -135,6 +136,9 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
 
         if upg == 'time':
             upg = tk.Button(root, text = '🕰\nMore Round Time:\n475 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('time',475,False))
+
+        if upg == 'upg re':
+            upg = tk.Button(root, text = '♻️\nUpgrade Rerolling:\n3150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('upg re',3150,False))
 
 
         if upg == 'skip':

@@ -38,7 +38,9 @@ upgradeInv = {
     'ext dim': False,
     'ore ext': False,
     'potato': False,
-    'time': False
+    'time': False,
+    'ins nex': False,
+    'upg re': False
 }
 
 root = tk.Tk()
@@ -48,7 +50,8 @@ root.state('zoomed')
 intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next' (next to score).\nYou only have 15 seconds each round (shown next to the next button),\nand when that runs out the round automaticlly ends.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to select what dimension it will be next round (the button is in the shop),\nincrease your mining to a 3x3 area with an explosive blast, apply a fortune enchantment,\ngain the ability to start mining on things other than stone or netherrack,\nremove the score penalties when mining netherrack, stone, endstone, and deepslate,\nunlock the ability to mine diagonally (between blocks) from pre-mined blocks,\nunlock two extra ores (one for each dimension) or an extra dimension, and much more.\n\nOre Values:\nStone, Endstone, & Netherrack = -1\nDeepslate = -1.5\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5\n\nExtra Semi-Ores:\nGilded Blackstone & Amethyst = 7.5")
 startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
 dimensionPickB = tk.Button(root, text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D", command=lambda: dimensionSwitch())
-multButton = tk.Button(root, text=f'Multiplier: {multiplier}', bg='gray30', fg="gray5")
+upgReroll = tk.Button(root, text='Reroll Upgrades', bg='gray30', fg="gray5", command=lambda: nextShop(True))
+multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray30', fg="gray5")
 fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}%', bg='gray30', fg="gray5")
 
 images = {
@@ -83,9 +86,10 @@ images = {
             #Pseudo-Ores:
             'amethyst': tk.PhotoImage(file='assets/images/amethystImageMinecraft.png'),
             'gildedBlackstone': tk.PhotoImage(file='assets/images/gildedBlackstoneImageMinecraft.png'),
-            #Un-Added:
+            #Secret:
             'poisonousPotato': tk.PhotoImage(file='assets/images/poisonousPotatoImageMinecraft.png'),
             'deepslatePoisonousPotato': tk.PhotoImage(file='assets/images/deepslatePoisonousPotatoImageMinecraft.png'),
+            #Un-Added:
             'glowstone': tk.PhotoImage(file='assets/images/glowstoneImageMinecraft.png')
             }
 
@@ -238,12 +242,12 @@ def nextRoundPre():
 
     blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
     blocks[15][0].configure(text=f'Score: {score}')
-    multButton.configure(text=f'Multiplier: {multiplier}')
+    multButton.configure(text=f'Multiplier: x{multiplier}')
     multButton.grid(row=14,column=0, sticky="nsew", padx=5, pady=5)
     fortButton.configure(text=f'Fortune: {upgradeInv["fortune"][1]}%')
     fortButton.grid(row=13,column=0, sticky="nsew", padx=5, pady=5)
 
-    nextShop()
+    nextShop(False)
 
 
 
@@ -256,15 +260,27 @@ def nextRoundPre():
 
 
 
-def nextShop():
-    global upgrades, upgradeInv, dimensionPickB
+def nextShop(r):
+    global upgrades, upgradeInv, dimensionPickB, upgReroll
+
+    if r:
+        for e in upgrades:
+            e.grid_forget()
 
     upgrades = shopList(upgradeInv)
 
     if not upgradeInv["dim pick"][0]:
         upgrades.append('dim pick')
-    else:
-        dimensionPickB.grid(row=0, column=15)
+    elif not r:
+        dimensionPickB.grid(row=0, column=15, sticky="nsew")
+
+    if not upgradeInv["upg re"]:
+        upgrades.append('upg re')
+    elif not r:
+        if upgradeInv['dim pick'][0]:
+            upgReroll.grid(row=1, column=15, sticky="nsew")
+        else:
+            upgReroll.grid(row=0, column=15, sticky="nsew")
 
     choices = []
 
@@ -280,7 +296,7 @@ def nextShop():
     for i, upg in enumerate(upgrades):
         upgrades[i] = buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgrade)
 
-        upgrades[i].grid(row=10, column=(i+1)*3, sticky="nsew", padx=5, pady=5)
+        upgrades[i].grid(row=8, column=(i+1)*3, sticky="nsew", padx=5, pady=5)
 
 
 
@@ -344,7 +360,7 @@ def nextRound():
                 ore = oreN(upgradeInv)
                 button, ore = defOreN(r,c,root,images,score,nextTimer,ore,button_click,timer)
 
-                button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
+                button.grid(row=r, column=c, sticky="nsew")
                 blocks[r].append(button)
                 blocksN[r].append(ore)
 
@@ -352,7 +368,7 @@ def nextRound():
 
                 button, ore = defOreE(r,c,root,images,score,nextTimer,button_click,timer)
 
-                button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
+                button.grid(row=r, column=c, sticky="nsew")
                 blocks[r].append(button)
                 blocksN[r].append(ore)
 
