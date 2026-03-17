@@ -252,7 +252,7 @@ def button_click(r,c,block):
     if block != 'bedrock':
         check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack')))
         check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
-        if check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine']):
+        if check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'] and not start):
 
             if upgradeInv['tnt start'] and start:
                 play(sounds['tnt'],'break block')
