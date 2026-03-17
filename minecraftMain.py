@@ -60,9 +60,9 @@ intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or 
 startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
 dimensionPickB = tk.Button(root, text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D", command=lambda: dimensionSwitch())
 upgReroll = tk.Button(root, text='Reroll Upgrades', bg='gray30', fg="gray5", command=lambda: nextShop(True))
-multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray30', fg="gray5")
-fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}', bg='gray30', fg="gray5")
-upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray30', fg="gray5")
+multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray30', fg="gray5", command=lambda: button_click(1,0,'bedrock'))
+fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}', bg='gray30', fg="gray5", command=lambda: button_click(2,0,'bedrock'))
+upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray30', fg="gray5", command=lambda: button_click(3,0,'bedrock'))
 
 images = {
             #Rocks:
@@ -116,9 +116,9 @@ sounds = {
     'break block': 'assets/sounds/block_break.wav',
     'tnt': 'assets/sounds/tnt.wav',
     'xp': 'assets/sounds/xp.wav',
-    #Other:
+    #Click:
     'click': 'assets/sounds/click.wav',
-    'decline': 'assets/sounds/decline.wav'
+    'break': 'assets/sounds/decline.wav'
 }
 
 soundsPlaying = {
@@ -296,13 +296,19 @@ def button_click(r,c,block):
             blocks[15][0].configure(text=round(score,2))
 
 
-    elif (r == 15) and (c == 1) and (nextTimer <= 0):
-        play(sounds['click'],'click')
-        if upgradeInv['Xtime']:
-            start = True
-            nextRoundPre()
+    elif (r == 15) and (c == 1):
+        if(nextTimer <= 0):
+            play(sounds['click'],'click')
+            if upgradeInv['Xtime']:
+                start = True
+                nextRoundPre()
+            else:
+                nextR = True
         else:
-            nextR = True
+            play(sounds['break'],'click')
+
+    else:
+            play(sounds['break'],'click')
 
 
 
