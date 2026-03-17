@@ -105,10 +105,12 @@ images = {
 
 sounds = {
     #Music:
-    'shopMusic1': 'assets/sounds/subwooferLullaby.wav',
+    'subwoofer lullaby': 'assets/sounds/subwooferLullaby.wav',
     'pigstep': 'assets/sounds/pigstep.wav',
     'tears': "assets/sounds/tears.wav",
     'precipice': 'assets/sounds/precipice.wav',
+    'mice on venus': 'assets/sounds/miceOnVenus.wav',
+    'aria math': 'assets/sounds/ariaMath.wav',
     #Block-Break:
     'break block': 'assets/sounds/block_break.wav',
     'tnt': 'assets/sounds/tnt.wav',
@@ -346,7 +348,7 @@ def nextShop(r):
         for e in upgrades:
             e.grid_forget()
     else:
-        play(sounds['shopMusic1'],'shopMusic')
+        play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus'])],'shopMusic')
 
     upgrades = shopList(upgradeInv)
 
