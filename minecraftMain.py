@@ -1,19 +1,19 @@
+#Imports:
 import tkinter as tk
 import random as ran
+import subprocess as sp
 import platform as plt
 from extra_code.scoreFunction import scoreAS
 from extra_code.shopFunctions import shopList, buttonDef
 from extra_code.oreFunct import oreO, oreN
 from extra_code.oreFunctDef import defOreN, defOreO, defOreE
 from extra_code.dimFuncts import dimensionR, dimButton
-import subprocess as sp
+
+#Variables:
 if plt.system() in ('Darwin','Linux'):
     sys = 'm/l'
 elif plt.system() == 'Windows':
     sys = 'w'
-
-
-
 start = True
 nextR = False
 score = 0
@@ -129,7 +129,10 @@ soundsPlaying = {
 }
 
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+#Sound Playing:
 def play(f,t):
     global soundsPlaying
     if sys == 'w':
@@ -140,10 +143,13 @@ def play(f,t):
 def stopPlaying(t):
     if t:       #if sound playing (t) has a value (is not None),
         t.terminate()       #terminate it (end the sound)
+    t = None
 
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+#Button Functions:
 def startGame():
     intro.destroy()
     startB.destroy()
@@ -156,9 +162,10 @@ def dimensionSwitch():
     dimButton(upgradeInv,dimensionPickB)
     
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
+#Upgrade Functions:
 def multiplierUpgrade(a):
     global multiplier, score
     if score >= a*100:
@@ -200,10 +207,10 @@ def invUpgrade(t,c,m):
         play(sounds['break'],'click')
 
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-
+#After Shop Closes:
 def nextRoundA():
     global upgrades, dimensionPickB
     for _ in upgrades:
@@ -224,8 +231,7 @@ def nextRoundA():
     nextRound()
 
 
-
-
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 def button_click(r,c,block):
@@ -302,12 +308,9 @@ def button_click(r,c,block):
             play(sounds['break'],'click')
 
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-
-
-
-
+#Shop Start-Up:
 def nextRoundPre():
     root.configure(background='grey')
 
@@ -332,16 +335,6 @@ def nextRoundPre():
         upgradeInv['🏆'][1].grid(row=12,column=0, sticky="nsew", padx=5, pady=5)
 
     nextShop(False)
-
-
-
-
-
-
-
-
-
-
 
 
 def nextShop(r):
@@ -376,9 +369,10 @@ def nextShop(r):
         upgrades[i].grid(row=8, column=(i+1)*3, sticky="nsew", padx=5, pady=5)
 
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
+#Timer Functions:
 def nextTime():
     global nextTimer
     nextTimer -= 1
@@ -404,9 +398,10 @@ def timeCount():
         nextRoundPre()
 
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
+#Round Function:
 def nextRound():
     global nextTimer, blocksN, blocks
     nextTimer = 5
@@ -458,9 +453,9 @@ def nextRound():
         blocks.append([])
         blocksN.append([])
         for _ in range(18):
-            blocks[16].append('barrier')      # add barrier so c-2 and c+2 tnt checks never cause index errors
+            blocks[16].append('barrier')      # add barrier so r-1 and r+1 tnt checks never cause index errors
             blocksN[16].append('barrier')
-            blocks[17].append('barrier')        # add 2nd barrier so c-3 and c+3 tnt start checks never cause index errors
+            blocks[17].append('barrier')        # add 2nd barrier so r-2 and r+2 tnt start checks never cause index errors
             blocksN[17].append('barrier')
 
 
@@ -480,6 +475,8 @@ def nextRound():
     elif dimension == 'end':
         play(sounds['tears'],'roundMusic')
 
+
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 #Start/Open Window:
