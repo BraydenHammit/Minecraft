@@ -105,7 +105,7 @@ images = {
 
 sounds = {
     #Music:
-    'shopMusic1': 'assets/sounds/minecraft.wav',
+    'shopMusic1': 'assets/sounds/subwooferLullaby.wav',
     'pigstep': 'assets/sounds/pigstep.wav',
     'tears': "assets/sounds/tears.wav",
     'precipice': 'assets/sounds/precipice.wav',
