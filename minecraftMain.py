@@ -70,6 +70,8 @@ upgReroll = tk.Button(root, text='Reroll Upgrades', bg='gray30', fg="gray5", com
 multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray30', fg="gray5", command=lambda: button_click(1,0,'bedrock'))
 fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}', bg='gray30', fg="gray5", command=lambda: button_click(2,0,'bedrock'))
 upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray30', fg="gray5", command=lambda: button_click(3,0,'bedrock'))
+volumeS = tk.Scale(root, from_=0.0, to=2.00, orient=tk.VERTICAL, length=400, resolution=0.1)
+volumeS.set(1)
 
 images = {
             #Rocks:
@@ -164,12 +166,12 @@ def startGame():
     intro.destroy()
     startB.destroy()
     stopPlaying(soundsPlaying['shopMusic'])
-    play(sounds['click'],'click')
+    play(sounds['click'],'click',volumeS.get())
     nextRound()
 
 def dimensionSwitch():
     global dimensionPickB, upgradeInv
-    play(sounds['click'],'click')
+    play(sounds['click'],'click',volumeS.get())
     dimButton(upgradeInv,dimensionPickB)
     
 
@@ -184,7 +186,7 @@ def multiplierUpgrade(a):
         score -= 100*a
         nextRoundA()
     else:
-        play(sounds['break'],'click')
+        play(sounds['break'],'click',volumeS.get())
 
 def fortuneUpgrade(l,c):
     global upgradeInv, score, fortune
@@ -199,7 +201,7 @@ def fortuneUpgrade(l,c):
 
         nextRoundA()
     else:
-        play(sounds['break'],'click')
+        play(sounds['break'],'click',volumeS.get())
 
 def invUpgrade(t,c,m):
     global upgradeInv, score, timer, fortune
@@ -215,7 +217,7 @@ def invUpgrade(t,c,m):
             fortune = 3
         nextRoundA()
     else:
-        play(sounds['break'],'click')
+        play(sounds['break'],'click',volumeS.get())
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -228,7 +230,7 @@ def nextRoundA():
         _.grid_forget()
 
     stopPlaying(soundsPlaying['shopMusic'])
-    play(sounds['click'],'click')
+    play(sounds['click'],'click',volumeS.get())
 
     if upgradeInv['dim pick'][0]:
         dimensionPickB.grid_forget()
@@ -253,7 +255,7 @@ def button_click(r,c,block):
         if check or check2 or (start and upgradeInv['st free']):
 
             if upgradeInv['tnt start'] and start:
-                play(sounds['tnt'],'break block')
+                play(sounds['tnt'],'break block',volumeS.get())
                 start = False
                 check = [[r-2,c-2],[r-2,c-1],[r-2,c],[r-2,c+1],[r-2,c+2],
                          [r-1,c-2],[r-1,c-1],[r-1,c],[r-1,c+1],[r-1,c+2],
@@ -272,7 +274,7 @@ def button_click(r,c,block):
 
 
             elif upgradeInv['tnt']:
-                play(sounds['tnt'],'break block')
+                play(sounds['tnt'],'break block',volumeS.get())
                 start = False
                 check = [[r+1,c-1], [r+1,c], [r+1,c+1],
                          [r,c-1],    [r,c],   [r,c+1],
@@ -295,9 +297,9 @@ def button_click(r,c,block):
                 start = False
                 score += scoreAS(block,upgradeInv,multiplier,score)
                 if block in ('netherrack','stone','endstone','deepslate'):
-                    play(sounds['break block'],'break block')
+                    play(sounds['break block'],'break block',volumeS.get())
                 else:
-                    play(sounds['xp'],'break block')
+                    play(sounds['xp'],'break block',volumeS.get())
                 if block == 'poisonous potato':
                     upgradeInv['🏆'][2] = True
 
@@ -306,17 +308,17 @@ def button_click(r,c,block):
 
     elif (r == 15) and (c == 1):
         if(nextTimer <= 0):
-            play(sounds['click'],'click')
+            play(sounds['click'],'click',volumeS.get())
             if upgradeInv['Xtime']:
                 start = True
                 nextRoundPre()
             else:
                 nextR = True
         else:
-            play(sounds['break'],'click')
+            play(sounds['break'],'click',volumeS.get())
 
     else:
-            play(sounds['break'],'click')
+            play(sounds['break'],'click',volumeS.get())
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -352,11 +354,13 @@ def nextShop(r):
     global upgrades
 
     if r: #If Rerolling:
-        play(sounds['click'],'click')
+        play(sounds['click'],'click',volumeS.get())
         for e in upgrades:
             e.grid_forget()
     else:   #1st Time In Shop (This Round):
-        play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic')
+        play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic',volumeS.get())
+        if sys == 'm/l':
+            volumeS.grid(row=0, column=0, pady=5, padx=5)
 
     upgrades = shopList(upgradeInv,dimensionPickB,upgReroll,r)
 
@@ -480,11 +484,11 @@ def nextRound():
 
     #Start Round Music:
     if dimension == 'overworld':
-        play(sounds[ran.choice(['precipice','otherside'])],'roundMusic')
+        play(sounds[ran.choice(['precipice','otherside'])],'roundMusic',volumeS.get())
     elif dimension == 'nether':
-        play(sounds[ran.choice(['pigstep','lava chicken'])],'roundMusic')
+        play(sounds[ran.choice(['pigstep','lava chicken'])],'roundMusic',volumeS.get())
     elif dimension == 'end':
-        play(sounds['tears'],'roundMusic')
+        play(sounds['tears'],'roundMusic',volumeS.get())
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -493,7 +497,7 @@ def nextRound():
 #Start/Open Window:
 intro.pack(pady=150)
 startB.pack(pady=50)
-play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic')
+play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic',volumeS.get())
 root.mainloop()
 
 
