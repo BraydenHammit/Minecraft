@@ -23,6 +23,7 @@ nextTimer = 5
 timer = 15
 blocks = []
 blocksN = []
+
 upgradeInv = {
     #Penalties:
     'penalty n': False,
@@ -148,9 +149,9 @@ def play(f,t):
         soundsPlaying[t] = sp.Popen(["afplay", f])
 
 def stopPlaying(t):
-    if t:       #if sound playing (t) has a value (is not None),
-        t.terminate()       #terminate it (end the sound)
-    t = None
+    if t:                     #if sound playing (t) has a value (is not None),
+        t.terminate()         #terminate it (end the sound)
+    t = None                  #sound stopped, so t is None
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
