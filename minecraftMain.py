@@ -137,7 +137,8 @@ def play(f,t):
         soundsPlaying[t] = sp.Popen(["afplay", f])
 
 def stopPlaying(t):
-    t.terminate()
+    if t:
+        t.terminate()
 
 
 
@@ -505,3 +506,8 @@ intro.pack(pady=150)
 startB.pack(pady=50)
 
 root.mainloop()
+
+stopPlaying(soundsPlaying['roundMusic'])
+stopPlaying(soundsPlaying['shopMusic'])
+stopPlaying(soundsPlaying['click'])
+stopPlaying(soundsPlaying['break block'])
