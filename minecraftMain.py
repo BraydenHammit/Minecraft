@@ -111,6 +111,7 @@ sounds = {
     'precipice': 'assets/sounds/precipice.wav',
     'mice on venus': 'assets/sounds/miceOnVenus.wav',
     'aria math': 'assets/sounds/ariaMath.wav',
+    'otherside': 'assets/sounds/otherside.wav',
     #Block-Break:
     'break block': 'assets/sounds/block_break.wav',
     'tnt': 'assets/sounds/tnt.wav',
@@ -487,7 +488,7 @@ def nextRound():
     root.after(1000,nextTime)
 
     if dimension == 'overworld':
-        play(sounds['precipice'],'roundMusic')
+        play(sounds[ran.choice(['precipice','otherside'])],'roundMusic')
     elif dimension == 'nether':
         play(sounds['pigstep'],'roundMusic')
     elif dimension == 'end':
