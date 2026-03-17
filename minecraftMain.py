@@ -24,6 +24,7 @@ timer = 15
 blocks = []
 blocksN = []
 upgradeInv = {
+    #Penalties:
     'penalty n': False,
     'penalty s': False,
     'penalty d': False,
@@ -32,22 +33,28 @@ upgradeInv = {
     'penalty s+': False,
     'penalty d+': False,
     'penalty e+': False,
+    #Luck:
     'luck': False,
     'luckM': False,
     'fortune': [False,0],
     'fortune x3': False,
+    #Mining:
     'st free': False,
     'diag mine': False,
     'tnt': False,
     'tnt start': False,
-    'dim pick': [False,'o'],
+    #Time:
+    'time': False,
+    'Xtime': False,
+    'ins nex': False,
+    #Extras:
     'ext dim': False,
     'ore ext': False,
-    'potato': False,
-    'time': False,
-    'ins nex': False,
+    #Shop Buttons:
+    'dim pick': [False,'o'],
     'upg re': False,
-    'Xtime': False,
+    #Secret:
+    'potato': False,
     '🏆': [False,None,False]
 }
 
