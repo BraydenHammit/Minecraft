@@ -1,7 +1,7 @@
 import tkinter as tk
 import random as ran
 
-def shopList(upgradeInv):
+def shopList(upgradeInv,dimensionPickB,upgReroll,r):
     upgrades = ['click','click5','click10']
 
     if not upgradeInv["penalty s"]:
@@ -64,6 +64,18 @@ def shopList(upgradeInv):
 
     if upgradeInv['ore ext'] and upgradeInv['ext dim'] and not upgradeInv['potato'] and ran.randrange(33) == 7:
         upgrades.append('potato')
+
+    if not upgradeInv["dim pick"][0]:
+        upgrades.append('dim pick')
+    elif not r:
+        dimensionPickB.grid(row=0, column=16, sticky="nsew", pady=5, padx=5)
+    if not upgradeInv["upg re"]:
+        upgrades.append('upg re')
+    elif not r:
+        if upgradeInv['dim pick'][0]:
+            upgReroll.grid(row=1, column=16, sticky="nsew", pady=5, padx=5)
+        else:
+            upgReroll.grid(row=0, column=16, sticky="nsew", pady=5, padx=5)
 
 
 

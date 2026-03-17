@@ -359,18 +359,7 @@ def nextShop(r):
     else:
         play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus'])],'shopMusic')
 
-    upgrades = shopList(upgradeInv)
-    if not upgradeInv["dim pick"][0]:
-        upgrades.append('dim pick')
-    elif not r:
-        dimensionPickB.grid(row=0, column=16, sticky="nsew", pady=5, padx=5)
-    if not upgradeInv["upg re"]:
-        upgrades.append('upg re')
-    elif not r:
-        if upgradeInv['dim pick'][0]:
-            upgReroll.grid(row=1, column=16, sticky="nsew", pady=5, padx=5)
-        else:
-            upgReroll.grid(row=0, column=16, sticky="nsew", pady=5, padx=5)
+    upgrades = shopList(upgradeInv,dimensionPickB,upgReroll,r)
 
 
     choices = []
@@ -470,7 +459,7 @@ def nextRound():
         else:
             blocks[r].append('barrier')         # add barrier so c-1 and c+1 checks never cause index errors
             blocksN[r].append('barrier')
-            blocks[r].append('barrier')         
+            blocks[r].append('barrier')         # add 2nd barrier so c-2 and c+2 tnt checks never cause index errors
             blocksN[r].append('barrier')
 
     else:
@@ -479,9 +468,9 @@ def nextRound():
         blocks.append([])
         blocksN.append([])
         for _ in range(18):
-            blocks[16].append('barrier')
+            blocks[16].append('barrier')      # add barrier so c-2 and c+2 tnt checks never cause index errors
             blocksN[16].append('barrier')
-            blocks[17].append('barrier')
+            blocks[17].append('barrier')        # add 2nd barrier so c-3 and c+3 tnt start checks never cause index errors
             blocksN[17].append('barrier')
 
 
@@ -501,12 +490,13 @@ def nextRound():
 
 
 
-
+#Start/Open Window:
 intro.pack(pady=150)
 startB.pack(pady=50)
-
 root.mainloop()
 
+
+#After Window Closed:
 stopPlaying(soundsPlaying['roundMusic'])
 stopPlaying(soundsPlaying['shopMusic'])
 stopPlaying(soundsPlaying['click'])
