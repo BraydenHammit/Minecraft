@@ -139,7 +139,7 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
         if upg == 'diag mine':
             upg = tk.Button(root, text = '🔀\nMine Diagonally:\n325 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('diag mine',325,False))
         if upg == 'unl mine':
-            upg = tk.Button(root, text = '🌀\n:Intangabilitic Mining\n2675 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('unl mine',2675,False))
+            upg = tk.Button(root, text = '🌀\nIntangabilitic Mining:\n2675 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('unl mine',2675,False))
         if upg == 'auto':
             upg = tk.Button(root, text = '⚙️\nAutomatic Mining:\n4150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('auto',4150,True))
         
