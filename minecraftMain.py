@@ -8,7 +8,7 @@ from extra_code.oreFunctDef import defOreN, defOreO, defOreE
 from extra_code.dimFuncts import dimensionR, dimButton
 if plt.system() in ('Darwin','Linux'):
     import subprocess as sp
-    sys = 'ml'
+    sys = 'm/l'
 elif plt.system() == 'Windows':
     import winsound
     sys = 'w'
@@ -133,13 +133,13 @@ def play(f,t):
     global soundsPlaying
     if sys == 'w':
         soundsPlaying[t] = winsound.PlaySound(f, winsound.SND_ASYNC)
-    elif sys == 'ml':
+    elif sys == 'm/l':
         soundsPlaying[t] = sp.Popen(["afplay", f])
 
 def stopPlaying(t):
     if sys == 'w':
         winsound.PlaySound(None, winsound.SND_PURGE)
-    elif sys == 'ml':
+    elif sys == 'm/l':
         if t:
             t.terminate()
 
