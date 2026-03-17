@@ -147,7 +147,6 @@ def stopPlaying(t):
 
 
 def startGame():
-    global intro, startB
     intro.destroy()
     startB.destroy()
     play(sounds['click'],'click')
