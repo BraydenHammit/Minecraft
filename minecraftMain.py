@@ -341,7 +341,7 @@ def nextRoundPre():
 
 
 def nextShop(r):
-    global upgrades, upgradeInv, dimensionPickB, upgReroll
+    global upgrades
 
     if r:
         play(sounds['click'],'click')
@@ -351,12 +351,10 @@ def nextShop(r):
         play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus'])],'shopMusic')
 
     upgrades = shopList(upgradeInv)
-
     if not upgradeInv["dim pick"][0]:
         upgrades.append('dim pick')
     elif not r:
         dimensionPickB.grid(row=0, column=16, sticky="nsew", pady=5, padx=5)
-
     if not upgradeInv["upg re"]:
         upgrades.append('upg re')
     elif not r:
@@ -365,8 +363,8 @@ def nextShop(r):
         else:
             upgReroll.grid(row=0, column=16, sticky="nsew", pady=5, padx=5)
 
-    choices = []
 
+    choices = []
     for _ in range(3):
         choiceExt = ran.randint(0,len(upgrades)-1)
         choice = upgrades[choiceExt]
@@ -377,11 +375,10 @@ def nextShop(r):
     else:
         choices.append('skip')
 
-    upgrades = choices
 
+    upgrades = choices
     for i, upg in enumerate(upgrades):
         upgrades[i] = buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgrade)
-
         upgrades[i].grid(row=8, column=(i+1)*3, sticky="nsew", padx=5, pady=5)
 
 
