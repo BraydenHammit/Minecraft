@@ -114,6 +114,8 @@ sounds = {
     'subwoofer lullaby': 'assets/sounds/subwooferLullaby.wav',
     'mice on venus': 'assets/sounds/miceOnVenus.wav',
     'aria math': 'assets/sounds/ariaMath.wav',
+    'minecraft': 'assets/sounds/minecraft.wav',
+    'sweden': 'assets/sounds/sweden.wav',
     #Round Music:
     'precipice': 'assets/sounds/precipice.wav',
     'otherside': 'assets/sounds/otherside.wav',
@@ -161,6 +163,7 @@ def stopPlaying(t):
 def startGame():
     intro.destroy()
     startB.destroy()
+    stopPlaying(soundsPlaying['shopMusic'])
     play(sounds['click'],'click')
     nextRound()
 
@@ -353,7 +356,7 @@ def nextShop(r):
         for e in upgrades:
             e.grid_forget()
     else:   #1st Time In Shop (This Round):
-        play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus'])],'shopMusic')
+        play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic')
 
     upgrades = shopList(upgradeInv,dimensionPickB,upgReroll,r)
 
@@ -490,6 +493,7 @@ def nextRound():
 #Start/Open Window:
 intro.pack(pady=150)
 startB.pack(pady=50)
+play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic')
 root.mainloop()
 
 
