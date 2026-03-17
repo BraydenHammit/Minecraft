@@ -1,6 +1,9 @@
 import tkinter as tk
 import random as ran
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#Upgrade List:
 def shopList(upgradeInv,dimensionPickB,upgReroll,r):
     upgrades = ['click','click5','click10']
 
@@ -81,11 +84,9 @@ def shopList(upgradeInv,dimensionPickB,upgReroll,r):
 
     return upgrades
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-
-    
-
+#Button Defining:
 def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgrade):
 
         if upg == 'click':

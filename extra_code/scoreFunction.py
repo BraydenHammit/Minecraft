@@ -1,8 +1,12 @@
 import random as ran
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#Score Function:
 def scoreAS(block,upgradeInv,multiplier,score):
     score = 0
 
+    #Base:
     if (block == 'stone'):
         if upgradeInv['penalty s+']:
             score = multiplier
@@ -38,6 +42,7 @@ def scoreAS(block,upgradeInv,multiplier,score):
     elif (block == 'poisonous potato'):
         score = 537.25 * multiplier
 
+    #Fortune:
     if upgradeInv['fortune'][0] and score > 0:
         if ((upgradeInv['fortune'][1] == 100) 
         or (upgradeInv['fortune'][1] == 75 and (ran.randint(1,4) != 1))
@@ -48,6 +53,6 @@ def scoreAS(block,upgradeInv,multiplier,score):
             else:
                 score = score * 2
         
-           
+    #-------------------------------    
 
     return score
