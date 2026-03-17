@@ -30,6 +30,10 @@ def shopList(upgradeInv,dimensionPickB,upgReroll,r):
 
     if not upgradeInv["diag mine"]:
         upgrades.append('diag mine')
+    elif not upgradeInv["unl mine"]:
+        upgrades.append('unl mine')
+    elif not upgradeInv["auto"][0]:
+        upgrades.append('auto')
 
     if not upgradeInv["ore ext"]:
         upgrades.append('ore ext')
@@ -134,6 +138,10 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
             upg = tk.Button(root, text = '🔓\nUnbind Starting Point:\n375 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('st free',375,False))
         if upg == 'diag mine':
             upg = tk.Button(root, text = '🔀\nMine Diagonally:\n325 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('diag mine',325,False))
+        if upg == 'unl mine':
+            upg = tk.Button(root, text = '🌀\n:Intangabilitic Mining\n2675 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('unl mine',2675,False))
+        if upg == 'auto':
+            upg = tk.Button(root, text = '⚙️\nAutomatic Mining:\n4150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('auto',4150,True))
         
         if upg == 'tnt':
             upg = tk.Button(root, text = '🧨\nBlast Radius Mining:\n3750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('tnt',3750,False))

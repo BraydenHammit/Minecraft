@@ -42,8 +42,10 @@ upgradeInv = {
     #Mining:
     'st free': False,
     'diag mine': False,
+    'unl mine': False,
     'tnt': False,
     'tnt start': False,
+    'auto': [False,False],
     #Time:
     'time': False,
     'Xtime': False,
@@ -250,7 +252,7 @@ def button_click(r,c,block):
     if block != 'bedrock':
         check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack')))
         check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
-        if check or check2 or (start and upgradeInv['st free']):
+        if check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine']):
 
             if upgradeInv['tnt start'] and start:
                 play(sounds['tnt'],'break block')
@@ -408,6 +410,39 @@ def timeCount():
         start = True
         nextRoundPre()
 
+def autoMine():
+    if not start:
+        global blocks, blocksN, score
+        check1, check2 = False, False
+        valid = []
+        num = len(blocks)
+        for r in range(num):
+            for c in range(num):
+                if blocksN[r][c] not in ('bedrock','air','barrier'):
+                    check1 = (blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')
+                    check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
+                    if (check1 or check2):
+                        valid.append([r,c])
+
+        else:
+            r = ran.choice(valid)[0]
+            c = ran.choice(valid)[1]
+            blockN = blocksN[r][c]
+            block = blocks[r][c]
+            if blockN not in ('bedrock','air','barrier'):
+                block.grid_forget()
+                blocks[r][c] = 'air'
+                blocksN[r][c] = 'air'
+                score += scoreAS(blockN,upgradeInv,multiplier,score)
+                if blockN in ('netherrack','stone','endstone','deepslate'):
+                    play(sounds['break block'],'break block')
+                else:
+                    play(sounds['xp'],'break block')
+                if blockN == 'poisonous potato':
+                    upgradeInv['🏆'][2] = True
+
+    root.after(1000,autoMine)
+
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -477,6 +512,9 @@ def nextRound():
     if not upgradeInv['Xtime']:
         root.after(100,timeCount)
     root.after(1000,nextTime)
+    if upgradeInv['auto'][0] and not upgradeInv['auto'][1]:    
+        root.after(1000,autoMine)
+        upgradeInv['auto'][1] = True
 
     #Start Round Music:
     if dimension == 'overworld':
