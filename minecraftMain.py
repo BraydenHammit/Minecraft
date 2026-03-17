@@ -48,7 +48,8 @@ upgradeInv = {
     'time': False,
     'ins nex': False,
     'upg re': False,
-    'Xtime': False
+    'Xtime': False,
+    '🏆': [False,None]
 }
 
 root = tk.Tk()
@@ -61,6 +62,7 @@ dimensionPickB = tk.Button(root, text='Next Dimension:\nOverworld', bg='#1f5f1f'
 upgReroll = tk.Button(root, text='Reroll Upgrades', bg='gray30', fg="gray5", command=lambda: nextShop(True))
 multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray30', fg="gray5")
 fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}', bg='gray30', fg="gray5")
+upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray30', fg="gray5")
 
 images = {
             #Rocks:
@@ -238,6 +240,10 @@ def button_click(r,c,block):
                         blocks[rr][cc].grid_forget()
                         blocks[rr][cc] = 'air'
                         score += scoreAS(block,upgradeInv,multiplier,score)
+                        if block in ('netherrack','stone','endstone','deepslate'):
+                            play(sounds['break block'],'break block')
+                        else:
+                            play(sounds['xp'],'break block')
 
 
             elif upgradeInv['tnt']:
@@ -251,6 +257,10 @@ def button_click(r,c,block):
                         blocks[rr][cc].grid_forget()
                         blocks[rr][cc] = 'air'
                         score += scoreAS(block,upgradeInv,multiplier,score)
+                        if block in ('netherrack','stone','endstone','deepslate'):
+                            play(sounds['break block'],'break block')
+                        else:
+                            play(sounds['xp'],'break block')
 
 
             else:
@@ -302,6 +312,8 @@ def nextRoundPre():
     multButton.grid(row=14,column=0, sticky="nsew", padx=5, pady=5)
     fortButton.configure(text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}')
     fortButton.grid(row=13,column=0, sticky="nsew", padx=5, pady=5)
+    if upgradeInv['🏆'][0]:
+        upgradeInv['🏆'][1].grid(row=12,column=0, sticky="nsew", padx=5, pady=5)
 
     nextShop(False)
 
