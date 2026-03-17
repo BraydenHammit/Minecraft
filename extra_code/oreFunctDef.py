@@ -110,6 +110,8 @@ def defOreN(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
             button = tk.Button(root, image = images['netherite'], bg='#523933', command=lambda r=r, c=c: button_click(r,c,'netherite'))
         elif ore == 'gilded blackstone':
             button = tk.Button(root, image = images['gildedBlackstone'], bg='gray2', command=lambda r=r, c=c: button_click(r,c,'gilded blackstone'))
+        elif ore == 'glowstone':
+            button = tk.Button(root, image = images['glowstone'], bg='yellow', command=lambda r=r, c=c: button_click(r,c,'glowstone'))
     else:
         button = tk.Button(root, image = images['netherrack'], bg='#723232', command=lambda r=r, c=c: button_click(r,c,'netherrack'))
         ore = 'netherrack'

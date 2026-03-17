@@ -29,7 +29,7 @@ def scoreAS(block,upgradeInv,multiplier,score):
         score = 2.5 * multiplier
     elif (block == 'iron') or (block == 'gold') or (block == 'quartz'):
         score = 3.25 * multiplier
-    elif (block == 'diamond'):
+    elif (block == 'diamond') or (block == 'glowstone'):
         score = 5 * multiplier
     elif (block == 'amethyst') or (block == 'gilded blackstone'):
         score = 7.5 * multiplier

@@ -49,8 +49,10 @@ def oreN(upgradeInv):
         ore = 'quartz'
     elif randomNum <= 25:
         ore = 'nether gold'
-    elif (randomNum == 27 or randomNum == 26) and upgradeInv['ore ext']:
+    elif randomNum == 26 and upgradeInv['ore ext']:
         ore = 'gilded blackstone'
+    elif (randomNum == 27 or randomNum == 28) and upgradeInv['ore ext']:
+        ore = 'glowstone'
     else:
         ore = 'none'
 
