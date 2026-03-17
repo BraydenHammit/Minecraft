@@ -103,13 +103,14 @@ images = {
             }
 
 sounds = {
-    #Music:
+    #Shop Music:
     'subwoofer lullaby': 'assets/sounds/subwooferLullaby.wav',
-    'pigstep': 'assets/sounds/pigstep.wav',
-    'tears': "assets/sounds/tears.wav",
-    'precipice': 'assets/sounds/precipice.wav',
     'mice on venus': 'assets/sounds/miceOnVenus.wav',
     'aria math': 'assets/sounds/ariaMath.wav',
+    'pigstep': 'assets/sounds/pigstep.wav',
+    #Round Music:
+    'tears': "assets/sounds/tears.wav",
+    'precipice': 'assets/sounds/precipice.wav',
     'otherside': 'assets/sounds/otherside.wav',
     #Block-Break:
     'break block': 'assets/sounds/block_break.wav',
@@ -137,8 +138,8 @@ def play(f,t):
         soundsPlaying[t] = sp.Popen(["afplay", f])
 
 def stopPlaying(t):
-    if t:
-        t.terminate()
+    if t:       #if sound playing (t) has a value (is not None),
+        t.terminate()       #terminate it (end the sound)
 
 
 
@@ -260,7 +261,9 @@ def button_click(r,c,block):
             elif upgradeInv['tnt']:
                 play(sounds['tnt'],'break block')
                 start = False
-                check = [[r+1,c],[r-1,c],[r,c+1],[r,c-1],[r+1,c+1],[r-1,c-1],[r-1,c+1],[r+1,c-1],[r,c]]
+                check = [[r+1,c-1], [r+1,c], [r+1,c+1],
+                         [r,c-1], [r,c], [r,c+1],
+                         [r-1,c-1], [r-1,c], [r-1,c+1]]
                 for rr, cc in check:
                     block = blocksN[rr][cc]
                     if block not in ('bedrock','barrier','air'):
