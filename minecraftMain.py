@@ -425,21 +425,22 @@ def autoMine():
                         valid.append([r,c])
 
         else:
-            r = ran.choice(valid)[0]
-            c = ran.choice(valid)[1]
-            blockN = blocksN[r][c]
-            block = blocks[r][c]
-            if blockN not in ('bedrock','air','barrier'):
-                block.grid_forget()
-                blocks[r][c] = 'air'
-                blocksN[r][c] = 'air'
-                score += scoreAS(blockN,upgradeInv,multiplier,score)
-                if blockN in ('netherrack','stone','endstone','deepslate'):
-                    play(sounds['break block'],'break block')
-                else:
-                    play(sounds['xp'],'break block')
-                if blockN == 'poisonous potato':
-                    upgradeInv['🏆'][2] = True
+            if len(valid) > 0:
+                r = ran.choice(valid)[0]
+                c = ran.choice(valid)[1]
+                blockN = blocksN[r][c]
+                block = blocks[r][c]
+                if blockN not in ('bedrock','air','barrier'):
+                    block.grid_forget()
+                    blocks[r][c] = 'air'
+                    blocksN[r][c] = 'air'
+                    score += scoreAS(blockN,upgradeInv,multiplier,score)
+                    if blockN in ('netherrack','stone','endstone','deepslate'):
+                        play(sounds['break block'],'break block')
+                    else:
+                        play(sounds['xp'],'break block')
+                    if blockN == 'poisonous potato':
+                        upgradeInv['🏆'][2] = True
 
     root.after(1000,autoMine)
 
