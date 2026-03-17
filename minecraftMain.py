@@ -141,12 +141,12 @@ soundsPlaying = {
 
 
 #Sound Playing:
-def play(f,t):
+def play(f,t,v=1.0):
     global soundsPlaying
     if sys == 'w':
         soundsPlaying[t] = sp.Popen(["powershell","-c",f'(New-Object Media.SoundPlayer "{f}").PlaySync();'], stdout=sp.DEVNULL, stderr=sp.DEVNULL)
     elif sys == 'm/l':
-        soundsPlaying[t] = sp.Popen(["afplay", f])
+        soundsPlaying[t] = sp.Popen(["afplay", '-v', str(v), f])
 
 def stopPlaying(t):
     if t:                     #if sound playing (t) has a value (is not None),
