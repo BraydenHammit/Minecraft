@@ -1,5 +1,8 @@
 import tkinter as tk
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#Overworld:
 def defOreO(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
     if (r == 15):
         ore = 'bedrock'
@@ -83,10 +86,9 @@ def defOreO(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
 
     return button, ore
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-
-
+#Nether:
 def defOreN(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
     if (r == 15) or (r == 0):
         ore = 'bedrock'
@@ -119,9 +121,9 @@ def defOreN(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
     
     return button, ore
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-
+#End:
 def defOreE(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv):
     if (c == 0) and (r == 15):
         button = tk.Button(root, text=round(score,2), bg='#E0DE93', fg="#716F3D", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
