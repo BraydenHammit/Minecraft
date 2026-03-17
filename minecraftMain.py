@@ -339,7 +339,7 @@ def nextRoundPre():
             eachRow.grid_forget()
 
     blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
-    blocks[15][0].configure(text=f'Score: {score}')
+    blocks[15][0].configure(text=f'Score: {score}',bg='gray30',fg='gray5')
     multButton.configure(text=f'Multiplier: x{multiplier}')
     multButton.grid(row=14,column=0, sticky="nsew", padx=5, pady=5)
     fortButton.configure(text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}')
