@@ -104,13 +104,16 @@ images = {
             }
 
 sounds = {
+    #Music:
     'shopMusic1': 'assets/sounds/minecraft.wav',
     'pigstep': 'assets/sounds/pigstep.wav',
     'tears': "assets/sounds/tears.wav",
     'precipice': 'assets/sounds/precipice.wav',
+    #Block-Break:
     'break block': 'assets/sounds/block_break.wav',
     'tnt': 'assets/sounds/tnt.wav',
     'xp': 'assets/sounds/xp.wav',
+    #Other:
     'click': 'assets/sounds/click.wav'
 }
 
