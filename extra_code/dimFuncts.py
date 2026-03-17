@@ -33,15 +33,15 @@ def dimensionR(upgradeInv,root):
 #Dimension Switch Button:
 def dimButton(upgradeInv,dimensionPickB):
     if upgradeInv['dim pick'][1] == 'o':
-        dimensionPickB.configure(text='Next Dimension:\nNether', bg='#723232', fg="#3f1818")
+        dimensionPickB.configure(text='Next Dimension:\nNether', fg="#A83A3A", bg="#3f1818")
         upgradeInv['dim pick'][1] = 'n'
     elif upgradeInv['dim pick'][1] == 'n':
         if upgradeInv['ext dim']:
-            dimensionPickB.configure(text='Next Dimension:\nEnd', bg="#c8bf73", fg="#626047")
+            dimensionPickB.configure(text='Next Dimension:\nEnd', fg="#c8bf73", bg="#626047")
             upgradeInv['dim pick'][1] = 'e'
         else:
-            dimensionPickB.configure(text='Next Dimension:\nOverworld', bg="#2a782a", fg="#0E2407")
+            dimensionPickB.configure(text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D")
             upgradeInv['dim pick'][1] = 'o'
     elif upgradeInv['dim pick'][1] == 'e':
-        dimensionPickB.configure(text='Next Dimension:\nOverworld', bg="#2a782a", fg="#0E2407")
+        dimensionPickB.configure(text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D")
         upgradeInv['dim pick'][1] = 'o'
