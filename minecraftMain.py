@@ -250,10 +250,6 @@ def button_click(r,c,block):
                         blocks[rr][cc].grid_forget()
                         blocks[rr][cc] = 'air'
                         score += scoreAS(block,upgradeInv,multiplier,score)
-                        if block in ('netherrack','stone','endstone','deepslate'):
-                            play(sounds['break block'],'break block')
-                        else:
-                            play(sounds['xp'],'break block')
                         if block == 'poisonous potato':
                             upgradeInv['🏆'][2] = True
 
@@ -271,10 +267,6 @@ def button_click(r,c,block):
                         blocks[rr][cc].grid_forget()
                         blocks[rr][cc] = 'air'
                         score += scoreAS(block,upgradeInv,multiplier,score)
-                        if block in ('netherrack','stone','endstone','deepslate'):
-                            play(sounds['break block'],'break block')
-                        else:
-                            play(sounds['xp'],'break block')
                         if block == 'poisonous potato':
                             upgradeInv['🏆'][2] = True
 
