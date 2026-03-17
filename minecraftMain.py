@@ -262,7 +262,7 @@ def button_click(r,c,block):
                 play(sounds['tnt'],'break block')
                 start = False
                 check = [[r+1,c-1], [r+1,c], [r+1,c+1],
-                         [r,c-1], [r,c], [r,c+1],
+                         [r,c-1],    [r,c],   [r,c+1],
                          [r-1,c-1], [r-1,c], [r-1,c+1]]
                 for rr, cc in check:
                     block = blocksN[rr][cc]
@@ -355,21 +355,22 @@ def nextRoundPre():
 def nextShop(r):
     global upgrades
 
-    if r:
+    if r: #If Rerolling:
         play(sounds['click'],'click')
         for e in upgrades:
             e.grid_forget()
-    else:
+    else:   #1st Time In Shop (This Round):
         play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus'])],'shopMusic')
 
     upgrades = shopList(upgradeInv,dimensionPickB,upgReroll,r)
 
-
+    
+    #Pick Random Upgrades:
     choices = []
     for _ in range(3):
         choiceExt = ran.randint(0,len(upgrades)-1)
         choice = upgrades[choiceExt]
-        upgrades.pop(choiceExt)
+        upgrades.pop(choiceExt)         #remove choice so upgrade can only be shown once per shop
         choices.append(choice)
     if upgradeInv['🏆'][2] and not upgradeInv['🏆'][0]:
         choices.append('🏆')
@@ -421,7 +422,7 @@ def nextRound():
     blocksN = []
     dimension = dimensionR(upgradeInv, root)
 
-
+    #Define+Grid Button Layout:
     for r in range(16):
         root.grid_rowconfigure(r, weight=1)
         blocks.append([])
@@ -431,32 +432,26 @@ def nextRound():
             root.grid_columnconfigure(c, weight=1)
 
             if dimension == 'overworld':
-
                 ore = oreO(upgradeInv)
                 button, ore = defOreO(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv)
-
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
                 blocksN[r].append(ore)
+
 
             elif dimension == 'nether':
-
                 ore = oreN(upgradeInv)
                 button, ore = defOreN(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv)
-
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
                 blocksN[r].append(ore)
+
 
             elif dimension == 'end':
-
                 button, ore = defOreE(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv)
-
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
                 blocksN[r].append(ore)
-
-
 
 
         else:
@@ -477,6 +472,7 @@ def nextRound():
             blocksN[17].append('barrier')
 
 
+    #Start Timers (Timer+Next):
     if upgradeInv['ins nex']:    
         nextTimer = 0
         blocks[15][1].configure(text='Next')
@@ -484,6 +480,7 @@ def nextRound():
         root.after(100,timeCount)
     root.after(1000,nextTime)
 
+    #Start Round Music:
     if dimension == 'overworld':
         play(sounds[ran.choice(['precipice','otherside'])],'roundMusic')
     elif dimension == 'nether':
