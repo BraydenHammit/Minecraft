@@ -1,5 +1,8 @@
 import random as ran
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#Random Dimension Function:
 def dimensionR(upgradeInv,root):
     if upgradeInv['dim pick'][0]:
         if upgradeInv['dim pick'][1] == 'n':
@@ -25,7 +28,9 @@ def dimensionR(upgradeInv,root):
 
     return dimension
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+#Dimension Switch Button:
 def dimButton(upgradeInv,dimensionPickB):
     if upgradeInv['dim pick'][1] == 'o':
         dimensionPickB.configure(text='Next Dimension:\nNether', bg='#723232', fg="#3f1818")
