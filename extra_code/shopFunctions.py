@@ -152,4 +152,7 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
         if upg == 'skip':
             upg = tk.Button(root, text = '☑️\nSkip Upgrade:\n0 Score', bg = 'gray30', fg = 'gray5', command = lambda: nextRoundA())
 
+        if upg == '🏆':
+            upg = tk.Button(root, text = '🏆\nHidden Trophy:\n0 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('🏆',0,True))
+
         return upg

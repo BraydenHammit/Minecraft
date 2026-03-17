@@ -49,7 +49,7 @@ upgradeInv = {
     'ins nex': False,
     'upg re': False,
     'Xtime': False,
-    '🏆': [False,None]
+    '🏆': [False,None,False]
 }
 
 root = tk.Tk()
@@ -210,6 +210,7 @@ def nextRoundA():
 
     multButton.grid_forget()
     fortButton.grid_forget()
+    upgradeInv['🏆'][1].grid_forget()
 
     nextRound()
 
@@ -219,7 +220,7 @@ def nextRoundA():
 
 
 def button_click(r,c,block):
-    global start, score, nextTimer, blocksN, blocks, nextR
+    global start, score, nextTimer, blocksN, blocks, nextR, upgradeInv
     if block != 'bedrock':
         check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack')))
         check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
@@ -244,6 +245,8 @@ def button_click(r,c,block):
                             play(sounds['break block'],'break block')
                         else:
                             play(sounds['xp'],'break block')
+                        if block == 'poisonous potato':
+                            upgradeInv['🏆'][2] = True
 
 
             elif upgradeInv['tnt']:
@@ -261,6 +264,8 @@ def button_click(r,c,block):
                             play(sounds['break block'],'break block')
                         else:
                             play(sounds['xp'],'break block')
+                        if block == 'poisonous potato':
+                            upgradeInv['🏆'][2] = True
 
 
             else:
@@ -273,6 +278,8 @@ def button_click(r,c,block):
                     play(sounds['break block'],'break block')
                 else:
                     play(sounds['xp'],'break block')
+                if block == 'poisonous potato':
+                    upgradeInv['🏆'][2] = True
 
             blocks[15][0].configure(text=round(score,2))
 
@@ -360,7 +367,10 @@ def nextShop(r):
         choice = upgrades[choiceExt]
         upgrades.pop(choiceExt)
         choices.append(choice)
-    choices.append('skip')
+    if upgradeInv['🏆'][2] and not upgradeInv['🏆'][0]:
+        choices.append('🏆')
+    else:
+        choices.append('skip')
 
     upgrades = choices
 
