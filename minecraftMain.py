@@ -6,11 +6,10 @@ from extra_code.shopFunctions import shopList, buttonDef
 from extra_code.oreFunct import oreO, oreN
 from extra_code.oreFunctDef import defOreN, defOreO, defOreE
 from extra_code.dimFuncts import dimensionR, dimButton
+import subprocess as sp
 if plt.system() in ('Darwin','Linux'):
-    import subprocess as sp
     sys = 'm/l'
 elif plt.system() == 'Windows':
-    import winsound
     sys = 'w'
 
 
@@ -133,16 +132,12 @@ soundsPlaying = {
 def play(f,t):
     global soundsPlaying
     if sys == 'w':
-        soundsPlaying[t] = winsound.PlaySound(f, winsound.SND_ASYNC)
+        soundsPlaying[t] = sp.Popen(["powershell","-c",f'(New-Object Media.SoundPlayer "{f}").PlaySync();'], stdout=sp.DEVNULL, stderr=sp.DEVNULL)
     elif sys == 'm/l':
         soundsPlaying[t] = sp.Popen(["afplay", f])
 
 def stopPlaying(t):
-    if sys == 'w':
-        winsound.PlaySound(None, winsound.SND_PURGE)
-    elif sys == 'm/l':
-        if t:
-            t.terminate()
+    t.terminate()
 
 
 
