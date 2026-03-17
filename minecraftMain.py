@@ -117,7 +117,8 @@ sounds = {
     'tnt': 'assets/sounds/tnt.wav',
     'xp': 'assets/sounds/xp.wav',
     #Other:
-    'click': 'assets/sounds/click.wav'
+    'click': 'assets/sounds/click.wav',
+    'decline': 'assets/sounds/decline.wav'
 }
 
 soundsPlaying = {
@@ -167,6 +168,8 @@ def multiplierUpgrade(a):
         multiplier += a
         score -= 100*a
         nextRoundA()
+    else:
+        play(sounds['break'],'click')
 
 def fortuneUpgrade(l,c):
     global upgradeInv, score, fortune
@@ -180,6 +183,8 @@ def fortuneUpgrade(l,c):
             fortune = 2
 
         nextRoundA()
+    else:
+        play(sounds['break'],'click')
 
 def invUpgrade(t,c,m):
     global upgradeInv, score, timer, fortune
@@ -194,6 +199,8 @@ def invUpgrade(t,c,m):
         if t == 'fortune x3':
             fortune = 3
         nextRoundA()
+    else:
+        play(sounds['break'],'click')
 
 
 
