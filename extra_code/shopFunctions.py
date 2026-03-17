@@ -30,7 +30,7 @@ def shopList(upgradeInv,dimensionPickB,upgReroll,r):
 
     if not upgradeInv["diag mine"]:
         upgrades.append('diag mine')
-    elif not upgradeInv["unl mine"]:
+    elif (not upgradeInv["unl mine"]) and (ran.randrange(7) == 3):
         upgrades.append('unl mine')
     elif not upgradeInv["auto"][0]:
         upgrades.append('auto')
