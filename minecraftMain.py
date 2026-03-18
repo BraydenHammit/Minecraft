@@ -58,7 +58,7 @@ upgradeInv = {
     'upg re': False,
     #Secret:
     'potato': False,
-    '🏆': [True,None,False],
+    '🏆': [False,None,False],
     'penalty p': False,
     'penalty p+': False,
 
