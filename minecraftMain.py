@@ -58,7 +58,7 @@ upgradeInv = {
     'upg re': False,
     #Secret:
     'potato': False,
-    '🏆': [False,None,False]
+    '🏆': [False,None,True]
 }
 
 root = tk.Tk()
@@ -71,7 +71,7 @@ dimensionPickB = tk.Button(root, text='Next Dimension:\nOverworld', bg='#1f5f1f'
 upgReroll = tk.Button(root, text='Reroll Upgrades', bg='gray30', fg="gray5", command=lambda: nextShop(True))
 multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray30', fg="gray5", command=lambda: button_click(1,0,'bedrock'))
 fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}', bg='gray30', fg="gray5", command=lambda: button_click(2,0,'bedrock'))
-upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray30', fg="gray5", command=lambda: button_click(3,0,'bedrock'))
+upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray30', fg="gray5", command=lambda: play(sounds['level'],'click'))
 
 images = {
             #Rocks:
@@ -130,7 +130,8 @@ sounds = {
     'xp': 'assets/sounds/xp.wav',
     #Click:
     'click': 'assets/sounds/click.wav',
-    'break': 'assets/sounds/decline.wav'
+    'break': 'assets/sounds/decline.wav',
+    'level': 'assets/sounds/levelUp.wav' 
 }
 
 soundsPlaying = {
