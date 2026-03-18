@@ -74,7 +74,7 @@ dimensionPickB = tk.Button(root, text='Next Dimension:\nOverworld', bg='#1f5f1f'
 upgReroll = tk.Button(root, text='Reroll Upgrades', bg='gray30', fg="gray5", command=lambda: nextShop(True))
 multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray30', fg="gray5", command=lambda: button_click(1,0,'bedrock'))
 fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}', bg='gray30', fg="gray5", command=lambda: button_click(2,0,'bedrock'))
-upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray30', fg="gray5", command=lambda: trophyButton())
+upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray30', fg="gray5", command=lambda: trophyButton(sounds['level']))
 
 images = {
             #Rocks:
@@ -186,8 +186,8 @@ def dimensionSwitch():
     play(sounds['click'],'click')
     dimButton(upgradeInv,dimensionPickB)
 
-def trophyButton():
-    play(sounds['level'],'click')
+def trophyButton(sound):
+    play(sound,'click')
     HOS()
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
