@@ -162,22 +162,22 @@ def defOreP(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
         ore = 'bedrock'
     elif ore != 'none':
         if ore == 'resin':
-            button = tk.Button(root, image = images['resin'], bg="#DC9A2F", command=lambda r=r, c=c: button_click(r,c,'resin'))
+            button = tk.Button(root, image = images['resin'], bg="#965628", command=lambda r=r, c=c: button_click(r,c,'resin'))
         elif ore == 'lapis':
-            button = tk.Button(root, image = images['potoneLapis'], bg="#DC9A2F", command=lambda r=r, c=c: button_click(r,c,'lapis'))
+            button = tk.Button(root, image = images['potoneLapis'], bg="#965628", command=lambda r=r, c=c: button_click(r,c,'lapis'))
         elif ore == 'diamond':
-            button = tk.Button(root, image = images['potoneDiamond'], bg="#DC9A2F", command=lambda r=r, c=c: button_click(r,c,'diamond'))
+            button = tk.Button(root, image = images['potoneDiamond'], bg="#965628", command=lambda r=r, c=c: button_click(r,c,'diamond'))
         elif ore == 'iron':
-            button = tk.Button(root, image = images['potoneIron'], bg="#DC9A2F", command=lambda r=r, c=c: button_click(r,c,'iron'))
+            button = tk.Button(root, image = images['potoneIron'], bg="#965628", command=lambda r=r, c=c: button_click(r,c,'iron'))
         elif ore == 'gold':
-            button = tk.Button(root, image = images['potoneGold'], bg="#DC9A2F", command=lambda r=r, c=c: button_click(r,c,'gold'))
+            button = tk.Button(root, image = images['potoneGold'], bg="#965628", command=lambda r=r, c=c: button_click(r,c,'gold'))
         elif ore == 'copper':
-            button = tk.Button(root, image = images['potoneCopper'], bg="#DC9A2F", command=lambda r=r, c=c: button_click(r,c,'copper'))
+            button = tk.Button(root, image = images['potoneCopper'], bg="#965628", command=lambda r=r, c=c: button_click(r,c,'copper'))
         elif ore == 'redstone':
-            button = tk.Button(root, image = images['potoneRedstone'], bg="#DC9A2F", command=lambda r=r, c=c: button_click(r,c,'redstone'))
+            button = tk.Button(root, image = images['potoneRedstone'], bg="#965628", command=lambda r=r, c=c: button_click(r,c,'redstone'))
         
     else:
-        button = tk.Button(root, image = images['potone'], bg="#DC9A2F", command=lambda r=r, c=c: button_click(r,c,'potone'))
+        button = tk.Button(root, image = images['potone'], bg="#965628", command=lambda r=r, c=c: button_click(r,c,'potone'))
         ore = 'potone'
 
     
