@@ -61,3 +61,33 @@ def oreN(upgradeInv):
         ore = 'none'
 
     return ore
+
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#Poisonous Potato:
+def oreP(upgradeInv):
+    if upgradeInv['luckM']:
+        randomNum = ran.randint(0,35)
+    elif upgradeInv['luck']:
+        randomNum = ran.randint(0,50)
+    else:
+        randomNum = ran.randint(0,75)
+
+    if randomNum == 0:
+        ore = 'resin'
+    elif randomNum <= 2:
+        ore = 'diamond'
+    elif randomNum <= 7:
+        ore = 'gold'
+    elif randomNum <= 13:
+        ore = 'iron'
+    elif randomNum <= 18:
+        ore = 'lapis'
+    elif randomNum <= 23:
+        ore = 'redstone'
+    elif randomNum <= 32:
+        ore = 'copper'
+    else:
+        ore = 'none'
+
+    return ore

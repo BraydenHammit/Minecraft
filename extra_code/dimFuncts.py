@@ -14,6 +14,9 @@ def dimensionR(upgradeInv,root):
         elif upgradeInv['dim pick'][1] == 'e':
             dimension = 'end'
             root.configure(background="#D7D597")
+        elif upgradeInv['dim pick'][1] == 'p':
+            dimension = 'poisonous potato'
+            root.configure(background="#BA8126")
 
     elif ran.randint(0,4) == 1:
         if ran.randint(0,2) == 1 and upgradeInv['ext dim']:
@@ -43,5 +46,12 @@ def dimButton(upgradeInv,dimensionPickB):
             dimensionPickB.configure(text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D")
             upgradeInv['dim pick'][1] = 'o'
     elif upgradeInv['dim pick'][1] == 'e':
+        if upgradeInv['🏆'][0]:
+            dimensionPickB.configure(text='Next Dimension:\nPoisonous Potato', fg="#e7851c", bg="#724017")
+            upgradeInv['dim pick'][1] = 'p'
+        else:
+            dimensionPickB.configure(text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D")
+            upgradeInv['dim pick'][1] = 'o'
+    elif upgradeInv['dim pick'][1] == 'p':
         dimensionPickB.configure(text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D")
         upgradeInv['dim pick'][1] = 'o'

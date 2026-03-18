@@ -5,8 +5,8 @@ import subprocess as sp
 import platform as plt
 from extra_code.scoreFunction import scoreAS
 from extra_code.shopFunctions import shopList, buttonDef
-from extra_code.oreFunct import oreO, oreN
-from extra_code.oreFunctDef import defOreN, defOreO, defOreE
+from extra_code.oreFunct import oreO, oreN, oreP
+from extra_code.oreFunctDef import defOreN, defOreO, defOreE, defOreP
 from extra_code.dimFuncts import dimensionR, dimButton
 
 #Variables:
@@ -58,7 +58,7 @@ upgradeInv = {
     'upg re': False,
     #Secret:
     'potato': False,
-    '🏆': [False,None,True]
+    '🏆': [False,None,False]
 }
 
 root = tk.Tk()
@@ -108,7 +108,15 @@ images = {
             'glowstone': tk.PhotoImage(file='assets/images/glowstoneImageMinecraft.png'),
             #Secret:
             'poisonousPotato': tk.PhotoImage(file='assets/images/poisonousPotatoImageMinecraft.png'),
-            'deepslatePoisonousPotato': tk.PhotoImage(file='assets/images/deepslatePoisonousPotatoImageMinecraft.png')
+            'deepslatePoisonousPotato': tk.PhotoImage(file='assets/images/deepslatePoisonousPotatoImageMinecraft.png'),
+            'resin': tk.PhotoImage(file='assets/images/resinImageMinecraft.png'),
+            'potoneDiamond': tk.PhotoImage(file='assets/images/potoneDiamondImageMinecraft.png'),
+            'potoneIron': tk.PhotoImage(file='assets/images/potoneIronImageMinecraft.png'),
+            'potoneGold': tk.PhotoImage(file='assets/images/potoneGoldImageMinecraft.png'),
+            'potoneCopper': tk.PhotoImage(file='assets/images/potoneCopperImageMinecraft.png'),
+            'potoneRedstone': tk.PhotoImage(file='assets/images/potoneRedstoneImageMinecraft.png'),
+            'potoneLapis': tk.PhotoImage(file='assets/images/potoneLapisImageMinecraft.png'),
+            'potone': tk.PhotoImage(file='assets/images/potoneImageMinecraft.png')
             }
 
 sounds = {
@@ -484,6 +492,13 @@ def nextRound():
 
             elif dimension == 'end':
                 button, ore = defOreE(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv)
+                button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
+                blocks[r].append(button)
+                blocksN[r].append(ore)
+            
+            elif dimension == 'poisonous potato':
+                ore = oreP(upgradeInv)
+                button, ore = defOreP(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv)
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
                 blocksN[r].append(ore)
