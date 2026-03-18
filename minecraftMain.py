@@ -311,7 +311,7 @@ def button_click(r,c,block):
                 blocksN[r][c] = 'air'
                 start = False
                 score += scoreAS(block,upgradeInv,multiplier,score)
-                if block in ('netherrack','stone','endstone','deepslate'):
+                if block in ('netherrack','stone','endstone','deepslate','potone'):
                     play(sounds['break block'],'break block')
                 else:
                     play(sounds['xp'],'break block')
@@ -450,7 +450,7 @@ def autoMine():
                     blocks[r][c] = 'air'
                     blocksN[r][c] = 'air'
                     score += scoreAS(blockN,upgradeInv,multiplier,score)
-                    if blockN in ('netherrack','stone','endstone','deepslate'):
+                    if blockN in ('netherrack','stone','endstone','deepslate','potone'):
                         play(sounds['break block'],'break block')
                     else:
                         play(sounds['xp'],'break block')
