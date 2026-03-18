@@ -359,7 +359,7 @@ def nextShop(r):
         for e in upgrades:
             e.grid_forget()
     else:   #1st Time In Shop (This Round):
-        play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic')
+        play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic',v=2.5)
 
     upgrades = shopList(upgradeInv,dimensionPickB,upgReroll,r)
 
@@ -533,7 +533,7 @@ def nextRound():
 #Start/Open Window:
 intro.pack(pady=150)
 startB.pack(pady=50)
-play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic')
+play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic',v=2.5)
 root.mainloop()
 
 
