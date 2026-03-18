@@ -3,7 +3,7 @@ import tkinter as tk
 import random as ran
 import subprocess as sp
 import platform as plt
-from extra_code.scoreFunction import scoreAS
+from extra_code.scoreFunction import scoreAS, HOS
 from extra_code.shopFunctions import shopList, buttonDef
 from extra_code.oreFunct import oreO, oreN, oreP
 from extra_code.oreFunctDef import defOreN, defOreO, defOreE, defOreP
@@ -58,7 +58,7 @@ upgradeInv = {
     'upg re': False,
     #Secret:
     'potato': False,
-    '🏆': [False,None,False],
+    '🏆': [True,None,False],
     'penalty p': False,
     'penalty p+': False,
 
@@ -74,7 +74,7 @@ dimensionPickB = tk.Button(root, text='Next Dimension:\nOverworld', bg='#1f5f1f'
 upgReroll = tk.Button(root, text='Reroll Upgrades', bg='gray30', fg="gray5", command=lambda: nextShop(True))
 multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray30', fg="gray5", command=lambda: button_click(1,0,'bedrock'))
 fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}', bg='gray30', fg="gray5", command=lambda: button_click(2,0,'bedrock'))
-upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray30', fg="gray5", command=lambda: play(sounds['level'],'click'))
+upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray30', fg="gray5", command=lambda: trophyButton())
 
 images = {
             #Rocks:
@@ -185,7 +185,10 @@ def dimensionSwitch():
     global dimensionPickB, upgradeInv
     play(sounds['click'],'click')
     dimButton(upgradeInv,dimensionPickB)
-    
+
+def trophyButton():
+    play(sounds['level'],'click')
+    HOS()
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
