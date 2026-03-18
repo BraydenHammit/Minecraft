@@ -69,7 +69,7 @@ def scoreAS(block,upgradeInv,multiplier,score):
 def HOS():
     hos = tk.Tk()
     hos.title("Hidden Ore Values:")
-    hos.geometry('500x500')
+    hos.geometry('500x60')
 
     text = tk.Label(hos, text='Potone = -1\nResin = 12.5\nPoisonous Potato = 537.25')
     text.pack(pady=5,padx=5)
