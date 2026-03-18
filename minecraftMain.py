@@ -58,7 +58,10 @@ upgradeInv = {
     'upg re': False,
     #Secret:
     'potato': False,
-    '🏆': [False,None,False]
+    '🏆': [False,None,False],
+    'penalty p': False,
+    'penalty p+': False,
+
 }
 
 root = tk.Tk()

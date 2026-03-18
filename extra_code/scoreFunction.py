@@ -22,6 +22,11 @@ def scoreAS(block,upgradeInv,multiplier,score):
             score = multiplier
         elif not upgradeInv['penalty e']:
             score = -1
+    if (block == 'potone'):
+        if upgradeInv['penalty p+']:
+            score = multiplier
+        elif not upgradeInv['penalty p']:  
+            score = -1
     elif (block == 'deepslate'):
         if upgradeInv['penalty d+']:
             score = 1.5 * multiplier
@@ -37,7 +42,7 @@ def scoreAS(block,upgradeInv,multiplier,score):
         score = 5 * multiplier
     elif (block == 'amethyst') or (block == 'gilded blackstone'):
         score = 7.5 * multiplier
-    elif (block == 'emerald') or (block == 'netherite'):
+    elif (block == 'emerald') or (block == 'netherite') or (block == 'resin'):
         score = 12.5 * multiplier
     elif (block == 'poisonous potato'):
         score = 537.25 * multiplier
