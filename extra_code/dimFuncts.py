@@ -16,7 +16,7 @@ def dimensionR(upgradeInv,root):
             root.configure(background="#D7D597")
         elif upgradeInv['dim pick'][1] == 'p':
             dimension = 'poisonous potato'
-            root.configure(background="#BA8126")
+            root.configure(background="#8D4C1F")
 
     elif ran.randint(0,4) == 1:
         if ran.randint(0,2) == 1 and upgradeInv['ext dim']:
