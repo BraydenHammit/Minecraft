@@ -135,6 +135,7 @@ sounds = {
     'pigstep': 'assets/sounds/pigstep.wav',
     'lava chicken': 'assets/sounds/lavaChicken.wav',
     'tears': "assets/sounds/tears.wav",
+    'and action': "assets/sounds/andAction.wav",
     #Block-Break:
     'break block': 'assets/sounds/block_break.wav',
     'tnt': 'assets/sounds/tnt.wav',
@@ -546,6 +547,8 @@ def nextRound():
         play(sounds[ran.choice(['pigstep','lava chicken'])],'roundMusic')
     elif dimension == 'end':
         play(sounds['tears'],'roundMusic')
+    elif dimension == 'poisonous potato':
+        play(sounds['and action'],'roundMusic')
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
