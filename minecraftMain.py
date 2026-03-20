@@ -46,7 +46,7 @@ upgradeInv = {
     #Mining:
     'st free': False,
     'diag mine': False,
-    'unl mine': False,
+    'unl mine': [False,False],
     'tnt': False,
     'tnt start': False,
     'auto': [False,False],
@@ -82,6 +82,8 @@ fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{f
 upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray30', fg="gray5", command=lambda: trophyButton(sounds['level']))
 
 images = {
+            #Buttons:
+            'commandBlock': tk.PhotoImage(file='assets/images/commandBlockImageMinecraft.png'),
             #Rocks:
             'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'deepslate': tk.PhotoImage(file='assets/images/deepslateImageMinecraft.png'),
@@ -115,18 +117,20 @@ images = {
             'gildedBlackstone': tk.PhotoImage(file='assets/images/gildedBlackstoneImageMinecraft.png'),
             'glowstone': tk.PhotoImage(file='assets/images/glowstoneImageMinecraft.png'),
             #Secret:
-            'poisonousPotato': tk.PhotoImage(file='assets/images/poisonousPotatoImageMinecraft.png'),
-            'deepslatePoisonousPotato': tk.PhotoImage(file='assets/images/deepslatePoisonousPotatoImageMinecraft.png'),
-            'resin': tk.PhotoImage(file='assets/images/resinImageMinecraft.png'),
-            'potoneDiamond': tk.PhotoImage(file='assets/images/potoneDiamondImageMinecraft.png'),
-            'potoneIron': tk.PhotoImage(file='assets/images/potoneIronImageMinecraft.png'),
-            'potoneGold': tk.PhotoImage(file='assets/images/potoneGoldImageMinecraft.png'),
-            'potoneCopper': tk.PhotoImage(file='assets/images/potoneCopperImageMinecraft.png'),
-            'potoneRedstone': tk.PhotoImage(file='assets/images/potoneRedstoneImageMinecraft.png'),
-            'potoneLapis': tk.PhotoImage(file='assets/images/potoneLapisImageMinecraft.png'),
-            'potone': tk.PhotoImage(file='assets/images/potoneImageMinecraft.png'),
-            #Unused:
-            'commandBlock': tk.PhotoImage(file='assets/images/commandBlockImageMinecraft.png')
+                #Poisonous Potato:
+                'poisonousPotato': tk.PhotoImage(file='assets/images/poisonousPotatoImageMinecraft.png'),
+                'deepslatePoisonousPotato': tk.PhotoImage(file='assets/images/deepslatePoisonousPotatoImageMinecraft.png'),
+                'resin': tk.PhotoImage(file='assets/images/resinImageMinecraft.png'),
+                'potoneDiamond': tk.PhotoImage(file='assets/images/potoneDiamondImageMinecraft.png'),
+                'potoneIron': tk.PhotoImage(file='assets/images/potoneIronImageMinecraft.png'),
+                'potoneGold': tk.PhotoImage(file='assets/images/potoneGoldImageMinecraft.png'),
+                'potoneCopper': tk.PhotoImage(file='assets/images/potoneCopperImageMinecraft.png'),
+                'potoneRedstone': tk.PhotoImage(file='assets/images/potoneRedstoneImageMinecraft.png'),
+                'potoneLapis': tk.PhotoImage(file='assets/images/potoneLapisImageMinecraft.png'),
+                'potone': tk.PhotoImage(file='assets/images/potoneImageMinecraft.png'),
+                #Other:
+                'chest': tk.PhotoImage(file='assets/images/chestImageMinecraft.png'),
+                'enderChest': tk.PhotoImage(file='assets/images/enderChestImageMinecraft.png')
             }
 
 command = tk.Button(root, height=1, width=105, image=images['commandBlock'], bg="#e1b44c", command=lambda: commandButton(sounds['click']))
@@ -282,7 +286,7 @@ def button_click(r,c,block):
     if block != 'bedrock':
         check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone')))
         check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
-        if check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'] and not start):
+        if check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'][0] and not start):
 
             if upgradeInv['tnt start'] and start:
                 play(sounds['tnt'],'break block')
