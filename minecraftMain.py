@@ -65,10 +65,11 @@ upgradeInv = {
     #Secret:
     'potato': False,
     '🏆': [False,None,False],
-    'penalty p': False,
-    'penalty p+': False,
     'unl mine': [False,False,False],
     'bedr': [False,False,False],
+    #Mini-Secret:
+    'penalty p': False,
+    'penalty p+': False,
     'penalty b': False,
     'penalty b+': False
 }

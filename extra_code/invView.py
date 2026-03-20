@@ -10,6 +10,7 @@ def viewInventory(multiplier,fortune,upgradeInv,score,end=False):
     texT = f'Score: {score}\nMultiplier: x{multiplier}\nFortune: {upgradeInv["fortune"][1]}% for x{fortune}\n\nUpgrades:'
     missing_upg = 0
     missing_secrets = 0
+    missing_secretsM = 0
 
 
 
@@ -130,7 +131,7 @@ def viewInventory(multiplier,fortune,upgradeInv,score,end=False):
 
 
 
-    #Secret Checks:
+    #Secret/Mini-Secret Checks:
     secrets = []
     if upgradeInv['potato']:
         secrets.append('\nPoisonous Potato Ore')
@@ -148,14 +149,25 @@ def viewInventory(multiplier,fortune,upgradeInv,score,end=False):
         secrets.append('\nHidden Trophy + Poisonous Potato Dimension')
     else:
         missing_secrets += 1
+
+
+    secretsM = []
     if upgradeInv['penalty p']:
-        secrets.append('\nPotone Penalty Removal')
+        secretsM.append('\nPotone Penalty Removal')
     else:
-        missing_secrets += 1
+        missing_secretsM += 1
     if upgradeInv['penalty p+']:
-        secrets.append('\nPositive Score for Mining Potone')
+        secretsM.append('\nPositive Score for Mining Potone')
     else:
-        missing_secrets += 1
+        missing_secretsM += 1
+    if upgradeInv['penalty b']:
+        secretsM.append('\nBedrock Penalty Removal')
+    else:
+        missing_secretsM += 1
+    if upgradeInv['penalty b+']:
+        secretsM.append('\nPositive Score for Mining Bedrock')
+    else:
+        missing_secretsM += 1
 
 
     if len(secrets) > 0:
@@ -163,15 +175,22 @@ def viewInventory(multiplier,fortune,upgradeInv,score,end=False):
         for secret in secrets:
             texT += secret
 
+    if len(secretsM) > 0:
+        texT += '\n\nMini-Secrets:'
+        for secret in secretsM:
+            texT += secret
+
 
 
     #Missing Secrets/Upgrades:
-    if missing_upg > 0 or missing_secrets > 0:
+    if missing_upg > 0 or missing_secrets > 0 or missing_secretsM > 0:
         texT += '\n'
     if missing_upg > 0:
         texT += f'\nMissing Upgrades: {missing_upg}'
     if missing_secrets > 0:
         texT += f'\nMissing Secrets: {missing_secrets}'
+    if missing_secretsM > 0:
+        texT += f'\nMissing Mini-Secrets: {missing_secretsM}'
 
 
 
