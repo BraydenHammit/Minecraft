@@ -60,6 +60,7 @@ upgradeInv = {
     #Shop Buttons:
     'dim pick': [False,'o'],
     'upg re': False,
+    'stat view': False,
     #Secret:
     'potato': False,
     '🏆': [False,None,False],
@@ -367,7 +368,6 @@ def nextRoundPre():
 
             eachRow.grid_forget()
 
-    command.grid(row=15, column=1, sticky="nsew", padx=5, pady=5)
     blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
     blocks[15][0].configure(text=f'Score: {score}',bg='gray30',fg='gray5')
     multButton.configure(text=f'Multiplier: x{multiplier}')
@@ -390,7 +390,7 @@ def nextShop(r):
     else:   #1st Time In Shop (This Round):
         play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic',v=2.5)
 
-    upgrades = shopList(upgradeInv,dimensionPickB,upgReroll,r)
+    upgrades = shopList(upgradeInv,dimensionPickB,upgReroll,command,r)
 
     
     #Pick Random Upgrades:

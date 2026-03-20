@@ -4,7 +4,7 @@ import random as ran
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Upgrade List:
-def shopList(upgradeInv,dimensionPickB,upgReroll,r):
+def shopList(upgradeInv,dimensionPickB,upgReroll,command,r):
     upgrades = ['click','click5','click10']
 
     if not upgradeInv["penalty s"]:
@@ -91,6 +91,15 @@ def shopList(upgradeInv,dimensionPickB,upgReroll,r):
             upgReroll.grid(row=1, column=16, sticky="nsew", pady=5, padx=5)
         else:
             upgReroll.grid(row=0, column=16, sticky="nsew", pady=5, padx=5)
+    if not upgradeInv["stat view"]:
+        upgrades.append('stat view')
+    elif not r:
+        if upgradeInv['dim pick'][0] and upgradeInv["upg re"]:
+            command.grid(row=2, column=16, sticky="nsew", pady=5, padx=5)
+        elif upgradeInv['dim pick'][0] or upgradeInv["upg re"]:
+            command.grid(row=1, column=16, sticky="nsew", pady=5, padx=5)
+        else:
+            command.grid(row=0, column=16, sticky="nsew", pady=5, padx=5)
 
 
 
@@ -160,14 +169,10 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
         if upg == 'tnt start':
             upg = tk.Button(root, text = '💣\nExplosive Start (5x5):\n2750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('tnt start',2750,False))
 
-        if upg == 'dim pick':
-            upg = tk.Button(root, text = '🌌\nChoose Next Dimension:\n1250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('dim pick',1250,True))
         if upg == 'ext dim':
             upg = tk.Button(root, text = '🪐\nExtra Dimension:\n75 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ext dim',75,False))
-
         if upg == 'potato':
             upg = tk.Button(root, text = '🃏\n???:\n666 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('potato',666,False))
-
         if upg == 'ore ext':
             upg = tk.Button(root, text = '💎\nUnlock Pseudo-Ores:\n750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ore ext',750,False))
 
@@ -178,8 +183,12 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
         if upg == 'ins nex':
             upg = tk.Button(root, text = "🔑\nInstant 'Next' Unlock:\n425 Score", bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ins nex',425,False))
 
+        if upg == 'dim pick':
+                    upg = tk.Button(root, text = '🌌\nChoose Next Dimension:\n1250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('dim pick',1250,True))
         if upg == 'upg re':
             upg = tk.Button(root, text = '♻️\nUpgrade Rerolling:\n3150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('upg re',3150,False))
+        if upg == 'stat view':
+            upg = tk.Button(root, text = '👁\nStat & Upgrade Viewing:\n50 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('stat view',50,False))
 
 
         if upg == 'skip':

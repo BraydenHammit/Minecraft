@@ -114,6 +114,10 @@ def viewInventory(multiplier,fortune,upgradeInv,score,end=False):
         texT += ('Reroll Upgrades Button')
     else:
         missing_upg += 1
+    if upgradeInv["view stat"]:
+        texT += ('Stat and Upgrades Viewing Button')
+    else:
+        missing_upg += 1
     
     if fortune != 3:
         missing_upg += 1
