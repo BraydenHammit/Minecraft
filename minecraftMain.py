@@ -129,7 +129,7 @@ images = {
             'commandBlock': tk.PhotoImage(file='assets/images/commandBlockImageMinecraft.png')
             }
 
-command = dimensionPickB = tk.Button(root, height=1, width=50, image=images['commandBlock'], bg="#e1b44c", command=lambda: commandButton(sounds['click']))
+command = dimensionPickB = tk.Button(root, height=1, width=105, image=images['commandBlock'], bg="#e1b44c", command=lambda: commandButton(sounds['click']))
 
 sounds = {
     #Shop Music:
