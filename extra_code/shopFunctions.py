@@ -30,8 +30,11 @@ def shopList(upgradeInv,dimensionPickB,upgReroll,command,r):
 
     if not upgradeInv["diag mine"]:
         upgrades.append('diag mine')
-    elif (not upgradeInv['unl mine'][0]) and (ran.randrange(17) == 3):
+    elif (not upgradeInv['unl mine'][0]) and (upgradeInv['unl mine'][1]):
         upgrades.append('unl mine')
+
+    if (not upgradeInv['bedr'][0]) and (upgradeInv['bedr'][1]):
+        upgrades.append('bedr')
 
     if not upgradeInv["auto"][0]:
         upgrades.append('auto')
@@ -163,6 +166,8 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
             upg = tk.Button(root, text = '🌀\nIntangabilitic Mining:\n2675 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('unl mine',2675,False))
         if upg == 'auto':
             upg = tk.Button(root, text = '⚙️\nAutomatic Mining:\n4150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('auto',4150,True))
+        if upg == 'bedr':
+            upg = tk.Button(root, text = '🗜\nBedrock Minability:\n300 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('bedr',300,False))
         
         if upg == 'tnt':
             upg = tk.Button(root, text = '🧨\nBlast Radius Mining:\n3750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('tnt',3750,False))

@@ -137,9 +137,13 @@ def viewInventory(multiplier,fortune,upgradeInv,score,end=False):
     else:
         missing_secrets += 1
     if upgradeInv['unl mine'][0]:
-        texT += ('\nRemoval of Neccesity of Nearby Air to Mine')
+        secrets.append('\nRemoval of Neccesity of Nearby Air to Mine')
     else:
-        missing_upg += 1
+        missing_secrets += 1
+    if upgradeInv['bedr'][0]:
+        secrets.append('\nAllow Bedrock to be Minable')
+    else:
+        missing_secrets += 1
     if upgradeInv['🏆'][0]:
         secrets.append('\nHidden Trophy + Poisonous Potato Dimension')
     else:

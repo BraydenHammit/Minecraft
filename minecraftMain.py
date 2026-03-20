@@ -23,6 +23,7 @@ fortune = 1
 nextTimer = 5
 timer = 15
 attemptedBedrock = 0
+failedUpg = 0
 aMine = None
 nextLock = None
 timerAfter = None
@@ -66,8 +67,8 @@ upgradeInv = {
     '🏆': [False,None,False],
     'penalty p': False,
     'penalty p+': False,
-    'unl mine': [False,False],
-    'bedr': False,
+    'unl mine': [False,False,False],
+    'bedr': [False,False,False],
     'penalty b': False,
     'penalty b+': False
 }
@@ -76,8 +77,10 @@ root = tk.Tk()
 root.title("Minecraft")
 root.state('zoomed')
 
-intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next' (next to score).\nYou only have 15 seconds each round (shown next to the 'Next' button),\nand when that runs out the round automaticlly ends.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to select what dimension it will be next round (the button is in the shop),\nincrease your mining to a 3x3 area with an explosive blast, apply a fortune enchantment,\ngain the ability to start mining on things other than stone or netherrack,\nremove the score penalties when mining netherrack, stone, endstone, and deepslate,\nunlock the ability to mine diagonally (between blocks) from pre-mined blocks,\nunlock three extra ores (one Overwold, two Nether) or an extra dimension, and much more.\n\nRock Values:\nStone, Endstone, & Netherrack = -1\nDeepslate = -1.5\nBedrock = ???\n\nOre Values:\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5\n\nExtra Semi-Ores:\nGlowstone = 5\nGilded Blackstone & Amethyst = 7.5")
+intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next' (next to score).\nYou only have 15 seconds each round (shown next to the 'Next' button),\nand when that runs out the round automaticlly ends.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to select what dimension it will be next round (the button is in the shop),\nincrease your mining to a 3x3 area with an explosive blast, apply a fortune enchantment,\ngain the ability to start mining on things other than stone or netherrack,\nremove the score penalties when mining netherrack, stone, endstone, and deepslate,\nunlock the ability to mine diagonally (between blocks) from pre-mined blocks,\nunlock three extra ores (one Overwold, two Nether) or an extra dimension, and much more.\n\nRock Values:\nStone, Endstone, & Netherrack = -1\nDeepslate = -1.5\nBedrock = -100\n\nOre Values:\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5\n\nExtra Semi-Ores:\nGlowstone = 5\nGilded Blackstone & Amethyst = 7.5")
 startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
+key =  tk.Button(root, height=1, width=1, text = '🔑', bg='gray30', command= lambda: keyClick('o'))
+keyE =  tk.Button(root, height=1, width=1, text = '🗝', bg='gray30', command= lambda: keyClick('e'))
 dimensionPickB = tk.Button(root, text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D", command=lambda: dimensionSwitch())
 upgReroll = tk.Button(root, text='Reroll Upgrades', bg='gray30', fg="gray5", command=lambda: nextShop(True))
 multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray30', fg="gray5", command=lambda: button_click(1,0,'bedrock'))
@@ -156,7 +159,7 @@ sounds = {
     'break block': 'assets/sounds/block_break.wav',
     'tnt': 'assets/sounds/tnt.wav',
     'xp': 'assets/sounds/xp.wav',
-    'xp': 'assets/sounds/glass.wav',
+    'glass': 'assets/sounds/glass.wav',
     #Click:
     'click': 'assets/sounds/click.wav',
     'break': 'assets/sounds/decline.wav',
@@ -212,21 +215,32 @@ def commandButton(sound):
     play(sound,'click')
     viewInventory(multiplier,fortune,upgradeInv,score)
 
+def keyClick(t):
+    global upgradeInv, key, keyE
+    if t == 'o':
+        upgradeInv['unl mine'][2] = True
+        key.destroy()
+    elif t == 'e':
+        upgradeInv['bedr'][2] = True
+        keyE.destroy()
+    play(sounds['level'],'click')
+
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 #Upgrade Functions:
 def multiplierUpgrade(a):
-    global multiplier, score
+    global multiplier, score, failedUpg
     if score >= a*100:
         multiplier += a
         score -= 100*a
         nextRoundA()
     else:
         play(sounds['break'],'click')
+        failedUpg += 1
 
 def fortuneUpgrade(l,c):
-    global upgradeInv, score, fortune
+    global upgradeInv, score, fortune, failedUpg
     if score >= c:
         upgradeInv['fortune'][0] = True
         upgradeInv['fortune'][1] = l
@@ -239,9 +253,10 @@ def fortuneUpgrade(l,c):
         nextRoundA()
     else:
         play(sounds['break'],'click')
+        failedUpg += 1
 
 def invUpgrade(t,c,m):
-    global upgradeInv, score, timer, fortune
+    global upgradeInv, score, timer, fortune,failedUpg
     if score >= c:
         if m:
             upgradeInv[t][0] = True
@@ -255,6 +270,7 @@ def invUpgrade(t,c,m):
         nextRoundA()
     else:
         play(sounds['break'],'click')
+        failedUpg += 1
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -287,7 +303,7 @@ def nextRoundA():
 
 def button_click(r,c,block):
     global start, score, nextTimer, blocksN, blocks, nextR, upgradeInv, attemptedBedrock
-    if block != 'bedrock':
+    if block not in ('bedrock','ender chest','chest'):
         check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone')))
         check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
         if check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'][0] and not start):
@@ -355,7 +371,7 @@ def button_click(r,c,block):
         else:
             play(sounds['break'],'click')
 
-    elif upgradeInv['bedr']:
+    elif upgradeInv['bedr'][0] and block not in ('chest','ender chest'):
         blocks[r][c].grid_forget()
         blocks[r][c] = 'air'
         blocksN[r][c] = 'air'
@@ -363,8 +379,19 @@ def button_click(r,c,block):
         score += scoreAS(block,upgradeInv,multiplier,score)
         play(sounds['glass'],'break block')
 
+    elif block == 'chest' and upgradeInv['unl mine'][2]:
+        upgradeInv['unl mine'][1] = True
+        blocks[r][c].configure(image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
+        play(['level'],'click')
+
+    elif block == 'ender chest' and upgradeInv['bedr'][2]:
+        upgradeInv['bedr'][1] = True
+        blocks[r][c].configure(image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
+        play(['level'],'click')
+
     else:
-        attemptedBedrock += 1
+        if block == 'bedrock':
+            attemptedBedrock += 1
         play(sounds['break'],'click')
 
 
@@ -391,6 +418,10 @@ def nextRoundPre():
     multButton.grid(row=14,column=0, sticky="nsew", padx=5, pady=5)
     fortButton.configure(text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}')
     fortButton.grid(row=13,column=0, sticky="nsew", padx=5, pady=5)
+    if failedUpg >= 130 and not upgradeInv['unl mine'][2] and upgradeInv['diag mine']:
+        keyE.grid(row=15,column=15, sticky="nsew", padx=5, pady=5)
+    if attemptedBedrock >= 300 and not upgradeInv['bedr'][2]:
+        keyE.grid(row=15,column=15, sticky="nsew", padx=5, pady=5)
     if upgradeInv['🏆'][0]:
         upgradeInv['🏆'][1].grid(row=12,column=0, sticky="nsew", padx=5, pady=5)
 
@@ -466,7 +497,7 @@ def autoMine():
         num = len(blocks)
         for r in range(num):
             for c in range(num):
-                if blocksN[r][c] not in ('bedrock','air','barrier'):
+                if blocksN[r][c] not in ('bedrock','air','barrier','chest'):
                     check1 = (blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')
                     check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
                     if (check1 or check2):
@@ -478,7 +509,7 @@ def autoMine():
                 c = ran.choice(valid)[1]
                 blockN = blocksN[r][c]
                 block = blocks[r][c]
-                if blockN not in ('bedrock','air','barrier'):
+                if blockN not in ('bedrock','air','barrier','chest'):
                     block.grid_forget()
                     blocks[r][c] = 'air'
                     blocksN[r][c] = 'air'
