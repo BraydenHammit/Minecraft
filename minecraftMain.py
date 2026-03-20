@@ -22,6 +22,7 @@ multiplier = 1
 fortune = 1
 nextTimer = 5
 timer = 15
+attemptedBedrock = 0
 aMine = None
 nextLock = None
 timerAfter = None
@@ -46,7 +47,6 @@ upgradeInv = {
     #Mining:
     'st free': False,
     'diag mine': False,
-    'unl mine': [False,False],
     'tnt': False,
     'tnt start': False,
     'auto': [False,False],
@@ -66,7 +66,10 @@ upgradeInv = {
     '🏆': [False,None,False],
     'penalty p': False,
     'penalty p+': False,
-
+    'unl mine': [False,False],
+    'bedr': False,
+    'penalty b': False,
+    'penalty b+': False
 }
 
 root = tk.Tk()
@@ -153,6 +156,7 @@ sounds = {
     'break block': 'assets/sounds/block_break.wav',
     'tnt': 'assets/sounds/tnt.wav',
     'xp': 'assets/sounds/xp.wav',
+    'xp': 'assets/sounds/glass.wav',
     #Click:
     'click': 'assets/sounds/click.wav',
     'break': 'assets/sounds/decline.wav',
@@ -282,7 +286,7 @@ def nextRoundA():
 
 
 def button_click(r,c,block):
-    global start, score, nextTimer, blocksN, blocks, nextR, upgradeInv
+    global start, score, nextTimer, blocksN, blocks, nextR, upgradeInv, attemptedBedrock
     if block != 'bedrock':
         check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone')))
         check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
@@ -351,8 +355,17 @@ def button_click(r,c,block):
         else:
             play(sounds['break'],'click')
 
+    elif upgradeInv['bedr']:
+        blocks[r][c].grid_forget()
+        blocks[r][c] = 'air'
+        blocksN[r][c] = 'air'
+        start = False
+        score += scoreAS(block,upgradeInv,multiplier,score)
+        play(sounds['glass'],'break block')
+
     else:
-            play(sounds['break'],'click')
+        attemptedBedrock += 1
+        play(sounds['break'],'click')
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
