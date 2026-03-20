@@ -161,9 +161,11 @@ def viewInventory(multiplier,fortune,upgradeInv,score,end=False):
 
 
 
-    #Missing ___:
-    texT += f'\n\nMissing Upgrades: {missing_upg}'
-    texT += f'\nMissing Secrets: {missing_secrets}'
+    #Missing Secrets/Upgrades:
+    if missing_upg > 0:
+        texT += f'\n\nMissing Upgrades: {missing_upg}'
+    if missing_secrets > 0:
+        texT += f'\nMissing Secrets: {missing_secrets}'
 
 
 
