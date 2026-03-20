@@ -565,9 +565,9 @@ def nextRound():
     elif dimension == 'nether':
         play(sounds[ran.choice(['pigstep','lava chicken'])],'roundMusic')
     elif dimension == 'end':
-        play(sounds['tears'],'roundMusic')
+        play(sounds['tears'],'roundMusic',v=2)
     elif dimension == 'poisonous potato':
-        play(sounds['and action'],'roundMusic')
+        play(sounds['and action'],'roundMusic',v=1.5)
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
