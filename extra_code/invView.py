@@ -7,7 +7,7 @@ def viewInventory(multiplier,fortune,upgradeInv,score,end=False):
         master.title("Final Stats:")
     else:
         master.title("Current Stats:")
-    texT = f'Score: {score}\n\nUpgrades:\nMultiplier: x{multiplier}\nFortune: {upgradeInv["fortune"][1]}% for x{fortune}'
+    texT = f'Score: {score}\nMultiplier: x{multiplier}\nFortune: {upgradeInv["fortune"][1]}% for x{fortune}\n\nUpgrades:'
     missing_upg = 0
     missing_secrets = 0
 
