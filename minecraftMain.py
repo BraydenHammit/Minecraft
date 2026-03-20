@@ -382,12 +382,12 @@ def button_click(r,c,block):
     elif block == 'chest' and upgradeInv['unl mine'][2]:
         upgradeInv['unl mine'][1] = True
         blocks[r][c].configure(image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
-        play(['level'],'click')
+        play(sounds['level'],'click')
 
     elif block == 'ender chest' and upgradeInv['bedr'][2]:
         upgradeInv['bedr'][1] = True
         blocks[r][c].configure(image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
-        play(['level'],'click')
+        play(sounds['level'],'click')
 
     else:
         if block == 'bedrock':
