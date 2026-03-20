@@ -289,6 +289,14 @@ def nextRoundA():
         dimensionPickB.grid_forget()
     if upgradeInv['upg re']:
         upgReroll.grid_forget()
+    try:
+        keyE.grid_forget()
+    except:
+        None
+    try:
+        key.grid_forget()
+    except:
+        None
 
     command.grid_forget()
     multButton.grid_forget()
