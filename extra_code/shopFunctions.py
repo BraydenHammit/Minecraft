@@ -163,11 +163,11 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
         if upg == 'diag mine':
             upg = tk.Button(root, text = '🔀\nMine Diagonally:\n325 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('diag mine',325,False))
         if upg == 'unl mine':
-            upg = tk.Button(root, text = '🌀\nIntangabilitic Mining:\n2675 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('unl mine',2675,False))
+            upg = tk.Button(root, text = '🌀\nIntangabilitic Mining:\n2675 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('unl mine',2675,True))
         if upg == 'auto':
             upg = tk.Button(root, text = '⚙️\nAutomatic Mining:\n4150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('auto',4150,True))
         if upg == 'bedr':
-            upg = tk.Button(root, text = '🗜\nBedrock Minability:\n300 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('bedr',300,False))
+            upg = tk.Button(root, text = '🗜\nBedrock Minability:\n300 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('bedr',300,True))
         
         if upg == 'tnt':
             upg = tk.Button(root, text = '🧨\nBlast Radius Mining:\n3750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('tnt',3750,False))
@@ -189,7 +189,7 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
             upg = tk.Button(root, text = "🔑\nInstant 'Next' Unlock:\n425 Score", bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ins nex',425,False))
 
         if upg == 'dim pick':
-                    upg = tk.Button(root, text = '🌌\nChoose Next Dimension:\n1250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('dim pick',1250,True))
+            upg = tk.Button(root, text = '🌌\nChoose Next Dimension:\n1250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('dim pick',1250,True))
         if upg == 'upg re':
             upg = tk.Button(root, text = '♻️\nUpgrade Rerolling:\n3150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('upg re',3150,False))
         if upg == 'stat view':
