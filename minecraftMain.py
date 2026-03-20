@@ -8,6 +8,7 @@ from extra_code.shopFunctions import shopList, buttonDef
 from extra_code.oreFunct import oreO, oreN, oreP
 from extra_code.oreFunctDef import defOreN, defOreO, defOreE, defOreP
 from extra_code.dimFuncts import dimensionR, dimButton
+from extra_code.invView import viewInventory
 
 #Variables:
 if plt.system() in ('Darwin','Linux'):
@@ -127,6 +128,8 @@ images = {
             'commandBlock': tk.PhotoImage(file='assets/images/commandBlockImageMinecraft.png')
             }
 
+command = dimensionPickB = tk.Button(root, height=1, width=50, image=images['commandBlock'], bg="#e1b44c", command=lambda: commandButton(sounds['click']))
+
 sounds = {
     #Shop Music:
     'subwoofer lullaby': 'assets/sounds/subwooferLullaby.wav',
@@ -196,6 +199,10 @@ def trophyButton(sound):
     play(sound,'click')
     HOS()
 
+def commandButton(sound):
+    play(sound,'click')
+    viewInventory(multiplier,fortune,upgradeInv,score)
+
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -258,6 +265,7 @@ def nextRoundA():
     if upgradeInv['upg re']:
         upgReroll.grid_forget()
 
+    command.grid_forget()
     multButton.grid_forget()
     fortButton.grid_forget()
     upgradeInv['🏆'][1].grid_forget()
@@ -359,6 +367,7 @@ def nextRoundPre():
 
             eachRow.grid_forget()
 
+    command.grid(row=15, column=1, sticky="nsew", padx=5, pady=5)
     blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
     blocks[15][0].configure(text=f'Score: {score}',bg='gray30',fg='gray5')
     multButton.configure(text=f'Multiplier: x{multiplier}')
