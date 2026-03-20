@@ -419,7 +419,7 @@ def nextRoundPre():
     fortButton.configure(text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}')
     fortButton.grid(row=13,column=0, sticky="nsew", padx=5, pady=5)
     if failedUpg >= 130 and not upgradeInv['unl mine'][2] and upgradeInv['diag mine']:
-        keyE.grid(row=15,column=15, sticky="nsew", padx=5, pady=5)
+        key.grid(row=15,column=15, sticky="nsew", padx=5, pady=5)
     if attemptedBedrock >= 300 and not upgradeInv['bedr'][2]:
         keyE.grid(row=15,column=15, sticky="nsew", padx=5, pady=5)
     if upgradeInv['🏆'][0]:
