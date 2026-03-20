@@ -371,7 +371,7 @@ def button_click(r,c,block):
         else:
             play(sounds['break'],'click')
 
-    elif upgradeInv['bedr'][0] and block not in ('chest','ender chest'):
+    elif upgradeInv['bedr'][0] and (block not in ('chest','ender chest')) and (not (r == 15 and (c in (0, 1, 2)))):
         blocks[r][c].grid_forget()
         blocks[r][c] = 'air'
         blocksN[r][c] = 'air'
