@@ -21,6 +21,9 @@ multiplier = 1
 fortune = 1
 nextTimer = 5
 timer = 15
+aMine = None
+nextLock = None
+timerAfter = None
 blocks = []
 blocksN = []
 
@@ -119,7 +122,9 @@ images = {
             'potoneCopper': tk.PhotoImage(file='assets/images/potoneCopperImageMinecraft.png'),
             'potoneRedstone': tk.PhotoImage(file='assets/images/potoneRedstoneImageMinecraft.png'),
             'potoneLapis': tk.PhotoImage(file='assets/images/potoneLapisImageMinecraft.png'),
-            'potone': tk.PhotoImage(file='assets/images/potoneImageMinecraft.png')
+            'potone': tk.PhotoImage(file='assets/images/potoneImageMinecraft.png'),
+            #Unused:
+            'commandBlock': tk.PhotoImage(file='assets/images/commandBlockImageMinecraft.png')
             }
 
 sounds = {
@@ -403,20 +408,20 @@ def nextShop(r):
 
 #Timer Functions:
 def nextTime():
-    global nextTimer
+    global nextTimer, nextLock
     nextTimer -= 1
     if nextTimer > 0:
         blocks[15][1].configure(text=f'Next (🔒 {nextTimer})')
-        root.after(1000,nextTime)
+        nextLock = root.after(1000,nextTime)
     else:
         blocks[15][1].configure(text='Next')
 
 def timeCount():
-    global timer, nextR, start
+    global timer, nextR, start, timerAfter
     timer = round(timer-0.1,1)
     if timer > 0 and not nextR:
         blocks[15][2].configure(text=f'Time: {timer}')
-        root.after(100,timeCount)
+        timerAfter = root.after(100,timeCount)
     else:
         if upgradeInv['time']:
             timer = 30
@@ -427,6 +432,7 @@ def timeCount():
         nextRoundPre()
 
 def autoMine():
+    global aMine
     if not start:
         global blocks, blocksN, score
         check1, check2 = False, False
@@ -458,7 +464,7 @@ def autoMine():
                     if blockN == 'poisonous potato':
                         upgradeInv['🏆'][2] = True
 
-    root.after(1000,autoMine)
+    aMine = root.after(1000,autoMine)
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -466,7 +472,7 @@ def autoMine():
 
 #Round Function:
 def nextRound():
-    global nextTimer, blocksN, blocks
+    global nextTimer, blocksN, blocks, aMine, timerAfter, nextLock
     nextTimer = 5
     blocks = []
     blocksN = []
@@ -534,10 +540,10 @@ def nextRound():
         nextTimer = 0
         blocks[15][1].configure(text='Next')
     if not upgradeInv['Xtime']:
-        root.after(100,timeCount)
-    root.after(1000,nextTime)
+        timerAfter = root.after(100,timeCount)
+    nextLock = root.after(1000,nextTime)
     if upgradeInv['auto'][0] and not upgradeInv['auto'][1]:    
-        root.after(1000,autoMine)
+        aMine = root.after(1000,autoMine)
         upgradeInv['auto'][1] = True
 
     #Start Round Music:
