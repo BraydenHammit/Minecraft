@@ -129,7 +129,7 @@ images = {
             'commandBlock': tk.PhotoImage(file='assets/images/commandBlockImageMinecraft.png')
             }
 
-command = dimensionPickB = tk.Button(root, height=1, width=105, image=images['commandBlock'], bg="#e1b44c", command=lambda: commandButton(sounds['click']))
+command = tk.Button(root, height=1, width=105, image=images['commandBlock'], bg="#e1b44c", command=lambda: commandButton(sounds['click']))
 
 sounds = {
     #Shop Music:
@@ -381,7 +381,7 @@ def nextRoundPre():
 
 
 def nextShop(r):
-    global upgrades
+    global upgrades, dimensionPickB, command, upgReroll
 
     if r: #If Rerolling:
         play(sounds['click'],'click')
