@@ -130,7 +130,6 @@ def viewInventory(multiplier,fortune,upgradeInv,score,end=False):
     elif upgradeInv['fortune'][1] == 75:
         missing_upg += 1
 
-    texT += f'\n\nMissing Upgrades: {missing_upg}'
 
 
 
@@ -160,7 +159,11 @@ def viewInventory(multiplier,fortune,upgradeInv,score,end=False):
         for secret in secrets:
             texT += secret
 
-    texT += f'\n\nMissing Secrets: {missing_secrets}'
+
+
+    #Missing ___:
+    texT += f'\n\nMissing Upgrades: {missing_upg}'
+    texT += f'\nMissing Secrets: {missing_secrets}'
 
 
 
