@@ -58,64 +58,64 @@ def viewInventory(multiplier,fortune,upgradeInv,score,end=False):
         missing_upg += 1
 
     if upgradeInv["st free"]:
-        texT += ('Start Mining Freely')
+        texT += ('\nStart Mining Freely')
     else:
         missing_upg += 1
 
     if upgradeInv["diag mine"]:
-        texT += ('Diagonal Mining')
+        texT += ('\nDiagonal Mining')
     else:
         missing_upg += 1
     if upgradeInv["unl mine"]:
-        texT += ('Removal of Neccesity of Nearby Air to Mine')
+        texT += ('\nRemoval of Neccesity of Nearby Air to Mine')
     else:
         missing_upg += 1
 
     if upgradeInv["auto"][0]:
-        texT += ('Automatic Mining')
+        texT += ('\nAutomatic Mining')
     else:
         missing_upg += 1
 
     if upgradeInv["ore ext"]:
-        texT += ('Allow Pseudo Ore Spawning')
+        texT += ('\nAllow Pseudo Ore Spawning')
     
     if upgradeInv["time"]:
-        texT += ('Time Per Round Increase')
+        texT += ('\nTime Per Round Increase')
     else:
         missing_upg += 1
     if upgradeInv['Xtime']:
-        texT += ('Infinite Time Per Round')
+        texT += ('\nInfinite Time Per Round')
     else:
         missing_upg += 1
     if upgradeInv["ins nex"]:
-        texT += ("Removal of 5-Second Lock on 'Next' Button")
+        texT += ("\nRemoval of 5-Second Lock on 'Next' Button")
     else:
         missing_upg += 1
 
     if upgradeInv["tnt"]:
-        texT += ('3x3 TNT Blast Mining')
+        texT += ('\n3x3 TNT Blast Mining')
     else:
         missing_upg += 1
     if upgradeInv["tnt start"]:
-        texT += ('Start Round With 5x5 TNT Blast')
+        texT += ('\nStart Round With 5x5 TNT Blast')
     else:
         missing_upg += 1
 
     if upgradeInv['ext dim']:
-        texT += ('Unlocked End Dimension')
+        texT += ('\nUnlocked End Dimension')
     else:
         missing_upg += 1
 
     if upgradeInv["dim pick"][0]:
-        texT += ('Select Next Dimension Button')
+        texT += ('\nSelect Next Dimension Button')
     else:
         missing_upg += 1
     if upgradeInv["upg re"]:
-        texT += ('Reroll Upgrades Button')
+        texT += ('\nReroll Upgrades Button')
     else:
         missing_upg += 1
     if upgradeInv["stat view"]:
-        texT += ('Stat and Upgrades Viewing Button')
+        texT += ('\nStat and Upgrades Viewing Button')
     else:
         missing_upg += 1
     
