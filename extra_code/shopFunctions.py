@@ -35,6 +35,10 @@ def shopList(upgradeInv,dimensionPickB,upgReroll,command,r):
 
     if (not upgradeInv['bedr'][0]) and (upgradeInv['bedr'][1]):
         upgrades.append('bedr')
+    elif not upgradeInv["penalty b"]:
+        upgrades.append('penalty b')
+    elif not upgradeInv["penalty b+"]:
+        upgrades.append('penalty b+')
 
     if not upgradeInv["auto"][0]:
         upgrades.append('auto')
@@ -141,6 +145,8 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
             upg = tk.Button(root, text = '🗿\nRemove Endstone Penalty:\n1 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty e',1,False))
         if upg == 'penalty p':
             upg = tk.Button(root, text = '🏺\nRemove Potone Penalty:\n33 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty p',33,False))
+        if upg == 'penalty b':
+            upg = tk.Button(root, text = '🕋\nRemove Bedrock Penalty:\n77 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty b',77,False))
 
         if upg == 'penalty s+':
             upg = tk.Button(root, text = '📎\nPositive Score Stone:\n500 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty s+',500,False))
@@ -152,6 +158,8 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
             upg = tk.Button(root, text = '🔩\nPositive Score Endstone:\n150 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty e+',150,False))
         if upg == 'penalty p+':
             upg = tk.Button(root, text = '☣️\nPositive Score Potone:\n250 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty p+',250,False))
+        if upg == 'penalty b+':
+            upg = tk.Button(root, text = '💍\nPositive Score Bedrock:\n333 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('penalty b+',333,False))
 
         if upg == 'luck':
             upg = tk.Button(root, text = '☘️\nEnhance Ore Spawns:\n5000 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('luck',5000,False))
