@@ -66,10 +66,6 @@ def viewInventory(multiplier,fortune,upgradeInv,score,end=False):
         texT += ('\nDiagonal Mining')
     else:
         missing_upg += 1
-    if upgradeInv["unl mine"]:
-        texT += ('\nRemoval of Neccesity of Nearby Air to Mine')
-    else:
-        missing_upg += 1
 
     if upgradeInv["auto"][0]:
         texT += ('\nAutomatic Mining')
@@ -140,9 +136,12 @@ def viewInventory(multiplier,fortune,upgradeInv,score,end=False):
         secrets.append('\nPoisonous Potato Ore')
     else:
         missing_secrets += 1
-    
+    if upgradeInv['unl mine'][0]:
+        texT += ('\nRemoval of Neccesity of Nearby Air to Mine')
+    else:
+        missing_upg += 1
     if upgradeInv['🏆'][0]:
-        secrets.append('\nHidden Trophy (for Mining Poisonous Potato Ore)')
+        secrets.append('\nHidden Trophy + Poisonous Potato Dimension')
     else:
         missing_secrets += 1
     if upgradeInv['penalty p']:
@@ -153,6 +152,7 @@ def viewInventory(multiplier,fortune,upgradeInv,score,end=False):
         secrets.append('\nPositive Score for Mining Potone')
     else:
         missing_secrets += 1
+
 
     if len(secrets) > 0:
         texT += '\n\nSecrets:'
