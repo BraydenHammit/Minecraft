@@ -1,5 +1,8 @@
 import tkinter as tk
 
+def close(TK):
+    TK.destroy()
+
 def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,end=False):
     #Base Variables:
     master = tk.Tk()
@@ -8,6 +11,7 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,end=False):
     else:
         master.title("Current Stats:")
     texT = f'Score: {score}\nMultiplier: x{multiplier}\nFortune: {upgradeInv["fortune"][1]}% for x{fortune}\n\nUpgrades:'
+    ok = tk.Button(master,text='Ok', bg='gray85', command = lambda: close(master))
     missing_upg = 0
     missing_secrets = 0
     missing_secretsM = 0
@@ -193,10 +197,18 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,end=False):
         texT += f'\nMissing Mini-Secrets: {missing_secretsM}'
 
 
+    #Blocks Mined:
+    texT += '\n\nBlocks Mined:'
+    for key, value in blocksMined.items():
+        if (key == 'bedrock' and upgradeInv['bedr'][0]) or ((('potone' in key) or key == 'resin') and upgradeInv['🏆'][0]) or (('poisonous' in key) and upgradeInv['potato']) or (key in ('amethyst','gilded blackstone','glowstone') and upgradeInv['ore ext']) or (key == 'endstone' and upgradeInv['ext dim']) or (key not in ('bedrock','amethyst','gilded blackstone','glowstone','resin','endstone') and (not 'poisonous' in key)and (not 'potone' in key)):
+            texT += f'\n{key.title()}: {value}'
+
+
 
     
     #Open/Start Window:
     text = tk.Label(master, text=texT)
     text.pack(pady=5,padx=5)
+    ok.pack(pady=7,padx=5)
 
     master.mainloop()
