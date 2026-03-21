@@ -613,7 +613,7 @@ def autoMine():
 
 #Round Function:
 def nextRound():
-    global nextTimer, blocksN, blocks, aMine, timerAfter, nextLock
+    global nextTimer, blocksN, blocks, aMine, timerAfter, nextLock, dimension
     nextTimer = 5
     blocks = []
     blocksN = []
