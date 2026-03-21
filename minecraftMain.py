@@ -593,7 +593,7 @@ def autoMine():
                 c = ran.choice(valid)[1]
                 blockN = blocksN[r][c]
                 block = blocks[r][c]
-                if blockN not in ('bedrock','air','barrier','chest'):
+                if blockN not in ('bedrock','air','barrier','chest','ender chest'):
                     block.grid_forget()
                     blocks[r][c] = 'air'
                     blocksN[r][c] = 'air'
@@ -604,6 +604,13 @@ def autoMine():
                         play(sounds['xp'],'break block')
                     if blockN == 'poisonous potato':
                         upgradeInv['🏆'][2] = True
+                    if r >= 9 and dimension == 'overworld' and block not in ('bedrock','deepslate','amethyst'):
+                        blockM = 'deepslate '+block
+                    elif dimension == 'poisonous potato' and block not in ('potone','resin'):
+                        blockM = 'potone '+block
+                    else: 
+                        blockM = block
+                    blocksMined[blockM] += 1
 
     aMine = root.after(1000,autoMine)
 
