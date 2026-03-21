@@ -29,6 +29,53 @@ nextLock = None
 timerAfter = None
 blocks = []
 blocksN = []
+dimension = None
+
+blocksMined = {
+    #Rocks:
+            'stone': 0,
+            'deepslate': 0,
+            'bedrock': 0,
+            'netherrack': 0,
+            'endstone': 0,
+            #Ores:
+            'coal': 0,
+            'diamond': 0,
+            'iron': 0,
+            'emerald': 0,
+            'gold': 0,
+            'copper': 0,
+            'redstone': 0,
+            'lapis': 0,
+            #Deepslate Ores:
+            'deepslate emerald': 0,
+            'deepslate coal': 0,
+            'deepslate diamond': 0,
+            'deepslate gold': 0,
+            'deepslate iron': 0,
+            'deepslate lapis': 0,
+            'deepslate redstone': 0,
+            'deepslate copper': 0,
+            #Nether Ores:
+            'netherite': 0,
+            'nether gold': 0,
+            'quartz': 0,
+            #Pseudo-Ores:
+            'amethyst': 0,
+            'gilded blackstone': 0,
+            'glowstone': 0,
+            #Poisonous Potato:
+            'poisonousPotato': 0,
+            'deepslate poisonous potato': 0,
+            'resin': 0,
+            'potone diamond': 0,
+            'potone iron': 0,
+            'potone gold': 0,
+            'potone copper': 0,
+            'potone redstone': 0,
+            'potone lapis': 0,
+            'potone': 0
+}
 
 upgradeInv = {
     #Penalties:
@@ -214,7 +261,7 @@ def trophyButton(sound):
 
 def commandButton(sound):
     play(sound,'click')
-    viewInventory(multiplier,fortune,upgradeInv,score)
+    viewInventory(multiplier,fortune,upgradeInv,score,blocksMined)
 
 def keyClick(t):
     global upgradeInv, key, keyE
@@ -279,7 +326,7 @@ def invUpgrade(t,c,m):
 
 #After Shop Closes:
 def nextRoundA():
-    global upgrades, dimensionPickB
+    global upgrades, dimensionPickB, dimension
     for _ in upgrades:
         _.grid_forget()
 
@@ -311,7 +358,7 @@ def nextRoundA():
 
 
 def button_click(r,c,block):
-    global start, score, nextTimer, blocksN, blocks, nextR, upgradeInv, attemptedBedrock
+    global start, score, nextTimer, blocksN, blocks, nextR, upgradeInv, attemptedBedrock, blocksMined
     if (block not in ('ender chest','chest')) and (block != 'bedrock' or upgradeInv['bedr'][0]) and (not(r == 15 and c in (0,1,2))):
         check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone')))
         check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
@@ -327,6 +374,7 @@ def button_click(r,c,block):
                     start = False
                     score += scoreAS('bedrock',upgradeInv,multiplier,score)
                     play(sounds['glass'],'break block')
+                    blocksMined['bedrock'] += 1
 
             elif upgradeInv['tnt start'] and start:
                 play(sounds['tnt'],'break block')
@@ -345,6 +393,14 @@ def button_click(r,c,block):
                         score += scoreAS(block,upgradeInv,multiplier,score)
                         if block == 'poisonous potato':
                             upgradeInv['🏆'][2] = True
+                        if rr >= 9 and dimension == 'overworld' and block not in ('bedrock','deepslate'):
+                            blockM = 'deepslate '+block
+                        elif dimension == 'poisonous potato' and block not in ('potone','resin'):
+                            blockM = 'potone '+block
+                        else: 
+                            blockM = block
+                        blocksMined[blockM] += 1
+                            
 
 
             elif upgradeInv['tnt']:
@@ -362,6 +418,13 @@ def button_click(r,c,block):
                         score += scoreAS(block,upgradeInv,multiplier,score)
                         if block == 'poisonous potato':
                             upgradeInv['🏆'][2] = True
+                        if rr >= 9 and dimension == 'overworld' and block not in ('bedrock','deepslate'):
+                            blockM = 'deepslate '+block
+                        elif dimension == 'poisonous potato' and block not in ('potone','resin'):
+                            blockM = 'potone '+block
+                        else: 
+                            blockM = block
+                        blocksMined[blockM] += 1
 
 
             else:
@@ -376,6 +439,13 @@ def button_click(r,c,block):
                     play(sounds['xp'],'break block')
                 if block == 'poisonous potato':
                     upgradeInv['🏆'][2] = True
+                if r >= 9 and dimension == 'overworld' and block not in ('bedrock','deepslate'):
+                    blockM = 'deepslate '+block
+                elif dimension == 'poisonous potato' and block not in ('potone','resin'):
+                    blockM = 'potone '+block
+                else: 
+                    blockM = block
+                blocksMined[blockM] += 1
 
             blocks[15][0].configure(text=round(score,2))
 

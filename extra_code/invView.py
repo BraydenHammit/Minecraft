@@ -1,6 +1,6 @@
 import tkinter as tk
 
-def viewInventory(multiplier,fortune,upgradeInv,score,end=False):
+def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,end=False):
     #Base Variables:
     master = tk.Tk()
     if end:
