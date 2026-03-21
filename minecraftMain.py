@@ -65,7 +65,7 @@ blocksMined = {
             'gilded blackstone': 0,
             'glowstone': 0,
             #Poisonous Potato:
-            'poisonousPotato': 0,
+            'poisonous potato': 0,
             'deepslate poisonous potato': 0,
             'resin': 0,
             'potone diamond': 0,
