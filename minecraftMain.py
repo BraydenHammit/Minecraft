@@ -393,7 +393,7 @@ def button_click(r,c,block):
                         score += scoreAS(block,upgradeInv,multiplier,score)
                         if block == 'poisonous potato':
                             upgradeInv['🏆'][2] = True
-                        if rr >= 9 and dimension == 'overworld' and block not in ('bedrock','deepslate'):
+                        if rr >= 9 and dimension == 'overworld' and block not in ('bedrock','deepslate','amethyst'):
                             blockM = 'deepslate '+block
                         elif dimension == 'poisonous potato' and block not in ('potone','resin'):
                             blockM = 'potone '+block
@@ -418,7 +418,7 @@ def button_click(r,c,block):
                         score += scoreAS(block,upgradeInv,multiplier,score)
                         if block == 'poisonous potato':
                             upgradeInv['🏆'][2] = True
-                        if rr >= 9 and dimension == 'overworld' and block not in ('bedrock','deepslate'):
+                        if rr >= 9 and dimension == 'overworld' and block not in ('bedrock','deepslate','amethyst'):
                             blockM = 'deepslate '+block
                         elif dimension == 'poisonous potato' and block not in ('potone','resin'):
                             blockM = 'potone '+block
@@ -439,7 +439,7 @@ def button_click(r,c,block):
                     play(sounds['xp'],'break block')
                 if block == 'poisonous potato':
                     upgradeInv['🏆'][2] = True
-                if r >= 9 and dimension == 'overworld' and block not in ('bedrock','deepslate'):
+                if r >= 9 and dimension == 'overworld' and block not in ('bedrock','deepslate','amethyst'):
                     blockM = 'deepslate '+block
                 elif dimension == 'poisonous potato' and block not in ('potone','resin'):
                     blockM = 'potone '+block
