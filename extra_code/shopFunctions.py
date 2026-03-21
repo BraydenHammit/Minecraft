@@ -33,8 +33,8 @@ def shopList(upgradeInv,dimensionPickB,upgReroll,command,r):
     elif (not upgradeInv['unl mine'][0]) and (upgradeInv['unl mine'][1]):
         upgrades.append('unl mine')
 
-    if (not upgradeInv['bedr'][0]):
-        if(upgradeInv['bedr'][1]):
+    if (upgradeInv['bedr'][1]):
+        if (not upgradeInv['bedr'][0]):
             upgrades.append('bedr')
         elif not upgradeInv["penalty b"]:
             upgrades.append('penalty b')
