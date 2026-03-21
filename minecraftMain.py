@@ -312,12 +312,23 @@ def nextRoundA():
 
 def button_click(r,c,block):
     global start, score, nextTimer, blocksN, blocks, nextR, upgradeInv, attemptedBedrock
-    if block not in ('bedrock','ender chest','chest'):
+    if (block not in ('ender chest','chest')) and (block != 'bedrock' or upgradeInv['bedr'][0]) and (not(r == 15 and c in (0,1,2))):
         check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone')))
         check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
         if check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'][0] and not start):
 
-            if upgradeInv['tnt start'] and start:
+            if upgradeInv['bedr'][0] and block == 'bedrock':
+                check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone')))
+                check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
+                if check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'][0] and not start):
+                    blocks[r][c].grid_forget()
+                    blocks[r][c] = 'air'
+                    blocksN[r][c] = 'air'
+                    start = False
+                    score += scoreAS('bedrock',upgradeInv,multiplier,score)
+                    play(sounds['glass'],'break block')
+
+            elif upgradeInv['tnt start'] and start:
                 play(sounds['tnt'],'break block')
                 start = False
                 check = [[r-2,c-2],[r-2,c-1],[r-2,c],[r-2,c+1],[r-2,c+2],
@@ -380,14 +391,7 @@ def button_click(r,c,block):
         else:
             play(sounds['break'],'click')
 
-    elif upgradeInv['bedr'][0] and (block not in ('chest','ender chest')) and (not (r == 15 and (c in (0, 1, 2)))):
-        blocks[r][c].grid_forget()
-        blocks[r][c] = 'air'
-        blocksN[r][c] = 'air'
-        start = False
-        score += scoreAS(block,upgradeInv,multiplier,score)
-        play(sounds['glass'],'break block')
-
+    
     elif block == 'chest' and upgradeInv['unl mine'][2]:
         upgradeInv['unl mine'][1] = True
         blocks[r][c].configure(image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
@@ -402,6 +406,7 @@ def button_click(r,c,block):
         if block == 'bedrock':
             attemptedBedrock += 1
         play(sounds['break'],'click')
+
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
