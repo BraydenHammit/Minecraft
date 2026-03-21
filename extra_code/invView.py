@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import scrolledtext
 
 def close(TK):
     TK.destroy()
@@ -15,6 +16,7 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,end=False):
     missing_upg = 0
     missing_secrets = 0
     missing_secretsM = 0
+    text_area = scrolledtext.ScrolledText(master, wrap=tk.WORD, width=40, height=10, highlightthickness=2, highlightbackground="black", relief="flat")
 
 
 
@@ -207,8 +209,9 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,end=False):
 
     
     #Open/Start Window:
-    text = tk.Label(master, text=texT)
-    text.pack(pady=5,padx=5)
+    text_area.pack(padx=10, pady=10)
+    text_area.insert(tk.INSERT, texT)
+    text_area.configure(state='disabled')
     ok.pack(pady=7,padx=5)
 
     master.mainloop()
