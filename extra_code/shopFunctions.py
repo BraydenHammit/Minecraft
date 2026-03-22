@@ -109,12 +109,8 @@ def shopList(blocksMined,upgradeInv,dimensionPickB,upgReroll,command,r):
         else:
             command.grid(row=0, column=16, sticky="nsew", pady=5, padx=5)
 
-    for key, val in blocksMined.items():
-        if key != 'ruby' and val == 0:
-            break
-    else:
-        if not upgradeInv['ruby'][0]:
-            upgrades.append('ruby')
+    if (not upgradeInv['ruby'][0]) and (upgradeInv['ruby'][1]):
+        upgrades.append('ruby')
 
 
 
