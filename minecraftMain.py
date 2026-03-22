@@ -71,7 +71,7 @@ blocksMined = {
             'amethyst': 0,
             'gilded blackstone': 0,
             'glowstone': 0,
-            #Poisonous Potato:
+            #Hidden:
             'poisonous potato': 0,
             'deepslate poisonous potato': 0,
             'resin': 0,
@@ -81,7 +81,8 @@ blocksMined = {
             'potone copper': 0,
             'potone redstone': 0,
             'potone lapis': 0,
-            'potone': 0
+            'potone': 0,
+            'ruby': 0
 }
 
 upgradeInv = {
@@ -192,7 +193,8 @@ images = {
                 'potone': tk.PhotoImage(file='assets/images/potoneImageMinecraft.png'),
                 #Other:
                 'chest': tk.PhotoImage(file='assets/images/chestImageMinecraft.png'),
-                'enderChest': tk.PhotoImage(file='assets/images/enderChestImageMinecraft.png')
+                'enderChest': tk.PhotoImage(file='assets/images/enderChestImageMinecraft.png'),
+                'ruby': tk.PhotoImage(file='assets/images/rubyImageMinecraft.png')
             }
 
 command = tk.Button(root, height=1, width=105, image=images['commandBlock'], bg="#e1b44c", command=lambda: commandButton(sounds['click']))
