@@ -3,9 +3,9 @@ import tkinter as tk
 def close(TK):
     TK.destroy()
 
-def openSettings(upgradeInv,settings):
+def openSettings(upgradeInv,settings,root):
     #Base Variables:
-    master = tk.Tk()
+    master = tk.Toplevel(root)
     master.title("Settings")
     tntV = tk.BooleanVar(value=settings['tnt'])
     tntSV = tk.BooleanVar(value=settings['tnt start'])
@@ -32,7 +32,7 @@ def openSettings(upgradeInv,settings):
         label.pack(pady=5)
     ok.pack(pady=5)
 
-    master.mainloop()
+    root.wait_window(master)
 
     settings = {
         'tnt': tntV.get(),

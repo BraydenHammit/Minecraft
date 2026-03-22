@@ -274,7 +274,7 @@ def commandButton(sound):
 def settingsButton(sound):
     global settings
     play(sound,'click')
-    settings = openSettings(upgradeInv,settings)
+    settings = openSettings(upgradeInv,settings,root)
 
 def keyClick(t):
     global upgradeInv, key, keyE
