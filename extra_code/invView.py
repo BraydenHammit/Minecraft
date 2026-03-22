@@ -16,7 +16,7 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,end=False):
     missing_upg = 0
     missing_secrets = 0
     missing_secretsM = 0
-    text_area = scrolledtext.ScrolledText(master, wrap=tk.WORD, width=40, height=10, highlightthickness=2, highlightbackground="black", relief="flat")
+    text_area = scrolledtext.ScrolledText(master, wrap=tk.WORD, width=50, height=10, highlightthickness=2, highlightbackground="black", relief="flat")
 
 
 
