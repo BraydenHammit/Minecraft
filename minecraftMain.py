@@ -122,6 +122,7 @@ upgradeInv = {
     '🏆': [False,None,False],
     'unl mine': [False,False,False],
     'bedr': [False,False,False],
+    'ruby': [True],
     #Mini-Secret:
     'penalty p': False,
     'penalty p+': False,
@@ -267,7 +268,7 @@ def dimensionSwitch():
 
 def trophyButton(sound):
     play(sound,'click')
-    HOS()
+    HOS(upgradeInv)
 
 def commandButton(sound):
     play(sound,'click')

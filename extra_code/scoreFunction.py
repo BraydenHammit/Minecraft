@@ -52,6 +52,8 @@ def scoreAS(block,upgradeInv,multiplier,score):
         score = 12.5 * multiplier
     elif (block == 'poisonous potato'):
         score = 537.25 * multiplier
+    elif (block == 'ruby'):
+        score = 17.5 * multiplier
 
     #Fortune:
     if upgradeInv['fortune'][0] and score > 0:
@@ -71,10 +73,14 @@ def scoreAS(block,upgradeInv,multiplier,score):
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Hidden Ore Scores:
-def HOS():
+def HOS(upgradeInv):
     hos = tk.Tk()
     hos.title("Hidden Ore Values:")
     hos.geometry('500x60')
+    texT='Potone = -1\nResin = 12.5'
+    if upgradeInv['ruby'][0]:
+        text += '\nRuby = 17.5'
+    texT += '\nPoisonous Potato = 537.25'
 
-    text = tk.Label(hos, text='Potone = -1\nResin = 12.5\nPoisonous Potato = 537.25')
+    text = tk.Label(hos, text=texT)
     text.pack(pady=5,padx=5)
