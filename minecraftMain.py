@@ -619,12 +619,12 @@ def autoMine():
                         play(sounds['xp'],'break block')
                     if blockN == 'poisonous potato':
                         upgradeInv['🏆'][2] = True
-                    if r >= 9 and dimension == 'overworld' and block not in ('bedrock','deepslate','amethyst'):
-                        blockM = 'deepslate '+block
-                    elif dimension == 'poisonous potato' and block not in ('potone','resin'):
-                        blockM = 'potone '+block
+                    if r >= 9 and dimension == 'overworld' and blockN not in ('bedrock','deepslate','amethyst'):
+                        blockM = 'deepslate '+blockN
+                    elif dimension == 'poisonous potato' and blockN not in ('potone','resin'):
+                        blockM = 'potone '+blockN
                     else: 
-                        blockM = block
+                        blockM = blockN
                     blocksMined[blockM] += 1
 
     aMine = root.after(1000,autoMine)
