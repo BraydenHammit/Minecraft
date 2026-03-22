@@ -1,7 +1,7 @@
 import tkinter as tk
 
 def close(TK):
-    TK.quit()
+    TK.destroy()
 
 def openSettings(upgradeInv,settings):
     #Base Variables:
