@@ -373,7 +373,7 @@ def nextRoundA():
 
 def button_click(r,c,block):
     global start, score, nextTimer, blocksN, blocks, nextR, upgradeInv, attemptedBedrock, blocksMined
-    if (block not in ('ender chest','chest')) and (block != 'bedrock' or upgradeInv['bedr'][0]) and (not(r == 15 and c in (0,1,2))):
+    if (block not in ('ender chest','chest','air')) and (block != 'bedrock' or upgradeInv['bedr'][0]) and (not(r == 15 and c in (0,1,2))):
         check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone')))
         check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
         if check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'][0] and not start):
@@ -382,7 +382,8 @@ def button_click(r,c,block):
                 check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone')))
                 check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
                 if check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'][0] and not start):
-                    blocks[r][c].grid_forget()
+                    if block != 'air':
+                        blocks[r][c].grid_forget()
                     blocks[r][c] = 'air'
                     blocksN[r][c] = 'air'
                     start = False
@@ -442,7 +443,8 @@ def button_click(r,c,block):
 
 
             else:
-                blocks[r][c].grid_forget()
+                if block != 'air':
+                    blocks[r][c].grid_forget()
                 blocks[r][c] = 'air'
                 blocksN[r][c] = 'air'
                 start = False
