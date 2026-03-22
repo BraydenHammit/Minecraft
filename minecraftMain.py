@@ -122,7 +122,7 @@ upgradeInv = {
     '🏆': [False,None,False],
     'unl mine': [False,False,False],
     'bedr': [False,False,False],
-    'ruby': [True],
+    'ruby': [False],
     #Mini-Secret:
     'penalty p': False,
     'penalty p+': False,
