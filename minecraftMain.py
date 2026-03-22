@@ -9,6 +9,7 @@ from extra_code.oreFunct import oreO, oreN, oreP
 from extra_code.oreFunctDef import defOreN, defOreO, defOreE, defOreP
 from extra_code.dimFuncts import dimensionR, dimButton
 from extra_code.invView import viewInventory
+from extra_code.settings import openSettings
 
 #Variables:
 if plt.system() in ('Darwin','Linux'):
@@ -30,6 +31,12 @@ timerAfter = None
 blocks = []
 blocksN = []
 dimension = None
+
+settings = {
+    'tnt': True,
+    'tnt start': True,
+    'auto mine': True 
+}
 
 blocksMined = {
             #Rocks:
@@ -134,6 +141,7 @@ upgReroll = tk.Button(root, text='Reroll Upgrades', bg='gray30', fg="gray5", com
 multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray30', fg="gray5", command=lambda: button_click(1,0,'bedrock'))
 fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}', bg='gray30', fg="gray5", command=lambda: button_click(2,0,'bedrock'))
 upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray30', fg="gray5", command=lambda: trophyButton(sounds['level']))
+settingsB = tk.Button(root, text='Settings', bg='gray30', fg="gray5", command=lambda: settingsButton(sounds['click']))
 
 images = {
             #Buttons:
@@ -263,6 +271,11 @@ def commandButton(sound):
     play(sound,'click')
     viewInventory(multiplier,fortune,upgradeInv,score,blocksMined)
 
+def settingsButton(sound):
+    global settings
+    play(sound,'click')
+    settings = openSettings(upgradeInv,settings)
+
 def keyClick(t):
     global upgradeInv, key, keyE
     if t == 'o':
@@ -347,6 +360,7 @@ def nextRoundA():
         None
 
     command.grid_forget()
+    settingsB.grid_forget()
     multButton.grid_forget()
     fortButton.grid_forget()
     upgradeInv['🏆'][1].grid_forget()
@@ -376,7 +390,7 @@ def button_click(r,c,block):
                     play(sounds['glass'],'break block')
                     blocksMined['bedrock'] += 1
 
-            elif upgradeInv['tnt start'] and start:
+            elif (upgradeInv['tnt start'] and start) and settings['tnt start']:
                 play(sounds['tnt'],'break block')
                 start = False
                 check = [[r-2,c-2],[r-2,c-1],[r-2,c],[r-2,c+1],[r-2,c+2],
@@ -403,7 +417,7 @@ def button_click(r,c,block):
                             
 
 
-            elif upgradeInv['tnt']:
+            elif upgradeInv['tnt'] and settings['tnt']:
                 play(sounds['tnt'],'break block')
                 start = False
                 check = [[r+1,c-1], [r+1,c], [r+1,c+1],
@@ -498,6 +512,7 @@ def nextRoundPre():
 
     blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
     blocks[15][0].configure(text=f'Score: {score}',bg='gray30',fg='gray5')
+    settingsB.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
     multButton.configure(text=f'Multiplier: x{multiplier}')
     multButton.grid(row=14,column=0, sticky="nsew", padx=5, pady=5)
     fortButton.configure(text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}')
@@ -574,7 +589,7 @@ def timeCount():
 
 def autoMine():
     global aMine
-    if not start:
+    if (not start) and settings['auto mine']:
         global blocks, blocksN, score
         check1, check2 = False, False
         valid = []
