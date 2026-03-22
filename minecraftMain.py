@@ -512,6 +512,7 @@ def button_click(r,c,block):
 
 #Shop Start-Up:
 def nextRoundPre():
+    global key, keyE, keyN
     root.configure(background='grey')
 
     stopPlaying(soundsPlaying['roundMusic'])
@@ -538,8 +539,8 @@ def nextRoundPre():
         keyE.grid(row=15,column=15, sticky="nsew", padx=5, pady=5)
     if upgradeInv['🏆'][0]:
         upgradeInv['🏆'][1].grid(row=12,column=0, sticky="nsew", padx=5, pady=5)
-    for key, val in blocksMined.items():
-        if key != 'ruby' and val == 0:
+    for k, v in blocksMined.items():
+        if k != 'ruby' and v == 0:
             break
     else:
         if not upgradeInv['ruby'][2]:
