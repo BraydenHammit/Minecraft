@@ -543,7 +543,7 @@ def nextRoundPre():
             break
     else:
         if not upgradeInv['ruby'][2]:
-            keyE.grid(row=15,column=15, sticky="nsew", padx=5, pady=5)
+            keyN.grid(row=15,column=15, sticky="nsew", padx=5, pady=5)
 
     nextShop(False)
 
