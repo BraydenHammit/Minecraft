@@ -133,9 +133,9 @@ def defOreE(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv):
         ore = 'bedrock'
     elif (r == 15) and (c == 2):
         if upgradeInv['Xtime']:
-            button = tk.Button(root, text='Time: ∞', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+            button = tk.Button(root, text='Time: ∞', bg='#E0DE93', fg='#716F3D', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         else:
-            button = tk.Button(root, text=f'Time: {timer}', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+            button = tk.Button(root, text=f'Time: {timer}', bg='#E0DE93', fg='#716F3D', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         ore = 'bedrock'
     elif (c == 15) and (r == 15) and not upgradeInv['bedr'][1]:
         button = tk.Button(root, image = images['enderChest'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'ender chest'))
@@ -155,16 +155,16 @@ def defOreE(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv):
 #Poisonous Potato:
 def defOreP(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
     if (c == 0) and (r == 15):
-        button = tk.Button(root, text=round(score,2), bg='#E0DE93', fg="#716F3D", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+        button = tk.Button(root, text=round(score,2), bg='#965628', fg="#592D0E", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         ore = 'bedrock'
     elif (c == 1) and (r == 15):
-        button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg='#E0DE93', fg="#716F3D", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+        button = tk.Button(root, text=f'Next (🔒 {nextTimer})', bg="#965628", fg="#592D0E", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         ore = 'bedrock'
     elif (r == 15) and (c == 2):
         if upgradeInv['Xtime']:
-            button = tk.Button(root, text='Time: ∞', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+            button = tk.Button(root, text='Time: ∞', bg='#965628', fg='#592D0E', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         else:
-            button = tk.Button(root, text=f'Time: {timer}', bg='gray30', fg='gray5', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
+            button = tk.Button(root, text=f'Time: {timer}', bg='#965628', fg='#592D0E', command=lambda r=r, c=c: button_click(r,c,'bedrock'))
         ore = 'bedrock'
     elif ore != 'none':
         if ore == 'resin':
