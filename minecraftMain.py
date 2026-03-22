@@ -195,6 +195,7 @@ images = {
                 #Other:
                 'chest': tk.PhotoImage(file='assets/images/chestImageMinecraft.png'),
                 'enderChest': tk.PhotoImage(file='assets/images/enderChestImageMinecraft.png'),
+                'trappedChest': tk.PhotoImage(file='assets/images/trappedChestImageMinecraft.png'),
                 'ruby': tk.PhotoImage(file='assets/images/rubyImageMinecraft.png')
             }
 
