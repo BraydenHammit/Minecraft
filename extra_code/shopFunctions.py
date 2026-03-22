@@ -4,7 +4,7 @@ import random as ran
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Upgrade List:
-def shopList(upgradeInv,dimensionPickB,upgReroll,command,r):
+def shopList(blocksMined,upgradeInv,dimensionPickB,upgReroll,command,r):
     upgrades = ['click','click5','click10']
 
     if not upgradeInv["penalty s"]:
@@ -109,6 +109,13 @@ def shopList(upgradeInv,dimensionPickB,upgReroll,command,r):
         else:
             command.grid(row=0, column=16, sticky="nsew", pady=5, padx=5)
 
+    for key, val in blocksMined.items():
+        if key != 'ruby' and val == 0:
+            break
+    else:
+        if not upgradeInv['ruby'][0]:
+            upgrades.append('ruby')
+
 
 
     return upgrades
@@ -189,6 +196,8 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
             upg = tk.Button(root, text = '🃏\n???:\n666 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('potato',666,False))
         if upg == 'ore ext':
             upg = tk.Button(root, text = '💎\nUnlock Pseudo-Ores:\n750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ore ext',750,False))
+        if upg == 'ruby':
+            upg = tk.Button(root, text = '♦️\nUnlock Ruby Ore:\n675 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ruby',675,False))
 
         if upg == 'time':
             upg = tk.Button(root, text = '🕰\nMore Round Time:\n475 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('time',475,False))

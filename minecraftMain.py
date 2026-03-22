@@ -542,7 +542,7 @@ def nextShop(r):
     else:   #1st Time In Shop (This Round):
         play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic',v=2.5)
 
-    upgrades = shopList(upgradeInv,dimensionPickB,upgReroll,command,r)
+    upgrades = shopList(blocksMined,upgradeInv,dimensionPickB,upgReroll,command,r)
 
     
     #Pick Random Upgrades:
