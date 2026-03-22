@@ -3,7 +3,7 @@ import random as ran
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Overworld:
-def oreO(upgradeInv):
+def oreO(upgradeInv,r):
     if upgradeInv['luckM']:
         randomNum = ran.randint(0,35)
     elif upgradeInv['luck']:
@@ -31,6 +31,8 @@ def oreO(upgradeInv):
         ore = 'amethyst'   
     elif randomNum == 33 and upgradeInv['potato'] and ran.randrange(77) == 33:
         ore = 'poisonous potato'
+    elif randomNum == 34 and upgradeInv['ruby'][0] and r <= 8:
+        ore = 'ruby'
     else:
         ore = 'none'
 

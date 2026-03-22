@@ -657,7 +657,7 @@ def nextRound():
             root.grid_columnconfigure(c, weight=1)
 
             if dimension == 'overworld':
-                ore = oreO(upgradeInv)
+                ore = oreO(upgradeInv,r)
                 button, ore = defOreO(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv)
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
