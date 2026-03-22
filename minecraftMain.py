@@ -122,7 +122,7 @@ upgradeInv = {
     '🏆': [False,None,False],
     'unl mine': [False,False,False],
     'bedr': [False,False,False],
-    'ruby': [False],
+    'ruby': [False,False,False],
     #Mini-Secret:
     'penalty p': False,
     'penalty p+': False,
@@ -138,6 +138,7 @@ intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or 
 startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
 key =  tk.Button(root, height=1, width=1, text = '🔑', bg='gray30', command= lambda: keyClick('o'))
 keyE =  tk.Button(root, height=1, width=1, text = '🗝', bg='gray30', command= lambda: keyClick('e'))
+keyN =  tk.Button(root, height=1, width=1, text = '❓', bg='gray30', command= lambda: keyClick('n'))
 dimensionPickB = tk.Button(root, text='Next Dimension:\nRandom', bg="#942465", fg="#550A2A", command=lambda: dimensionSwitch())
 upgReroll = tk.Button(root, text='Reroll Upgrades', bg='gray30', fg="gray5", command=lambda: nextShop(True))
 multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray30', fg="gray5", command=lambda: button_click(1,0,'bedrock'))
@@ -281,13 +282,16 @@ def settingsButton(sound):
     settings = openSettings(upgradeInv,settings,root)
 
 def keyClick(t):
-    global upgradeInv, key, keyE
+    global upgradeInv, key, keyE, keyN
     if t == 'o':
         upgradeInv['unl mine'][2] = True
         key.destroy()
     elif t == 'e':
         upgradeInv['bedr'][2] = True
         keyE.destroy()
+    elif t == 'e':
+        upgradeInv['ruby'][2] = True
+        keyN.destroy()
     play(sounds['level'],'click')
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -377,7 +381,7 @@ def nextRoundA():
 
 def button_click(r,c,block):
     global start, score, nextTimer, blocksN, blocks, nextR, upgradeInv, attemptedBedrock, blocksMined
-    if (block not in ('ender chest','chest','air')) and (block != 'bedrock' or upgradeInv['bedr'][0]) and (not(r == 15 and c in (0,1,2))):
+    if (block not in ('ender chest','chest','trapped chest','air')) and (block != 'bedrock' or upgradeInv['bedr'][0]) and (not(r == 15 and c in (0,1,2))):
         check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone')))
         check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
         if check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'][0] and not start):
@@ -492,6 +496,11 @@ def button_click(r,c,block):
         blocks[r][c].configure(image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
         play(sounds['level'],'click')
 
+    elif block == 'trapped chest' and upgradeInv['ruby'][2]:
+        upgradeInv['ruby'][1] = True
+        blocks[r][c].configure(image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
+        play(sounds['level'],'click')
+
     else:
         if block == 'bedrock':
             attemptedBedrock += 1
@@ -529,6 +538,12 @@ def nextRoundPre():
         keyE.grid(row=15,column=15, sticky="nsew", padx=5, pady=5)
     if upgradeInv['🏆'][0]:
         upgradeInv['🏆'][1].grid(row=12,column=0, sticky="nsew", padx=5, pady=5)
+    for key, val in blocksMined.items():
+        if key != 'ruby' and val == 0:
+            break
+    else:
+        if not upgradeInv['ruby'][2]:
+            keyE.grid(row=15,column=15, sticky="nsew", padx=5, pady=5)
 
     nextShop(False)
 

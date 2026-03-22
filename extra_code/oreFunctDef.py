@@ -143,7 +143,10 @@ def defOreE(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv):
     elif (c == 15) and (r == 15) and not upgradeInv['bedr'][1]:
         button = tk.Button(root, image = images['enderChest'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'ender chest'))
         ore = 'ender chest'
-    elif (c == 14) and (r == 15) and not upgradeInv['unl mine'][1]:
+    elif (c == 14) and (r == 15) and not upgradeInv['ruby'][1]:
+        button = tk.Button(root, image = images['trappedChest'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'trapped chest'))
+        ore = 'trapped chest'
+    elif (c == 13) and (r == 15) and not upgradeInv['unl mine'][1]:
         button = tk.Button(root, image = images['chest'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'chest'))
         ore = 'chest'
     else:
