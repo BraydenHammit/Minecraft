@@ -155,6 +155,10 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,end=False):
         secrets.append('\nHidden Trophy + Poisonous Potato Dimension')
     else:
         missing_secrets += 1
+    if upgradeInv['ruby'][0]:
+        secrets.append('\nRuby Ore')
+    else:
+        missing_secrets += 1
 
 
     secretsM = []
