@@ -79,7 +79,7 @@ def HOS(upgradeInv):
     hos.geometry('500x60')
     texT='Potone = -1\nResin = 12.5'
     if upgradeInv['ruby'][0]:
-        text += '\nRuby = 17.5'
+        texT += '\nRuby = 17.5'
     texT += '\nPoisonous Potato = 537.25'
 
     text = tk.Label(hos, text=texT)
