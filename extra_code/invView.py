@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import scrolledtext
 
 def close(TK):
-    TK.quit()
+    TK.destroy()
 
 def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,end=False):
     #Base Variables:
