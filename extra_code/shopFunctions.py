@@ -193,7 +193,7 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
         if upg == 'ore ext':
             upg = tk.Button(root, text = '💎\nUnlock Pseudo-Ores:\n750 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ore ext',750,False))
         if upg == 'ruby':
-            upg = tk.Button(root, text = '♦️\nUnlock Ruby Ore:\n675 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ruby',675,False))
+            upg = tk.Button(root, text = '♦️\nUnlock Ruby Ore:\n675 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('ruby',675,True))
 
         if upg == 'time':
             upg = tk.Button(root, text = '🕰\nMore Round Time:\n475 Score', bg = 'gray30', fg = 'gray5', command = lambda: invUpgrade('time',475,False))
