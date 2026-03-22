@@ -15,6 +15,12 @@ def openSettings(upgradeInv,settings):
     tnt = tk.Checkbutton(master, text="TNT Mining", variable=tntV)
     tntS = tk.Checkbutton(master, text="TNT Start", variable=tntSV)
     auto = tk.Checkbutton(master, text="Auto Mining", variable=autoV)
+    if settings['tnt']:
+        tnt.select()
+    if settings['tnt start']:
+        tntS.select()
+    if settings['auto mine']:
+        auto.select()
 
     if upgradeInv['tnt']:
         tnt.pack(pady=5)
