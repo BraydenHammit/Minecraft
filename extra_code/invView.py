@@ -206,7 +206,7 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,end=False):
     #Blocks Mined:
     texT += '\n\nBlocks Mined:'
     for key, value in blocksMined.items():
-        if (key == 'bedrock' and upgradeInv['bedr'][0]) or ((('potone' in key) or key == 'resin') and upgradeInv['🏆'][0]) or (('poisonous' in key) and upgradeInv['potato']) or (key in ('amethyst','gilded blackstone','glowstone') and upgradeInv['ore ext']) or (key == 'endstone' and upgradeInv['ext dim']) or (key not in ('bedrock','amethyst','gilded blackstone','glowstone','resin','endstone') and (not 'poisonous' in key)and (not 'potone' in key)):
+        if (key == 'ruby' and upgradeInv['ruby'][0]) or (key == 'bedrock' and upgradeInv['bedr'][0]) or ((('potone' in key) or key == 'resin') and upgradeInv['🏆'][0]) or (('poisonous' in key) and upgradeInv['potato']) or (key in ('amethyst','gilded blackstone','glowstone') and upgradeInv['ore ext']) or (key == 'endstone' and upgradeInv['ext dim']) or (key not in ('bedrock','amethyst','gilded blackstone','glowstone','resin','endstone','ruby') and (not 'poisonous' in key) and (not 'potone' in key)):
             texT += f'\n{key.title()}: {value}'
 
 
