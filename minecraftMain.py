@@ -32,7 +32,7 @@ blocksN = []
 dimension = None
 
 blocksMined = {
-    #Rocks:
+            #Rocks:
             'stone': 0,
             'deepslate': 0,
             'bedrock': 0,
@@ -106,7 +106,7 @@ upgradeInv = {
     'ext dim': False,
     'ore ext': False,
     #Shop Buttons:
-    'dim pick': [False,'o'],
+    'dim pick': [False,'r'],
     'upg re': False,
     'stat view': False,
     #Secret:
@@ -129,7 +129,7 @@ intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or 
 startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
 key =  tk.Button(root, height=1, width=1, text = '🔑', bg='gray30', command= lambda: keyClick('o'))
 keyE =  tk.Button(root, height=1, width=1, text = '🗝', bg='gray30', command= lambda: keyClick('e'))
-dimensionPickB = tk.Button(root, text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D", command=lambda: dimensionSwitch())
+dimensionPickB = tk.Button(root, text='Next Dimension:\nRandom', bg="#942465", fg="#550A2A", command=lambda: dimensionSwitch())
 upgReroll = tk.Button(root, text='Reroll Upgrades', bg='gray30', fg="gray5", command=lambda: nextShop(True))
 multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray30', fg="gray5", command=lambda: button_click(1,0,'bedrock'))
 fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}', bg='gray30', fg="gray5", command=lambda: button_click(2,0,'bedrock'))

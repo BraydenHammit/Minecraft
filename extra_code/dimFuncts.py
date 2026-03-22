@@ -4,6 +4,13 @@ import random as ran
 
 #Random Dimension Function:
 def dimensionR(upgradeInv,root):
+    bgs = {
+        'nether': '#723232',
+        'overworld': 'grey',
+        'end': "#D7D597",
+        'poisonous potato': "#8D4C1F"
+    }
+
     if upgradeInv['dim pick'][0]:
         if upgradeInv['dim pick'][1] == 'n':
             dimension = 'nether'
@@ -17,17 +24,24 @@ def dimensionR(upgradeInv,root):
         elif upgradeInv['dim pick'][1] == 'p':
             dimension = 'poisonous potato'
             root.configure(background="#8D4C1F")
+        elif upgradeInv['dim pick'][1] == 'r':
+            dims = ['overworld','nether']
+            if upgradeInv['ext dim']:
+                dims.append('end')
+            if upgradeInv['🏆'][0]:
+                dims.append('poisonous potato')
+            dimension = ran.choice(dims)
+
 
     elif ran.randint(0,4) == 1:
         if ran.randint(0,2) == 1 and upgradeInv['ext dim']:
             dimension = 'end'
-            root.configure(background="#D7D597")
         else:
             dimension = 'nether'
-            root.configure(background='#723232')
     else:
         dimension = 'overworld'
-        root.configure(background='grey')
+    
+    root.configure(background=bgs[dimension])
 
     return dimension
 
@@ -43,15 +57,18 @@ def dimButton(upgradeInv,dimensionPickB):
             dimensionPickB.configure(text='Next Dimension:\nEnd', fg="#c8bf73", bg="#626047")
             upgradeInv['dim pick'][1] = 'e'
         else:
-            dimensionPickB.configure(text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D")
-            upgradeInv['dim pick'][1] = 'o'
+            dimensionPickB.configure(text='Next Dimension:\nRandom', bg="#942465", fg="#550A2A")
+            upgradeInv['dim pick'][1] = 'r'
     elif upgradeInv['dim pick'][1] == 'e':
         if upgradeInv['🏆'][0]:
             dimensionPickB.configure(text='Next Dimension:\nPoisonous Potato', fg="#e7851c", bg="#724017")
             upgradeInv['dim pick'][1] = 'p'
         else:
-            dimensionPickB.configure(text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D")
-            upgradeInv['dim pick'][1] = 'o'
+            dimensionPickB.configure(text='Next Dimension:\nRandom', bg="#942465", fg="#550A2A")
+            upgradeInv['dim pick'][1] = 'r'
     elif upgradeInv['dim pick'][1] == 'p':
+        dimensionPickB.configure(text='Next Dimension:\nRandom', bg="#942465", fg="#550A2A")
+        upgradeInv['dim pick'][1] = 'r'
+    elif upgradeInv['dim pick'][1] == 'r':
         dimensionPickB.configure(text='Next Dimension:\nOverworld', bg='#1f5f1f', fg="#0DAA0D")
         upgradeInv['dim pick'][1] = 'o'
