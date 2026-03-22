@@ -289,7 +289,7 @@ def keyClick(t):
     elif t == 'e':
         upgradeInv['bedr'][2] = True
         keyE.destroy()
-    elif t == 'e':
+    elif t == 'n':
         upgradeInv['ruby'][2] = True
         keyN.destroy()
     play(sounds['level'],'click')
