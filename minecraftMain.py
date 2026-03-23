@@ -391,7 +391,7 @@ def button_click(r,c,block):
                 check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone')))
                 check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
                 if check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'][0] and not start):
-                    if block != 'air':
+                    if not isinstance(blocks[r][c], str):
                         blocks[r][c].grid_forget()
                     blocks[r][c] = 'air'
                     blocksN[r][c] = 'air'
@@ -412,7 +412,8 @@ def button_click(r,c,block):
                     block = blocksN[rr][cc]
                     if block not in ('bedrock','barrier','air'):
                         blocksN[rr][cc] = 'air'
-                        blocks[rr][cc].grid_forget()
+                        if not isinstance(blocks[r][c], str):
+                            blocks[rr][cc].grid_forget()
                         blocks[rr][cc] = 'air'
                         score += scoreAS(block,upgradeInv,multiplier,score)
                         if block == 'poisonous potato':
@@ -437,7 +438,8 @@ def button_click(r,c,block):
                     block = blocksN[rr][cc]
                     if block not in ('bedrock','barrier','air'):
                         blocksN[rr][cc] = 'air'
-                        blocks[rr][cc].grid_forget()
+                        if not isinstance(blocks[r][c], str):
+                            blocks[rr][cc].grid_forget()
                         blocks[rr][cc] = 'air'
                         score += scoreAS(block,upgradeInv,multiplier,score)
                         if block == 'poisonous potato':
@@ -452,7 +454,7 @@ def button_click(r,c,block):
 
 
             else:
-                if block != 'air':
+                if not isinstance(blocks[r][c], str):
                     blocks[r][c].grid_forget()
                 blocks[r][c] = 'air'
                 blocksN[r][c] = 'air'
@@ -632,7 +634,8 @@ def autoMine():
                 blockN = blocksN[r][c]
                 block = blocks[r][c]
                 if blockN not in ('bedrock','air','barrier','chest','ender chest'):
-                    block.grid_forget()
+                    if not isinstance(block, str):
+                        block.grid_forget()
                     blocks[r][c] = 'air'
                     blocksN[r][c] = 'air'
                     score += scoreAS(blockN,upgradeInv,multiplier,score)
