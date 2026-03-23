@@ -274,12 +274,12 @@ def trophyButton(sound):
 
 def commandButton(sound):
     play(sound,'click')
-    viewInventory(multiplier,fortune,upgradeInv,score,blocksMined)
+    viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,sounds,play)
 
 def settingsButton(sound):
     global settings
     play(sound,'click')
-    settings = openSettings(upgradeInv,settings,root)
+    settings = openSettings(upgradeInv,settings,root,sounds,play)
 
 def keyClick(t):
     global upgradeInv, key, keyE, keyN

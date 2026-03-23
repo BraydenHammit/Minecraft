@@ -1,10 +1,11 @@
 import tkinter as tk
 from tkinter import scrolledtext
 
-def close(TK):
+def close(TK,s,play):
+    play(s,'click')
     TK.destroy()
 
-def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,end=False):
+def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,sounds,play,end=False):
     #Base Variables:
     master = tk.Tk()
     if end:
@@ -12,7 +13,7 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,end=False):
     else:
         master.title("Current Stats:")
     texT = f'Score: {score}\nMultiplier: x{multiplier}\nFortune: {upgradeInv["fortune"][1]}% for x{fortune}\n\nUpgrades:'
-    ok = tk.Button(master,text='Ok', bg='gray85', command = lambda: close(master))
+    ok = tk.Button(master,text='Ok', bg='gray85', command = lambda: close(master,sounds['click'],play))
     missing_upg = 0
     missing_secrets = 0
     missing_secretsM = 0

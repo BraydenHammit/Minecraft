@@ -1,16 +1,17 @@
 import tkinter as tk
 
-def close(TK):
+def close(TK,s,play):
+    play(s,'click')
     TK.destroy()
 
-def openSettings(upgradeInv,settings,root):
+def openSettings(upgradeInv,settings,root,sounds,play):
     #Base Variables:
     master = tk.Toplevel(root)
     master.title("Settings")
     tntV = tk.BooleanVar(value=settings['tnt'])
     tntSV = tk.BooleanVar(value=settings['tnt start'])
     autoV = tk.BooleanVar(value=settings['auto mine'])
-    ok = tk.Button(master,text='Ok', bg='gray85', command = lambda: close(master))
+    ok = tk.Button(master,text='Ok', bg='gray85', command = lambda: close(master,sounds['click'],play))
     label = tk.Label(master, text='None of your upgrades are togglable!')
     tnt = tk.Checkbutton(master, text="TNT Mining", variable=tntV)
     tntS = tk.Checkbutton(master, text="TNT Start", variable=tntSV)
