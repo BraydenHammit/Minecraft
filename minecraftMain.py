@@ -116,7 +116,7 @@ upgradeInv = {
     #Shop Buttons:
     'dim pick': [False,'r'],
     'upg re': False,
-    'stat view': False,
+    'stat view': True,
     #Secret:
     'potato': False,
     '🏆': [False,None,False],
@@ -136,15 +136,15 @@ root.state('zoomed')
 
 intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next' (next to score).\nYou only have 15 seconds each round (shown next to the 'Next' button),\nand when that runs out the round automaticlly ends.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to select what dimension it will be next round (the button is in the shop),\nincrease your mining to a 3x3 area with an explosive blast, apply a fortune enchantment,\ngain the ability to start mining on things other than stone or netherrack,\nremove the score penalties when mining netherrack, stone, endstone, and deepslate,\nunlock the ability to mine diagonally (between blocks) from pre-mined blocks,\nunlock three extra ores (one Overwold, two Nether) or an extra dimension, and much more.\n\nRock Values:\nStone, Endstone, & Netherrack = -1\nDeepslate = -1.5\nBedrock = -100\n\nOre Values:\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5\n\nExtra Semi-Ores:\nGlowstone = 5\nGilded Blackstone & Amethyst = 7.5")
 startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
-key =  tk.Button(root, height=1, width=1, text = '🔑', bg='gray30', command= lambda: keyClick('o'))
-keyE =  tk.Button(root, height=1, width=1, text = '🗝', bg='gray30', command= lambda: keyClick('e'))
-keyN =  tk.Button(root, height=1, width=1, text = '❓', bg='gray30', command= lambda: keyClick('n'))
+key =  tk.Button(root, height=1, width=1, text = '🔑', bg='gray85', command= lambda: keyClick('o'))
+keyE =  tk.Button(root, height=1, width=1, text = '🗝', bg='gray85', command= lambda: keyClick('e'))
+keyN =  tk.Button(root, height=1, width=1, text = '❓', bg='gray85', command= lambda: keyClick('n'))
 dimensionPickB = tk.Button(root, text='Next Dimension:\nRandom', bg="#942465", fg="#550A2A", command=lambda: dimensionSwitch())
-upgReroll = tk.Button(root, text='Reroll Upgrades', bg='gray30', fg="gray5", command=lambda: nextShop(True))
-multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray30', fg="gray5", command=lambda: button_click(1,0,'bedrock'))
-fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}', bg='gray30', fg="gray5", command=lambda: button_click(2,0,'bedrock'))
-upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray30', fg="gray5", command=lambda: trophyButton(sounds['level']))
-settingsB = tk.Button(root, text='Settings', bg='gray30', fg="gray5", command=lambda: settingsButton(sounds['click']))
+upgReroll = tk.Button(root, text='Reroll Upgrades', bg='gray85', fg="gray5", command=lambda: nextShop(True))
+multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray85', fg="gray5", command=lambda: button_click(1,0,'bedrock'))
+fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}', bg='gray85', fg="gray5", command=lambda: button_click(2,0,'bedrock'))
+upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray85', fg="gray5", command=lambda: trophyButton(sounds['level']))
+settingsB = tk.Button(root, text='Settings', bg='gray85', fg="gray5", command=lambda: settingsButton(sounds['click']))
 
 images = {
             #Buttons:
@@ -200,7 +200,7 @@ images = {
                 'ruby': tk.PhotoImage(file='assets/images/rubyImageMinecraft.png')
             }
 
-command = tk.Button(root, height=1, width=105, image=images['commandBlock'], bg="#e1b44c", command=lambda: commandButton(sounds['click']))
+command = tk.Button(root, height=1, width=105, image=images['commandBlock'], bg="#e18a4c", command=lambda: commandButton(sounds['click']))
 
 sounds = {
     #Shop Music:
@@ -527,7 +527,7 @@ def nextRoundPre():
             eachRow.grid_forget()
 
     blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
-    blocks[15][0].configure(text=f'Score: {score}',bg='gray30',fg='gray5')
+    blocks[15][0].configure(text=f'Score: {score}',bg='gray85',fg='gray5')
     settingsB.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
     multButton.configure(text=f'Multiplier: x{multiplier}')
     multButton.grid(row=14,column=0, sticky="nsew", padx=5, pady=5)
