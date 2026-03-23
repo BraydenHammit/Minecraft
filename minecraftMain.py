@@ -106,6 +106,7 @@ upgradeInv = {
     'tnt': False,
     'tnt start': False,
     'auto': [False,False],
+    'autF': False,
     #Time:
     'time': False,
     'Xtime': False,

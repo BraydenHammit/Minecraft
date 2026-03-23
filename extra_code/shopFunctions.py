@@ -43,6 +43,8 @@ def shopList(blocksMined,upgradeInv,dimensionPickB,upgReroll,command,r):
 
     if not upgradeInv["auto"][0]:
         upgrades.append('auto')
+    elif False and not upgradeInv["autoF"]: # remove False when fully implemented
+        upgrades.append('autoF')
 
     if not upgradeInv["ore ext"]:
         upgrades.append('ore ext')
@@ -178,6 +180,8 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
             upg = tk.Button(root, text = '🌀\nIntangabilitic Mining:\n2675 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('unl mine',2675,True))
         if upg == 'auto':
             upg = tk.Button(root, text = '⚙️\nAutomatic Mining:\n4150 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('auto',4150,True))
+        if upg == 'autoF':
+            upg = tk.Button(root, text = '⏩\nFaster Automation:\n2375 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('autoF',2375,False))
         if upg == 'bedr':
             upg = tk.Button(root, text = '🗜\nBedrock Minability:\n300 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('bedr',300,True))
         
