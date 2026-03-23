@@ -43,7 +43,7 @@ def shopList(blocksMined,upgradeInv,dimensionPickB,upgReroll,command,r):
 
     if not upgradeInv["auto"][0]:
         upgrades.append('auto')
-    elif False and not upgradeInv["autoF"]: # remove False when fully implemented
+    elif not upgradeInv["autoF"]: # remove False when fully implemented
         upgrades.append('autoF')
 
     if not upgradeInv["ore ext"]:
