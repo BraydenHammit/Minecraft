@@ -650,8 +650,10 @@ def autoMine():
                         blockM = blockN
                     blocksMined[blockM] += 1
                     blocks[15][0].configure(text=round(score,2))
-
-    aMine = root.after(1000,autoMine)
+    if upgradeInv['autoF']:
+        aMine = root.after(250,autoMine)
+    else:
+        aMine = root.after(1000,autoMine)
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
