@@ -68,7 +68,7 @@ def defOreO(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
                 button = tk.Button(root, image=images['deepslateRedstone'], bg='gray40', command=lambda r=r, c=c: button_click(r,c,'redstone'))
 
         elif ore == 'amethyst':
-            button = tk.Button(root, image=images['amethyst'], bg='magenta', command=lambda r=r, c=c: button_click(r,c,'amethyst'))
+            button = tk.Button(root, image=images['amethyst'], bg='#9966CC', command=lambda r=r, c=c: button_click(r,c,'amethyst'))
 
         elif ore == 'poisonous potato':
             if r <= 8:
