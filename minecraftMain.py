@@ -116,7 +116,7 @@ upgradeInv = {
     #Shop Buttons:
     'dim pick': [False,'r'],
     'upg re': False,
-    'stat view': True,
+    'stat view': False,
     #Secret:
     'potato': False,
     '🏆': [False,None,False],
