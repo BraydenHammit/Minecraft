@@ -621,7 +621,7 @@ def autoMine():
         num = len(blocks)
         for r in range(num):
             for c in range(num):
-                if blocksN[r][c] not in ('bedrock','air','barrier','chest'):
+                if blocksN[r][c] not in ('bedrock','air','barrier','chest','ender chest','trapped chest'):
                     check1 = (blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')
                     check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
                     if (check1 or check2):
