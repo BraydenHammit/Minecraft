@@ -633,7 +633,7 @@ def autoMine():
                 c = ran.choice(valid)[1]
                 blockN = blocksN[r][c]
                 block = blocks[r][c]
-                if blockN not in ('bedrock','air','barrier','chest','ender chest'):
+                if blockN not in ('bedrock','air','barrier','chest','ender chest','trapped chest'):
                     if not isinstance(block, str):
                         block.grid_forget()
                     blocks[r][c] = 'air'
