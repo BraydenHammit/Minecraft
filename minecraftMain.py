@@ -350,7 +350,7 @@ def invUpgrade(t,c,m):
 def nextRoundA():
     global upgrades, dimensionPickB, dimension
     for _ in upgrades:
-        _.grid_forget()
+        _.destroy()
 
     stopPlaying(soundsPlaying['shopMusic'])
     play(sounds['click'],'click')
@@ -392,7 +392,7 @@ def button_click(r,c,block):
                 check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
                 if check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'][0] and not start):
                     if not isinstance(blocks[r][c], str):
-                        blocks[r][c].grid_forget()
+                        blocks[r][c].destroy()
                     blocks[r][c] = 'air'
                     blocksN[r][c] = 'air'
                     start = False
@@ -413,7 +413,7 @@ def button_click(r,c,block):
                     if block not in ('bedrock','barrier','air'):
                         blocksN[rr][cc] = 'air'
                         if not isinstance(blocks[rr][cc], str):
-                            blocks[rr][cc].grid_forget()
+                            blocks[rr][cc].destroy()
                         blocks[rr][cc] = 'air'
                         score += scoreAS(block,upgradeInv,multiplier,score)
                         if block == 'poisonous potato':
@@ -439,7 +439,7 @@ def button_click(r,c,block):
                     if block not in ('bedrock','barrier','air'):
                         blocksN[rr][cc] = 'air'
                         if not isinstance(blocks[rr][cc], str):
-                            blocks[rr][cc].grid_forget()
+                            blocks[rr][cc].destroy()
                         blocks[rr][cc] = 'air'
                         score += scoreAS(block,upgradeInv,multiplier,score)
                         if block == 'poisonous potato':
@@ -455,7 +455,7 @@ def button_click(r,c,block):
 
             else:
                 if not isinstance(blocks[r][c], str):
-                    blocks[r][c].grid_forget()
+                    blocks[r][c].destroy()
                 blocks[r][c] = 'air'
                 blocksN[r][c] = 'air'
                 start = False
@@ -558,7 +558,7 @@ def nextShop(r):
     if r: #If Rerolling:
         play(sounds['click'],'click')
         for e in upgrades:
-            e.grid_forget()
+            e.destroy()
     else:   #1st Time In Shop (This Round):
         play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic',v=2.5)
 
@@ -635,7 +635,7 @@ def autoMine():
                 block = blocks[r][c]
                 if blockN not in ('bedrock','air','barrier','chest','ender chest','trapped chest'):
                     if not isinstance(block, str):
-                        block.grid_forget()
+                        block.destroy()
                     blocks[r][c] = 'air'
                     blocksN[r][c] = 'air'
                     score += scoreAS(blockN,upgradeInv,multiplier,score)
