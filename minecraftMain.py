@@ -213,6 +213,7 @@ sounds = {
     #Round Music:
     'precipice': 'assets/sounds/precipice.wav',
     'otherside': 'assets/sounds/otherside.wav',
+    'relic': "assets/sounds/relic.wav",
     'pigstep': 'assets/sounds/pigstep.wav',
     'lava chicken': 'assets/sounds/lavaChicken.wav',
     'tears': "assets/sounds/tears.wav",
@@ -740,7 +741,7 @@ def nextRound():
 
     #Start Round Music:
     if dimension == 'overworld':
-        play(sounds[ran.choice(['precipice','otherside'])],'roundMusic')
+        play(sounds[ran.choice(['precipice','otherside','relic'])],'roundMusic')
     elif dimension == 'nether':
         play(sounds[ran.choice(['pigstep','lava chicken'])],'roundMusic')
     elif dimension == 'end':
