@@ -412,7 +412,7 @@ def button_click(r,c,block):
                     block = blocksN[rr][cc]
                     if block not in ('bedrock','barrier','air'):
                         blocksN[rr][cc] = 'air'
-                        if not isinstance(blocks[r][c], str):
+                        if not isinstance(blocks[rr][cc], str):
                             blocks[rr][cc].grid_forget()
                         blocks[rr][cc] = 'air'
                         score += scoreAS(block,upgradeInv,multiplier,score)
@@ -438,7 +438,7 @@ def button_click(r,c,block):
                     block = blocksN[rr][cc]
                     if block not in ('bedrock','barrier','air'):
                         blocksN[rr][cc] = 'air'
-                        if not isinstance(blocks[r][c], str):
+                        if not isinstance(blocks[rr][cc], str):
                             blocks[rr][cc].grid_forget()
                         blocks[rr][cc] = 'air'
                         score += scoreAS(block,upgradeInv,multiplier,score)
