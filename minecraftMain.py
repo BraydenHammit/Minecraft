@@ -302,9 +302,9 @@ def keyClick(t):
 #Upgrade Functions:
 def multiplierUpgrade(a):
     global multiplier, score, failedUpg
-    if score >= a*100:
+    if score >= a*1000:
         multiplier += a
-        score -= 100*a
+        score -= 1000*a
         nextRoundA()
     else:
         play(sounds['break'],'click')
