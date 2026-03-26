@@ -531,7 +531,7 @@ def nextRoundPre():
             eachRow.grid_forget()
 
     blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
-    blocks[15][0].configure(text=f'Score: {score}',bg='gray85',fg='gray5')
+    blocks[15][0].configure(text=f'Score: {round(score,2)}',bg='gray85',fg='gray5')
     settingsB.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
     multButton.configure(text=f'Multiplier: x{multiplier}')
     multButton.grid(row=14,column=0, sticky="nsew", padx=5, pady=5)
