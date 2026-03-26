@@ -7,4 +7,4 @@ This will create a new codespace; when it is done downloading, make sure there i
 If there is not, make a new port with number 6080. 
 Then run "export DISPLAY=:1" and "python3 minecraftMain.py", then open the port.
 To update the game, run "git pull origin main" in the terminal.
-Unfortunately, sounds, settings, the Stat & Upgrades Viewing upgrade, and the secret trophy do not work on these devices.
+Unfortunately, sounds do not work on these devices.
