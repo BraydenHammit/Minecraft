@@ -6,5 +6,7 @@ If you are using a Chromebook or other device that cannot open VS Code, click Co
 This will create a new codespace; when it is done downloading, make sure there is a port 6080.
 If there is not, make a new port with number 6080. 
 Then run "export DISPLAY=:1" and "python3 minecraftMain.py", then open the port.
+Once the port is open, press Connect, then open the sidebar. 
+Press Settings -> Scaling mode -> Remote resizing, then press Fullscreen on the sidebar.
 To update the game, run "git pull origin main" in the terminal.
 Unfortunately, sounds do not work on these devices.
