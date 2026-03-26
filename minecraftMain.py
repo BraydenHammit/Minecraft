@@ -203,7 +203,10 @@ images = {
             }
 
 command = tk.Button(root, height=1, width=105, image=images['commandBlock'], bg="#e18a4c", command=lambda: commandButton(sounds['click']))
-root.iconphoto(True, images['icon'])
+if sys == 'm/l':
+    root.iconphoto(True, images['icon'])
+elif sys == 'w':
+    root.iconbitmap("assets/images/iconImageMinecraft.ico")
 
 sounds = {
     #Shop Music:
