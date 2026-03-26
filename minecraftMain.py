@@ -151,6 +151,7 @@ images = {
             #Unique:
             'commandBlock': tk.PhotoImage(file='assets/images/commandBlockImageMinecraft.png'),
             'icon': tk.PhotoImage(file='assets/images/iconImageMinecraft.png'),
+            'iconI': 'assets/images/iconImageMinecraft.ico',
             #Rocks:
             'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'deepslate': tk.PhotoImage(file='assets/images/deepslateImageMinecraft.png'),
@@ -206,7 +207,7 @@ command = tk.Button(root, height=1, width=105, image=images['commandBlock'], bg=
 if sys == 'm/l':
     root.iconphoto(True, images['icon'])
 elif sys == 'w':
-    root.iconbitmap("assets/images/iconImageMinecraft.ico")
+    root.iconbitmap(images['iconI'])
 
 sounds = {
     #Shop Music:
