@@ -12,7 +12,7 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,sounds,play,en
         master.title("Final Stats:")
     else:
         master.title("Current Stats:")
-    texT = f'Score: {score}\nMultiplier: x{multiplier}\nFortune: {upgradeInv["fortune"][1]}% for x{fortune}\n\nUpgrades:'
+    texT = f'Score: {round(score,2)}\nMultiplier: x{round(multiplier,2)}\nFortune: {upgradeInv["fortune"][1]}% for x{fortune}\n\nUpgrades:'
     ok = tk.Button(master,text='Ok', bg='gray85', command = lambda: close(master,sounds['click'],play))
     missing_upg = 0
     missing_secrets = 0
