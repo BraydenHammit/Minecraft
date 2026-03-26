@@ -12,11 +12,11 @@
       "label": "Tkinter GUI",
       "visibility": "public"
     }
-  },
-  //Audio:
-  "runArgs": [
-    "--device=/dev/snd",
-    "--group-add=audio"
-  ],
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y ffmpeg alsa-utils python3-tk"
+  }//,
+  //Audio: (broken)
+//  "runArgs": [
+//    "--device=/dev/snd",
+//    "--group-add=audio"
+//  ],
+//  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y ffmpeg alsa-utils python3-tk"
 }
