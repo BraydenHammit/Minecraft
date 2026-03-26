@@ -13,7 +13,7 @@ from extra_code.settings import openSettings
 
 #Variables:
 if plt.system() == 'Darwin':
-    sys = 'm/l'
+    sys = 'm'
 elif plt.system() == 'Windows':
     sys = 'w'
 else:
@@ -207,7 +207,7 @@ images = {
             }
 
 command = tk.Button(root, height=1, width=105, image=images['commandBlock'], bg="#e18a4c", command=lambda: commandButton(sounds['click']))
-if sys == 'm/l':
+if sys == 'm':
     root.iconphoto(True, images['icon'])
 elif sys == 'w':
     root.iconbitmap(images['iconI'])
@@ -254,7 +254,7 @@ def play(f,t,v=1.0):
     global soundsPlaying
     if sys == 'w':
         soundsPlaying[t] = sp.Popen(["powershell","-c",f'(New-Object Media.SoundPlayer "{f}").PlaySync();'], stdout=sp.DEVNULL, stderr=sp.DEVNULL)
-    elif sys == 'm/l':
+    elif sys == 'm':
         soundsPlaying[t] = sp.Popen(["afplay", '-v', str(v), f])
 
 def stopPlaying(t):
