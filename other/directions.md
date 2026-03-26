@@ -3,7 +3,7 @@ Then, after you clone it and wait for it to download, open it in VS Code and run
 When the game updates, click Fetch Origin in GitHub Desktop, then click Pull from Origin.                                                                                                 
 
 If you are using a Chromebook or other device that cannot open VS Code, click Code -> Codespaces -> +.
-This will create a new codespace; when it is done downloading, make sure there is a port 6080.
+This will create a new codespace; when it is done downloading (it will take a long time, that's normal), make sure there is a port 6080.
 If there is not, make a new port with number 6080. 
 Then run "export DISPLAY=:1" and "python3 minecraftMain.py", then open the port.
 Once the port is open, press Connect, maximize the the Minecraft window, then open the sidebar. 
