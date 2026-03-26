@@ -772,8 +772,8 @@ def nextRound():
 
 
 #Start/Open Window:
-intro.pack(pady=150)
-startB.pack(pady=50)
+intro.pack(pady=70)
+startB.pack(pady=10)
 play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic',v=2.5)
 root.mainloop()
 
