@@ -527,14 +527,14 @@ def nextRoundPre():
 
     stopPlaying(soundsPlaying['roundMusic'])
 
-    for eachCol in blocks:
+    for eachCol, val in enumerate(blocks):
 
-        for eachRow in eachCol:
+        for eachRow, val in enumerate(val):
 
-            if (eachRow == 'air') or (eachRow == 'barrier'):
+            if (val == 'air') or (val == 'barrier') or (eachRow == 0 and eachCol == 15):
                 continue
 
-            eachRow.destroy()
+            val.destroy()
 
     blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
     blocks[15][0].configure(text=f'Score: {round(score,2)}',bg='gray85',fg='gray5')
