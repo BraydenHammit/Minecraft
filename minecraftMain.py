@@ -148,8 +148,9 @@ upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray85', 
 settingsB = tk.Button(root, text='Settings', bg='gray85', fg="gray5", command=lambda: settingsButton(sounds['click']))
 
 images = {
-            #Buttons:
+            #Unique:
             'commandBlock': tk.PhotoImage(file='assets/images/commandBlockImageMinecraft.png'),
+            'icon': tk.PhotoImage(file='assets/images/iconImageMinecraft.png'),
             #Rocks:
             'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
             'deepslate': tk.PhotoImage(file='assets/images/deepslateImageMinecraft.png'),
@@ -202,6 +203,7 @@ images = {
             }
 
 command = tk.Button(root, height=1, width=105, image=images['commandBlock'], bg="#e18a4c", command=lambda: commandButton(sounds['click']))
+root.iconphoto(True, images['icon'])
 
 sounds = {
     #Shop Music:
