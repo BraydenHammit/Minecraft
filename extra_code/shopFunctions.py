@@ -128,7 +128,7 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
         if upg == 'click5':
             upg = tk.Button(root, text = '⛏\nMultiplier Upgrade (+50%):\n500 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(0.5))
         if upg == 'click10':
-            upg = tk.Button(root, text = '🛠\nMultiplier Upgrade (+1):\n1000 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(1))
+            upg = tk.Button(root, text = '🛠\nMultiplier Upgrade (+100%):\n1000 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(1))
 
         if upg == 'fortune1':
             upg = tk.Button(root, text = '🪙\nFortune (25%):\n450 Score', bg = 'gray85', fg = 'gray5', command = lambda: fortuneUpgrade(25,450))
