@@ -413,7 +413,7 @@ def button_click(r,c,block):
                          [r+2,c-2],[r+2,c-1],[r+2,c],[r+2,c+1],[r+2,c+2]]
                 for rr, cc in check:
                     block = blocksN[rr][cc]
-                    if block not in ('bedrock','barrier','air'):
+                    if ('chest' not in block) and block not in ('bedrock','barrier','air'):
                         blocksN[rr][cc] = 'air'
                         if not isinstance(blocks[rr][cc], str):
                             blocks[rr][cc].destroy()
@@ -439,7 +439,7 @@ def button_click(r,c,block):
                          [r-1,c-1], [r-1,c], [r-1,c+1]]
                 for rr, cc in check:
                     block = blocksN[rr][cc]
-                    if block not in ('bedrock','barrier','air'):
+                    if ('chest' not in block) and block not in ('bedrock','barrier','air'):
                         blocksN[rr][cc] = 'air'
                         if not isinstance(blocks[rr][cc], str):
                             blocks[rr][cc].destroy()
