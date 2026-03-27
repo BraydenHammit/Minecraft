@@ -1,5 +1,7 @@
 If you are able to use GitHub Desktop and VS Code, click Code -> Local -> Open With GitHub Desktop. 
-Then, after you clone it and wait for it to download, open it in VS Code and run (Windows) "python minecraftMain.py" or (MacBook) "python3 minecraftMain.py".
+Then, after you clone it and wait for it to download, open it in VS Code. 
+Make sure you have the Python extension (by Microsoft) installed. 
+Then run (Windows) "python minecraftMain.py" or (MacBook) "python3 minecraftMain.py".
 When the game updates, click Fetch Origin in GitHub Desktop, then click Pull from Origin.                                                                                                 
 
 If you are using a Chromebook or other device that cannot open VS Code, click Code -> Codespaces -> +.
