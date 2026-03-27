@@ -426,7 +426,7 @@ def button_click(r,c,block):
                     blocks[r][c] = 'air'
                     blocksN[r][c] = 'air'
                     start = False
-                    score += scoreAS('bedrock',upgradeInv,multiplier,score)
+                    score += scoreAS('bedrock',upgradeInv,multiplier,score,'bedrock')
                     play(sounds['glass'],'break block')
                     blocksMined['bedrock'] += 1
 
@@ -445,7 +445,6 @@ def button_click(r,c,block):
                         if not isinstance(blocks[rr][cc], str):
                             blocks[rr][cc].destroy()
                         blocks[rr][cc] = 'air'
-                        score += scoreAS(block,upgradeInv,multiplier,score)
                         if block == 'poisonous potato':
                             upgradeInv['🏆'][2] = True
                         if rr >= 9 and dimension == 'overworld' and block not in ('bedrock','deepslate','amethyst'):
@@ -455,6 +454,8 @@ def button_click(r,c,block):
                         else: 
                             blockM = block
                         blocksMined[blockM] += 1
+                        score += scoreAS(block,upgradeInv,multiplier,score,blockM)
+                        
                             
 
 
@@ -471,7 +472,6 @@ def button_click(r,c,block):
                         if not isinstance(blocks[rr][cc], str):
                             blocks[rr][cc].destroy()
                         blocks[rr][cc] = 'air'
-                        score += scoreAS(block,upgradeInv,multiplier,score)
                         if block == 'poisonous potato':
                             upgradeInv['🏆'][2] = True
                         if rr >= 9 and dimension == 'overworld' and block not in ('bedrock','deepslate','amethyst'):
@@ -481,6 +481,8 @@ def button_click(r,c,block):
                         else: 
                             blockM = block
                         blocksMined[blockM] += 1
+                        score += scoreAS(block,upgradeInv,multiplier,score,blockM)
+                        
 
 
             else:
@@ -489,11 +491,6 @@ def button_click(r,c,block):
                 blocks[r][c] = 'air'
                 blocksN[r][c] = 'air'
                 start = False
-                score += scoreAS(block,upgradeInv,multiplier,score)
-                if block in ('netherrack','stone','endstone','deepslate','potone'):
-                    play(sounds['break block'],'break block')
-                else:
-                    play(sounds['xp'],'break block')
                 if block == 'poisonous potato':
                     upgradeInv['🏆'][2] = True
                 if r >= 9 and dimension == 'overworld' and block not in ('bedrock','deepslate','amethyst'):
@@ -503,6 +500,11 @@ def button_click(r,c,block):
                 else: 
                     blockM = block
                 blocksMined[blockM] += 1
+                if block in ('netherrack','stone','endstone','deepslate','potone'):
+                    play(sounds['break block'],'break block')
+                else:
+                    play(sounds['xp'],'break block')
+                score += scoreAS(block,upgradeInv,multiplier,score,blockM)
 
             blocks[15][0].configure(text=round(score,2))
 
@@ -668,7 +670,6 @@ def autoMine():
                         block.destroy()
                     blocks[r][c] = 'air'
                     blocksN[r][c] = 'air'
-                    score += scoreAS(blockN,upgradeInv,multiplier,score)
                     if blockN in ('netherrack','stone','endstone','deepslate','potone'):
                         play(sounds['break block'],'break block')
                     else:
@@ -682,6 +683,7 @@ def autoMine():
                     else: 
                         blockM = blockN
                     blocksMined[blockM] += 1
+                    score += scoreAS(blockN,upgradeInv,multiplier,score,blockM)
                     blocks[15][0].configure(text=round(score,2))
     if upgradeInv['autoF']:
         aMine = root.after(250,autoMine)
