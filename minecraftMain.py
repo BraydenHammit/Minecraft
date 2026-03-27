@@ -144,7 +144,10 @@ upgradeInv = {
 }
 
 root = tk.Tk()
-root.title("Minecraft")
+if ran.randrange(777) == 333:
+    root.title("Minceraft")
+else:
+    root.title("Minecraft")
 if sys != 'o':
     root.state('zoomed')
 else: #Using codespace
