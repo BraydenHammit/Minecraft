@@ -35,9 +35,9 @@ def scoreAS(block,upgradeInv,multiplier,score,blockT):
             score = -1.5
     elif (block == 'bedrock'):
         if upgradeInv['penalty b+']:
-            score = 100 * multiplier
+            score = 25 * multiplier
         elif not upgradeInv['penalty b']:
-            score = -100
+            score = -25
     elif (block == 'coal') or (block == 'nether gold') or (block == 'copper'):
         score = 1.75 * multiplier
     elif (block == 'redstone') or (block == 'lapis'):
