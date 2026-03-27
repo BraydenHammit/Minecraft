@@ -40,6 +40,15 @@ settings = {
     'auto mine': True 
 }
 
+blockTypes = {
+    'golden': ['gold','deepslate gold','potone gold','gilded blackstone','nether gold','glowstone'],
+    'gemS': ['diamond','deepslate diamond','potone diamond','emerald','deepslate emerald', 'amethyst','ruby'],
+    'gemD': ['lapis','deepslate lapis','potone lapis','quartz','resin'],
+    'industrial': ['iron','deepslate iron','potone iron','coal','deepslate coal', 'copper','deepslate copper', 'potone copper','redstone','deepslate redstone', 'potone redstone'],
+    'rock': ['stone','deepslate','potone','bedrock','endstone','netherrack','netherite','glowstone'],
+    'potato': ['potone','potone copper','potone gold','potone iron','potone redstone','potone lapis','potone diamond','resin','poisonous potato','deepslate poisonous potato']
+}
+
 blocksMined = {
             #Rocks:
             'stone': 0,
