@@ -3,6 +3,7 @@ import tkinter as tk
 import random as ran
 import subprocess as sp
 import platform as plt
+from tkinter import scrolledtext as st
 from extra_code.scoreFunction import scoreAS, HOS
 from extra_code.shopFunctions import shopList, buttonDef
 from extra_code.oreFunct import oreO, oreN, oreP
@@ -156,7 +157,8 @@ else: #Using codespace
     y = (screen_height // 2) - (height // 2)
     root.geometry(f"{width}x{height}+{x}+{y}")
 
-intro =  tk.Label(root, text="How to Play:\nYou must start by mining a stone or netherrack block.\nYou can only mine blocks next to blocks you've already mined.\nYou lose score for mining stone, deepslate, and netherrack.\nYour score is shown on the bottom left bedrock,\nand you can go to the next round by clicking 'Next' (next to score).\nYou only have 15 seconds each round (shown next to the 'Next' button),\nand when that runs out the round automaticlly ends.\nIn between rounds, you can buy upgrades by spending your score.\nThese upgrades can boost ore spawns, the amount of score you get per ore,\ngain the ability to select what dimension it will be next round (the button is in the shop),\nincrease your mining to a 3x3 area with an explosive blast, apply a fortune enchantment,\ngain the ability to start mining on things other than stone or netherrack,\nremove the score penalties when mining netherrack, stone, endstone, and deepslate,\nunlock the ability to mine diagonally (between blocks) from pre-mined blocks,\nunlock three extra ores (one Overwold, two Nether) or an extra dimension, and much more.\n\nRock Values:\nStone, Endstone, & Netherrack = -1\nDeepslate = -1.5\nBedrock = -100\n\nOre Values:\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5\n\nExtra Semi-Ores:\nGlowstone = 5\nGilded Blackstone & Amethyst = 7.5")
+scrollIntro = st.ScrolledText(root, wrap=tk.WORD, width=60, height=20, highlightthickness=2, highlightbackground="black", relief="flat")
+intro = "How to Play:\nYou must start by mining a stone or netherrack block. You can only mine blocks next to blocks you've already mined. You lose score for mining stone, deepslate, and netherrack. Your score is shown on the bottom left bedrock, and you can go to the next round by clicking 'Next' (next to score). You only have 15 seconds each round (shown next to the 'Next' button), and when that runs out the round automaticlly ends. In between rounds, you can buy upgrades by spending your score.\n\nUpgrade examples:\nBoost ore spawns, the amount of score you get per ore, gain the ability to select what dimension it will be next round (the button is in the shop), increase your mining to a 3x3 area with an explosive blast, apply a fortune enchantment, gain the ability to start mining on things other than stone or netherrack, remove the score penalties when mining netherrack, stone, endstone, and deepslate, unlock the ability to mine diagonally (between blocks) from pre-mined blocks, unlock three extra ores (one Overwold, two Nether) or an extra dimension, and much more.\n\nRock Values:\nStone, Endstone, & Netherrack = -1\nDeepslate = -1.5\nBedrock = -100\n\nOre Values:\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 5\nEmerald & Netherite = 12.5\n\nExtra Semi-Ores:\nGlowstone = 5\nGilded Blackstone & Amethyst = 7.5"
 startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
 key =  tk.Button(root, height=1, width=1, text = '🔑', bg='gray85', command= lambda: keyClick('o'))
 keyE =  tk.Button(root, height=1, width=1, text = '🗝', bg='gray85', command= lambda: keyClick('e'))
@@ -286,7 +288,7 @@ def stopPlaying(t):
 
 #Button Functions:
 def startGame():
-    intro.destroy()
+    scrollIntro.destroy()
     startB.destroy()
     stopPlaying(soundsPlaying['shopMusic'])
     play(sounds['click'],'click')
@@ -781,7 +783,9 @@ def nextRound():
 
 
 #Start/Open Window:
-intro.pack(pady=70)
+scrollIntro.pack(padx=30, pady=30)
+scrollIntro.insert(tk.INSERT, intro)
+scrollIntro.configure(state='disabled')
 startB.pack(pady=10)
 play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic',v=2.5)
 root.mainloop()
