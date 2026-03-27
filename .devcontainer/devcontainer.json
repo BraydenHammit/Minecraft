@@ -13,7 +13,7 @@
       "visibility": "public"
     }
   }//,
-  //Audio: (broken)
+  //Audio:               (broken)
 //  "runArgs": [
 //    "--device=/dev/snd",
 //    "--group-add=audio"
