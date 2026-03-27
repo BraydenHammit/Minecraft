@@ -124,11 +124,11 @@ def shopList(blocksMined,upgradeInv,dimensionPickB,upgReroll,command,r):
 def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgrade):
 
         if upg == 'click':
-            upg = tk.Button(root, text = '🔨\nMultiplier Upgrade (+10%):\n100 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(0.1))
+            upg = tk.Button(root, text = '🔨\nMultiplier Upgrade (+25%):\n100 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(0.25))
         if upg == 'click5':
-            upg = tk.Button(root, text = '⛏\nMultiplier Upgrade (+50%):\n500 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(0.5))
+            upg = tk.Button(root, text = '⛏\nMultiplier Upgrade (+125%):\n500 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(1.25))
         if upg == 'click10':
-            upg = tk.Button(root, text = '🛠\nMultiplier Upgrade (+100%):\n1000 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(1))
+            upg = tk.Button(root, text = '🛠\nMultiplier Upgrade (+250%):\n1000 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(2.5))
 
         if upg == 'fortune1':
             upg = tk.Button(root, text = '🪙\nFortune (25%):\n450 Score', bg = 'gray85', fg = 'gray5', command = lambda: fortuneUpgrade(25,450))
