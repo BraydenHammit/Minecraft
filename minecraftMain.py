@@ -288,7 +288,7 @@ def stopPlaying(t):
 
 #Button Functions:
 def startGame():
-    scrollIntro.destroy()
+    scrollIntro.pack_forget()
     startB.destroy()
     stopPlaying(soundsPlaying['shopMusic'])
     play(sounds['click'],'click')
