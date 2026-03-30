@@ -10,6 +10,7 @@ from extra_code.oreFunct import oreO, oreN, oreP
 from extra_code.oreFunctDef import defOreN, defOreO, defOreE, defOreP
 from extra_code.dimFuncts import dimensionR, dimButton
 from extra_code.invView import viewInventory
+from extra_code.popups import wrongStartBlock
 from extra_code.settings import openSettings
 
 #Variables:
@@ -538,6 +539,9 @@ def button_click(r,c,block):
         upgradeInv['ruby'][1] = True
         blocks[r][c].configure(image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
         play(sounds['level'],'click')
+
+    elif  block != 'bedrock' and start and (block not in ('stone','endstone','netherrack','potone') and (not upgradeInv['st free']):
+        wrongStartBlock(root,sounds,play,dimension)
 
     else:
         if block == 'bedrock':
