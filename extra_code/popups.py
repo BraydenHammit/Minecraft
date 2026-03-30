@@ -7,6 +7,7 @@ def close(TK,s,play):
 def wrongStartBlock(root,sounds,play,dimension):
     master = tk.Toplevel(root)
     master.title("Pop-Up")
+    master.geometry('200x100')
     ok = tk.Button(master,text='Ok', bg='gray85', command = lambda: close(master,sounds['click'],play))
     if dimension == 'overworld':
       label = tk.Label(master, text='Must Start on stone!')
