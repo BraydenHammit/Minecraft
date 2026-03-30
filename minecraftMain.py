@@ -512,6 +512,9 @@ def button_click(r,c,block):
 
             blocks[15][0].configure(text=round(score,2))
 
+        elif  block != 'bedrock' and start and (block not in ('stone','endstone','netherrack','potone')) and (not upgradeInv['st free']):
+            wrongStartBlock(root,sounds,play,dimension)
+
 
     elif (r == 15) and (c == 1):
         if(nextTimer <= 0):
@@ -539,9 +542,6 @@ def button_click(r,c,block):
         upgradeInv['ruby'][1] = True
         blocks[r][c].configure(image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
         play(sounds['level'],'click')
-
-    elif  block != 'bedrock' and start and (block not in ('stone','endstone','netherrack','potone')) and (not upgradeInv['st free']):
-        wrongStartBlock(root,sounds,play,dimension)
 
     else:
         if block == 'bedrock':
