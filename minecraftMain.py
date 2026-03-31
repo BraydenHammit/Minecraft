@@ -108,6 +108,12 @@ upgradeInv = {
     'penalty s+': False,
     'penalty d+': False,
     'penalty e+': False,
+    #Block Type Bonuses:
+    'gold bonus': False,
+    'gemS bonus': False,
+    'gemD bonus': False,
+    'ind bonus': False,
+    'rock bonus': False,
     #Luck:
     'luck': False,
     'luckM': False,
@@ -138,6 +144,7 @@ upgradeInv = {
     'bedr': [False,False,False],
     'ruby': [False,False,False],
     #Mini-Secret:
+    'potato bonus': False,
     'penalty p': False,
     'penalty p+': False,
     'penalty b': False,
