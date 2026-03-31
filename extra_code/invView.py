@@ -56,6 +56,11 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,sounds,play,en
     else:
         missing_upg += 1
 
+    if upgradeInv["gold bonus"]:
+        texT += ('\n50% Bonus for Gold Ores')
+    else:
+        missing_upg += 1
+
     if upgradeInv["luck"]:
         texT += ('\nOre Spawns Increase')
     else:
