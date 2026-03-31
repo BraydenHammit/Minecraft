@@ -4,7 +4,7 @@ import tkinter as tk
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Score Function:
-def scoreAS(block,upgradeInv,multiplier,score,blockT):
+def scoreAS(block,upgradeInv,multiplier,score,blockT,blockTypes):
     score = 0
 
     #Base:
@@ -55,8 +55,9 @@ def scoreAS(block,upgradeInv,multiplier,score,blockT):
     elif (block == 'ruby'):
         score = 17.5 * multiplier
 
-    #Fortune:
+    #Multipliers:
     if upgradeInv['fortune'][0] and score > 0:
+        #Fortune:
         if ((upgradeInv['fortune'][1] == 100) 
         or (upgradeInv['fortune'][1] == 75 and (ran.randint(1,4) != 1))
         or (upgradeInv['fortune'][1] == 50 and (ran.randint(1,2) == 1))
@@ -65,6 +66,11 @@ def scoreAS(block,upgradeInv,multiplier,score,blockT):
                 score = score * 3
             else:
                 score = score * 2
+        #Bonuses:
+    if upgradeInv['gold bonus'] and blockT in blockTypes['golden']:
+        score = score * 1.5
+
+        
         
     #-------------------------------    
 

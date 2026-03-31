@@ -440,7 +440,7 @@ def button_click(r,c,block):
                     blocks[r][c] = 'air'
                     blocksN[r][c] = 'air'
                     start = False
-                    score += scoreAS('bedrock',upgradeInv,multiplier,score,'bedrock')
+                    score += scoreAS('bedrock',upgradeInv,multiplier,score,'bedrock',blockTypes)
                     play(sounds['glass'],'break block')
                     blocksMined['bedrock'] += 1
 
@@ -468,7 +468,7 @@ def button_click(r,c,block):
                         else: 
                             blockM = block
                         blocksMined[blockM] += 1
-                        score += scoreAS(block,upgradeInv,multiplier,score,blockM)
+                        score += scoreAS(block,upgradeInv,multiplier,score,blockM,blockTypes)
                         
                             
 
@@ -495,7 +495,7 @@ def button_click(r,c,block):
                         else: 
                             blockM = block
                         blocksMined[blockM] += 1
-                        score += scoreAS(block,upgradeInv,multiplier,score,blockM)
+                        score += scoreAS(block,upgradeInv,multiplier,score,blockM,blockTypes)
                         
 
 
@@ -518,7 +518,7 @@ def button_click(r,c,block):
                     play(sounds['break block'],'break block')
                 else:
                     play(sounds['xp'],'break block')
-                score += scoreAS(block,upgradeInv,multiplier,score,blockM)
+                score += scoreAS(block,upgradeInv,multiplier,score,blockM,blockTypes)
 
             blocks[15][0].configure(text=round(score,2))
 

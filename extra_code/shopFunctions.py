@@ -25,6 +25,9 @@ def shopList(blocksMined,upgradeInv,dimensionPickB,upgReroll,command,r):
     elif not upgradeInv['luckM']:
         upgrades.append('luckM')
 
+    if not upgradeInv["gold bonus"]:
+        upgrades.append('gold bonus')
+
     if not upgradeInv["st free"]:
         upgrades.append('st free')
 
@@ -166,6 +169,9 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
             upg = tk.Button(root, text = '☣️\nPositive Score Potone:\n250 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('penalty p+',250,False))
         if upg == 'penalty b+':
             upg = tk.Button(root, text = '💍\nPositive Score Bedrock:\n333 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('penalty b+',333,False))
+
+        if upg == 'gold bonus':
+            upg = tk.Button(root, text = '👑\nGold Rush Bonus:\n750 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('gold bonus',750,False))
 
         if upg == 'luck':
             upg = tk.Button(root, text = '☘️\nEnhance Ore Spawns:\n5000 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('luck',5000,False))
