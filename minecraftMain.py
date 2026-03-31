@@ -10,7 +10,7 @@ from extra_code.oreFunct import oreO, oreN, oreP
 from extra_code.oreFunctDef import defOreN, defOreO, defOreE, defOreP
 from extra_code.dimFuncts import dimensionR, dimButton
 from extra_code.invView import viewInventory
-from extra_code.popups import wrongStartBlock
+from extra_code.popups import wrongStartBlock, notAfford
 from extra_code.settings import openSettings
 
 #Variables:
@@ -341,6 +341,7 @@ def multiplierUpgrade(a):
         nextRoundA()
     else:
         play(sounds['break'],'click')
+        notAfford(root,sounds,play)
         failedUpg += 1
 
 def fortuneUpgrade(l,c):
@@ -357,6 +358,7 @@ def fortuneUpgrade(l,c):
         nextRoundA()
     else:
         play(sounds['break'],'click')
+        notAfford(root,sounds,play)
         failedUpg += 1
 
 def invUpgrade(t,c,m):
@@ -374,6 +376,7 @@ def invUpgrade(t,c,m):
         nextRoundA()
     else:
         play(sounds['break'],'click')
+        notAfford(root,sounds,play)
         failedUpg += 1
 
 
