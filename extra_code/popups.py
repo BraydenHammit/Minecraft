@@ -11,8 +11,11 @@ def timeDown(button,TK,s,play,time,root):
    if time <= 0:
     close(TK,s,play)
    else:
-    button.configure(text=f'Ok ({time})')
-    root.after(1000,lambda: timeDown(button,TK,s,play,time,root))
+    try:
+      button.configure(text=f'Ok ({time})')
+      root.after(1000,lambda: timeDown(button,TK,s,play,time,root))
+    except:
+      close(TK,s,play)
 
 
 #Incorrect Start Block:
