@@ -235,6 +235,8 @@ images = {
                 'chest': tk.PhotoImage(file='assets/images/chestImageMinecraft.png'),
                 'enderChest': tk.PhotoImage(file='assets/images/enderChestImageMinecraft.png'),
                 'trappedChest': tk.PhotoImage(file='assets/images/trappedChestImageMinecraft.png'),
+                'cheese': tk.PhotoImage(file='assets/images/cheeseImageMinecraft.png'),
+                'craftingTable': tk.PhotoImage(file='assets/images/craftingTableImageMinecraft.png'),
                 'ruby': tk.PhotoImage(file='assets/images/rubyImageMinecraft.png')
             }
 
