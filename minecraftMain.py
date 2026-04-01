@@ -703,7 +703,7 @@ def autoMine():
                     else: 
                         blockM = blockN
                     blocksMined[blockM] += 1
-                    score += scoreAS(blockN,upgradeInv,multiplier,score,blockM)
+                    score += scoreAS(blockN,upgradeInv,multiplier,score,blockM,blockTypes)
                     blocks[15][0].configure(text=round(score,2))
     if upgradeInv['autoF']:
         aMine = root.after(250,autoMine)
