@@ -345,7 +345,11 @@ def keyClick(t):
 #Upgrade Functions:
 def multiplierUpgrade(a):
     global multiplier, score, failedUpg
-    if score >= a*500:
+    if a == 'm' and score >= 100:
+        max = (score // 100) / 5
+        score -= max
+        multiplier += max
+    elif score >= a*500:
         multiplier += a
         score -= 500*a
         nextRoundA()
