@@ -140,7 +140,7 @@ upgradeInv = {
     'stat view': False,
     #Secret:
     'potato': False,
-    '🏆': [False,None,False],
+    '🏆': [True,None,False],
     'unl mine': [False,False,False],
     'bedr': [False,False,False],
     'ruby': [False,False,False],
@@ -315,7 +315,7 @@ def dimensionSwitch():
 
 def trophyButton(sound):
     play(sound,'click')
-    HOS(upgradeInv)
+    HOS(upgradeInv,blockTypes)
 
 def commandButton(sound):
     play(sound,'click')
