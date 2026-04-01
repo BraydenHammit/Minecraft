@@ -140,7 +140,7 @@ upgradeInv = {
     'stat view': False,
     #Secret:
     'potato': False,
-    '🏆': [True,None,False],
+    '🏆': [False,None,False],
     'unl mine': [False,False,False],
     'bedr': [False,False,False],
     'ruby': [False,False,False],
