@@ -653,7 +653,10 @@ def nextTime():
         blocks[15][1].configure(text=f'Next (🔒 {nextTimer})')
         nextLock = root.after(1000,nextTime)
     else:
-        blocks[15][1].configure(text='Next')
+        try:
+            blocks[15][1].configure(text='Next')
+        except:
+            None
 
 def timeCount():
     global timer, nextR, start, timerAfter
