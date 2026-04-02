@@ -157,6 +157,8 @@ if ran.randrange(777) == 333:
     root.title("Minceraft")
 else:
     root.title("Minecraft")
+if sys == 'w':
+    root.config(cursor="@assets/images/pickaxeImageMinecraft.cur")
 if sys != 'o':
     root.state('zoomed')
 else: #Using codespace
