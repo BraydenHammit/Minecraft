@@ -16,11 +16,11 @@ from extra_code.introText import intro
 
 #Variables:
 if plt.system() == 'Darwin':
-    sys = 'm' #MacBook
+    syst = 'm' #MacBook
 elif plt.system() == 'Windows':
-    sys = 'w' #Windows
+    syst = 'w' #Windows
 else:
-    sys = 'o' #Other
+    syst = 'o' #Other
 start = True
 nextR = False
 score = 0
@@ -157,9 +157,9 @@ if ran.randrange(777) == 333:
     root.title("Minceraft")
 else:
     root.title("Minecraft")
-if sys == 'w':
+if syst == 'w':
     root.config(cursor="@assets/images/pickaxeImageMinecraft.cur")
-if sys != 'o':
+if syst != 'o':
     root.state('zoomed')
 else: #Using codespace
     root.update_idletasks()
@@ -243,9 +243,9 @@ images = {
             }
 
 command = tk.Button(root, height=1, width=105, image=images['commandBlock'], bg="#e18a4c", command=lambda: commandButton(sounds['click']))
-if sys == 'm':
+if syst == 'm':
     root.iconphoto(True, images['icon'])
-elif sys == 'w':
+elif syst == 'w':
     root.iconbitmap(images['iconI'])
 
 sounds = {
@@ -288,9 +288,9 @@ soundsPlaying = {
 #Sound Playing:
 def play(f,t,v=1.0):
     global soundsPlaying
-    if sys == 'w':
+    if syst == 'w':
         soundsPlaying[t] = sp.Popen(["powershell","-c",f'(New-Object Media.SoundPlayer "{f}").PlaySync();'], stdout=sp.DEVNULL, stderr=sp.DEVNULL)
-    elif sys == 'm':
+    elif syst == 'm':
         soundsPlaying[t] = sp.Popen(["afplay", '-v', str(v), f])
 
 def stopPlaying(t):
