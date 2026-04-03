@@ -56,16 +56,17 @@ def scoreAS(block,upgradeInv,multiplier,score,blockT,blockTypes):
         score = 17.5 * multiplier
 
     #Multipliers:
-    if upgradeInv['fortune'][0] and score > 0:
+    if score > 0:
         #Fortune:
-        if ((upgradeInv['fortune'][1] == 100) 
-        or (upgradeInv['fortune'][1] == 75 and (ran.randint(1,4) != 1))
-        or (upgradeInv['fortune'][1] == 50 and (ran.randint(1,2) == 1))
-        or (upgradeInv['fortune'][1] == 25 and (ran.randint(1,4) == 1))):
-            if upgradeInv['fortune x3']:
-                score = score * 3
-            else:
-                score = score * 2
+        if upgradeInv['fortune'][0]:
+            if ((upgradeInv['fortune'][1] == 100) 
+            or (upgradeInv['fortune'][1] == 75 and (ran.randint(1,4) != 1))
+            or (upgradeInv['fortune'][1] == 50 and (ran.randint(1,2) == 1))
+            or (upgradeInv['fortune'][1] == 25 and (ran.randint(1,4) == 1))):
+                if upgradeInv['fortune x3']:
+                    score = score * 3
+                else:
+                    score = score * 2
         #Bonuses:
         if upgradeInv['gold bonus'] and blockT in blockTypes['golden']:
             score = score * 1.5
