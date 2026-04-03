@@ -349,8 +349,11 @@ def multiplierUpgrade(a):
     global multiplier, score, failedUpg
     if a == 'm' and score >= 100:
         max = (score // 100) / 5
-        score -= max
+        print(max)
+        print(score)
+        score -= max*500
         multiplier += max
+        nextRoundA()
     elif score >= a*500:
         multiplier += a
         score -= 500*a
@@ -620,7 +623,7 @@ def nextShop(r):
     else:   #1st Time In Shop (This Round):
         play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic',v=2.5)
 
-    upgrades = shopList(blocksMined,upgradeInv,dimensionPickB,upgReroll,command,r)
+    upgrades = shopList(blocksMined,upgradeInv,dimensionPickB,upgReroll,command,r,multiplier)
 
     
     #Pick Random Upgrades:

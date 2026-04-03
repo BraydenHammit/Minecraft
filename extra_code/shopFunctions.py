@@ -4,8 +4,11 @@ import random as ran
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Upgrade List:
-def shopList(blocksMined,upgradeInv,dimensionPickB,upgReroll,command,r):
+def shopList(blocksMined,upgradeInv,dimensionPickB,upgReroll,command,r,mult):
     upgrades = ['click','click5','click10']
+
+    if mult >= 7.5:
+        upgrades.append('clickM')
 
     if not upgradeInv["penalty s"]:
         upgrades.append('penalty s')
@@ -132,6 +135,8 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
             upg = tk.Button(root, text = '⛏\nMultiplier Upgrade (+100%):\n500 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(1))
         if upg == 'click10':
             upg = tk.Button(root, text = '🛠\nMultiplier Upgrade (+200%):\n1000 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(2))
+        if upg == 'clickM':
+            upg = tk.Button(root, text = '🛠\nMultiplier Upgrade (Max):\nAll Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade('m'))
 
         if upg == 'fortune1':
             upg = tk.Button(root, text = '🪙\nFortune (25%):\n450 Score', bg = 'gray85', fg = 'gray5', command = lambda: fortuneUpgrade(25,450))
