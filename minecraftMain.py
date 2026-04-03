@@ -173,9 +173,9 @@ else: #Using codespace
     y = (screen_height // 2) - (height // 2)
     root.geometry(f"{width}x{height}+{x}+{y}")
 
-scrollIntro = st.ScrolledText(root, wrap=tk.WORD, font = ("Comic Sans MS", 12), width=60, height=20, highlightthickness=2, highlightbackground="gray5", bg="gray5", relief="flat")
+scrollIntro = st.ScrolledText(root, wrap=tk.WORD, font = ("Comic Sans MS", 12), width=60, height=20, highlightthickness=2, highlightbackground="black", relief="flat")
 intro = intro(blockTypes)
-startB =  tk.Button(root, text = 'Start', fg='gray5', bg='gray30', command= lambda: startGame())
+startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
 key =  tk.Button(root, height=1, width=1, text = '🔑', bg='gray85', command= lambda: keyClick('o'))
 keyE =  tk.Button(root, height=1, width=1, text = '🗝', bg='gray85', command= lambda: keyClick('e'))
 keyN =  tk.Button(root, height=1, width=1, text = '❓', bg='gray85', command= lambda: keyClick('n'))
