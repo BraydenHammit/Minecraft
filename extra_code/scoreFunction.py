@@ -69,6 +69,16 @@ def scoreAS(block,upgradeInv,multiplier,score,blockT,blockTypes):
         #Bonuses:
     if upgradeInv['gold bonus'] and blockT in blockTypes['golden']:
         score = score * 1.5
+    if upgradeInv['gemS bonus'] and blockT in blockTypes['gemS']:
+        score = score * 1.5
+    if upgradeInv['gemD bonus'] and blockT in blockTypes['gemD']:
+        score = score * 1.5
+    if upgradeInv['ind bonus'] and blockT in blockTypes['industrial']:
+        score = score * 1.5
+    if upgradeInv['rock bonus'] and blockT in blockTypes['rock']:
+        score = score * 1.5
+    if upgradeInv['potato bonus'] and blockT in blockTypes['potato']:
+        score = score * 1.5
 
         
         
