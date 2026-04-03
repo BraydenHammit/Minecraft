@@ -823,6 +823,7 @@ def nextRound():
 
 
 #Start/Open Window:
+root.configure(background="#323232")
 title.pack(pady=5)
 scrollIntro.pack(padx=30, pady=30)
 scrollIntro.insert(tk.INSERT, intro)
