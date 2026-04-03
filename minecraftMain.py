@@ -314,6 +314,7 @@ def stopPlaying(t):
 def startGame():
     scrollIntro.pack_forget()
     startB.destroy()
+    title.destroy()
     stopPlaying(soundsPlaying['shopMusic'])
     play(sounds['click'],'click')
     nextRound()
