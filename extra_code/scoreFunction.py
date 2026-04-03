@@ -4,7 +4,7 @@ import tkinter as tk
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Score Function:
-def scoreAS(block,upgradeInv,multiplier,score,blockT,blockTypes):
+def scoreAS(block,upgradeInv,multiplier,unused,blockT,blockTypes):
     score = 0
 
     #Base:
