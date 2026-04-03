@@ -30,6 +30,14 @@ def shopList(blocksMined,upgradeInv,dimensionPickB,upgReroll,command,r,mult):
 
     if not upgradeInv["gold bonus"]:
         upgrades.append('gold bonus')
+    if not upgradeInv["gemS bonus"]:
+        upgrades.append('gemS bonus')
+    if not upgradeInv["gemD bonus"]:
+        upgrades.append('gemD bonus')
+    if not upgradeInv["ind bonus"]:
+        upgrades.append('ind bonus')
+    if not upgradeInv["rock bonus"]:
+        upgrades.append('rock bonus')
 
     if not upgradeInv["st free"]:
         upgrades.append('st free')
@@ -177,6 +185,14 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
 
         if upg == 'gold bonus':
             upg = tk.Button(root, text = '👑\nGold Rush Bonus:\n750 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('gold bonus',750,False))
+        if upg == 'gemS bonus':
+            upg = tk.Button(root, text = '✨\nSparkling Bonus:\n1000 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('gemS bonus',1000,False))
+        if upg == 'gemD bonus':
+            upg = tk.Button(root, text = '🔷\nDull Gem Bonus:\n750 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('gemD bonus',750,False))
+        if upg == 'ind bonus':
+            upg = tk.Button(root, text = '🏭\nIndustrialization Bonus:\n1100 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('ind bonus',1100,False))
+        if upg == 'rock bonus':
+            upg = tk.Button(root, text = '⤴️\nHard Rock Bonus:\n500 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('rock bonus',500,False))
 
         if upg == 'luck':
             upg = tk.Button(root, text = '☘️\nEnhance Ore Spawns:\n5000 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('luck',5000,False))

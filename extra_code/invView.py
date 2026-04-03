@@ -60,6 +60,22 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,sounds,play,en
         texT += ('\n50% Bonus for Gold Ores')
     else:
         missing_upg += 1
+    if upgradeInv["gemS bonus"]:
+        texT += ('\n50% Bonus for Shiny Gems')
+    else:        
+        missing_upg += 1
+    if upgradeInv["gemD bonus"]:
+        texT += ('\n50% Bonus for Dull Gems')
+    else:
+        missing_upg += 1
+    if upgradeInv["ind bonus"]:
+        texT += ('\n50% Bonus for Industrial Ores')
+    else:
+        missing_upg += 1
+    if upgradeInv["rock bonus"]:
+        texT += ('\n50% Bonus for Rock Ores')
+    else:   
+        missing_upg += 1
 
     if upgradeInv["luck"]:
         texT += ('\nOre Spawns Increase')
