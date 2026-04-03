@@ -171,9 +171,9 @@ else: #Using codespace
     y = (screen_height // 2) - (height // 2)
     root.geometry(f"{width}x{height}+{x}+{y}")
 
-scrollIntro = st.ScrolledText(root, wrap=tk.WORD, font = ("Comic Sans MS", 12), width=60, height=20, highlightthickness=2, highlightbackground="black", relief="flat")
+scrollIntro = st.ScrolledText(root, wrap=tk.WORD, font = ("Comic Sans MS", 12), width=60, height=20, highlightthickness=2, highlightbackground="gray5", bg="gray5", relief="flat")
 intro = intro(blockTypes)
-startB =  tk.Button(root, text = 'Start', bg='gray85', command= lambda: startGame())
+startB =  tk.Button(root, text = 'Start', fg='gray5', bg='gray30', command= lambda: startGame())
 key =  tk.Button(root, height=1, width=1, text = '🔑', bg='gray85', command= lambda: keyClick('o'))
 keyE =  tk.Button(root, height=1, width=1, text = '🗝', bg='gray85', command= lambda: keyClick('e'))
 keyN =  tk.Button(root, height=1, width=1, text = '❓', bg='gray85', command= lambda: keyClick('n'))
@@ -188,6 +188,8 @@ images = {
             #Unique:
             'commandBlock': tk.PhotoImage(file='assets/images/commandBlockImageMinecraft.png'),
             'icon': tk.PhotoImage(file='assets/images/iconImageMinecraft.png'),
+            'title': tk.PhotoImage(file='assets/images/titleImageMinecraft.png'),
+            'titleS': tk.PhotoImage(file='assets/images/titleSImageMinecraft.png'),
             'iconI': 'assets/images/iconImageMinecraft.ico',
             #Rocks:
             'stone': tk.PhotoImage(file='assets/images/stoneImageMinecraft.png'),
@@ -247,6 +249,10 @@ if syst == 'm':
     root.iconphoto(True, images['icon'])
 elif syst == 'w':
     root.iconbitmap(images['iconI'])
+if title == 'Minceraft':
+    title = tk.Label(root, borderwidth=0, highlightthickness=0, image = images['titleS'])
+else:
+    title = tk.Label(root, borderwidth=0, highlightthickness=0, image = images['title'])
 
 sounds = {
     #Shop Music:
@@ -349,8 +355,6 @@ def multiplierUpgrade(a):
     global multiplier, score, failedUpg
     if a == 'm' and score >= 100:
         max = (score // 100) / 5
-        print(max)
-        print(score)
         score -= max*500
         multiplier += max
         nextRoundA()
@@ -817,6 +821,7 @@ def nextRound():
 
 
 #Start/Open Window:
+title.pack(pady=5)
 scrollIntro.pack(padx=30, pady=30)
 scrollIntro.insert(tk.INSERT, intro)
 scrollIntro.configure(state='disabled')
