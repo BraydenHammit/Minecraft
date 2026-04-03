@@ -155,8 +155,10 @@ upgradeInv = {
 root = tk.Tk()
 if ran.randrange(777) == 333:
     root.title("Minceraft")
+    title = "Minceraft"
 else:
     root.title("Minecraft")
+    title = "Minecraft"
 if syst == 'w':
     root.config(cursor="@assets/images/pickaxeImageMinecraft.cur")
 if syst != 'o':
@@ -821,6 +823,7 @@ def nextRound():
 
 
 #Start/Open Window:
+root.configure(background='white')
 title.pack(pady=5)
 scrollIntro.pack(padx=30, pady=30)
 scrollIntro.insert(tk.INSERT, intro)
