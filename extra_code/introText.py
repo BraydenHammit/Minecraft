@@ -8,7 +8,7 @@ Boost ore spawns, the amount of score you get per ore, gain the ability to selec
 \nExtra Semi-Ores:\nGlowstone = 8\nGilded Blackstone & Amethyst = 7.5'''
 
     #Block Types (Soft-Coded):
-    intro += '\n\nBlock Types:'
+    intro += '\n\nBlock Types:\n--------------------------------------------------------------------------------'
     for key, value in bt.items():
         if key != 'potato':
             if key == 'gemD':
