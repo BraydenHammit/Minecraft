@@ -96,13 +96,14 @@ def scoreAS(block,upgradeInv,multiplier,unused,blockT,blockTypes):
 #Hidden Ore Scores:
 def HOS(upgradeInv,BT):
     hos = tk.Tk()
-    hos.title("Hidden Ores:")
-    texT='Values:\nPotone = -1\nResin = 12.5'
+    hos.title("Values:")
+    texT = 'Rock Values:\nStone, Endstone, & Netherrack = -1\nDeepslate = -1.5\nBedrock = -25\n\nOre Values:\nCoal, Copper, & Nether Gold = 1.75\nRedstone & Lapis = 2.5\nIron, Gold, & Quartz = 3.25\nDiamond = 8\nEmerald & Netherite = 12.5\n\nExtra Semi-Ores:\nGlowstone = 8\nGilded Blackstone & Amethyst = 7.5'
+    texT += '\n\nSecret Ores:\nPotone = -1\nResin = 12.5'
     if upgradeInv['ruby'][0]:
         texT += '\nRuby = 17.5'
     texT += '\nPoisonous Potato = 537.25'
 
-    texT += '\n\nUpdated Block Types:'
+    texT += '\n\nBlock Types:'
     for key, value in BT.items():
             if key == 'gemD':
                 texT += f'\nDull Gems:'
@@ -116,7 +117,6 @@ def HOS(upgradeInv,BT):
                         texT += f' {val.title()}'
                     else:
                         texT += f', {val.title()}'
-            texT += '\n--------------------------------------------------------------------------------'
 
     text = tk.Label(hos, text=texT)
     text.pack(pady=5,padx=5)
