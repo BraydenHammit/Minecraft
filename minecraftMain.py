@@ -444,11 +444,14 @@ def nextRoundA():
 
 
 def button_click(r,c,block):
-    global start, score, nextTimer, blocksN, blocks, nextR, upgradeInv, attemptedBedrock, blocksMined
+    global start, score, nextTimer, blocksN, blocks, nextR, upgradeInv, attemptedBedrock, blocksMined, timerAfter
     if (block not in ('ender chest','chest','trapped chest','air')) and (block != 'bedrock' or upgradeInv['bedr'][0]) and (not(r == 15 and c in (0,1,2))):
         check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone')))
         check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
         if check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'][0] and not start):
+            if start:
+                if not upgradeInv['Xtime']:
+                    timerAfter = root.after(100,timeCount)
 
             if upgradeInv['bedr'][0] and block == 'bedrock':
                 check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone')))
@@ -798,12 +801,10 @@ def nextRound():
             blocksN[17].append('barrier')
 
 
-    #Start Timers (Timer+Next):
+    #Start Timers:
     if upgradeInv['ins nex']:    
         nextTimer = 0
         blocks[15][1].configure(text='Next')
-    if not upgradeInv['Xtime']:
-        timerAfter = root.after(100,timeCount)
     nextLock = root.after(1000,nextTime)
     if upgradeInv['auto'][0] and not upgradeInv['auto'][1]:    
         aMine = root.after(1000,autoMine)
