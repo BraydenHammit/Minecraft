@@ -5,7 +5,6 @@ def close(TK,s,play):
     TK.destroy()
 
 def openSettings(upgradeInv,settings,root,sounds,play):
-    #Base Variables:
     master = tk.Toplevel(root)
     master.title("Settings")
     tntV = tk.BooleanVar(value=settings['tnt'])
