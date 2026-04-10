@@ -160,7 +160,7 @@ else:
     root.title("Minecraft")
     title = "Minecraft"
 if syst == 'w':
-    root.config(cursor="@assets/images/pickaxeImageMinecraft.cur")
+    root.config(cursor="@assets/images/swordImageMinecraft.cur")
 if syst != 'o':
     root.state('zoomed')
 else: #Using codespace
@@ -317,6 +317,8 @@ def startGame():
     title.destroy()
     stopPlaying(soundsPlaying['shopMusic'])
     play(sounds['click'],'click')
+    if syst == 'w':
+        root.config(cursor="@assets/images/pickaxeImageMinecraft.cur")
     nextRound()
 
 def dimensionSwitch():
@@ -626,6 +628,9 @@ def nextRoundPre():
 def nextShop(r):
     global upgrades, dimensionPickB, command, upgReroll
 
+    if syst == 'w':
+        root.config(cursor="@assets/images/swordImageMinecraft.cur")
+
     if r: #If Rerolling:
         play(sounds['click'],'click')
         for e in upgrades:
@@ -743,6 +748,9 @@ def nextRound():
     blocks = []
     blocksN = []
     dimension = dimensionR(upgradeInv, root)
+
+    if syst == 'w':
+        root.config(cursor="@assets/images/pickaxeImageMinecraft.cur")
 
     #Define+Grid Button Layout:
     for r in range(16):
