@@ -14,16 +14,12 @@ def dimensionR(upgradeInv,root):
     if upgradeInv['dim pick'][0]:
         if upgradeInv['dim pick'][1] == 'n':
             dimension = 'nether'
-            root.configure(background='#723232')
         elif upgradeInv['dim pick'][1] == 'o':
             dimension = 'overworld'
-            root.configure(background='grey')
         elif upgradeInv['dim pick'][1] == 'e':
             dimension = 'end'
-            root.configure(background="#D7D597")
         elif upgradeInv['dim pick'][1] == 'p':
             dimension = 'poisonous potato'
-            root.configure(background="#8D4C1F")
         elif upgradeInv['dim pick'][1] == 'r':
             dims = ['overworld','nether']
             if upgradeInv['ext dim']:
