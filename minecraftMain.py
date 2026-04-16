@@ -145,11 +145,13 @@ upgradeInv = {
     'bedr': [False,False,False],
     'ruby': [False,False,False],
     #Mini-Secret:
-    'potato bonus': False,
     'penalty p': False,
     'penalty p+': False,
     'penalty b': False,
-    'penalty b+': False
+    'penalty b+': False,
+    #Un-Added:
+    'potato bonus': False,
+    'moon': False
 }
 
 root = tk.Tk()
