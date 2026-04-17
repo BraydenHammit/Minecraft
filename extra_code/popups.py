@@ -31,6 +31,8 @@ def wrongStartBlock(root,sounds,play,dimension):
       label = tk.Label(master, text='Must Start on netherrack!')
     elif dimension == 'end':
       label = tk.Label(master, text='Must Start on endstone!')
+    elif dimension == 'moon':
+      label = tk.Label(master, text='Must Start on cheese!')
     elif dimension == 'poisonous potato':
       label = tk.Label(master, text='Must Start on potone!')
 
