@@ -52,6 +52,8 @@ def scoreAS(block,upgradeInv,multiplier,unused,blockT,blockTypes):
         score = 12.5 * multiplier
     elif (block == 'poisonous potato'):
         score = 537.25 * multiplier
+    elif (block == 'cheese'):
+        score = 2 * multiplier
     elif (block == 'ruby'):
         score = 17.5 * multiplier
 

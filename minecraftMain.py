@@ -96,6 +96,7 @@ blocksMined = {
             'potone redstone': 0,
             'potone lapis': 0,
             'potone': 0,
+            'cheese': 0,
             'ruby': 0
 }
 
@@ -618,7 +619,7 @@ def nextRoundPre():
     if upgradeInv['🏆'][0]:
         upgradeInv['🏆'][1].grid(row=12,column=0, sticky="nsew", padx=5, pady=5)
     for k, v in blocksMined.items():
-        if k != 'ruby' and v == 0:
+        if k != 'ruby' and v == 0 and k != 'cheese': #remove cheese when moon added fully
             break
     else:
         if not upgradeInv['ruby'][2]:
