@@ -792,6 +792,12 @@ def nextRound():
                 blocks[r].append(button)
                 blocksN[r].append(ore)
 
+            elif dimension == 'moon':
+                button, ore = defOreP(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv)
+                button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
+                blocks[r].append(button)
+                blocksN[r].append(ore)
+
 
         else:
             blocks[r].append('barrier')         # add barrier so c-1 and c+1 checks never cause index errors

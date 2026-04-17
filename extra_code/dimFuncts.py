@@ -8,6 +8,7 @@ def dimensionR(upgradeInv,root):
         'nether': '#723232',
         'overworld': 'grey',
         'end': "#D7D597",
+        'moon': "#dad7bb",
         'poisonous potato': "#8D4C1F"
     }
 
@@ -20,6 +21,8 @@ def dimensionR(upgradeInv,root):
             dimension = 'end'
         elif upgradeInv['dim pick'][1] == 'p':
             dimension = 'poisonous potato'
+        elif upgradeInv['dim pick'][1] == 'm':
+            dimension = 'moon'
         elif upgradeInv['dim pick'][1] == 'r':
             dims = ['overworld','nether']
             if upgradeInv['ext dim']:
