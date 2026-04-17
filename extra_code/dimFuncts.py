@@ -59,6 +59,16 @@ def dimButton(upgradeInv,dimensionPickB):
             dimensionPickB.configure(text='Next Dimension:\nRandom', bg="#942465", fg="#550A2A")
             upgradeInv['dim pick'][1] = 'r'
     elif upgradeInv['dim pick'][1] == 'e':
+        if upgradeInv['moon']:
+            dimensionPickB.configure(text='Next Dimension:\nMoon', fg="#827f69", bg="#e3dfb4")
+            upgradeInv['dim pick'][1] = 'm'
+        elif upgradeInv['🏆'][0]:
+            dimensionPickB.configure(text='Next Dimension:\nPoisonous Potato', fg="#e7851c", bg="#724017")
+            upgradeInv['dim pick'][1] = 'p'
+        else:
+            dimensionPickB.configure(text='Next Dimension:\nRandom', bg="#942465", fg="#550A2A")
+            upgradeInv['dim pick'][1] = 'r'
+    elif upgradeInv['dim pick'][1] == 'm':
         if upgradeInv['🏆'][0]:
             dimensionPickB.configure(text='Next Dimension:\nPoisonous Potato', fg="#e7851c", bg="#724017")
             upgradeInv['dim pick'][1] = 'p'
