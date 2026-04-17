@@ -7,7 +7,7 @@ from tkinter import scrolledtext as st
 from extra_code.scoreFunction import scoreAS, HOS
 from extra_code.shopFunctions import shopList, buttonDef
 from extra_code.oreFunct import oreO, oreN, oreP
-from extra_code.oreFunctDef import defOreN, defOreO, defOreE, defOreP
+from extra_code.oreFunctDef import defOreN, defOreO, defOreE, defOreP, defOreM
 from extra_code.dimFuncts import dimensionR, dimButton
 from extra_code.invView import viewInventory
 from extra_code.popups import wrongStartBlock, notAfford
@@ -135,7 +135,7 @@ upgradeInv = {
     'ext dim': False,
     'ore ext': False,
     #Shop Buttons:
-    'dim pick': [False,'r'],
+    'dim pick': [True,'m'],
     'upg re': False,
     'stat view': False,
     #Secret:
@@ -793,7 +793,7 @@ def nextRound():
                 blocksN[r].append(ore)
 
             elif dimension == 'moon':
-                button, ore = defOreP(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv)
+                button, ore = defOreM(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv)
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
                 blocksN[r].append(ore)
