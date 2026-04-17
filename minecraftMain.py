@@ -136,7 +136,7 @@ upgradeInv = {
     'ext dim': False,
     'ore ext': False,
     #Shop Buttons:
-    'dim pick': [True,'m'],
+    'dim pick': [False, 'r'],
     'upg re': False,
     'stat view': False,
     #Secret:
