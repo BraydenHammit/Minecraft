@@ -78,7 +78,7 @@ def scoreAS(block,upgradeInv,multiplier,unused,blockT,blockTypes):
             score = score * 1.5
         if upgradeInv['rock bonus'] and blockT in blockTypes['rock']:
             score = score * 1.5
-        if upgradeInv['potato bonus'] and blockT in blockTypes['potato']:
+        if upgradeInv['food bonus'] and blockT in blockTypes['food']:
             score = score * 1.5
 
     elif upgradeInv['rock bonus'] and blockT in blockTypes['rock']:
@@ -111,7 +111,7 @@ def HOS(upgradeInv,BT):
                 texT += f'\n{key.title()}:'
             num = 0
             for val in value:
-                if (val != 'ruby') or upgradeInv['ruby'][0]:
+                if ((val != 'ruby') or upgradeInv['ruby'][0]) and ((val != 'cheese') or upgradeInv['moon']):
                     num += 1
                     if num == 1:
                         texT += f' {val.title()}'

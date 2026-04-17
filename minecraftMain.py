@@ -150,7 +150,7 @@ upgradeInv = {
     'penalty b': False,
     'penalty b+': False,
     #Un-Added:
-    'potato bonus': False,
+    'food bonus': False,
     'moon': False
 }
 
