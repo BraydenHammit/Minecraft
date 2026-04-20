@@ -4,7 +4,7 @@ import random as ran
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Upgrade List:
-def shopList(blocksMined,upgradeInv,dimensionPickB,upgReroll,command,r,mult):
+def shopList(upgradeInv,dimensionPickB,upgReroll,command,r,mult):
     upgrades = ['click','click5','click10']
 
     if mult >= 7.5:

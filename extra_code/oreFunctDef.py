@@ -197,7 +197,7 @@ def defOreP(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#Moon: (Unused)
+#Moon:
 def defOreM(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv):
     if (c == 0) and (r == 15):
         button = tk.Button(root, text=round(score,2), bg='#fbf8d5', fg="#8c8a77", command=lambda r=r, c=c: button_click(r,c,'bedrock'))
