@@ -24,7 +24,7 @@ else:
 start = True
 nextR = False
 score = 0
-multiplier = 1
+multiplier = 1000
 fortune = 1
 nextTimer = 5
 timer = 15
@@ -449,12 +449,12 @@ def nextRoundA():
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-def button_click(r,c,block):
+def button_click(r,c,block, effic=False):
     global start, score, nextTimer, blocksN, blocks, nextR, upgradeInv, attemptedBedrock, blocksMined, timerAfter
     if (block not in ('ender chest','chest','trapped chest','air')) and (block != 'bedrock' or upgradeInv['bedr'][0]) and (not(r == 15 and c in (0,1,2))):
         check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone','cheese')))
         check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
-        if check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'][0] and not start):
+        if (check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'][0] and not start)) and not (effic and start):
             if start:
                 if not upgradeInv['Xtime']:
                     timerAfter = root.after(100,timeCount)
@@ -799,9 +799,6 @@ def nextRound():
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
                 blocksN[r].append(ore)
-
-            if upgradeInv['effic'] and not ore == 'bedrock':
-                blocks[r][c].bind('<Enter>', (lambda event, r=r, c=c: button_click(r,c,ore)))
 
 
         else:
