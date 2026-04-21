@@ -24,7 +24,7 @@ else:
 start = True
 nextR = False
 score = 0
-multiplier = 1000
+multiplier = 1
 fortune = 1
 nextTimer = 5
 timer = 15
