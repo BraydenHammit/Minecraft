@@ -128,6 +128,7 @@ upgradeInv = {
     'tnt start': False,
     'auto': [False,False],
     'autoF': False,
+    'effic': False,
     #Time:
     'time': False,
     'Xtime': False,
@@ -798,6 +799,9 @@ def nextRound():
                 button.grid(row=r, column=c, sticky="nsew", padx=5, pady=5)
                 blocks[r].append(button)
                 blocksN[r].append(ore)
+
+            if upgradeInv['effic'] and not ore == 'bedrock':
+                blocks[r][c].bind('<Enter>', (lambda event, r=r, c=c: button_click(r,c,ore)))
 
 
         else:
