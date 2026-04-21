@@ -49,7 +49,7 @@ blockTypes = {
     'gemD': ['lapis','deepslate lapis','potone lapis','quartz','resin', 'glowstone'],
     'industrial': ['iron','deepslate iron','potone iron','coal','deepslate coal', 'copper','deepslate copper', 'potone copper','redstone','deepslate redstone', 'potone redstone'],
     'rock': ['stone','deepslate','potone','bedrock','endstone','netherrack','netherite','glowstone'],
-    'potato': ['potone','potone copper','potone gold','potone iron','potone redstone','potone lapis','potone diamond','resin','poisonous potato','deepslate poisonous potato']
+    'food': ['potone','potone copper','potone gold','potone iron','potone redstone','potone lapis','potone diamond','resin','poisonous potato','deepslate poisonous potato']
 }
 
 blocksMined = {
