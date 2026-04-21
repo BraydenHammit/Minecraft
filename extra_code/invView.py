@@ -91,6 +91,11 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,sounds,play,en
     else:
         missing_upg += 1
 
+    if upgradeInv["effic"]:
+        texT += ('\nMine Without Clicking (Efficiency)')
+    else:
+        missing_upg += 1
+
     if upgradeInv["diag mine"]:
         texT += ('\nDiagonal Mining')
     else:

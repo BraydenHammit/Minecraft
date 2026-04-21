@@ -62,6 +62,9 @@ def shopList(upgradeInv,dimensionPickB,upgReroll,command,r,mult):
 
     if not upgradeInv["ore ext"]:
         upgrades.append('ore ext')
+
+    if not upgradeInv["effic"]:
+        upgrades.append('effic')
     
     if not upgradeInv["time"]:
         upgrades.append('time')
@@ -203,6 +206,8 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
             upg = tk.Button(root, text = '🔓\nUnbind Starting Point:\n375 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('st free',375,False))
         if upg == 'diag mine':
             upg = tk.Button(root, text = '🔀\nMine Diagonally:\n325 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('diag mine',325,False))
+        if upg == 'effic':
+            upg = tk.Button(root, text = '⏭️\nInsta-Mine Efficiency:\n10000 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('effic',10000,False))
         if upg == 'unl mine':
             upg = tk.Button(root, text = '🌀\nIntangabilitic Mining:\n2675 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('unl mine',2675,True))
         if upg == 'auto':
