@@ -86,7 +86,7 @@ def defOreO(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
         ore = 'deepslate'
         button = tk.Button(root, image=images['deepslate'], bg = 'gray40', command=lambda r=r, c=c: button_click(r,c,'deepslate'))
 
-    if (upgradeInv['effic']) and (ore != 'bedrock'):
+    if (upgradeInv['effic'])  and (upgradeInv['bedr'][1] or ore != 'bedrock'):
         button.bind('<Enter>', lambda event, r=r, c=c: button_click(r,c,ore,effic=True))
 
     return button, ore
@@ -123,7 +123,7 @@ def defOreN(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
         button = tk.Button(root, image = images['netherrack'], bg='#723232', command=lambda r=r, c=c: button_click(r,c,'netherrack'))
         ore = 'netherrack'
 
-    if (upgradeInv['effic']) and (ore != 'bedrock'):
+    if (upgradeInv['effic'])  and (upgradeInv['bedr'][1] or ore != 'bedrock'):
         button.bind('<Enter>', lambda event, r=r, c=c: button_click(r,c,ore,effic=True))
     
     return button, ore
@@ -157,7 +157,7 @@ def defOreE(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv):
         button = tk.Button(root, image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
         ore = 'endstone'
 
-    if (upgradeInv['effic']) and (ore not in ('bedrock','chest','ender chest','trapped chest')):
+    if (upgradeInv['effic']) and (ore not in ('chest','ender chest','trapped chest')) and (upgradeInv['bedr'][1] or ore != 'bedrock'):
         button.bind('<Enter>', lambda event, r=r, c=c: button_click(r,c,ore,effic=True))
 
     return button, ore
@@ -198,7 +198,7 @@ def defOreP(r,c,root,images,score,nextTimer,ore,button_click,timer,upgradeInv):
         button = tk.Button(root, image = images['potone'], bg="#965628", command=lambda r=r, c=c: button_click(r,c,'potone'))
         ore = 'potone'
 
-    if (upgradeInv['effic']) and (ore != 'bedrock'):
+    if (upgradeInv['effic'])  and (upgradeInv['bedr'][1] or ore != 'bedrock'):
         button.bind('<Enter>', lambda event, r=r, c=c: button_click(r,c,ore,effic=True))
     
     return button, ore
@@ -223,7 +223,7 @@ def defOreM(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv):
         button = tk.Button(root, image = images['cheese'], bg='#fbf8d5', command=lambda r=r, c=c: button_click(r,c,'cheese'))
         ore = 'cheese'
 
-    if (upgradeInv['effic']) and (ore != 'bedrock'):
+    if (upgradeInv['effic'])  and (upgradeInv['bedr'][1] or ore != 'bedrock'):
         button.bind('<Enter>', lambda event, r=r, c=c: button_click(r,c,ore,effic=True))
 
     return button, ore

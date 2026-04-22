@@ -237,7 +237,11 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,sounds,play,en
     #Blocks Mined:
     texT += '\n\nBlocks Mined:'
     for key, value in blocksMined.items():
-        if (key == 'ruby' and upgradeInv['ruby'][0]) or (key == 'cheese' and upgradeInv['moon']) or (key == 'bedrock' and upgradeInv['bedr'][0]) or ((('potone' in key) or key == 'resin') and upgradeInv['🏆'][0]) or (('poisonous' in key) and upgradeInv['potato']) or (key in ('amethyst','gilded blackstone','glowstone') and upgradeInv['ore ext']) or (key == 'endstone' and upgradeInv['ext dim']) or (key not in ('bedrock','amethyst','gilded blackstone','glowstone','resin','endstone','ruby') and (not 'poisonous' in key) and (not 'potone' in key)):
+        c1 = (key == 'ruby' and upgradeInv['ruby'][0]) or (key == 'cheese' and upgradeInv['moon']) or (key == 'bedrock' and upgradeInv['bedr'][0])
+        c2 = ((('potone' in key) or key == 'resin') and upgradeInv['🏆'][0]) or (('poisonous' in key) and upgradeInv['potato'])
+        c3 = (key in ('amethyst','gilded blackstone','glowstone') and upgradeInv['ore ext']) or (key == 'endstone' and upgradeInv['ext dim'])
+        c4 = (key not in ('bedrock','amethyst','gilded blackstone','glowstone','resin','endstone','ruby','cheese') and (not 'poisonous' in key) and (not 'potone' in key))
+        if c1 or c2 or c3 or c4:
             texT += f'\n{key.title()}: {value}'
 
 

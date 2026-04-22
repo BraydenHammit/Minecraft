@@ -185,8 +185,8 @@ keyE =  tk.Button(root, height=1, width=1, text = '🗝', bg='gray85', command= 
 keyN =  tk.Button(root, height=1, width=1, text = '❓', bg='gray85', command= lambda: keyClick('n'))
 dimensionPickB = tk.Button(root, text='Next Dimension:\nRandom', bg="#942465", fg="#550A2A", command=lambda: dimensionSwitch())
 upgReroll = tk.Button(root, text='Reroll Upgrades', bg='gray85', fg="gray5", command=lambda: nextShop(True))
-multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray85', fg="gray5", command=lambda: button_click(1,0,'bedrock'))
-fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}', bg='gray85', fg="gray5", command=lambda: button_click(2,0,'bedrock'))
+multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray85', fg="gray5", command=lambda: play(sounds['break'],'click'))
+fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}', bg='gray85', fg="gray5", command=lambda: play(sounds['break'],'click'))
 upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray85', fg="gray5", command=lambda: trophyButton(sounds['level']))
 settingsB = tk.Button(root, text='Settings', bg='gray85', fg="gray5", command=lambda: settingsButton(sounds['click']))
 
@@ -569,19 +569,19 @@ def button_click(r,c,block, effic=False):
     elif block == 'chest' and upgradeInv['unl mine'][2]:
         upgradeInv['unl mine'][1] = True
         blocks[r][c].configure(image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
-        blocks[r][c].bind('<Enter>',(lambda event, r=r, c=c: block_break(r,c,'endstone',effic=True)))
+        blocks[r][c].bind('<Enter>',(lambda event, r=r, c=c: button_click(r,c,'endstone',effic=True)))
         play(sounds['level'],'click')
 
     elif block == 'ender chest' and upgradeInv['bedr'][2]:
         upgradeInv['bedr'][1] = True
         blocks[r][c].configure(image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
-        blocks[r][c].bind('<Enter>',(lambda event, r=r, c=c: block_break(r,c,'endstone',effic=True)))
+        blocks[r][c].bind('<Enter>',(lambda event, r=r, c=c: button_click(r,c,'endstone',effic=True)))
         play(sounds['level'],'click')
 
     elif block == 'trapped chest' and upgradeInv['ruby'][2]:
         upgradeInv['ruby'][1] = True
         blocks[r][c].configure(image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
-        blocks[r][c].bind('<Enter>',(lambda event, r=r, c=c: block_break(r,c,'endstone',effic=True)))
+        blocks[r][c].bind('<Enter>',(lambda event, r=r, c=c: button_click(r,c,'endstone',effic=True)))
         play(sounds['level'],'click')
 
     else:
