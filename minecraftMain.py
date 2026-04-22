@@ -454,7 +454,7 @@ def button_click(r,c,block, effic=False):
     if (block not in ('ender chest','chest','trapped chest','air')) and (block != 'bedrock' or upgradeInv['bedr'][0]) and (not(r == 15 and c in (0,1,2))):
         check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone','cheese')))
         check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
-        if (check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'][0] and not start)) and not (effic and start):
+        if (check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'][0] and not start)) and (not (effic and start)):
             if start:
                 if not upgradeInv['Xtime']:
                     timerAfter = root.after(100,timeCount)
@@ -550,7 +550,7 @@ def button_click(r,c,block, effic=False):
 
             blocks[15][0].configure(text=round(score,2))
 
-        elif  block != 'bedrock' and start and (block not in ('stone','endstone','netherrack','potone')) and (not upgradeInv['st free']):
+        elif  block != 'bedrock' and (start and not effic) and (block not in ('stone','endstone','netherrack','potone')) and (not upgradeInv['st free']):
             wrongStartBlock(root,sounds,play,dimension)
 
 
