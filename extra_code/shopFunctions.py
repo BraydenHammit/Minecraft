@@ -145,7 +145,7 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
         if upg == 'click5':
             upg = tk.Button(root, text = '⛏\nMultiplier Upgrade (+100%):\n500 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(1))
         if upg == 'click10':
-            upg = tk.Button(root, text = '🛠\nMultiplier Upgrade (+200%):\n1000 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(2))
+            upg = tk.Button(root, text = '🛠\nMultiplier Upgrade (+200%):\n1,000 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(2))
         if upg == 'clickM':
             upg = tk.Button(root, text = '🛠\nMultiplier Upgrade (Max):\nAll Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade('m'))
 
@@ -156,7 +156,7 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
         if upg == 'fortune3':
             upg = tk.Button(root, text = '💸\nFortune (75%):\n725 Score', bg = 'gray85', fg = 'gray5', command = lambda: fortuneUpgrade(75,725))
         if upg == 'fortuneM':
-            upg = tk.Button(root, text = '💰\nFortune (100%):\n1125 Score', bg = 'gray85', fg = 'gray5', command = lambda: fortuneUpgrade(100,1125))
+            upg = tk.Button(root, text = '💰\nFortune (100%):\n1,125 Score', bg = 'gray85', fg = 'gray5', command = lambda: fortuneUpgrade(100,1125))
         if upg == 'fortune x3':
             upg = tk.Button(root, text = '💳\nTriple Fortune:\n825 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('fortune x3',825,False))
 
@@ -189,7 +189,7 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
         if upg == 'gold bonus':
             upg = tk.Button(root, text = '👑\nGold Rush Bonus:\n750 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('gold bonus',750,False))
         if upg == 'gemS bonus':
-            upg = tk.Button(root, text = '✨\nSparkling Bonus:\n1000 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('gemS bonus',1000,False))
+            upg = tk.Button(root, text = '✨\nSparkling Bonus:\n1,000 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('gemS bonus',1000,False))
         if upg == 'gemD bonus':
             upg = tk.Button(root, text = '🔷\nDull Gem Bonus:\n750 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('gemD bonus',750,False))
         if upg == 'ind bonus':
@@ -198,29 +198,29 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
             upg = tk.Button(root, text = '⤴️\nHard Rock Bonus:\n500 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('rock bonus',500,False))
 
         if upg == 'luck':
-            upg = tk.Button(root, text = '☘️\nEnhance Ore Spawns:\n5000 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('luck',5000,False))
+            upg = tk.Button(root, text = '☘️\nEnhance Ore Spawns:\n5,000 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('luck',5000,False))
         if upg == 'luckM':
-            upg = tk.Button(root, text = '🍀\nEnhance Ore Spawns+:\n7500 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('luckM',7500,False))
+            upg = tk.Button(root, text = '🍀\nEnhance Ore Spawns+:\n7,500 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('luckM',7500,False))
 
         if upg == 'st free':
             upg = tk.Button(root, text = '🔓\nUnbind Starting Point:\n375 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('st free',375,False))
         if upg == 'diag mine':
             upg = tk.Button(root, text = '🔀\nMine Diagonally:\n325 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('diag mine',325,False))
         if upg == 'effic':
-            upg = tk.Button(root, text = '⏭️\nInsta-Mine Efficiency:\n15000 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('effic',15000,False))
+            upg = tk.Button(root, text = '⏭️\nInsta-Mine Efficiency:\n15,000 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('effic',15000,False))
         if upg == 'unl mine':
-            upg = tk.Button(root, text = '🌀\nIntangabilitic Mining:\n2675 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('unl mine',2675,True))
+            upg = tk.Button(root, text = '🌀\nIntangabilitic Mining:\n2,675 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('unl mine',2675,True))
         if upg == 'auto':
-            upg = tk.Button(root, text = '⚙️\nAutomatic Mining:\n4150 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('auto',4150,True))
+            upg = tk.Button(root, text = '⚙️\nAutomatic Mining:\n4,150 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('auto',4150,True))
         if upg == 'autoF':
-            upg = tk.Button(root, text = '⏩\nFaster Automation:\n2375 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('autoF',2375,False))
+            upg = tk.Button(root, text = '⏩\nFaster Automation:\n2,375 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('autoF',2375,False))
         if upg == 'bedr':
             upg = tk.Button(root, text = '🗜\nBedrock Minability:\n300 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('bedr',300,True))
         
         if upg == 'tnt':
-            upg = tk.Button(root, text = '🧨\nBlast Radius Mining:\n3750 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('tnt',3750,False))
+            upg = tk.Button(root, text = '🧨\nBlast Radius Mining:\n3,750 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('tnt',3750,False))
         if upg == 'tnt start':
-            upg = tk.Button(root, text = '💣\nExplosive Start (5x5):\n2750 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('tnt start',2750,False))
+            upg = tk.Button(root, text = '💣\nExplosive Start (5x5):\n2,750 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('tnt start',2750,False))
 
         if upg == 'ext dim':
             upg = tk.Button(root, text = '🪐\nExtra Dimension:\n75 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('ext dim',75,False))
@@ -239,9 +239,9 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
             upg = tk.Button(root, text = "🔑\nInstant 'Next' Unlock:\n425 Score", bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('ins nex',425,False))
 
         if upg == 'dim pick':
-            upg = tk.Button(root, text = '🌌\nChoose Next Dimension:\n1250 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('dim pick',1250,True))
+            upg = tk.Button(root, text = '🌌\nChoose Next Dimension:\n1,250 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('dim pick',1250,True))
         if upg == 'upg re':
-            upg = tk.Button(root, text = '♻️\nUpgrade Rerolling:\n3150 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('upg re',3150,False))
+            upg = tk.Button(root, text = '♻️\nUpgrade Rerolling:\n3,150 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('upg re',3150,False))
         if upg == 'stat view':
             upg = tk.Button(root, text = '👁\nStat & Upgrade Viewing:\n50 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('stat view',50,False))
 
