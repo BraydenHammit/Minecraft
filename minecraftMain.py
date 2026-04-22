@@ -459,7 +459,7 @@ def button_click(r,c,block, effic=False):
                 if not upgradeInv['Xtime']:
                     timerAfter = root.after(100,timeCount)
 
-            if upgradeInv['bedr'][0] and block == 'bedrock':
+            if (upgradeInv['bedr'][0] and block == 'bedrock') and not (upgradeInv['tnt'] or (upgradeInv['tnt start'] and start)):
                 check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone')))
                 check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
                 if check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'][0] and not start):
@@ -482,7 +482,7 @@ def button_click(r,c,block, effic=False):
                          [r+2,c-2],[r+2,c-1],[r+2,c],[r+2,c+1],[r+2,c+2]]
                 for rr, cc in check:
                     block = blocksN[rr][cc]
-                    if ('chest' not in block) and block not in ('bedrock','barrier','air'):
+                    if ('chest' not in block) and (block not in ('barrier','air')) and (upgradeInv['bedr'][0] or block != 'bedrock') and (not(rr == 15 and cc in (0,1,2))):
                         blocksN[rr][cc] = 'air'
                         if not isinstance(blocks[rr][cc], str):
                             blocks[rr][cc].destroy()
@@ -509,7 +509,7 @@ def button_click(r,c,block, effic=False):
                          [r-1,c-1], [r-1,c], [r-1,c+1]]
                 for rr, cc in check:
                     block = blocksN[rr][cc]
-                    if ('chest' not in block) and block not in ('bedrock','barrier','air'):
+                    if ('chest' not in block) and (block not in ('barrier','air')) and (upgradeInv['bedr'][0] or block != 'bedrock') and (not(rr == 15 and cc in (0,1,2))):
                         blocksN[rr][cc] = 'air'
                         if not isinstance(blocks[rr][cc], str):
                             blocks[rr][cc].destroy()
