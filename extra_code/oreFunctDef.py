@@ -157,7 +157,7 @@ def defOreE(r,c,root,images,score,nextTimer,button_click,timer,upgradeInv):
         button = tk.Button(root, image = images['endstone'], bg='#E0DE93', command=lambda r=r, c=c: button_click(r,c,'endstone'))
         ore = 'endstone'
 
-    if (upgradeInv['effic']) and (ore != 'bedrock'):
+    if (upgradeInv['effic']) and (ore not in ('bedrock','chest','ender chest','trapped chest')):
         button.bind('<Enter>', lambda event, r=r, c=c: button_click(r,c,ore,effic=True))
 
     return button, ore
