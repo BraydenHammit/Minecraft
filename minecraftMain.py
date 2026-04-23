@@ -10,7 +10,7 @@ from extra_code.oreFunct import oreO, oreN, oreP
 from extra_code.oreFunctDef import defOreN, defOreO, defOreE, defOreP, defOreM
 from extra_code.dimFuncts import dimensionR, dimButton
 from extra_code.invView import viewInventory
-from extra_code.popups import wrongStartBlock, notAfford
+from extra_code.popups import wrongStartBlock, notAfford, moonWindow
 from extra_code.settings import openSettings
 from extra_code.introText import intro
 
@@ -622,6 +622,10 @@ def nextRoundPre():
         keyE.grid(row=15,column=15, sticky="nsew", padx=5, pady=5)
     if upgradeInv['🏆'][0]:
         upgradeInv['🏆'][1].grid(row=12,column=0, sticky="nsew", padx=5, pady=5)
+    moonCheck1 = (blocksMined['deepslate redstone'] + blocksMined['potone redstone'] + blocksMined['redstone'] >= 75) and (blocksMined['deepslate iron'] + blocksMined['potone iron'] + blocksMined['iron'] >= 75)
+    moonCheck2 = (blocksMined['deepslate copper'] + blocksMined['potone copper'] + blocksMined['copper'] >= 50) and (blocksMined['deepslate coal'] + blocksMined['coal'] >= 80) and (blocksMined['glowstone'] >= 10)
+    if (not upgradeInv['moon']) and (upgradeInv['ext dim']) and moonCheck1 and moonCheck2:
+        moonWindow(root,sounds,play,images['craftingTable'],upgradeInv)
     for k, v in blocksMined.items():
         if k != 'ruby' and v == 0 and k != 'cheese': #remove cheese when moon added fully
             break

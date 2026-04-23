@@ -1,7 +1,9 @@
 import tkinter as tk
 
 #Base Functions:
-def close(TK,s,play):
+def close(TK,s,play,moon=False,u=None):
+    if moon:
+      u['moon'] = True
     if s != None:
       play(s,'click')
     TK.destroy()
@@ -55,4 +57,17 @@ def notAfford(root,sounds,play):
     ok.pack(pady=5)
 
     root.after(1000,lambda: timeDown(ok,master,None,play,time,root))
+    root.wait_window(master)
+
+#Moon Dimensiom:
+def moonWindow(root,sounds,play,img,upgs):
+    master = tk.Toplevel(root)
+    master.title("Pop-Up")
+    master.geometry('200x100')
+    ok = tk.Button(master,text=f'Craft a Rocket', bg='gray85', command = lambda: close(master,sounds['click'],play,moon=True,u=upgs))
+    craftTabel = tk.Label(master, image=img)
+
+    craftTabel.pack(pady=5)
+    ok.pack(pady=5)
+
     root.wait_window(master)

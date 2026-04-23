@@ -190,6 +190,10 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,sounds,play,en
         secrets.append('\nRuby Ore')
     else:
         missing_secrets += 1
+    if upgradeInv['moon']:
+        secrets.append('\nMoon Dimension')
+    else:
+        missing_secrets += 1
 
 
     secretsM = []
