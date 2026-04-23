@@ -40,7 +40,8 @@ dimension = None
 settings = {
     'tnt': True,
     'tnt start': True,
-    'auto mine': True 
+    'auto mine': True,
+    'effic': True 
 }
 
 blockTypes = {
@@ -452,7 +453,7 @@ def nextRoundA():
 
 def button_click(r,c,block, effic=False):
     global start, score, nextTimer, blocksN, blocks, nextR, upgradeInv, attemptedBedrock, blocksMined, timerAfter
-    if (block not in ('ender chest','chest','trapped chest','air')) and (block != 'bedrock' or upgradeInv['bedr'][0]) and (not(r == 15 and c in (0,1,2))):
+    if (block not in ('ender chest','chest','trapped chest','air')) and (block != 'bedrock' or upgradeInv['bedr'][0]) and (not(r == 15 and c in (0,1,2))) and (not (effic and not settings['effic'])):
         check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone','cheese')))
         check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
         if (check or check2 or (start and upgradeInv['st free']) or (upgradeInv['unl mine'][0] and not start)) and (not (effic and start)):
