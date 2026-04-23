@@ -63,11 +63,12 @@ def notAfford(root,sounds,play):
 def moonWindow(root,sounds,play,img,upgs):
     master = tk.Toplevel(root)
     master.title("Pop-Up")
-    master.geometry('200x100')
+    master.geometry('300x200')
+    master.configure(bg='gray30')
     ok = tk.Button(master,text=f'Craft a Rocket', bg='gray85', command = lambda: close(master,sounds['click'],play,moon=True,u=upgs))
     craftTabel = tk.Label(master, image=img)
 
-    craftTabel.pack(pady=5)
-    ok.pack(pady=5)
+    craftTabel.pack(pady=10)
+    ok.pack(pady=10)
 
     root.wait_window(master)
