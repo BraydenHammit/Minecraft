@@ -146,14 +146,15 @@ upgradeInv = {
     'unl mine': [False,False,False],
     'bedr': [False,False,False],
     'ruby': [False,False,False],
+    'moon': False,
     #Mini-Secret:
     'penalty p': False,
     'penalty p+': False,
     'penalty b': False,
     'penalty b+': False,
     #Un-Added:
-    'food bonus': False,
-    'moon': False
+    'food bonus': False
+
 }
 
 root = tk.Tk()
