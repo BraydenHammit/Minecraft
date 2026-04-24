@@ -29,6 +29,8 @@ def dimensionR(upgradeInv,root):
                 dims.append('end')
             if upgradeInv['🏆'][0]:
                 dims.append('poisonous potato')
+            if upgradeInv['moon']:
+                dims.append('moon')
             dimension = ran.choice(dims)
 
 
