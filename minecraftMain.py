@@ -103,56 +103,56 @@ blocksMined = {
 
 upgradeInv = {
     #Penalties:
-    'penalty n': False,
-    'penalty s': False,
-    'penalty d': False,
-    'penalty e': False,
-    'penalty n+': False,
-    'penalty s+': False,
-    'penalty d+': False,
-    'penalty e+': False,
+    'penalty n': False, # Netherrack Penalty Removal
+    'penalty s': False, # Stone Penalty Removal
+    'penalty d': False, # Deepslate Penalty Removal
+    'penalty e': False, # Endstone Penalty Removal
+    'penalty n+': False, # Netherrack Positive Score
+    'penalty s+': False, # Stone Positive Score
+    'penalty d+': False, # Deepslate Positive Score
+    'penalty e+': False, # Endstone Positive Score
     #Block Type Bonuses:
-    'gold bonus': False,
-    'gemS bonus': False,
-    'gemD bonus': False,
-    'ind bonus': False,
-    'rock bonus': False,
+    'gold bonus': False, # Gold Rush Bonus
+    'gemS bonus': False, # Sparkling Bonus
+    'gemD bonus': False, # Dull Gems
+    'ind bonus': False, # Industrialization Bonus
+    'rock bonus': False, # Hard Rock Bonus
     #Luck:
-    'luck': False,
-    'luckM': False,
-    'fortune': [False,0],
-    'fortune x3': False,
+    'luck': False, # Increased Ore Spawns
+    'luckM': False, # Increased Ore Spawns+
+    'fortune': [False,0], # Fortune                                                         [_,Odds]
+    'fortune x3': False, # Triple Fortune
     #Mining:
-    'st free': False,
-    'diag mine': False,
-    'tnt': False,
-    'tnt start': False,
-    'auto': [False,False],
-    'autoF': False,
-    'effic': False,
+    'st free': False, # Unbind Starting Point
+    'diag mine': False, # Diagonal Mining
+    'tnt': False, # 5x5 TNT Mining
+    'tnt start': False, # 5x5 TNT Starting Blast
+    'auto': [False,False], # Automatic Mining                                             [_,Activated]
+    'autoF': False, # Faster Automation
+    'effic': False, # Efficiency
     #Time:
-    'time': False,
-    'Xtime': False,
-    'ins nex': False,
+    'time': False, # More Round Time
+    'Xtime': False, # Infinite Round Time
+    'ins nex': False, # Instant Next Unlock
     #Extras:
-    'ext dim': False,
-    'ore ext': False,
+    'ext dim': False, # End Dimension
+    'ore ext': False, # Pseudo Ores
     #Shop Buttons:
-    'dim pick': [False, 'r'],
-    'upg re': False,
-    'stat view': False,
+    'dim pick': [False, 'r'], # Dimension Pick Button                                    [_,Next Dimension]
+    'upg re': False, # Upgrade Rerolling Button
+    'stat view': False, # Stat Viewing Button
     #Secret:
-    'potato': False,
-    '🏆': [False,None,False],
-    'unl mine': [False,False,False],
-    'bedr': [False,False,False],
-    'ruby': [False,False,False],
-    'moon': False,
+    'potato': False, #Question Marks (???) / Poisonous Potato Ore
+    '🏆': [False,None,False], # Secret Trophy                                          [_,Button,Available]
+    'unl mine': [False,False,False], # Intangabilitic Mining                            [_,Key,Chest]
+    'bedr': [False,False,False], # Bedrock Minability                                    [_,Key,Chest]
+    'ruby': [False,False,False], # Ruby Ore                                               [_,Key,Chest]
+    'moon': False, #Moon Dimension
     #Mini-Secret:
-    'penalty p': False,
-    'penalty p+': False,
-    'penalty b': False,
-    'penalty b+': False,
+    'penalty p': False, # Potone Penalty Removal
+    'penalty p+': False, # Bedrock Positive Score
+    'penalty b': False, # Bedrock Penalty Removal
+    'penalty b+': False, # Bedrock Positive Score
     #Un-Added:
     'food bonus': False
 
