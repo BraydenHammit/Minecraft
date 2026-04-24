@@ -75,7 +75,7 @@ def shopList(upgradeInv,dimensionPickB,upgReroll,command,r,mult):
 
     if not upgradeInv["tnt"]:
         upgrades.append('tnt')
-    if not upgradeInv["tnt start"]:
+    elif not upgradeInv["tnt start"]:
         upgrades.append('tnt start')
 
     if not upgradeInv["fortune"][0]:
