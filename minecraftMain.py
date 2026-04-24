@@ -624,10 +624,6 @@ def nextRoundPre():
         keyE.grid(row=15,column=15, sticky="nsew", padx=5, pady=5)
     if upgradeInv['🏆'][0]:
         upgradeInv['🏆'][1].grid(row=12,column=0, sticky="nsew", padx=5, pady=5)
-    moonCheck1 = (blocksMined['deepslate redstone'] + blocksMined['potone redstone'] + blocksMined['redstone'] >= 75) and (blocksMined['deepslate iron'] + blocksMined['potone iron'] + blocksMined['iron'] >= 75)
-    moonCheck2 = (blocksMined['deepslate copper'] + blocksMined['potone copper'] + blocksMined['copper'] >= 50) and (blocksMined['deepslate coal'] + blocksMined['coal'] >= 80) and (blocksMined['glowstone'] >= 10)
-    if (not upgradeInv['moon']) and (upgradeInv['ext dim']) and moonCheck1 and moonCheck2:
-        moonWindow(root,sounds,play,images['craftingTable'],upgradeInv)
     for k, v in blocksMined.items():
         if k != 'ruby' and v == 0 and k != 'cheese': #remove cheese when moon added fully
             break
@@ -671,6 +667,14 @@ def nextShop(r):
     for i, upg in enumerate(upgrades):
         upgrades[i] = buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgrade)
         upgrades[i].grid(row=8, column=(i+1)*3, sticky="nsew", padx=5, pady=5)
+
+
+    if not r:
+        moonCheck1 = (blocksMined['deepslate redstone'] + blocksMined['potone redstone'] + blocksMined['redstone'] >= 75) and (blocksMined['deepslate iron'] + blocksMined['potone iron'] + blocksMined['iron'] >= 75)
+        moonCheck2 = (blocksMined['deepslate copper'] + blocksMined['potone copper'] + blocksMined['copper'] >= 50) and (blocksMined['deepslate coal'] + blocksMined['coal'] >= 80) and (blocksMined['glowstone'] >= 10)
+        if (not upgradeInv['moon']) and (upgradeInv['ext dim']) and moonCheck1 and moonCheck2:
+            moonWindow(root,sounds,play,images['craftingTable'],upgradeInv)
+
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
