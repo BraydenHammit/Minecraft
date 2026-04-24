@@ -625,7 +625,7 @@ def nextRoundPre():
     if upgradeInv['🏆'][0]:
         upgradeInv['🏆'][1].grid(row=12,column=0, sticky="nsew", padx=5, pady=5)
     for k, v in blocksMined.items():
-        if k != 'ruby' and v == 0 and k != 'cheese': #remove cheese when moon added fully
+        if k != 'ruby' and v == 0: 
             break
     else:
         if not upgradeInv['ruby'][2]:
