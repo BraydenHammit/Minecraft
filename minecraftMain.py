@@ -125,7 +125,7 @@ upgradeInv = {
     #Mining:
     'st free': False, # Unbind Starting Point
     'diag mine': False, # Diagonal Mining
-    'tnt': False, # 5x5 TNT Mining
+    'tnt': False, # 3x3 TNT Mining
     'tnt start': False, # 5x5 TNT Starting Blast
     'auto': [False,False], # Automatic Mining                                             [_,Activated]
     'autoF': False, # Faster Automation
@@ -144,9 +144,9 @@ upgradeInv = {
     #Secret:
     'potato': False, #Question Marks (???) / Poisonous Potato Ore
     '🏆': [False,None,False], # Secret Trophy                                          [_,Button,Available]
-    'unl mine': [False,False,False], # Intangabilitic Mining                            [_,Key,Chest]
-    'bedr': [False,False,False], # Bedrock Minability                                    [_,Key,Chest]
-    'ruby': [False,False,False], # Ruby Ore                                               [_,Key,Chest]
+    'unl mine': [False,False,False], # Intangabilitic Mining                            [_,Chest,Key]
+    'bedr': [False,False,False], # Bedrock Minability                                   [_,Chest,Key]
+    'ruby': [False,False,False], # Ruby Ore                                             [_,Chest,Key]
     'moon': False, #Moon Dimension
     #Mini-Secret:
     'penalty p': False, # Potone Penalty Removal
