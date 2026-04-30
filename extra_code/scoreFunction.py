@@ -4,7 +4,7 @@ import tkinter as tk
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Score Function:
-def scoreAS(block,upgradeInv,multiplier,unused,blockT,blockTypes):
+def scoreAS(block,upgradeInv,multiplier,unused,blockT,blockTypes,startX=False):
     score = 0
 
     #Base:
@@ -82,6 +82,9 @@ def scoreAS(block,upgradeInv,multiplier,unused,blockT,blockTypes):
             score = score * 1.5
         if upgradeInv['food bonus'] and blockT in blockTypes['food']:
             score = score * 1.5
+
+        if upgradeInv['start2'] and startX:
+            score = score * 2
 
     elif upgradeInv['rock bonus'] and blockT in blockTypes['rock']:
         score = score / 2

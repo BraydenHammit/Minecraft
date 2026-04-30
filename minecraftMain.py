@@ -117,6 +117,7 @@ upgradeInv = {
     'gemD bonus': False, # Dull Gems
     'ind bonus': False, # Industrialization Bonus
     'rock bonus': False, # Hard Rock Bonus
+    'start2': False, # 2x Starting Block
     #Luck:
     'luck': False, # Increased Ore Spawns
     'luckM': False, # Increased Ore Spawns+
@@ -453,6 +454,10 @@ def nextRoundA():
 
 def button_click(r,c,block, effic=False):
     global start, score, nextTimer, blocksN, blocks, nextR, upgradeInv, attemptedBedrock, blocksMined, timerAfter
+    if start and upgradeInv['start2']:
+        startScore = True
+    else:
+        startScore = False
     if (block not in ('ender chest','chest','trapped chest','air')) and (block != 'bedrock' or upgradeInv['bedr'][0]) and (not(r == 15 and c in (0,1,2))) and (not (effic and not settings['effic'])):
         check = ((blocks[r+1][c] == 'air') or (blocks[r-1][c] == 'air') or (blocks[r][c+1] == 'air') or (blocks[r][c-1] == 'air')) or (start and (block in ('endstone','stone','netherrack','potone','cheese')))
         check2 = ((blocks[r+1][c+1] == 'air') or (blocks[r-1][c-1] == 'air') or (blocks[r-1][c+1] == 'air') or (blocks[r+1][c-1] == 'air')) and upgradeInv['diag mine']
@@ -470,7 +475,7 @@ def button_click(r,c,block, effic=False):
                     blocks[r][c] = 'air'
                     blocksN[r][c] = 'air'
                     start = False
-                    score += scoreAS('bedrock',upgradeInv,multiplier,score,'bedrock',blockTypes)
+                    score += scoreAS('bedrock',upgradeInv,multiplier,score,'bedrock',blockTypes,startX=startScore)
                     play(sounds['glass'],'break block')
                     blocksMined['bedrock'] += 1
 
@@ -498,7 +503,7 @@ def button_click(r,c,block, effic=False):
                         else: 
                             blockM = block
                         blocksMined[blockM] += 1
-                        score += scoreAS(block,upgradeInv,multiplier,score,blockM,blockTypes)
+                        score += scoreAS(block,upgradeInv,multiplier,score,blockM,blockTypes,startX=startScore)
                         
                             
 
@@ -525,7 +530,7 @@ def button_click(r,c,block, effic=False):
                         else: 
                             blockM = block
                         blocksMined[blockM] += 1
-                        score += scoreAS(block,upgradeInv,multiplier,score,blockM,blockTypes)
+                        score += scoreAS(block,upgradeInv,multiplier,score,blockM,blockTypes,startX=startScore)
                         
 
 
@@ -548,7 +553,7 @@ def button_click(r,c,block, effic=False):
                     play(sounds['break block'],'break block')
                 else:
                     play(sounds['xp'],'break block')
-                score += scoreAS(block,upgradeInv,multiplier,score,blockM,blockTypes)
+                score += scoreAS(block,upgradeInv,multiplier,score,blockM,blockTypes,startX=startScore)
 
             blocks[15][0].configure(text=round(score,2))
 

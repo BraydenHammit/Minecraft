@@ -56,6 +56,11 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,sounds,play,en
     else:
         missing_upg += 1
 
+    if upgradeInv["start2"]:
+        texT += ('\n2x Starting Block Score')
+    else:
+        missing_upg += 1
+
     if upgradeInv["gold bonus"]:
         texT += ('\n50% Bonus for Gold Ores')
     else:
@@ -112,6 +117,8 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,sounds,play,en
 
     if upgradeInv["ore ext"]:
         texT += ('\nAllow Pseudo Ore Spawning')
+    else:
+        missing_upg += 1
     
     if upgradeInv["time"]:
         texT += ('\nTime Per Round Increase')
