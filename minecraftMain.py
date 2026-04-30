@@ -187,7 +187,7 @@ key =  tk.Button(root, height=1, width=1, text = '🔑', bg='gray85', command= l
 keyE =  tk.Button(root, height=1, width=1, text = '🗝', bg='gray85', command= lambda: keyClick('e'))
 keyN =  tk.Button(root, height=1, width=1, text = '❓', bg='gray85', command= lambda: keyClick('n'))
 dimensionPickB = tk.Button(root, text='Next Dimension:\nRandom', bg="#942465", fg="#550A2A", command=lambda: dimensionSwitch())
-upgReroll = tk.Button(root, text='Reroll Upgrades', bg='gray85', fg="gray5", command=lambda: nextShop(True))
+upgReroll = tk.Button(root, text='Reroll Upgrades\n(300 Score)', bg='gray85', fg="gray5", command=lambda: nextShop(True))
 multButton = tk.Button(root, text=f'Multiplier: x{multiplier}', bg='gray85', fg="gray5", command=lambda: play(sounds['break'],'click'))
 fortButton = tk.Button(root, text=f'Fortune: {upgradeInv["fortune"][1]}% for x{fortune}', bg='gray85', fg="gray5", command=lambda: play(sounds['break'],'click'))
 upgradeInv['🏆'][1] = tk.Button(root, text='Secret Trophy 🏆', bg='gray85', fg="gray5", command=lambda: trophyButton(sounds['level']))
@@ -643,45 +643,47 @@ def nextRoundPre():
 
 
 def nextShop(r):
-    global upgrades, dimensionPickB, command, upgReroll
+    global upgrades, dimensionPickB, command, upgReroll, score
+    if (not r) or (r and score >= 300):
+        if syst == 'w':
+            root.config(cursor="@assets/images/swordImageMinecraft.cur")
 
-    if syst == 'w':
-        root.config(cursor="@assets/images/swordImageMinecraft.cur")
+        if r: #If Rerolling:
+            score -= 300
+            blocks[15][0].configure(text=f'Score: {round(score,2)}',bg='gray85',fg='gray5')
+            play(sounds['click'],'click')
+            for e in upgrades:
+                e.destroy()
+        else:   #1st Time In Shop (This Round):
+            play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic',v=2.5)
 
-    if r: #If Rerolling:
-        play(sounds['click'],'click')
-        for e in upgrades:
-            e.destroy()
-    else:   #1st Time In Shop (This Round):
-        play(sounds[ran.choice(['subwoofer lullaby','aria math','mice on venus','minecraft','sweden'])],'shopMusic',v=2.5)
+        upgrades = shopList(upgradeInv,dimensionPickB,upgReroll,command,r,multiplier)
 
-    upgrades = shopList(upgradeInv,dimensionPickB,upgReroll,command,r,multiplier)
-
-    
-    #Pick Random Upgrades:
-    choices = []
-    for _ in range(3):
-        choiceExt = ran.randint(0,len(upgrades)-1)
-        choice = upgrades[choiceExt]
-        upgrades.pop(choiceExt)         #remove choice so upgrade can only be shown once per shop
-        choices.append(choice)
-    if upgradeInv['🏆'][2] and not upgradeInv['🏆'][0]:
-        choices.append('🏆')
-    else:
-        choices.append('skip')
-
-
-    upgrades = choices
-    for i, upg in enumerate(upgrades):
-        upgrades[i] = buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgrade)
-        upgrades[i].grid(row=8, column=(i+1)*3, sticky="nsew", padx=5, pady=5)
+        
+        #Pick Random Upgrades:
+        choices = []
+        for _ in range(3):
+            choiceExt = ran.randint(0,len(upgrades)-1)
+            choice = upgrades[choiceExt]
+            upgrades.pop(choiceExt)         #remove choice so upgrade can only be shown once per shop
+            choices.append(choice)
+        if upgradeInv['🏆'][2] and not upgradeInv['🏆'][0]:
+            choices.append('🏆')
+        else:
+            choices.append('skip')
 
 
-    if not r:
-        moonCheck1 = (blocksMined['deepslate redstone'] + blocksMined['potone redstone'] + blocksMined['redstone'] >= 75) and (blocksMined['deepslate iron'] + blocksMined['potone iron'] + blocksMined['iron'] >= 75)
-        moonCheck2 = (blocksMined['deepslate copper'] + blocksMined['potone copper'] + blocksMined['copper'] >= 50) and (blocksMined['deepslate coal'] + blocksMined['coal'] >= 80) and (blocksMined['glowstone'] >= 10)
-        if (not upgradeInv['moon']) and (upgradeInv['ext dim']) and moonCheck1 and moonCheck2:
-            moonWindow(root,sounds,play,images['craftingTable'],upgradeInv)
+        upgrades = choices
+        for i, upg in enumerate(upgrades):
+            upgrades[i] = buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgrade)
+            upgrades[i].grid(row=8, column=(i+1)*3, sticky="nsew", padx=5, pady=5)
+
+
+        if not r:
+            moonCheck1 = (blocksMined['deepslate redstone'] + blocksMined['potone redstone'] + blocksMined['redstone'] >= 75) and (blocksMined['deepslate iron'] + blocksMined['potone iron'] + blocksMined['iron'] >= 75)
+            moonCheck2 = (blocksMined['deepslate copper'] + blocksMined['potone copper'] + blocksMined['copper'] >= 50) and (blocksMined['deepslate coal'] + blocksMined['coal'] >= 80) and (blocksMined['glowstone'] >= 10)
+            if (not upgradeInv['moon']) and (upgradeInv['ext dim']) and moonCheck1 and moonCheck2:
+                moonWindow(root,sounds,play,images['craftingTable'],upgradeInv)
 
 
 
