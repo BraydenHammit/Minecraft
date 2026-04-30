@@ -29,7 +29,7 @@ def oreO(upgradeInv,r):
         ore = 'copper'
     elif (randomNum == 32 or randomNum == 31) and upgradeInv['ore ext']:
         ore = 'amethyst'   
-    elif randomNum == 33 and upgradeInv['potato'] and ran.randrange(77) == 33:
+    elif randomNum == 33 and upgradeInv['potato'] and ran.randrange(57) == 33:
         ore = 'poisonous potato'
     elif randomNum == 34 and upgradeInv['ruby'][0] and r <= 8:
         ore = 'ruby'
