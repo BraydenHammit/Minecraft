@@ -30,6 +30,7 @@ nextTimer = 5
 timer = 15
 attemptedBedrock = 0
 failedUpg = 0
+rerollCost = 300
 aMine = None
 nextLock = None
 timerAfter = None
@@ -605,7 +606,7 @@ def button_click(r,c,block, effic=False):
 
 #Shop Start-Up:
 def nextRoundPre():
-    global key, keyE, keyN
+    global key, keyE, keyN, rerollCost
     root.configure(background='grey')
 
     stopPlaying(soundsPlaying['roundMusic'])
@@ -619,6 +620,7 @@ def nextRoundPre():
 
             val.destroy()
 
+    rerollCost = 300
     blocks[15][0].grid(row=15, column=0, sticky="nsew", padx=5, pady=5)
     blocks[15][0].configure(text=f'Score: {round(score,2)}',bg='gray85',fg='gray5')
     settingsB.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
@@ -643,14 +645,16 @@ def nextRoundPre():
 
 
 def nextShop(r):
-    global upgrades, dimensionPickB, command, upgReroll, score
-    if (not r) or (r and score >= 300):
+    global upgrades, dimensionPickB, command, upgReroll, score, rerollCost
+    if (not r) or (r and score >= rerollCost):
         if syst == 'w':
             root.config(cursor="@assets/images/swordImageMinecraft.cur")
 
         if r: #If Rerolling:
-            score -= 300
+            score -= rerollCost
+            rerollCost += 300
             blocks[15][0].configure(text=f'Score: {round(score,2)}',bg='gray85',fg='gray5')
+            upgReroll.configure(text=f'Reroll Upgrades\n({rerollCost} Score)')
             play(sounds['click'],'click')
             for e in upgrades:
                 e.destroy()
