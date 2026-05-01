@@ -689,6 +689,10 @@ def nextShop(r):
             if (not upgradeInv['moon']) and (upgradeInv['ext dim']) and moonCheck1 and moonCheck2:
                 moonWindow(root,sounds,play,images['craftingTable'],upgradeInv)
 
+    elif (r) and (score < rerollCost):
+        play(sounds['break'],'click')
+        notAfford(root,sounds,play)
+
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
