@@ -11,18 +11,22 @@ def openSettings(upgradeInv,settings,root,sounds,play):
     tntSV = tk.BooleanVar(value=settings['tnt start'])
     autoV = tk.BooleanVar(value=settings['auto mine'])
     efficV = tk.BooleanVar(value=settings['effic'])
+    autoXV = tk.BooleanVar(value=settings['autoX'])
     ok = tk.Button(master,text='Ok', bg='gray85', command = lambda: close(master,sounds['click'],play))
     label = tk.Label(master, text='None of your upgrades are togglable!')
     tnt = tk.Checkbutton(master, text="TNT Mining", variable=tntV)
     tntS = tk.Checkbutton(master, text="TNT Start", variable=tntSV)
     auto = tk.Checkbutton(master, text="Auto Mining", variable=autoV)
     effic = tk.Checkbutton(master, text="Efficiency", variable=efficV)
+    autoX = tk.Checkbutton(master, text="Explosive Automation", variable=autoXV)
     if settings['tnt']:
         tnt.select()
     if settings['tnt start']:
         tntS.select()
     if settings['auto mine']:
         auto.select()
+        if settings['autoX']:
+            autoX.select()
     if settings['effic']:
         effic.select()
 
@@ -32,6 +36,8 @@ def openSettings(upgradeInv,settings,root,sounds,play):
         tntS.pack(pady=5)
     if upgradeInv['auto'][0]:
         auto.pack(pady=5)
+        if upgradeInv['autoX']:
+            autoX.pack(pady=5)
     if upgradeInv['effic']:
         effic.pack(pady=5)
     if not (upgradeInv['auto'][0] or upgradeInv['tnt start'] or upgradeInv['tnt'] or upgradeInv['effic']):
@@ -44,6 +50,7 @@ def openSettings(upgradeInv,settings,root,sounds,play):
         'tnt': tntV.get(),
         'tnt start': tntSV.get(),
         'auto mine': autoV.get(),
+        'autoX': autoXV.get(),
         'effic': efficV.get()
     }
 

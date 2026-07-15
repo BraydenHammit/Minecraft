@@ -43,6 +43,7 @@ settings = {
     'tnt': True,
     'tnt start': True,
     'auto mine': True,
+    'autoX': True,
     'effic': True 
 }
 
@@ -755,7 +756,7 @@ def autoMine():
                 r, c = int(mPrice[0]), int(mPrice[1])
                 blockN = blocksN[r][c]
                 block = blocks[r][c]
-                if upgradeInv['autoX'] and blockN not in ('bedrock','air','barrier','chest','ender chest','trapped chest'):
+                if upgradeInv['autoX'] and settings['autoX'] and (blockN not in ('bedrock','air','barrier','chest','ender chest','trapped chest')):
                     if not isinstance(block, str):
                             block.destroy()
                     play(sounds['tnt'],'break block')
