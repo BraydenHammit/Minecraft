@@ -743,8 +743,13 @@ def autoMine():
 
         else:
             if len(valid) > 0:
-                r = ran.choice(valid)[0]
-                c = ran.choice(valid)[1]
+                priceCheck = {}
+                for value in valid:
+                    Svalue = str(value[0])+','+str(value[1])
+                    priceCheck[Svalue] = scoreAS(blocksN[value[0]][value[1]],upgradeInv,multiplier,None,blocksN[value[0]][value[1]],blockTypes)
+                mPrice = max(priceCheck, key=priceCheck.get)
+                mPrice = mPrice.split(',')
+                r, c = int(mPrice[0]), int(mPrice[1])
                 blockN = blocksN[r][c]
                 block = blocks[r][c]
                 if blockN not in ('bedrock','air','barrier','chest','ender chest','trapped chest'):
