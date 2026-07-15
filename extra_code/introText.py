@@ -8,7 +8,7 @@ You must start by mining a stone or netherrack block. You can only mine blocks n
     #Block Types (Soft-Coded):
     intro += '\n\nBlock Types:\n--------------------------------------------------------------------------------'
     for key, value in bt.items():
-        if key != 'potato':
+        if key not in ('potato','food'):
             if key == 'gemD':
                 intro += f'\nDull Gems:'
             else:
