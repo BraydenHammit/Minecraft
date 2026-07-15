@@ -433,6 +433,7 @@ def nextRoundA():
         dimensionPickB.grid_forget()
     if upgradeInv['upg re']:
         upgReroll.grid_forget()
+        upgReroll.configure(text='Reroll Upgrades\n(300 Score)')
     try:
         keyE.grid_forget()
     except:
