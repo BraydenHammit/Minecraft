@@ -25,7 +25,7 @@ else:
 start = True
 nextR = False
 score = 0
-multiplier = 1000
+multiplier = 1
 fortune = 1
 nextTimer = 5
 timer = 15
@@ -780,6 +780,7 @@ def autoMine():
                                 blockM = block
                             blocksMined[blockM] += 1
                             score += scoreAS(block,upgradeInv,multiplier,None,blockM,blockTypes,mining=True)
+                            blocks[15][0].configure(text=round(score,2))
                 elif blockN not in ('bedrock','air','barrier','chest','ender chest','trapped chest'):
                     if not isinstance(block, str):
                         block.destroy()
