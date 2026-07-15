@@ -4,6 +4,7 @@ import random as ran
 import subprocess as sp
 import platform as plt
 from tkinter import scrolledtext as st
+from extra_code.toolTips import toolTip
 from extra_code.scoreFunction import scoreAS, HOS
 from extra_code.shopFunctions import shopList, buttonDef
 from extra_code.oreFunct import oreO, oreN, oreP
@@ -679,7 +680,7 @@ def nextShop(r):
 
         upgrades = choices
         for i, upg in enumerate(upgrades):
-            upgrades[i] = buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgrade)
+            upgrades[i] = buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgrade, toolTip)
             upgrades[i].grid(row=8, column=(i+1)*3, sticky="nsew", padx=5, pady=5)
 
 

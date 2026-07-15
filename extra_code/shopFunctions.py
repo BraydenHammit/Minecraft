@@ -140,120 +140,159 @@ def shopList(upgradeInv,dimensionPickB,upgReroll,command,r,mult):
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Button Defining:
-def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgrade):
+def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgrade, toolTip):
 
         if upg == 'click':
             upg = tk.Button(root, text = '🔨\nMultiplier Upgrade (+20%):\n100 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(0.2))
+            tt = toolTip(upg, 'Increases the multiplier by 0.2.\nThis can be bought multiple times.')
         if upg == 'click5':
             upg = tk.Button(root, text = '⛏\nMultiplier Upgrade (+100%):\n500 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(1))
+            tt = toolTip(upg, 'Increases the multiplier by 1.\nThis can be bought multiple times.')
         if upg == 'click10':
             upg = tk.Button(root, text = '🛠\nMultiplier Upgrade (+200%):\n1,000 Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade(2))
+            tt = toolTip(upg, 'Increases the multiplier by 2.\nThis can be bought multiple times.')
         if upg == 'clickM':
             upg = tk.Button(root, text = '🛠\nMultiplier Upgrade (Max):\nAll Score', bg = 'gray85', fg = 'gray5', command = lambda: multiplierUpgrade('m'))
-
+            tt = toolTip(upg, 'Spend all your score on multipliers.\nThis can be bought multiple times.')
         if upg == 'fortune1':
             upg = tk.Button(root, text = '🪙\nFortune (25%):\n450 Score', bg = 'gray85', fg = 'gray5', command = lambda: fortuneUpgrade(25,450))
+            tt = toolTip(upg, 'Small chance to get double score from any ore.\nThis can only be bought once.')
         if upg == 'fortune2':
             upg = tk.Button(root, text = '💵\nFortune (50%):\n675 Score', bg = 'gray85', fg = 'gray5', command = lambda: fortuneUpgrade(50,675))
+            tt = toolTip(upg, 'Increased chance to get double score from any ore.\nThis can only be bought once.')
         if upg == 'fortune3':
             upg = tk.Button(root, text = '💸\nFortune (75%):\n725 Score', bg = 'gray85', fg = 'gray5', command = lambda: fortuneUpgrade(75,725))
+            tt = toolTip(upg, 'High chance to get double score from any ore.\nThis can only be bought once.')
         if upg == 'fortuneM':
             upg = tk.Button(root, text = '💰\nFortune (100%):\n1,125 Score', bg = 'gray85', fg = 'gray5', command = lambda: fortuneUpgrade(100,1125))
+            tt = toolTip(upg, 'Guaranteed chance to get double score from any ore.\nThis can only be bought once.')
         if upg == 'fortune x3':
             upg = tk.Button(root, text = '💳\nTriple Fortune:\n825 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('fortune x3',825,False))
-
+            tt = toolTip(upg, 'Fortune now awards triple score.\nThis can only be bought once.')
         if upg == 'penalty s':
             upg = tk.Button(root, text = '🪨\nRemove Stone Penalty:\n250 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('penalty s',250,False))
+            tt = toolTip(upg, 'Removes the 1 score penalty for mining stone.\nThis can only be bought once.')
         if upg == 'penalty n':
             upg = tk.Button(root, text = '🧱\nRemove Netherrack Penalty:\n150 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('penalty n',150,False))
+            tt = toolTip(upg, 'Removes the 1 score penalty for mining netherrack.\nThis can only be bought once.')
         if upg == 'penalty d':
             upg = tk.Button(root, text = '🪦\nRemove Deepslate Penalty:\n350 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('penalty d',350,False))
+            tt = toolTip(upg, 'Removes the 1.5 score penalty for mining deepslate.\nThis can only be bought once.')
         if upg == 'penalty e':
             upg = tk.Button(root, text = '🗿\nRemove Endstone Penalty:\n1 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('penalty e',1,False))
+            tt = toolTip(upg, 'Removes the 1 score penalty for mining endstone.\nThis can only be bought once.')
         if upg == 'penalty p':
             upg = tk.Button(root, text = '🏺\nRemove Potone Penalty:\n33 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('penalty p',33,False))
+            tt = toolTip(upg, 'Removes the 1 score penalty for mining potone.\nThis can only be bought once.')
         if upg == 'penalty b':
             upg = tk.Button(root, text = '🕋\nRemove Bedrock Penalty:\n77 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('penalty b',77,False))
-
+            tt = toolTip(upg, 'Removes the 25 score penalty for mining bedrock.\nThis can only be bought once.')
         if upg == 'penalty s+':
             upg = tk.Button(root, text = '📎\nPositive Score Stone:\n500 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('penalty s+',500,False))
+            tt = toolTip(upg, 'Adds a 1 score bonus for mining stone.\nThis can only be bought once.')
         if upg == 'penalty n+':
             upg = tk.Button(root, text = '🚨\nPositive Score Netherrack:\n300 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('penalty n+',300,False))
+            tt = toolTip(upg, 'Adds a 1 score bonus for mining netherrack.\nThis can only be bought once.')
         if upg == 'penalty d+':
             upg = tk.Button(root, text = '🔗\nPositive Score Deepslate:\n700 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('penalty d+',700,False))
+            tt = toolTip(upg, 'Adds a 1.5 score bonus for mining deepslate.\nThis can only be bought once.')
         if upg == 'penalty e+':
             upg = tk.Button(root, text = '🔩\nPositive Score Endstone:\n150 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('penalty e+',150,False))
+            tt = toolTip(upg, 'Adds a 1 score bonus for mining endstone.\nThis can only be bought once.')
         if upg == 'penalty p+':
             upg = tk.Button(root, text = '☣️\nPositive Score Potone:\n250 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('penalty p+',250,False))
+            tt = toolTip(upg, 'Adds a 1 score bonus for mining potone.\nThis can only be bought once.')
         if upg == 'penalty b+':
             upg = tk.Button(root, text = '💍\nPositive Score Bedrock:\n333 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('penalty b+',333,False))
+            tt = toolTip(upg, 'Adds a 25 score bonus for mining bedrock.\nThis can only be bought once.')
         if upg == 'start2':
             upg = tk.Button(root, text = '🎯\n2x Starting Block:\n350 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('start2',350,False))
-
+            tt = toolTip(upg, 'First block mined gives double score.\nThis can only be bought once.')
         if upg == 'gold bonus':
             upg = tk.Button(root, text = '👑\nGold Rush Bonus:\n750 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('gold bonus',750,False))
+            tt = toolTip(upg, '1.5x multiplier for all gold type blocks.\nThis can only be bought once.')
         if upg == 'gemS bonus':
             upg = tk.Button(root, text = '✨\nSparkling Bonus:\n1,000 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('gemS bonus',1000,False))
+            tt = toolTip(upg, '1.5x multiplier for all sparkling gem type blocks.\nThis can only be bought once.')
         if upg == 'gemD bonus':
             upg = tk.Button(root, text = '🔷\nDull Gem Bonus:\n750 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('gemD bonus',750,False))
+            tt = toolTip(upg, '1.5x multiplier for all dull gem type blocks.\nThis can only be bought once.')
         if upg == 'ind bonus':
             upg = tk.Button(root, text = '🏭\nIndustrialization Bonus:\n1100 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('ind bonus',1100,False))
+            tt = toolTip(upg, '1.5x multiplier for all industrial type blocks.\nThis can only be bought once.')
         if upg == 'rock bonus':
             upg = tk.Button(root, text = '⤴️\nHard Rock Bonus:\n500 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('rock bonus',500,False))
-
+            tt = toolTip(upg, '1.5x multiplier for all rock type blocks.\nThis halfs penalty if penalty removal not obtained.\nThis can only be bought once.')
         if upg == 'luck':
             upg = tk.Button(root, text = '☘️\nEnhance Ore Spawns:\n5,000 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('luck',5000,False))
+            tt = toolTip(upg, 'Increases the chance of ores spawning instead of regular blocks.\nThis can only be bought once.')
         if upg == 'luckM':
             upg = tk.Button(root, text = '🍀\nEnhance Ore Spawns+:\n7,500 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('luckM',7500,False))
-
+            tt = toolTip(upg, 'Further increases the chance of ores spawning instead of regular blocks.\nThis can only be bought once.')
         if upg == 'st free':
             upg = tk.Button(root, text = '🔓\nUnbind Starting Point:\n375 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('st free',375,False))
+            tt = toolTip(upg, 'Starting point no longer locked to stone or netherrack.\nThis can only be bought once.')
         if upg == 'diag mine':
             upg = tk.Button(root, text = '🔀\nMine Diagonally:\n325 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('diag mine',325,False))
+            tt = toolTip(upg, 'Allows mining diagonally from previous blocks.\nThis can only be bought once.')
         if upg == 'effic':
             upg = tk.Button(root, text = '⏭️\nInsta-Mine Efficiency:\n15,000 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('effic',15000,False))
+            tt = toolTip(upg, 'Blocks are mined when mouse hovers over them.\nThis can only be bought once.')
         if upg == 'unl mine':
             upg = tk.Button(root, text = '🌀\nIntangabilitic Mining:\n2,675 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('unl mine',2675,True))
+            tt = toolTip(upg, 'Allows mining any block, no longer requiring it\nto be next to a previously mined block.\nThis can only be bought once.')
         if upg == 'auto':
             upg = tk.Button(root, text = '⚙️\nAutomatic Mining:\n4,150 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('auto',4150,True))
+            tt = toolTip(upg, 'Automatically mines blocks every second.\nThis can only be bought once.')
         if upg == 'autoF':
             upg = tk.Button(root, text = '⏩\nFaster Automation:\n2,375 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('autoF',2375,False))
+            tt = toolTip(upg, 'Automatically mine every 0.25 seconds.\nThis can only be bought once.')
         if upg == 'bedr':
             upg = tk.Button(root, text = '🗜\nBedrock Minability:\n300 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('bedr',300,True))
-        
+            tt = toolTip(upg, 'Allows mining bedrock.\nThis can only be bought once.')
         if upg == 'tnt':
             upg = tk.Button(root, text = '🧨\nBlast Radius Mining:\n3,750 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('tnt',3750,False))
+            tt = toolTip(upg, 'Mines a 3x3 area around the mined block.\nThis can only be bought once.')
         if upg == 'tnt start':
             upg = tk.Button(root, text = '💣\nExplosive Start (5x5):\n2,750 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('tnt start',2750,False))
-
+            tt = toolTip(upg, 'Mines a 5x5 area around the first mined block.\nThis can only be bought once.')
         if upg == 'ext dim':
             upg = tk.Button(root, text = '🪐\nExtra Dimension:\n75 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('ext dim',75,False))
+            tt = toolTip(upg, 'Unlocks the End dimension.\nThis can only be bought once.')
         if upg == 'potato':
             upg = tk.Button(root, text = '🃏\n???:\n666 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('potato',666,False))
+            tt = toolTip(upg, 'Unlocks Poisonous Potato Ore.\nThis can only be bought once.')
         if upg == 'ore ext':
             upg = tk.Button(root, text = '💎\nUnlock Pseudo-Ores:\n750 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('ore ext',750,False))
+            tt = toolTip(upg, 'Unlocks additional ore types:\nAmethyst, Glowstone, Gilded Blackstone\nThis can only be bought once.')
         if upg == 'ruby':
             upg = tk.Button(root, text = '♦️\nUnlock Ruby Ore:\n675 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('ruby',675,True))
-
+            tt = toolTip(upg, 'Unlocks Ruby Ore.\nThis can only be bought once.')
         if upg == 'time':
             upg = tk.Button(root, text = '🕰\nMore Round Time:\n475 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('time',475,False))
+            tt = toolTip(upg, 'Increases the time available for each round to 30 seconds.\nThis can only be bought once.')
         if upg == 'Xtime':
             upg = tk.Button(root, text = '⏰\nInfinite Round Time:\n550 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('Xtime',550,False))
+            tt = toolTip(upg, 'Provides infinite time for each round.\nThis can only be bought once.')
         if upg == 'ins nex':
             upg = tk.Button(root, text = "🔑\nInstant 'Next' Unlock:\n425 Score", bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('ins nex',425,False))
-
+            tt = toolTip(upg, 'Removes 5-second Next button lock.\nThis can only be bought once.')
         if upg == 'dim pick':
             upg = tk.Button(root, text = '🌌\nChoose Next Dimension:\n1,250 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('dim pick',1250,True))
+            tt = toolTip(upg, 'Unlocks dimension button to select dimension in between rounds.\nThis can only be bought once.')
         if upg == 'upg re':
             upg = tk.Button(root, text = '♻️\nUpgrade Rerolling:\n3,150 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('upg re',3150,False))
+            tt = toolTip(upg, 'Unlocks reroll button to spend score to reroll upgrades.\nThis can only be bought once.')
         if upg == 'stat view':
             upg = tk.Button(root, text = '👁\nStat & Upgrade Viewing:\n50 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('stat view',50,False))
+            tt = toolTip(upg, 'Unlocks command block button to view stats and upgrades.\nThis can only be bought once.')
 
 
         if upg == 'skip':
             upg = tk.Button(root, text = '☑️\nSkip Upgrade:\n0 Score', bg = 'gray85', fg = 'gray5', command = lambda: nextRoundA())
-
+            tt = toolTip(upg, 'Skip this shop and move to the next round.')
         if upg == '🏆':
             upg = tk.Button(root, text = '🏆\nHidden Trophy:\n0 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('🏆',0,True))
+            tt = toolTip(upg, 'Unlocks the hidden trophy. View previously hidden info!\nThis can only be bought once.')
 
         return upg
