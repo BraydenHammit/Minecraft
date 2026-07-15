@@ -597,7 +597,7 @@ def button_click(r,c,block, effic=False):
         play(sounds['level'],'click')
 
     else:
-        if block == 'bedrock':
+        if block == 'bedrock' and not effic:
             attemptedBedrock += 1
         play(sounds['break'],'click')
 
