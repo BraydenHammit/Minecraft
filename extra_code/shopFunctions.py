@@ -59,8 +59,10 @@ def shopList(upgradeInv,dimensionPickB,upgReroll,command,r,mult):
 
     if not upgradeInv["auto"][0]:
         upgrades.append('auto')
-    elif not upgradeInv["autoF"]: # remove False when fully implemented
+    elif not upgradeInv["autoF"]:
         upgrades.append('autoF')
+    if upgradeInv['auto'][0] and not upgradeInv["autoX"]:
+        upgrades.append('autoX')
 
     if not upgradeInv["ore ext"]:
         upgrades.append('ore ext')
@@ -247,6 +249,9 @@ def buttonDef(upg, root, multiplierUpgrade, invUpgrade, nextRoundA, fortuneUpgra
         if upg == 'autoF':
             upg = tk.Button(root, text = '⏩\nFaster Automation:\n2,375 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('autoF',2375,False))
             tt = toolTip(upg, 'Automatically mine every 0.25 seconds.\nThis can only be bought once.')
+        if upg == 'autoX':
+            upg = tk.Button(root, text = '💥\nExplosive Automation:\n3,450 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('autoX',3450,False))
+            tt = toolTip(upg, 'Automining now mines a 3x3 area at a time.\nThis can only be bought once.')
         if upg == 'bedr':
             upg = tk.Button(root, text = '🗜\nBedrock Minability:\n300 Score', bg = 'gray85', fg = 'gray5', command = lambda: invUpgrade('bedr',300,True))
             tt = toolTip(upg, 'Allows mining bedrock.\nThis can only be bought once.')

@@ -114,6 +114,10 @@ def viewInventory(multiplier,fortune,upgradeInv,score,blocksMined,sounds,play,en
         texT += ('\nFaster Auto-Mine')
     else:
         missing_upg += 1
+    if upgradeInv["autoX"]:
+        texT += ('\nExplosive Auto-Mine')
+    else:
+        missing_upg += 1
 
     if upgradeInv["ore ext"]:
         texT += ('\nAllow Pseudo Ore Spawning')

@@ -25,7 +25,7 @@ else:
 start = True
 nextR = False
 score = 0
-multiplier = 1
+multiplier = 1000
 fortune = 1
 nextTimer = 5
 timer = 15
@@ -132,6 +132,7 @@ upgradeInv = {
     'tnt start': False, # 5x5 TNT Starting Blast
     'auto': [False,False], # Automatic Mining                                             [_,Activated]
     'autoF': False, # Faster Automation
+    'autoX': False, # Explosive Automation
     'effic': False, # Efficiency
     #Time:
     'time': False, # More Round Time
@@ -754,7 +755,31 @@ def autoMine():
                 r, c = int(mPrice[0]), int(mPrice[1])
                 blockN = blocksN[r][c]
                 block = blocks[r][c]
-                if blockN not in ('bedrock','air','barrier','chest','ender chest','trapped chest'):
+                if upgradeInv['autoX'] and blockN not in ('bedrock','air','barrier','chest','ender chest','trapped chest'):
+                    if not isinstance(block, str):
+                            block.destroy()
+                    play(sounds['tnt'],'break block')
+                    check = [[r+1,c-1], [r+1,c], [r+1,c+1],
+                            [r,c-1],    [r,c],   [r,c+1],
+                            [r-1,c-1], [r-1,c], [r-1,c+1]]
+                    for rr, cc in check:
+                        block = blocksN[rr][cc]
+                        if ('chest' not in block) and (block not in ('barrier','air')) and (upgradeInv['bedr'][0] or block != 'bedrock') and (not(rr == 15 and cc in (0,1,2))):
+                            blocksN[rr][cc] = 'air'
+                            if not isinstance(blocks[rr][cc], str):
+                                blocks[rr][cc].destroy()
+                            blocks[rr][cc] = 'air'
+                            if block == 'poisonous potato':
+                                upgradeInv['🏆'][2] = True
+                            if rr >= 9 and dimension == 'overworld' and block not in ('bedrock','deepslate','amethyst'):
+                                blockM = 'deepslate '+block
+                            elif dimension == 'poisonous potato' and block not in ('potone','resin'):
+                                blockM = 'potone '+block
+                            else: 
+                                blockM = block
+                            blocksMined[blockM] += 1
+                            score += scoreAS(block,upgradeInv,multiplier,None,blockM,blockTypes,mining=True)
+                elif blockN not in ('bedrock','air','barrier','chest','ender chest','trapped chest'):
                     if not isinstance(block, str):
                         block.destroy()
                     blocks[r][c] = 'air'
