@@ -476,7 +476,7 @@ def button_click(r,c,block, effic=False):
                     blocks[r][c] = 'air'
                     blocksN[r][c] = 'air'
                     start = False
-                    score += scoreAS('bedrock',upgradeInv,multiplier,score,'bedrock',blockTypes,startX=startScore)
+                    score += scoreAS('bedrock',upgradeInv,multiplier,score,'bedrock',blockTypes,startX=startScore,mining=True)
                     play(sounds['glass'],'break block')
                     blocksMined['bedrock'] += 1
 
@@ -504,7 +504,7 @@ def button_click(r,c,block, effic=False):
                         else: 
                             blockM = block
                         blocksMined[blockM] += 1
-                        score += scoreAS(block,upgradeInv,multiplier,score,blockM,blockTypes,startX=startScore)
+                        score += scoreAS(block,upgradeInv,multiplier,score,blockM,blockTypes,startX=startScore,mining=True)
                         
                             
 
@@ -531,7 +531,7 @@ def button_click(r,c,block, effic=False):
                         else: 
                             blockM = block
                         blocksMined[blockM] += 1
-                        score += scoreAS(block,upgradeInv,multiplier,score,blockM,blockTypes,startX=startScore)
+                        score += scoreAS(block,upgradeInv,multiplier,score,blockM,blockTypes,startX=startScore,mining=True)
                         
 
 
@@ -554,7 +554,7 @@ def button_click(r,c,block, effic=False):
                     play(sounds['break block'],'break block')
                 else:
                     play(sounds['xp'],'break block')
-                score += scoreAS(block,upgradeInv,multiplier,score,blockM,blockTypes,startX=startScore)
+                score += scoreAS(block,upgradeInv,multiplier,score,blockM,blockTypes,startX=startScore,mining=True)
 
             blocks[15][0].configure(text=round(score,2))
 
@@ -770,7 +770,7 @@ def autoMine():
                     else: 
                         blockM = blockN
                     blocksMined[blockM] += 1
-                    score += scoreAS(blockN,upgradeInv,multiplier,score,blockM,blockTypes)
+                    score += scoreAS(blockN,upgradeInv,multiplier,score,blockM,blockTypes,mining=True)
                     blocks[15][0].configure(text=round(score,2))
     if upgradeInv['autoF']:
         aMine = root.after(250,autoMine)
