@@ -60,7 +60,7 @@ def scoreAS(block,upgradeInv,multiplier,unused,blockT,blockTypes,startX=False,mi
     #Multipliers:
     if score > 0:
         #Fortune:
-        if mining and upgradeInv['fortune'][0]:
+        if (mining or (upgradeInv['fortune'][1] == 100)) and upgradeInv['fortune'][0]:
             if ((upgradeInv['fortune'][1] == 100) 
             or (upgradeInv['fortune'][1] == 75 and (ran.randint(1,4) != 1))
             or (upgradeInv['fortune'][1] == 50 and (ran.randint(1,2) == 1))
