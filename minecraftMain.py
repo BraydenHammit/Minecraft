@@ -181,7 +181,10 @@ else:
 if syst == 'w':
     root.config(cursor="@assets/images/swordImageMinecraft.cur")
 if syst != 'o':
-    root.state('zoomed')
+    try:
+        root.attributes('-fullscreen', True)
+    except:
+        root.state('zoomed')
 else: #Using codespace
     root.update_idletasks()
     width = root.winfo_width()
