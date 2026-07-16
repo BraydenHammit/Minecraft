@@ -56,6 +56,14 @@ blockTypes = {
     'food': ['potone','potone copper','potone gold','potone iron','potone redstone','potone lapis','potone diamond','resin','poisonous potato','deepslate poisonous potato']
 }
 
+bgs = {
+        'nether': '#723232',
+        'overworld': 'grey',
+        'end': "#D7D597",
+        'moon': "#dad7bb",
+        'poisonous potato': "#8D4C1F"
+    }
+
 blocksMined = {
             #Rocks:
             'stone': 0,
@@ -200,6 +208,7 @@ settingsB = tk.Button(root, text='Settings', bg='gray85', fg="gray5", command=la
 images = {
             #Unique:
             'commandBlock': tk.PhotoImage(file='assets/images/commandBlockImageMinecraft.png'),
+            'copperGolem': tk.PhotoImage(file='assets/images/copperGolemImageMinecraft.png'),
             'icon': tk.PhotoImage(file='assets/images/iconImageMinecraft.png'),
             'title': tk.PhotoImage(file='assets/images/titleImageMinecraft.png'),
             'titleS': tk.PhotoImage(file='assets/images/titleSImageMinecraft.png'),
@@ -257,6 +266,7 @@ images = {
                 'ruby': tk.PhotoImage(file='assets/images/rubyImageMinecraft.png')
             }
 
+cGolem = tk.Label(root, image=images['copperGolem'], bg=bgs['overworld'], fg="gray5")
 command = tk.Button(root, height=1, width=105, image=images['commandBlock'], bg="#e18a4c", command=lambda: commandButton(sounds['click']))
 if syst == 'm':
     root.iconphoto(True, images['icon'])
@@ -612,16 +622,16 @@ def button_click(r,c,block, effic=False):
 def nextRoundPre():
     global key, keyE, keyN, rerollCost
     root.configure(background='grey')
-
     stopPlaying(soundsPlaying['roundMusic'])
 
+    try:
+        cGolem.grid_forget()
+    except: None
+
     for eachCol, val in enumerate(blocks):
-
         for eachRow, val in enumerate(val):
-
             if (val == 'air') or (val == 'barrier') or (eachRow == 0 and eachCol == 15):
                 continue
-
             val.destroy()
 
     rerollCost = 300
@@ -756,6 +766,10 @@ def autoMine():
                 r, c = int(mPrice[0]), int(mPrice[1])
                 blockN = blocksN[r][c]
                 block = blocks[r][c]
+                try:
+                    cGolem.grid_forget()
+                except: None
+                cGolem.grid(row=r,column=c, sticky="nsew", padx=5, pady=5)
                 if upgradeInv['autoX'] and settings['autoX'] and (blockN not in ('bedrock','air','barrier','chest','ender chest','trapped chest')):
                     if not isinstance(block, str):
                             block.destroy()
@@ -816,7 +830,7 @@ def nextRound():
     nextTimer = 5
     blocks = []
     blocksN = []
-    dimension = dimensionR(upgradeInv, root)
+    dimension = dimensionR(upgradeInv, root, bgs)
 
     if syst == 'w':
         root.config(cursor="@assets/images/pickaxeImageMinecraft.cur")
@@ -889,6 +903,7 @@ def nextRound():
         nextTimer = 0
         blocks[15][1].configure(text='Next')
     nextLock = root.after(1000,nextTime)
+    cGolem.configure(bg=bgs[dimension])
     if upgradeInv['auto'][0] and not upgradeInv['auto'][1]:    
         aMine = root.after(1000,autoMine)
         upgradeInv['auto'][1] = True

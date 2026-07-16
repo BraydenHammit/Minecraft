@@ -3,14 +3,7 @@ import random as ran
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Random Dimension Function:
-def dimensionR(upgradeInv,root):
-    bgs = {
-        'nether': '#723232',
-        'overworld': 'grey',
-        'end': "#D7D597",
-        'moon': "#dad7bb",
-        'poisonous potato': "#8D4C1F"
-    }
+def dimensionR(upgradeInv,root, bgs):
 
     if upgradeInv['dim pick'][0]:
         if upgradeInv['dim pick'][1] == 'n':
