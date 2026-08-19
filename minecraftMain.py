@@ -173,11 +173,11 @@ upgradeInv = {
 
 root = tk.Tk()
 if ran.randrange(777) == 333:
-    root.title("Minceraft")
-    title = "Minceraft"
+    root.title("Rougemine")
+    title = "Rougemine"
 else:
-    root.title("Minecraft")
-    title = "Minecraft"
+    root.title("Roguemine")
+    title = "Roguemine"
 if syst == 'w':
     root.config(cursor="@assets/images/swordImageMinecraft.cur")
 if syst != 'o':
@@ -275,7 +275,7 @@ if syst == 'm':
     root.iconphoto(True, images['icon'])
 elif syst == 'w':
     root.iconbitmap(images['iconI'])
-if title == 'Minceraft':
+if title == 'Rougemine':
     title = tk.Label(root, borderwidth=0, highlightthickness=0, image = images['titleS'])
 else:
     title = tk.Label(root, borderwidth=0, highlightthickness=0, image = images['title'])
@@ -927,7 +927,7 @@ def nextRound():
 
 #Start/Open Window:
 root.configure(background="#323232")
-title.pack(pady=5)
+title.pack(pady=25)
 scrollIntro.pack(padx=30, pady=30)
 scrollIntro.insert(tk.INSERT, intro)
 scrollIntro.configure(state='disabled')
